@@ -55,26 +55,28 @@ $(document).ready(function() {
         console.log("error");
     });*/
     
-    $("#btnSubmit").click(function(){                
+    $(".btn-success").click(function(){                
         
-        var email = $("#email").val();
-        var name = $("#name").val();
-        var username = $("#username").val();
-        var password = $("#password").val();
-        
-        var content = {address: "34 Thống Nhất, P11, Q.Gò Vấp, Tp.HCM",
-  addressID: 1    ,
-  description: "Xả rác",
-  expectedTime: "2016-03-22T11:05:27+07:00",
-  latitude: 109.09,
-  longitude: 129.02,
-  metadata: false,
-  requestedTime: "2016-03-22T10:30:25+07:00",
-  serviceCode: "10",
-  serviceName: "Xả rác",
-  statusID: 0,
-  updatedTime: "2016-03-22T11:05:27+07:00"};
-                
+{
+  "address": "309 Thống Nhất, P11, Q.Gò Vấp, Tp.HCM",
+  "description": "Xả rác bừa bãi trên đường Thống Nhất",
+  "expectedDatetime": "2016-03-22T11:05:27+07:00",
+  "latitude": 109.09,
+  "longitude": 129.02,
+  "metadata": false,
+  "requestedDatetime": "2016-03-22T10:30:25+07:00",
+  "serviceCode": 10,
+  "serviceName": "Xả rác",
+  "serviceRequestId": 1,
+  "statusId": 0,
+  "updatedDatetime": "2016-03-22T11:05:27+07:00"
+}
+    
+    var content = new Object();
+    content.address = $("#addInfo").val();   
+    content.description = $("#desInfo").val();
+    var date = new Date();
+    content.requestedDatatime = date.toISOString();          
                 console.log(JSON.stringify(content));
         $.ajax({
             method: "POST",

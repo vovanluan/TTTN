@@ -15,9 +15,6 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.disabledTab{
-    //pointer-events: none;
-}
 .stepTable tr td{
     vertical-align: top;
     padding-bottom: 10px;
