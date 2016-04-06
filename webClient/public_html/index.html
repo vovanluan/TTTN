@@ -399,7 +399,7 @@
 			case 'dien':
 				detailInfo=$('#electricity option:selected').val();
 				electricityStep4.style.display = 'inline';
-				electricityStep4.val(detailInfo);
+				electricityStep4.value = detailInfo;
 				waterStep4.style.display = 'none';
 				noiseStep4.style.display = 'none';
 				break;
@@ -407,7 +407,7 @@
 				detailInfo=$('#water option:selected').val();
 				electricityStep4.style.display = 'none';
 				waterStep4.style.display = 'inline';
-				waterStep4.val(detailInfo);
+				waterStep4.value = detailInfo;
 				noiseStep4.style.display = 'none';
 				break;
 			case 'tiengon':
@@ -415,7 +415,7 @@
 				electricityStep4.style.display = 'none';
 				waterStep4.style.display = 'none';
 				noiseStep4.style.display = 'inline';
-				noiseStep4.val(detailInfo);
+				noiseStep4.value = detailInfo;
 				break;
 		}
 
