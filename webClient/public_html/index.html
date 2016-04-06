@@ -3,14 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Test</title>
-	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script src="js/jquery-1.12.1.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
   	<link rel="stylesheet" type="text/css" href="css/style.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-	
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3"></div>
@@ -201,83 +200,101 @@
 					<div id="step4" class="tab-pane">
 						<strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong>
 						<hr style="margin:10px 0px 30px 0px;">
-						<!-- <form action="form.html" id="step4Form"> -->
-							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 1: Vấn đề</h4>
-							<button class="btn btn-default" onclick="step1Edit()" style="float:right">
-								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-							</button>	
-							<hr>
-							<table class="stepTable" style="margin-bottom:30px;">
-								<tr> 
-									<td class="col-md-4">Chủ đề:</td>
-									<td><input class="form-control infoStep1 col-md-8" id="subInfo"  type="text" readonly="readonly"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">Chi tiết:</td>
-									<td><input class="form-control infoStep1" id="detailInfo"  type="text" readonly="readonly"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">Thời gian:</td>
-									<td><input class="form-control infoStep1" id="dateInfo"	 type="text" readonly="readonly"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">Mô tả thêm:</td>
-									<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3"  readonly="readonly"></textarea></td>
-								</tr>
-							</table>
-							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
-							<button class="btn btn-default" onclick="step2Edit()" style="float:right">
-								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-							</button>
-							<hr>
-							<table class="stepTable" style="margin-bottom:30px;">
-								<tr> 
-									<td class="col-md-6">Địa chỉ:</td>
-									<td><input class="form-control" id="addInfo" class="infoStep2" type="text" style="width:300px" readonly="true"></td>
-								</tr>
-								<tr>
-									<td class="col-md-6">Phường:</td>
-									<td><input class="form-control" id="wardInfo" class="infoStep2" type="text" style="width:100%" readonly="true"></td>
-								</tr>
-								<tr>
-									<td class="col-md-6">Quận:</td>
-									<td><input class="form-control" id="disInfo" class="infoStep2" type="text" style="width:100%" readonly="true"></td>
-								</tr>
-							</table>
-							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
-							<button id="step3Btn" class="btn btn-default" onclick="step3Edit()" style="float:right">
-								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-							</button>
-							<hr>
-							<table class="stepTable" style="margin-bottom:10px;">
-								<tr> 
-									<td class="col-md-4">Họ tên:</td>
-									<td><input class="form-control col-md-8" id="nameInfo" class="infoStep3" type="text" style="width:300px;"readonly="true"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">Số điện thoại:</td>
-									<td><input class="form-control col-md-8" id="phoneInfo" class="infoStep3" type="text" readonly="true"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">Email:</td>
-									<td><input class="form-control col-md-8" id="emailInfo" class="infoStep3" type="text" readonly="true"></td>
-								</tr>
-								<tr>
-									<td class="col-md-4">CMND:</td>
-									<td><input class="form-control col-md-8" id="idenInfo" class="infoStep3" type="text" readonly="true"></td>
-								</tr>
-							</table>
-							<hr>
-							<table class="col-md-12">
-								<tr>
-									<td style="direction:rtl">
-										<button class="btn btn-success">Gửi</button>
-										<a class="btn btn-primary btnPrev">Trở về</a>
-										<button class="btn btn-danger">Hủy bỏ</button>
-									</td>
-								</tr>
-							</table>
-						<!-- </form> -->
+						<h4 style="display:inline;padding-right:10px;color:#39A">Bước 1: Vấn đề</h4>
+						<button class="btn btn-default" onclick="step1Edit()" style="float:right">
+							<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+						</button>	
+						<hr>
+						<table class="stepTable" style="margin-bottom:30px;">
+							<tr> 
+								<td class="col-md-4">Chủ đề:</td>
+								<td>
+									<select class="form-control col-md-8" id="subInfo" name="chude" onchange="subjectStep4Change()" style="width:100%" disabled>
+										<option value="dien">Điện</option>
+										<option value="nuoc">Nước</option>
+										<option value="tiengon">Tiếng ồn</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Chi tiết:</td>
+								<td>
+									<select class="form-control" id="electricityStep4" style="display:inline;width:100%">
+										<option value="matdien">Mất điện</option>
+										<option value="dienyeu">Điện yếu</option>										
+									</select>
+									<select class="form-control" id="waterStep4" style="display:none;width:100%">
+										<option value="matnuoc">Mất nước</option>	
+										<option value="nuocyeu">Nước yếu</option>
+									</select>
+									<select class="form-control" id="noiseStep4" style="display:none;width:100%">
+										<option value="giaothong">Giao thông</option>
+										<option value="congtrinh">Công trình</option>
+									</select>
+
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Thời gian:</td>
+								<td><input class="form-control infoStep1" id="dateInfo"	 type="text" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Mô tả thêm:</td>
+								<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3"  readonly="readonly"></textarea></td>
+							</tr>
+						</table>
+						<h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
+						<button class="btn btn-default" onclick="step2Edit()" style="float:right">
+							<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+						</button>
+						<hr>
+						<table class="stepTable" style="margin-bottom:30px;">
+							<tr> 
+								<td class="col-md-6">Địa chỉ:</td>
+								<td><input class="form-control infoStep2" id="addInfo" type="text" style="width:300px" readonly="true"></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Phường:</td>
+								<td><input class="form-control infoStep2" id="wardInfo" type="text" style="width:100%" readonly="true"></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Quận:</td>
+								<td><input class="form-control infoStep2" id="disInfo" type="text" style="width:100%" readonly="true"></td>
+							</tr>
+						</table>
+						<h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
+						<button id="step3Btn" class="btn btn-default" onclick="step3Edit()" style="float:right">
+							<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+						</button>
+						<hr>
+						<table class="stepTable" style="margin-bottom:10px;">
+							<tr> 
+								<td class="col-md-4">Họ tên:</td>
+								<td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true"></td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Số điện thoại:</td>
+								<td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true"></td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Email:</td>
+								<td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true"></td>
+							</tr>
+							<tr>
+								<td class="col-md-4">CMND:</td>
+								<td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true"></td>
+							</tr>
+						</table>
+						<hr>
+						<table class="col-md-12">
+							<tr>
+								<td style="direction:rtl">
+									<button type="submit" form="step4Form" class="btn btn-success">Gửi</button>
+									<a class="btn btn-primary btnPrev">Trở về</a>
+									<button class="btn btn-danger">Hủy bỏ</button>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -368,19 +385,20 @@
 		document.getElementById('fileName').innerText = fileName;
 	}
 	function step1Click () {
-		var subInfo = $('#subject option:selected').text();
+		var subInfo = $('#subject option:selected').val();
+		console.log(subInfo);
 		var detailInfo;
 		var dateInfo = $('#date').val();
 		var desInfo = $('#des').val();
 		switch(subInfo){
-			case 'Điện':
-				detailInfo=$('#electricity option:selected').text();
+			case 'dien':
+				detailInfo=$('#electricity option:selected').val();
 				break;
-			case 'Nước':
-				detailInfo=$('#water option:selected').text();
+			case 'nuoc':
+				detailInfo=$('#water option:selected').val();
 				break;
-			case 'Tiếng ồn':
-				detailInfo=$('#noise option:selected').text();
+			case 'tiengon':
+				detailInfo=$('#noise option:selected').val();
 				break;
 		}
 		$('#subInfo').val(subInfo);
@@ -445,8 +463,8 @@
 		}
 	}
 	function step1Edit () {
-		console.log("hello");
 		$('.infoStep1').removeAttr('readonly');
+		$('#subInfo').prop('disabled',false);
 		$('#subInfo').focus();
 	}
 	function step2Edit () {
