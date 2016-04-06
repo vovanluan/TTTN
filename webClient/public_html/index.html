@@ -218,16 +218,17 @@
 							</tr>
 							<tr>
 								<td class="col-md-4">Chi tiết:</td>
-								<td>
-									<select class="form-control" id="electricityStep4" style="display:inline;width:100%">
+								<td id="detailInfo">
+									<select class="form-control" id="electricityStep4" style="display:inline;width:100%" disabled>
 										<option value="matdien">Mất điện</option>
 										<option value="dienyeu">Điện yếu</option>										
 									</select>
-									<select class="form-control" id="waterStep4" style="display:none;width:100%">
+
+									<select class="form-control" id="waterStep4" style="display:none;width:100%" disabled>
 										<option value="matnuoc">Mất nước</option>	
 										<option value="nuocyeu">Nước yếu</option>
 									</select>
-									<select class="form-control" id="noiseStep4" style="display:none;width:100%">
+									<select class="form-control" id="noiseStep4" style="display:none;width:100%" disabled>
 										<option value="giaothong">Giao thông</option>
 										<option value="congtrinh">Công trình</option>
 									</select>
@@ -390,19 +391,36 @@
 		var detailInfo;
 		var dateInfo = $('#date').val();
 		var desInfo = $('#des').val();
+		var electricityStep4 = document.getElementById('electricityStep4');
+		var waterStep4 = document.getElementById('waterStep4');
+		var noiseStep4 = document.getElementById('noiseStep4');
+
 		switch(subInfo){
 			case 'dien':
 				detailInfo=$('#electricity option:selected').val();
+				electricityStep4.style.display = 'inline';
+				electricityStep4.val(detailInfo);
+				waterStep4.style.display = 'none';
+				noiseStep4.style.display = 'none';
 				break;
 			case 'nuoc':
 				detailInfo=$('#water option:selected').val();
+				electricityStep4.style.display = 'none';
+				waterStep4.style.display = 'inline';
+				waterStep4.val(detailInfo);
+				noiseStep4.style.display = 'none';
 				break;
 			case 'tiengon':
 				detailInfo=$('#noise option:selected').val();
+				electricityStep4.style.display = 'none';
+				waterStep4.style.display = 'none';
+				noiseStep4.style.display = 'inline';
+				noiseStep4.val(detailInfo);
 				break;
 		}
+
+		console.log(detailInfo);
 		$('#subInfo').val(subInfo);
-		$('#detailInfo').val(detailInfo);
 		$('#dateInfo').val(dateInfo);
 		$('#desInfo').val(desInfo);
 
@@ -466,6 +484,13 @@
 		$('.infoStep1').removeAttr('readonly');
 		$('#subInfo').prop('disabled',false);
 		$('#subInfo').focus();
+		var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
+
+		for(var i=0; i<allTags.length;i++){
+			if(allTags[i].style.display=='inline'){
+				allTags[i].disabled = false;
+			}
+		}
 	}
 	function step2Edit () {
 		$('.infoStep2').removeAttr('readonly');
@@ -475,9 +500,6 @@
 		$('.infoStep3').removeAttr('readonly');
 		$('#nameInfo').focus();
 	}
-	/*$('.btnNext').click(function(){
-  		$('.nav-tabs > .active').next('li').find('a').trigger('click');
-	});*/
 
   	$('.btnPrev').click(function(){
   		$('.nav-tabs > .active').prev('li').find('a').trigger('click');
