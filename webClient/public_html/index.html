@@ -6,7 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<script src="js/jquery-1.12.1.js"></script>
   	<script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+	<script src="http://maps.google.com/maps/api/js?v=3.22&amp;key=AIzaSyAdS7mTduExQFMY-x090WPiYRLPoMEK_JI" type="text/javascript">
+	</script>
   	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -84,6 +86,19 @@
 					</div>
 
 					<div id="step2" class="tab-pane">
+						<div id="googleMap" style="width:480px;height:380px;"></div>
+						<table class="longlat">
+							<tr>
+								<td class="col-md-3"> Kinh độ </td>
+								<td class="col-md-3">
+									<input class="form-control" readonly="readonly" id="longitude">
+								</td>
+								<td class="col-md-3"> Vĩ độ </td>
+								<td class="col-md-4">
+									<input class="form-control" readonly="readonly" id="latitude">
+								</td>								
+							</tr>
+						</table>
 						<strong>Cung cấp địa điểm sự việc</strong>
 						<hr style="margin:10px 0px 30px 0px;">
 						<form action="form.html" id="step2Form">
@@ -136,8 +151,7 @@
 										<input class="form-control" type="text" id="address"  style="width:300px">
 									</td>
 								</tr>
-							</table>
-							
+							</table>						
 							<hr>
 							<table class="col-md-12">
 								<tr>
@@ -305,215 +319,4 @@
 		</div>
 	</div>
 </body>
-<script>
-	function subjectChange () {
-		var sub = document.getElementById('subject');
-		var whichsubject = sub.options[sub.selectedIndex].value;
-		var electricity = document.getElementById('electricity');
-		var water = document.getElementById('water');
-		var noise = document.getElementById('noise');
-		switch(whichsubject){
-			case 'dien':
-				electricity.style.display='inline';
-				water.style.display='none';
-				noise.style.display='none';
-				break;
-			case 'nuoc':
-				electricity.style.display='none';
-				water.style.display='inline';
-				noise.style.display='none';
-				break;
-			case 'tiengon':
-				electricity.style.display='none';
-				water.style.display='none';
-				noise.style.display='inline';
-				break;
-		}
-	}
-	function districtChange () {
-		var dis = document.getElementById('district');
-		var whichdis = dis.options[dis.selectedIndex].value;
-		var quan1 = document.getElementById('quan1');
-		var quan2 = document.getElementById('quan2');
-		var quan10 = document.getElementById('quan10');
-		var quanbinhthanh = document.getElementById('quanbinhthanh');
-		var quanthuduc = document.getElementById('quanthuduc');
-
-		switch(whichdis){
-			case 'quan1':
-				quan1.style.display='inline';
-				quan2.style.display='none';
-				quan10.style.display='none';
-				quanbinhthanh.style.display='none';
-				quanthuduc.style.display='none';
-				break;
-			case 'quan2':
-				quan1.style.display='none';
-				quan2.style.display='inline';
-				quan10.style.display='none';
-				quanbinhthanh.style.display='none';
-				quanthuduc.style.display='none';
-				break;
-
-			case 'quan10':
-				quan1.style.display='none';
-				quan2.style.display='none';
-				quan10.style.display='inline';
-				quanbinhthanh.style.display='none';
-				quanthuduc.style.display='none';
-				break;
-
-			case 'quanbinhthanh':
-				quan1.style.display='none';
-				quan2.style.display='none';
-				quan10.style.display='none';
-				quanbinhthanh.style.display='inline';
-				quanthuduc.style.display='none';
-				break;
-
-			case 'quanthuduc':
-				quan1.style.display='none';
-				quan2.style.display='none';
-				quan10.style.display='none';
-				quanbinhthanh.style.display='none';
-				quanthuduc.style.display='inline';
-				break;
-
-		}
-	}
-	function alertFileName (event) {
-		var fileName = document.getElementById('fileupload').value;
-		fileName = fileName.replace(/.*[\/\\]/, '');
-		document.getElementById('fileName').innerText = fileName;
-
-		var reader = new FileReader();
-    	reader.onload = function(){
-      	var output = document.getElementById('image-holder');
-      	output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-
-
-	}
-	function step1Click () {
-		var subInfo = $('#subject option:selected').val();
-		console.log(subInfo);
-		var detailInfo;
-		var dateInfo = $('#date').val();
-		var desInfo = $('#des').val();
-		var electricityStep4 = document.getElementById('electricityStep4');
-		var waterStep4 = document.getElementById('waterStep4');
-		var noiseStep4 = document.getElementById('noiseStep4');
-
-		switch(subInfo){
-			case 'dien':
-				detailInfo=$('#electricity option:selected').val();
-				electricityStep4.style.display = 'inline';
-				electricityStep4.value = detailInfo;
-				waterStep4.style.display = 'none';
-				noiseStep4.style.display = 'none';
-				break;
-			case 'nuoc':
-				detailInfo=$('#water option:selected').val();
-				electricityStep4.style.display = 'none';
-				waterStep4.style.display = 'inline';
-				waterStep4.value = detailInfo;
-				noiseStep4.style.display = 'none';
-				break;
-			case 'tiengon':
-				detailInfo=$('#noise option:selected').val();
-				electricityStep4.style.display = 'none';
-				waterStep4.style.display = 'none';
-				noiseStep4.style.display = 'inline';
-				noiseStep4.value = detailInfo;
-				break;
-		}
-
-		console.log(detailInfo);
-		$('#subInfo').val(subInfo);
-		$('#dateInfo').val(dateInfo);
-		$('#desInfo').val(desInfo);
-
-		$('.nav-tabs > .active').next('li').find('a').trigger('click');
-	}
-	function step2Click () {
-		var disInfo = $('#district option:selected').text();
-		var wardInfo;
-		var addInfo = $('#address').val();
-		switch(disInfo){
-			case 'Quận 1':
-				wardInfo=$('#quan1 option:selected').text();
-				break;
-			case 'Quận 2':
-				wardInfo=$('#quan2 option:selected').text();
-				break;
-			case 'Quận 10':
-				wardInfo=$('#quan10 option:selected').text();
-				break;
-			case 'Quận Bình Thạnh':
-				wardInfo=$('#quanbinhthanh option:selected').text();
-				break;
-			case 'Quận Thủ Đức':
-				wardInfo=$('#quanthuduc option:selected').text();
-				break;
-		}
-		$('#addInfo').val(addInfo);
-		$('#wardInfo').val(wardInfo);
-		$('#disInfo').val(disInfo);
-
-		$('.nav-tabs > .active').next('li').find('a').trigger('click');
-	}
-	function step3Click () {
-		var checkDisplay = $('#infoDisplay').prop('checked');
-		var myForm = $('#step3Form');
-		if(!myForm[0].checkValidity()){
-			myForm.find(':submit').click();
-		}
-		else $('.nav-tabs > .active').next('li').find('a').trigger('click');
-		if(!checkDisplay){
-			var nameInfo = $('#name').val();
-			var phoneInfo = $('#phone').val();
-			var emailInfo = $('#email').val();
-			var idenInfo = $('#identify').val();
-
-			$('#nameInfo').val(nameInfo);
-			$('#phoneInfo').val(phoneInfo);
-			$('#emailInfo').val(emailInfo);
-			$('#idenInfo').val(idenInfo);
-			$('#step3Btn').removeAttr('disabled');
-		}
-		else{
-			$('#nameInfo').val('Not Available');
-			$('#phoneInfo').val('Not Available');
-			$('#emailInfo').val('Not Available');
-			$('#idenInfo').val('Not Available');
-			$('#step3Btn').prop('disabled',true);
-		}
-	}
-	function step1Edit () {
-		$('.infoStep1').removeAttr('readonly');
-		$('#subInfo').prop('disabled',false);
-		$('#subInfo').focus();
-		var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
-
-		for(var i=0; i<allTags.length;i++){
-			if(allTags[i].style.display=='inline'){
-				allTags[i].disabled = false;
-				break;
-			}
-		}
-	}
-	function step2Edit () {
-		$('.infoStep2').removeAttr('readonly');
-		$('#addInfo').focus();
-	}
-	function step3Edit () {
-		$('.infoStep3').removeAttr('readonly');
-		$('#nameInfo').focus();
-	}
-
-  	$('.btnPrev').click(function(){
-  		$('.nav-tabs > .active').prev('li').find('a').trigger('click');
-	});
-</script>
 </html>
