@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-5">
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#step1">Bước 1</a></li>
+					<li><a data-toggle="tab" href="#step2">Bước 2</a></li>
+					<li><a data-toggle="tab" href="#step3">Bước 3</a></li>
+					<li><a data-toggle="tab" href="#step4">Bước 4</a></li>
+				</ul>
+				<div class="tab-content" style="padding-top:20px;">
+					<div id="step1" class="tab-pane active fade in">	
+						<strong>Cho biết các thông tin về chủ đề phản ánh, cung cấp các hình ảnh liên quan (nếu có)</strong>
+						<hr style="margin:10px 0px 30px 0px;">
+						<table class="stepTable" style="border:none">
+							<tr>
+								<td class="col-md-4">Chủ đề:</td>
+								<td>
+									<select class="form-control col-md-8" name="chude" id="subject" onchange="subjectChange()" style="width:100%">
+										<option value="dien" selected="selected">Điện</option>
+										<option value="nuoc">Nước</option>
+										<option value="tiengon">Tiếng ồn</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>
+								<td class="col-md-4">Chi tiết:</td>
+								<td>
+									<select class="form-control" id="electricity" style="display:inline;width:100%">
+										<option value="matdien" id="opt1">Mất điện</option>
+										<option value="dienyeu" id="opt2">Điện yếu</option>										
+									</select>
+									<select class="form-control" id="water" style="display:none;width:100%">
+										<option value="matnuoc" id="opt3">Mất nước</option>	
+										<option value="nuocyeu" id="opt4">Nước yếu</option>
+									</select>
+									<select class="form-control" id="noise" style="display:none;width:100%">
+										<option value="giaothong" id="opt5">Giao thông</option>
+										<option value="congtrinh" id="opt6">Công trình</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Thời gian:</td>
+								<td><input class="form-control" type="date" id="date" style="width:100%"></td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Hình ảnh:</td>
+								<td>
+									<label class="btn-upload" style="vertical-align:middle;">
+								   		<input type="file" id="fileupload" onchange="alertFileName()">
+								   		<button class="btn btn-primary">Chọn ảnh</button>
+									</label>
+									<label id="fileName" style="padding-left:5px;"></label>
+								</td>
+							</tr>
+							<tr>
+								<td class="col-md-4">Mô tả thêm:</td>
+								<td><textarea class="form-control" id="des" cols="40" rows="3"></textarea></td>
+							</tr>
+						</table>
+						<hr>
+						<table class="col-md-12">
+							<tr>
+								<td style="direction:rtl">
+									<a class="btn btn-primary btnNext" onclick="step1Click()">Đi tới</a>
+									<button class="btn btn-danger">Hủy bỏ</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div id="step2" class="tab-pane">
+						<strong>Cung cấp địa điểm sự việc</strong>
+						<hr style="margin:10px 0px 30px 0px;">
+						<form action="form.html" id="step2Form">
+							<table class="stepTable">
+								<tr>
+									<td class="col-md-4">Quận:</td>
+									<td>
+										<select class="form-control" name="quan" id="district" onchange="districtChange()" style="width:100%">
+											<option value="quan1" selected="selected">Quận 1</option>
+											<option value="quan2">Quận 2</option>
+											<option value="quan10">Quận 10</option>
+											<option value="quanbinhthanh">Quận Bình Thạnh</option>
+											<option value="quanthuduc">Quận Thủ Đức</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Phường:</td>
+									<td>
+										<select class="form-control" id="quan1" style="display:inline;width:100%">
+											<option value="dakao">Đa Kao</option>
+											<option value="tandinh">Tân Định</option>
+											<option value="benthanh">Bến Thành</option>
+										</select>
+										<select class="form-control" id="quan2" style="display:none;width:100%">
+											<option value="thaodien">Thảo Điền</option>
+											<option value="anphu">An Phú</option>
+											<option value="binhan">Bình An</option>
+										</select>
+										<select class="form-control" id="quan10" style="display:none;width:100%">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+										</select>
+										<select class="form-control" id="quanbinhthanh" style="display:none;width:100%">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+										</select>
+										<select class="form-control" id="quanthuduc" style="display:none;width:100%">
+											<option value="linhxuan">Linh Xuân</option>
+											<option value="binhchieu">Bình Chiểu</option>
+											<option value="linhtrung">Linh Trung</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Địa chỉ:</td>
+									<td>
+										<input class="form-control" type="text" id="address"  style="width:300px">
+									</td>
+								</tr>
+							</table>
+							
+							<hr>
+							<table class="col-md-12">
+								<tr>
+									<td style="direction:rtl">
+										<a class="btn btn-primary btnNext" onclick="step2Click()">Đi tới</a>
+										<a class="btn btn-primary btnPrev">Trở về</a>
+										<button class="btn btn-danger">Hủy bỏ</button>
+									</td>
+								</tr>
+							</table>
+						</form>			
+					</div>
+
+					<div id="step3" class="tab-pane">
+						<strong>Cung cấp thông tin liên lạc để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+						<hr style="margin:10px 0px 30px 0px;">
+						<form action="form.html" id="step3Form">
+							<table class="stepTable">
+								<tr>
+									<td class="col-md-6">*Họ và tên:</td>
+									<td>
+										<input class="form-control" type="text" id="name" required style="width:300px">
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-6">*Số điện thoại:</td>
+									<td>
+										<input class="form-control" type="text" id="phone" required style="width:300px">
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-6">*Email:</td>
+									<td>
+										<input class="form-control" type="text" id="email" required style="width:300px">
+									</td>
+								</tr>
+								<tr>
+									<td class="col-md-6">CMND:</td>
+									<td>
+										<input class="form-control" type="text" id="identify"  style="width:300px">
+									</td>
+								</tr>
+								<tr>
+									<td>* Thông tin bắt buộc</td>
+								</tr>
+							</table>
+							<input type="checkbox" id="infoDisplay">&nbsp;Không hiển thị thông tin cá nhân
+							<hr>
+							<table class="col-md-12">
+								<tr>
+									<td style="direction:rtl">
+										<a class="btn btn-primary btnNext" onclick="step3Click()">Đi tới</a>
+										<a class="btn btn-primary btnPrev">Trở về</a>
+										<button class="btn btn-danger">Hủy bỏ</button>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<div id="step4" class="tab-pane">
+						<strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong>
+						<hr style="margin:10px 0px 30px 0px;">
+						<!-- <form action="form.html" id="step4Form"> -->
+							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 1: Vấn đề</h4>
+							<button class="btn btn-default" onclick="step1Edit()" style="float:right">
+								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+							</button>	
+							<hr>
+							<table class="stepTable" style="margin-bottom:30px;">
+								<tr> 
+									<td class="col-md-4">Chủ đề:</td>
+									<td><input class="form-control infoStep1 col-md-8" id="subInfo"  type="text" readonly="readonly"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Chi tiết:</td>
+									<td><input class="form-control infoStep1" id="detailInfo"  type="text" readonly="readonly"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Thời gian:</td>
+									<td><input class="form-control infoStep1" id="dateInfo"	 type="text" readonly="readonly"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Mô tả thêm:</td>
+									<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3"  readonly="readonly"></textarea></td>
+								</tr>
+							</table>
+							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
+							<button class="btn btn-default" onclick="step2Edit()" style="float:right">
+								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+							</button>
+							<hr>
+							<table class="stepTable" style="margin-bottom:30px;">
+								<tr> 
+									<td class="col-md-6">Địa chỉ:</td>
+									<td><input class="form-control" id="addInfo" class="infoStep2" type="text" style="width:300px" readonly="true"></td>
+								</tr>
+								<tr>
+									<td class="col-md-6">Phường:</td>
+									<td><input class="form-control" id="wardInfo" class="infoStep2" type="text" style="width:100%" readonly="true"></td>
+								</tr>
+								<tr>
+									<td class="col-md-6">Quận:</td>
+									<td><input class="form-control" id="disInfo" class="infoStep2" type="text" style="width:100%" readonly="true"></td>
+								</tr>
+							</table>
+							<h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
+							<button id="step3Btn" class="btn btn-default" onclick="step3Edit()" style="float:right">
+								<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
+							</button>
+							<hr>
+							<table class="stepTable" style="margin-bottom:10px;">
+								<tr> 
+									<td class="col-md-4">Họ tên:</td>
+									<td><input class="form-control col-md-8" id="nameInfo" class="infoStep3" type="text" style="width:300px;"readonly="true"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Số điện thoại:</td>
+									<td><input class="form-control col-md-8" id="phoneInfo" class="infoStep3" type="text" readonly="true"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">Email:</td>
+									<td><input class="form-control col-md-8" id="emailInfo" class="infoStep3" type="text" readonly="true"></td>
+								</tr>
+								<tr>
+									<td class="col-md-4">CMND:</td>
+									<td><input class="form-control col-md-8" id="idenInfo" class="infoStep3" type="text" readonly="true"></td>
+								</tr>
+							</table>
+							<hr>
+							<table class="col-md-12">
+								<tr>
+									<td style="direction:rtl">
+										<button class="btn btn-success">Gửi</button>
+										<a class="btn btn-primary btnPrev">Trở về</a>
+										<button class="btn btn-danger">Hủy bỏ</button>
+									</td>
+								</tr>
+							</table>
+						<!-- </form> -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+
+		</div>
+	</div>
+</body>
+<script>
+	function subjectChange () {
+		var sub = document.getElementById('subject');
+		var whichsubject = sub.options[sub.selectedIndex].value;
+		var electricity = document.getElementById('electricity');
+		var water = document.getElementById('water');
+		var noise = document.getElementById('noise');
+		switch(whichsubject){
+			case 'dien':
+				electricity.style.display='inline';
+				water.style.display='none';
+				noise.style.display='none';
+				break;
+			case 'nuoc':
+				electricity.style.display='none';
+				water.style.display='inline';
+				noise.style.display='none';
+				break;
+			case 'tiengon':
+				electricity.style.display='none';
+				water.style.display='none';
+				noise.style.display='inline';
+				break;
+		}
+	}
+	function districtChange () {
+		var dis = document.getElementById('district');
+		var whichdis = dis.options[dis.selectedIndex].value;
+		var quan1 = document.getElementById('quan1');
+		var quan2 = document.getElementById('quan2');
+		var quan10 = document.getElementById('quan10');
+		var quanbinhthanh = document.getElementById('quanbinhthanh');
+		var quanthuduc = document.getElementById('quanthuduc');
+
+		switch(whichdis){
+			case 'quan1':
+				quan1.style.display='inline';
+				quan2.style.display='none';
+				quan10.style.display='none';
+				quanbinhthanh.style.display='none';
+				quanthuduc.style.display='none';
+				break;
+			case 'quan2':
+				quan1.style.display='none';
+				quan2.style.display='inline';
+				quan10.style.display='none';
+				quanbinhthanh.style.display='none';
+				quanthuduc.style.display='none';
+				break;
+
+			case 'quan10':
+				quan1.style.display='none';
+				quan2.style.display='none';
+				quan10.style.display='inline';
+				quanbinhthanh.style.display='none';
+				quanthuduc.style.display='none';
+				break;
+
+			case 'quanbinhthanh':
+				quan1.style.display='none';
+				quan2.style.display='none';
+				quan10.style.display='none';
+				quanbinhthanh.style.display='inline';
+				quanthuduc.style.display='none';
+				break;
+
+			case 'quanthuduc':
+				quan1.style.display='none';
+				quan2.style.display='none';
+				quan10.style.display='none';
+				quanbinhthanh.style.display='none';
+				quanthuduc.style.display='inline';
+				break;
+
+		}
+	}
+	function alertFileName () {
+		var fileName = document.getElementById('fileupload').value;
+		fileName = fileName.replace(/.*[\/\\]/, '');
+		document.getElementById('fileName').innerText = fileName;
+	}
+	function step1Click () {
+		var subInfo = $('#subject option:selected').text();
+		var detailInfo;
+		var dateInfo = $('#date').val();
+		var desInfo = $('#des').val();
+		switch(subInfo){
+			case 'Điện':
+				detailInfo=$('#electricity option:selected').text();
+				break;
+			case 'Nước':
+				detailInfo=$('#water option:selected').text();
+				break;
+			case 'Tiếng ồn':
+				detailInfo=$('#noise option:selected').text();
+				break;
+		}
+		$('#subInfo').val(subInfo);
+		$('#detailInfo').val(detailInfo);
+		$('#dateInfo').val(dateInfo);
+		$('#desInfo').val(desInfo);
+
+		$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	}
+	function step2Click () {
+		var disInfo = $('#district option:selected').text();
+		var wardInfo;
+		var addInfo = $('#address').val();
+		switch(disInfo){
+			case 'Quận 1':
+				wardInfo=$('#quan1 option:selected').text();
+				break;
+			case 'Quận 2':
+				wardInfo=$('#quan2 option:selected').text();
+				break;
+			case 'Quận 10':
+				wardInfo=$('#quan10 option:selected').text();
+				break;
+			case 'Quận Bình Thạnh':
+				wardInfo=$('#quanbinhthanh option:selected').text();
+				break;
+			case 'Quận Thủ Đức':
+				wardInfo=$('#quanthuduc option:selected').text();
+				break;
+		}
+		$('#addInfo').val(addInfo);
+		$('#wardInfo').val(wardInfo);
+		$('#disInfo').val(disInfo);
+
+		$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	}
+	function step3Click () {
+		var checkDisplay = $('#infoDisplay').prop('checked');
+		var myForm = $('#step3Form');
+		if(!myForm[0].checkValidity()){
+			myForm.find(':submit').click();
+		}
+		else $('.nav-tabs > .active').next('li').find('a').trigger('click');
+		if(!checkDisplay){
+			var nameInfo = $('#name').val();
+			var phoneInfo = $('#phone').val();
+			var emailInfo = $('#email').val();
+			var idenInfo = $('#identify').val();
+
+			$('#nameInfo').val(nameInfo);
+			$('#phoneInfo').val(phoneInfo);
+			$('#emailInfo').val(emailInfo);
+			$('#idenInfo').val(idenInfo);
+			$('#step3Btn').removeAttr('disabled');
+		}
+		else{
+			$('#nameInfo').val('Not Available');
+			$('#phoneInfo').val('Not Available');
+			$('#emailInfo').val('Not Available');
+			$('#idenInfo').val('Not Available');
+			$('#step3Btn').prop('disabled',true);
+		}
+	}
+	function step1Edit () {
+		console.log("hello");
+		$('.infoStep1').removeAttr('readonly');
+		$('#subInfo').focus();
+	}
+	function step2Edit () {
+		$('.infoStep2').removeAttr('readonly');
+		$('#addInfo').focus();
+	}
+	function step3Edit () {
+		$('.infoStep3').removeAttr('readonly');
+		$('#nameInfo').focus();
+	}
+	/*$('.btnNext').click(function(){
+  		$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	});*/
+
+  	$('.btnPrev').click(function(){
+  		$('.nav-tabs > .active').prev('li').find('a').trigger('click');
+	});
+</script>
+</html>
