@@ -54,33 +54,51 @@ $(document).ready(function() {
     .fail(function() {
         console.log("error");
     });*/
+    function getSelectedText(elementId) {
+    var elt = document.getElementById(elementId);
+
+    if (elt.selectedIndex == -1)
+        return null;
+
+    return elt.options[elt.selectedIndex].text;
+}
     
     $(".btn-success").click(function(){                
         
-{
-  "address": "309 Thống Nhất, P11, Q.Gò Vấp, Tp.HCM",
-  "description": "Xả rác bừa bãi trên đường Thống Nhất",
-  "expectedDatetime": "2016-03-22T11:05:27+07:00",
-  "latitude": 109.09,
-  "longitude": 129.02,
-  "metadata": false,
-  "requestedDatetime": "2016-03-22T10:30:25+07:00",
-  "serviceCode": 10,
-  "serviceName": "Xả rác",
-  "serviceRequestId": 1,
-  "statusId": 0,
-  "updatedDatetime": "2016-03-22T11:05:27+07:00"
-}
     
     var content = new Object();
     content.address = $("#addInfo").val();   
     content.description = $("#desInfo").val();
     var date = new Date();
-    content.requestedDatatime = date.toISOString();          
-                console.log(JSON.stringify(content));
+    content.expectedDatetime =  content.updatedDatetime = content.requestedDatetime = date.toISOString();   
+    content.statusId = 0;
+    var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
+    for(var i=0; i<allTags.length;i++){
+        if(allTags[i].style.display == 'inline'){
+            content.serviceName = getSelectedText(allTags[i].id);
+            break;
+        }
+    }
+    switch($('#subInfo option:selected').val()){
+        case "dien":
+            content.serviceCode = 0;
+            break;
+        case "nuoc":
+            content.serviceCode = 1;
+            break;
+        case "tiengon":
+            content.serviceCode = 2;
+            break;
+    
+    }
+    
+    content.latitude = 111.11;
+    content.longitude = 122.14;
+    content.serviceRequestId = 1;
+    console.log(JSON.stringify(content));
         $.ajax({
             method: "POST",
-            url: "http://localhost:8080/restful-open311/request/add",
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
             data: JSON.stringify(content),
             contentType: "application/json;charset=UTF-8"
         })
