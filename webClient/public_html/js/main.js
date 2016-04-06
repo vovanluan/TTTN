@@ -202,25 +202,18 @@ function step3Click () {
         myForm.find(':submit').click();
     }
     else $('.nav-tabs > .active').next('li').find('a').trigger('click');
-    if(!checkDisplay){
-        var nameInfo = $('#name').val();
-        var phoneInfo = $('#phone').val();
-        var emailInfo = $('#email').val();
-        var idenInfo = $('#identify').val();
+    
+    var nameInfo = $('#name').val();
+    var phoneInfo = $('#phone').val();
+    var emailInfo = $('#email').val();
+    var idenInfo = $('#identify').val();
 
-        $('#nameInfo').val(nameInfo);
-        $('#phoneInfo').val(phoneInfo);
-        $('#emailInfo').val(emailInfo);
-        $('#idenInfo').val(idenInfo);
-        $('#step3Btn').removeAttr('disabled');
-    }
-    else{
-        $('#nameInfo').val('Not Available');
-        $('#phoneInfo').val('Not Available');
-        $('#emailInfo').val('Not Available');
-        $('#idenInfo').val('Not Available');
-        $('#step3Btn').prop('disabled',true);
-    }
+    $('#nameInfo').val(nameInfo);
+    $('#phoneInfo').val(phoneInfo);
+    $('#emailInfo').val(emailInfo);
+    $('#idenInfo').val(idenInfo);
+    $('#step3Btn').removeAttr('disabled');
+    
 }
 function step1Edit () {
     $('.infoStep1').removeAttr('readonly');
