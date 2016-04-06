@@ -60,10 +60,11 @@
 								<td class="col-md-4">Hình ảnh:</td>
 								<td>
 									<label class="btn-upload" style="vertical-align:middle;">
-								   		<input type="file" id="fileupload" onchange="alertFileName()">
+								   		<input type="file" id="fileupload" onchange="alertFileName(event)" accept="image/jpg, image/jpeg, image/png">
 								   		<button class="btn btn-primary">Chọn ảnh</button>
 									</label>
 									<label id="fileName" style="padding-left:5px;"></label>
+									<img id="image-holder" style="max-width: 300px; max-height: 320px;"/> 
 								</td>
 							</tr>
 							<tr>
@@ -251,15 +252,15 @@
 						<hr>
 						<table class="stepTable" style="margin-bottom:30px;">
 							<tr> 
-								<td class="col-md-6">Địa chỉ:</td>
+								<td class="col-md-4">Địa chỉ:</td>
 								<td><input class="form-control infoStep2" id="addInfo" type="text" style="width:300px" readonly="true"></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Phường:</td>
+								<td class="col-md-4">Phường:</td>
 								<td><input class="form-control infoStep2" id="wardInfo" type="text" style="width:100%" readonly="true"></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Quận:</td>
+								<td class="col-md-4">Quận:</td>
 								<td><input class="form-control infoStep2" id="disInfo" type="text" style="width:100%" readonly="true"></td>
 							</tr>
 						</table>
@@ -380,10 +381,19 @@
 
 		}
 	}
-	function alertFileName () {
+	function alertFileName (event) {
 		var fileName = document.getElementById('fileupload').value;
 		fileName = fileName.replace(/.*[\/\\]/, '');
 		document.getElementById('fileName').innerText = fileName;
+
+		var reader = new FileReader();
+    	reader.onload = function(){
+      	var output = document.getElementById('image-holder');
+      	output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+
+
 	}
 	function step1Click () {
 		var subInfo = $('#subject option:selected').val();
