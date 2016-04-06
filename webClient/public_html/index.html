@@ -6,8 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<script src="js/jquery-1.12.1.js"></script>
   	<script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
   	<link rel="stylesheet" type="text/css" href="css/style.css">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="container">
@@ -499,6 +499,7 @@
 		for(var i=0; i<allTags.length;i++){
 			if(allTags[i].style.display=='inline'){
 				allTags[i].disabled = false;
+				break;
 			}
 		}
 	}

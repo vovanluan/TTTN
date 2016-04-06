@@ -54,31 +54,51 @@ $(document).ready(function() {
     .fail(function() {
         console.log("error");
     });*/
+    function getSelectedText(elementId) {
+    var elt = document.getElementById(elementId);
+
+    if (elt.selectedIndex == -1)
+        return null;
+
+    return elt.options[elt.selectedIndex].text;
+}
     
-    $("#btnSubmit").click(function(){                
+    $(".btn-success").click(function(){                
         
-        var email = $("#email").val();
-        var name = $("#name").val();
-        var username = $("#username").val();
-        var password = $("#password").val();
-        
-        var content = {address: "34 Thống Nhất, P11, Q.Gò Vấp, Tp.HCM",
-  addressID: 1    ,
-  description: "Xả rác",
-  expectedTime: "2016-03-22T11:05:27+07:00",
-  latitude: 109.09,
-  longitude: 129.02,
-  metadata: false,
-  requestedTime: "2016-03-22T10:30:25+07:00",
-  serviceCode: "10",
-  serviceName: "Xả rác",
-  statusID: 0,
-  updatedTime: "2016-03-22T11:05:27+07:00"};
-                
-                console.log(JSON.stringify(content));
+    
+    var content = new Object();
+    content.address = $("#addInfo").val();   
+    content.description = $("#desInfo").val();
+    var date = new Date();
+    content.expectedDatetime =  content.updatedDatetime = content.requestedDatetime = date.toISOString();   
+    content.statusId = 0;
+    var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
+    for(var i=0; i<allTags.length;i++){
+        if(allTags[i].style.display == 'inline'){
+            content.serviceName = getSelectedText(allTags[i].id);
+            break;
+        }
+    }
+    switch($('#subInfo option:selected').val()){
+        case "dien":
+            content.serviceCode = 0;
+            break;
+        case "nuoc":
+            content.serviceCode = 1;
+            break;
+        case "tiengon":
+            content.serviceCode = 2;
+            break;
+    
+    }
+    
+    content.latitude = 111.11;
+    content.longitude = 122.14;
+    content.serviceRequestId = 1;
+    console.log(JSON.stringify(content));
         $.ajax({
             method: "POST",
-            url: "http://localhost:8080/restful-open311/request/add",
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
             data: JSON.stringify(content),
             contentType: "application/json;charset=UTF-8"
         })
