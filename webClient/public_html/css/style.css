@@ -1,0 +1,24 @@
+.btn-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.btn-upload input[type=file] {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+}
+.container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.disabledTab{
+    //pointer-events: none;
+}
+.stepTable tr td{
+    vertical-align: top;
+    padding-bottom: 10px;
+}
