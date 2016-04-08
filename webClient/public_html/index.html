@@ -4,12 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Test</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/DateTimePicker.css" />	
 	<script src="js/jquery-1.12.1.js"></script>
   	<script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 	<script src="http://maps.google.com/maps/api/js?v=3.22&amp;key=AIzaSyAdS7mTduExQFMY-x090WPiYRLPoMEK_JI" type="text/javascript">
 	</script>
-  	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/DateTimePicker.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -56,7 +58,8 @@
 							</tr>
 							<tr>
 								<td class="col-md-4">Thời gian:</td>
-								<td><input class="form-control" type="date" id="date" style="width:100%"></td>
+								<td><input type="text" data-field="datetime" id="inputDatetime" readonly>									
+								</td>
 							</tr>
 							<tr>
 								<td class="col-md-4">Hình ảnh:</td>
@@ -72,8 +75,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Mô tả thêm:</td>
-								<td><textarea class="form-control" id="des" cols="40" rows="3"></textarea></td>
+								<td class="col-md-4">Mô tả:</td>
+								<td><textarea class="form-control" id="des" required cols="40" rows="3"></textarea></td>
 							</tr>
 						</table>
 						<hr>
@@ -252,7 +255,7 @@
 							</tr>
 							<tr>
 								<td class="col-md-4">Thời gian:</td>
-								<td><input class="form-control infoStep1" id="dateInfo"	 type="text" readonly="readonly"></td>
+								<td><input type="text" data-field="datetime" id="outputDatetime" disabled>		
 							</tr>
 							<tr>
 								<td class="col-md-4">Mô tả thêm:</td>
@@ -312,6 +315,8 @@
 							</tr>
 						</table>
 					</div>
+					<div id="dtBox"></div>
+
 				</div>
 			</div>
 			<div class="col-md-4"></div>

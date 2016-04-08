@@ -56,67 +56,84 @@ public class Requests implements Serializable {
     @Basic(optional = false)
     @Column(name = "service_request_id")
     private Integer serviceRequestId;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "service_code")
     private int serviceCode;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "service_name")
     private String serviceName;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
     @Column(name = "description")
     private String description;
+    
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "metadata")
+    @Column(name = "metadata", nullable = true)
     private boolean metadata;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "latitude")
     private float latitude;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "longitude")
     private float longitude;
+    
     @Size(max = 100)
     @Column(name = "address")
     private String address;
-    @Column(name = "address_id")
+    
+    @Column(name = "address_id", nullable = true)
     private Integer addressId;
+    
     @Basic(optional = false)
     @NotNull
-    @Column(name = "requested_datetime")
+    @Column(name = "happen_datetime", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date happenDatetime;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "requested_datetime", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date requestedDatetime;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "updated_datetime")
+    
+    @Column(name = "updated_datetime", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDatetime;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "expected_datetime")
+    
+    @Column(name = "expected_datetime", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date expectedDatetime;
+    
     @Size(max = 100)
-    @Column(name = "zipcode")
+    @Column(name = "zipcode", nullable = true)
     private String zipcode;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "status_id")
     private int statusId;
+    
     @Size(max = 200)
-    @Column(name = "media_url")
+    @Column(name = "media_url", nullable = true)
     private String mediaUrl;
+    
     @Size(max = 100)
-    @Column(name = "keywords")
+    @Column(name = "keywords", nullable = true, length=100)
     private String keywords;
+    
     @Size(max = 20)
-    @Column(name = "group_name")
+    @Column(name = "group_name", nullable = true)
     private String groupName;
 
     public Requests() {

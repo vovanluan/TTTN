@@ -131,7 +131,7 @@ function step1Click () {
     var subInfo = $('#subject option:selected').val();
     console.log(subInfo);
     var detailInfo;
-    var dateInfo = $('#date').val();
+    var dateInfo = $('#inputDatetime').val();
     var desInfo = $('#des').val();
     var electricityStep4 = document.getElementById('electricityStep4');
     var waterStep4 = document.getElementById('waterStep4');
@@ -161,9 +161,10 @@ function step1Click () {
             break;
     }
 
-    console.log(detailInfo);
+    console.log(dateInfo);
     $('#subInfo').val(subInfo);
-    $('#dateInfo').val(dateInfo);
+    console.log(dateInfo);
+    $('#outputDatetime').val(dateInfo);
     $('#desInfo').val(desInfo);
 
     $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -212,12 +213,12 @@ function step3Click () {
     $('#phoneInfo').val(phoneInfo);
     $('#emailInfo').val(emailInfo);
     $('#idenInfo').val(idenInfo);
-    $('#step3Btn').removeAttr('disabled');
-    
+    $('#step3Btn').removeAttr('disabled');  
 }
 function step1Edit () {
     $('.infoStep1').removeAttr('readonly');
     $('#subInfo').prop('disabled',false);
+    $('#outputDatetime').prop('disabled',false);
     $('#subInfo').focus();
     var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
 
@@ -245,18 +246,41 @@ function getSelectedText(elementId) {
 
     return elt.options[elt.selectedIndex].text;
 }
+
+// Convert local time to ISO 8601 format yyyy-mm-ddThh:mm:ss+7:00
+function formatLocalDate(time) {
+    tzo = -time.getTimezoneOffset(),
+    dif = tzo >= 0 ? '+' : '-',
+    pad = function(num) {
+        var norm = Math.abs(Math.floor(num));
+        return (norm < 10 ? '0' : '') + norm;
+    };
+    return time.getFullYear() 
+        + '-' + pad(time.getMonth()+1)
+        + '-' + pad(time.getDate())
+        + 'T' + pad(time.getHours())
+        + ':' + pad(time.getMinutes()) 
+        + ':' + pad(time.getSeconds()) 
+        + dif + pad(tzo / 60) 
+        + ':' + pad(tzo % 60);
+
+}
 $('.btnPrev').click(function(){
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 });
 $(document).ready(function() {
-    initMap();
-
+    var dtpicker = $("#dtBox").DateTimePicker({
+        dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
+    });            
+    initMap();   
     $(".btn-success").click(function(){                
         var content = new Object();
         content.address = $("#addInfo").val();   
         content.description = $("#desInfo").val();
-        var date = new Date();
-        content.expectedDatetime =  content.updatedDatetime = content.requestedDatetime = date.toISOString();   
+        var happen = $("#outputDatetime").val();
+        var date = new Date(happen);
+        content.happenDatetime = formatLocalDate(date);
+        content.requestedDatetime = formatLocalDate(new Date());
         content.statusId = 0;
         var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
         for(var i=0; i<allTags.length;i++){
@@ -281,7 +305,7 @@ $(document).ready(function() {
         content.serviceRequestId = 1;
         content.latitude = $('#latitude').val();
         content.longitude = $('#longitude').val();
-
+        console.log(JSON.stringify(content));
         $.ajax({
             method: "POST",
             url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
