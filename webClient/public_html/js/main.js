@@ -330,10 +330,23 @@ function signin () {
     $.ajax({
             method: "GET",
             url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/checkLogin?email=" + email + "&password=" + pass,
-            contentType: "application/text;charset=UTF-8"
+            contentType: "application/json;charset=UTF-8"
     })
     .done(function(data){
-        console.log(data);
+        if(jQuery.isEmptyObject(data)){
+            $('#errorLabel').text("Email hoặc mật khẩu không đúng!");
+            $('#emailInput').val('');
+            $('#passwordInput').val('');
+            $('#emailInput').focus();
+        }   
+        else{
+            $('#name').val(data.userName);
+            $('#email').val(data.userEmail);
+            $('#phone').val(data.userPhone);
+            $('#identify').val(data.userId);
+            $('#signinModal').modal('toggle');
+        } 
+
     })
     .fail(function(errMsg) {
         console.log("error: " + errMsg);

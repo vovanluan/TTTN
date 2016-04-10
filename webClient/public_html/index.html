@@ -170,37 +170,35 @@
 
 					<div id="step3" class="tab-pane">
 						<strong><a data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
-						<br>
+						<br><br>
 						<strong><a data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
 						<hr style="margin:10px 0px 30px 0px;">
 						<form action="form.html" id="step3Form">
 							<table class="stepTable">
 								<tr>
-									<td class="col-md-6">*Họ và tên:</td>
+									<td class="col-md-6">Tên hiển thị:</td>
 									<td>
-										<input class="form-control" type="text" id="name" required style="width:300px">
+										<input class="form-control" type="text" id="name" required style="width:300px" readonly="true">
 									</td>
 								</tr>
 								<tr>
-									<td class="col-md-6">*Số điện thoại:</td>
+									<td class="col-md-6">Email:</td>
 									<td>
-										<input class="form-control" type="text" id="phone" required style="width:300px">
+										<input class="form-control" type="text" id="email" required style="width:300px" readonly="true">
 									</td>
 								</tr>
 								<tr>
-									<td class="col-md-6">*Email:</td>
+									<td class="col-md-6">Số điện thoại:</td>
 									<td>
-										<input class="form-control" type="text" id="email" required style="width:300px">
+										<input class="form-control" type="text" id="phone" required style="width:300px" readonly="true">
 									</td>
 								</tr>
+								
 								<tr>
 									<td class="col-md-6">CMND:</td>
 									<td>
-										<input class="form-control" type="text" id="identify"  style="width:300px">
+										<input class="form-control" type="text" id="identify"  style="width:300px" readonly="true">
 									</td>
-								</tr>
-								<tr>
-									<td>* Thông tin bắt buộc</td>
 								</tr>
 							</table>
 							<input type="checkbox" id="infoDisplay">&nbsp;Không hiển thị thông tin cá nhân
@@ -326,7 +324,7 @@
 								<h4>Đăng nhập vào tài khoản</h4>
 							</div>
 							<div class="modal-body">
-								<label id="errorLabel"></label>
+								<label id="errorLabel" style="color:red"></label>
 			         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
 								<input type="input" id="passwordInput" class="form-control" placeholder="Mật khẩu" required>
 			       	 		</div>
@@ -343,18 +341,21 @@
 								<button class="close" data-dismiss="modal">&times;</button>
 								<h4>Đăng ký tài khoản</h4>
 							</div>
-							<div class="modal-body">
-								<label id="errorLabel"></label>
-								<input type="input" class="form-control" id="displayNameInput" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required>
-			         			<input type="input" id="emailInputSignup" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" required>
-								<input type="input" id="passwordInputSignup" class="form-control" placeholder="Mật khẩu" required style="margin-bottom:10px">
-								<input type="input" id="confirmPasswordInputSignup" class="form-control" placeholder="Nhập lại mật khẩu" required style="margin-bottom:10px">
-								<input type="input" id="phoneInputSignup" class="form-control" placeholder="Điện thoại" required style="margin-bottom:10px">
-								<input type="input" id="idInputSignup" class="form-control" placeholder="CMND" required>
-			       	 		</div>
-							<div class="modal-footer">
-					          	<input type="submit" class="btn btn-primary btn-block" value="Đăng ký" onclick="signup()">
-					        </div>
+							<form id="signupForm">
+								<div class="modal-body">
+									<label id="errorLabelSignup" style="color:Red"></label>
+									<input type="input" class="form-control" id="displayNameInput" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required>
+				         			<input type="input" id="emailInputSignup" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" required>
+									<input type="input" id="passwordInputSignup" class="form-control" placeholder="Mật khẩu" required style="margin-bottom:10px">
+									<input type="input" id="confirmPasswordInputSignup" class="form-control" placeholder="Nhập lại mật khẩu" required style="margin-bottom:10px">
+									<input type="input" id="phoneInputSignup" class="form-control" placeholder="Điện thoại" required style="margin-bottom:10px">
+									<input type="input" id="idInputSignup" class="form-control" placeholder="CMND" required>
+			       	 			</div>
+								<div class="modal-footer">
+					          		<input type="submit" class="btn btn-primary btn-block" value="Đăng ký" onclick="signup()">
+					        	</div>
+							</form>
+							
 
 						</div>
 					</div>
