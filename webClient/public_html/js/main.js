@@ -340,3 +340,26 @@ function signin () {
     });
 
 }
+
+function signup () {
+
+    var content;
+    content.userId = "123";
+    content.userName = "Luan vo";
+    content.userEmail = "luanvo@gmail.com";
+    content.userPhone = "096231244";
+    content.passWord = "123";
+    console.log(content);
+    $.ajax({
+            method: "GET",
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",
+            data:JSON.stringify(content),
+            contentType: "application/json;charset=UTF-8"
+    })
+    .done(function(data){
+    })
+    .fail(function(errMsg) {
+        console.log("error: " + errMsg);
+    });
+
+}
