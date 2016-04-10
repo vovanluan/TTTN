@@ -161,7 +161,7 @@
 							<tr>
 								<td style="direction:rtl">
 									<a class="btn btn-primary btnNext" onclick="step2Click()">Đi tới</a>
-									<a class="btn btn-primary btnPrev">Trở về</a>
+									<a class="btn btn-primary btnPrev" onclick="prev()" >Trở về</a>
 									<button class="btn btn-danger">Hủy bỏ</button>
 								</td>
 							</tr>
@@ -169,9 +169,9 @@
 					</div>
 
 					<div id="step3" class="tab-pane">
-						<strong><a data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+						<strong><a href="#" data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
 						<br><br>
-						<strong><a data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
+						<strong><a href="#" data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
 						<hr style="margin:10px 0px 30px 0px;">
 						<form action="form.html" id="step3Form">
 							<table class="stepTable">
@@ -207,7 +207,7 @@
 								<tr>
 									<td style="direction:rtl">
 										<a class="btn btn-primary btnNext" onclick="step3Click()">Đi tới</a>
-										<a class="btn btn-primary btnPrev">Trở về</a>
+										<a class="btn btn-primary btnPrev" onclick="prev()" >Trở về</a>
 										<button class="btn btn-danger">Hủy bỏ</button>
 									</td>
 								</tr>
@@ -309,7 +309,7 @@
 							<tr>
 								<td style="direction:rtl">
 									<button type="submit" form="step4Form" class="btn btn-success">Gửi</button>
-									<a class="btn btn-primary btnPrev">Trở về</a>
+									<a class="btn btn-primary btnPrev" onclick="prev()" >Trở về</a>
 									<button class="btn btn-danger">Hủy bỏ</button>
 								</td>
 							</tr>
@@ -326,7 +326,7 @@
 							<div class="modal-body">
 								<label id="errorLabel" style="color:red"></label>
 			         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
-								<input type="input" id="passwordInput" class="form-control" placeholder="Mật khẩu" required>
+								<input type="password" id="passwordInput" class="form-control" placeholder="Mật khẩu"  required>
 			       	 		</div>
 							<div class="modal-footer">
 					          	<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signin()">
