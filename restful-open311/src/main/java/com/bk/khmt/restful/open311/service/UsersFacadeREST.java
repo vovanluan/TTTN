@@ -108,7 +108,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         Query query = em.createQuery("Select u FROM Users u WHERE u.userEmail = :email");
         query.setParameter("email", email);
         List<Users> users = query.getResultList();
+
         if(!users.isEmpty()){
+            
             return users.get(0);
         }
         else return null;
@@ -118,7 +120,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @GET
     @Path("/getUserById")
     @Produces(MediaType.APPLICATION_JSON)
-    public Users getUserById(@QueryParam("email") Integer id){
+    public Users getUserById(@QueryParam("id") Integer id){
         Query query = em.createQuery("Select u FROM Users u WHERE u.userId = :id");
         query.setParameter("id", id);
         List<Users> users = query.getResultList();

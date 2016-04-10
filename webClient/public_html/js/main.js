@@ -355,72 +355,86 @@ function signin () {
 }
 
 function signup () {
-    var content = new Object();
-    content.userId = $('#idInputSignup').val();
-    content.userName = $('#displayNameInput').val();
-    content.userEmail = $('#emailInputSignup').val();
-    content.userPhone = $('#phoneInputSignup').val();
-    content.passWord = $('#passwordInputSignup').val();
-    console.log(JSON.stringify(content));
-    $.ajax({
-            method: "POST",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",
-            data:JSON.stringify(content),
-            contentType: "application/json;charset=UTF-8"
-    })
-    .done(function(data){
-    })
-    .fail(function(errMsg) {
-        console.log("error: " + errMsg);
-    });
+    // Check error before sign up
+    var error = {msg : ''};
+    var p = checkErrorSignup(error);
+    p.then( function() {
+            console.log("Finish");
+            if (error.msg != '') {
+                console.log(error.msg);
+                $('#errorLabelSignup').text(error.msg);
+                return;
+            }
+            var content = new Object();
+            content.userId = $('#idInputSignup').val();
+            content.userName = $('#displayNameInput').val();
+            content.userEmail = $('#emailInputSignup').val();
+            content.userPhone = $('#phoneInputSignup').val();
+            content.passWord = $('#passwordInputSignup').val();
+            console.log(JSON.stringify(content));
+            return $.ajax({
+                    method: "POST",
+                    url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",
+                    data:JSON.stringify(content),
+                    contentType: "application/json;charset=UTF-8"
+            })
+            .done(function(data){
+            })
+            .fail(function(errMsg) {
+                console.log("error: " + errMsg);
+            });
+        }   
+    );
+
+
 
 }
 
-function checkErrorSignup() {
-    var error = "";
-    var userId = $('#idInputSignup').val();
-    var userEmail = $('#emailInputSignup').val();
-    var password = $('#passwordInputSignup').val();
-    var confirmPassword = $('confirmPasswordInputSignup').val();
+function checkErrorSignup(error) {
+    var deferred = new $.Deferred();
+    setTimeout(function(){
+        var userId = $('#idInputSignup').val();
+        var userEmail = $('#emailInputSignup').val();
+        var password = $('#passwordInputSignup').val();
+        var confirmPassword = $('#confirmPasswordInputSignup').val();
 
-    // check password field and confirm password field are match.
-    if (password != confirmPassword) {
-        error = "Mật khẩu không khớp!";
-        return error;
-    }
-
-    // check email is existed.
-    $.ajax({
-            method: "GET",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/getUserByEmail?email=" + userEmail,
-            contentType: "application/json;charset=UTF-8"
-    })
-    .done(function(data){
-        if (data!=null) {
-            error = "Email đã đăng ký. Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
-            return error;
+        // check password field and confirm password field are match.
+        if (password != confirmPassword) {   
+            error.msg = "Mật khẩu không khớp!";
+            deferred.resolve("from checkErrorSignup");
         }
-    })
-    .fail(function(errMsg) {
-        console.log("error: " + errMsg);
-    });
+        // check email is existed.
+        $.ajax({
+                method: "GET",
+                url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/getUserByEmail?email=" + userEmail,
+                contentType: "application/json;charset=UTF-8"
+        })
+        .done(function(data){
+            if (data!=null) {
+                error.msg = "Email đã đăng ký. Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
+                deferred.resolve("from checkErrorSignup");
+            }
+        })
+        .fail(function(errMsg) {
+            console.log("error: " + errMsg);
+        });
 
-    //check id is existed
+        //check id is existed
+        $.ajax({
+                method: "GET",
+                url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/getUserById?id=" + userId,
+                contentType: "application/json;charset=UTF-8"
+        })
+        .done(function(data){
+            if (data!=null) {
+                error.msg = "CMND đã đăng ký.Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
+                deferred.resolve("from checkErrorSignup");
+            }
+        })
+        .fail(function(errMsg) {
+            console.log("error: " + errMsg);
+        });
 
-    $.ajax({
-            method: "GET",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/getUserById?id=" + userId,
-            contentType: "application/json;charset=UTF-8"
-    })
-    .done(function(data){
-        if (data!=null) {
-            error = "CMND đã đăng ký.Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
-            return error;
-        }
-    })
-    .fail(function(errMsg) {
-        console.log("error: " + errMsg);
-    });
-
-    return error;
+    },200);
+    return deferred.promise();
 }
