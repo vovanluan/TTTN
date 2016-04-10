@@ -353,3 +353,28 @@ function signin () {
     });
 
 }
+
+function signup () {
+
+    
+
+    var content = new Object();
+    content.userId = $('#idInputSignup').val();
+    content.userName = $('#displayNameInput').val();
+    content.userEmail = $('#emailInputSignup').val();
+    content.userPhone = $('#phoneInputSignup').val();
+    content.passWord = $('#passwordInputSignup').val();
+    console.log(JSON.stringify(content));
+    $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",
+            data:JSON.stringify(content),
+            contentType: "application/json;charset=UTF-8"
+    })
+    .done(function(data){
+    })
+    .fail(function(errMsg) {
+        console.log("error: " + errMsg);
+    });
+
+}

@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.bk.khmt.restful.open311.service.GuestFacadeREST.class);
         resources.add(com.bk.khmt.restful.open311.service.RequestsFacadeREST.class);
         resources.add(com.bk.khmt.restful.open311.service.RolesFacadeREST.class);
         resources.add(com.bk.khmt.restful.open311.service.UsersFacadeREST.class);

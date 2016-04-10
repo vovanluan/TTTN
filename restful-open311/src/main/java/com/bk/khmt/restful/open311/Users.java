@@ -60,7 +60,7 @@ public class Users implements Serializable {
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "user_email", unique = true)
-    private String userEmail;
+    private String userEmail = null;
     
     @Basic(optional = false)
     @NotNull
