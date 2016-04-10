@@ -322,3 +322,21 @@ $(document).ready(function() {
     });
     
 });
+
+function signin () {
+    var email = $('#emailInput').val();
+    //var pass = $('#passwordInput').text();
+
+    $.ajax({
+            method: "GET",
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/checkLogin?email=" + email,
+            contentType: "application/text;charset=UTF-8"
+    })
+    .done(function(data){
+        console.log(data);
+    })
+    .fail(function(errMsg) {
+        console.log("error: " + errMsg);
+    });
+
+}

@@ -39,19 +39,50 @@ public class Users implements Serializable {
     @NotNull
     @Column(name = "user_id")
     private Integer userId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "user_name")
     private String userName;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "pass_word")
     private String passWord;
+    
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     @ManyToOne
     private Roles roleId;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "user_email", unique = true)
+    private String userEmail;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 12)
+    @Column(name = "user_phone")
+    private String userPhone;
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 
     public Users() {
     }
