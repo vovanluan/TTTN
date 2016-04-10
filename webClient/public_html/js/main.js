@@ -343,15 +343,17 @@ function signin () {
 
 function signup () {
 
-    var content;
-    content.userId = "123";
-    content.userName = "Luan vo";
-    content.userEmail = "luanvo@gmail.com";
-    content.userPhone = "096231244";
-    content.passWord = "123";
-    console.log(content);
+    
+
+    var content = new Object();
+    content.userId = $('#idInputSignup').val();
+    content.userName = $('#displayNameInput').val();
+    content.userEmail = $('#emailInputSignup').val();
+    content.userPhone = $('#phoneInputSignup').val();
+    content.passWord = $('#passwordInputSignup').val();
+    console.log(JSON.stringify(content));
     $.ajax({
-            method: "GET",
+            method: "POST",
             url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",
             data:JSON.stringify(content),
             contentType: "application/json;charset=UTF-8"

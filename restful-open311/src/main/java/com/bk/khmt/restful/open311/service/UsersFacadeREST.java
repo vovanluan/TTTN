@@ -49,6 +49,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Users entity) {
         super.edit(entity);
+        
     }
 
     @DELETE
@@ -99,7 +100,6 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         }
         else return null;
     }
-    
     @Override
     protected EntityManager getEntityManager() {
         return em;
