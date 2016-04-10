@@ -58,7 +58,7 @@
 							</tr>
 							<tr>
 								<td class="col-md-4">Thời gian:</td>
-								<td><input type="text" data-field="datetime" id="inputDatetime" readonly>									
+								<td><input type="text" data-field="datetime" id="inputDatetime" class="form-control">									
 								</td>
 							</tr>
 							<tr>
@@ -257,7 +257,7 @@
 							</tr>
 							<tr>
 								<td class="col-md-4">Thời gian:</td>
-								<td><input type="text" data-field="datetime" id="outputDatetime" disabled>		
+								<td><input type="text" data-field="datetime" id="outputDatetime" disabled class="form-control">		
 							</tr>
 							<tr>
 								<td class="col-md-4">Mô tả thêm:</td>
@@ -326,11 +326,12 @@
 								<h4>Đăng nhập vào tài khoản</h4>
 							</div>
 							<div class="modal-body">
+								<label id="errorLabel"></label>
 			         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
 								<input type="input" id="passwordInput" class="form-control" placeholder="Mật khẩu" required>
 			       	 		</div>
 							<div class="modal-footer">
-					          	<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập">
+					          	<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="singin()">
 					        </div>
 
 						</div>
