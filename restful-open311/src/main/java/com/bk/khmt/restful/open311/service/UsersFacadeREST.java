@@ -112,6 +112,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
             return users.get(0);
         }
         else return null;
+        
     }
     
     @GET

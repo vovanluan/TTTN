@@ -3,13 +3,9 @@ com\bk\khmt\restful\open311\service\RolesFacadeREST.class
 com\bk\khmt\restful\open311\Roles.class
 com\bk\khmt\restful\open311\Users.class
 com\bk\khmt\restful\open311\service\ApplicationConfig.class
-com\bk\khmt\restful\open311\Users_.class
-com\bk\khmt\restful\open311\service\RequestsFacadeREST.class
-com\bk\khmt\restful\open311\service\UsersFacadeREST.class
-com\bk\khmt\restful\open311\Guest_.class
 com\bk\khmt\restful\open311\service\AbstractFacade.class
-support\CORSResponseFilter.class
-com\bk\khmt\restful\open311\Guest.class
-com\bk\khmt\restful\open311\service\GuestFacadeREST.class
+com\bk\khmt\restful\open311\Users_.class
 com\bk\khmt\restful\open311\Requests.class
 com\bk\khmt\restful\open311\Roles_.class
+com\bk\khmt\restful\open311\service\RequestsFacadeREST.class
+com\bk\khmt\restful\open311\service\UsersFacadeREST.class
