@@ -89,13 +89,39 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @GET
     @Path("/checkLogin")
     @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
-    public Users getUserByEmail(@QueryParam("email") String email,@QueryParam("password") String password){
+    public Users checkLogin(@QueryParam("email") String email,@QueryParam("password") String password){
         Query query = em.createQuery("Select u FROM Users u WHERE u.userEmail = :email and u.passWord = :password");
         query.setParameter("email", email);
         query.setParameter("password", password);
         List<Users> users = query.getResultList();
         if(!users.isEmpty()){
             System.out.print(users.get(0).getUserEmail());
+            return users.get(0);
+        }
+        else return null;
+    }
+    
+    @GET
+    @Path("/getUserByEmail")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Users getUserByEmail(@QueryParam("email") String email){
+        Query query = em.createQuery("Select u FROM Users u WHERE u.userEmail = :email");
+        query.setParameter("email", email);
+        List<Users> users = query.getResultList();
+        if(!users.isEmpty()){
+            return users.get(0);
+        }
+        else return null;
+    }
+    
+    @GET
+    @Path("/getUserById")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Users getUserById(@QueryParam("email") Integer id){
+        Query query = em.createQuery("Select u FROM Users u WHERE u.userId = :id");
+        query.setParameter("id", id);
+        List<Users> users = query.getResultList();
+        if(!users.isEmpty()){
             return users.get(0);
         }
         else return null;
