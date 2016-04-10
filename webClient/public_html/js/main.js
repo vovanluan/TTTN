@@ -325,11 +325,11 @@ $(document).ready(function() {
 
 function signin () {
     var email = $('#emailInput').val();
-    //var pass = $('#passwordInput').text();
+    var pass = $('#passwordInput').val();
 
     $.ajax({
             method: "GET",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/checkLogin?email=" + email,
+            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/checkLogin?email=" + email + "&password=" + pass,
             contentType: "application/text;charset=UTF-8"
     })
     .done(function(data){
