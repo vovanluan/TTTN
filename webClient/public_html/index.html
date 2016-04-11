@@ -319,18 +319,33 @@
 
 					<div class="modal fade col-md-4 col-md-offset-4" id="signinModal">
 						<div class="modal-content">
-							<div class="modal-header">
+							<div class="modal-header" style="background:#F2F2F2">
 								<button class="close" data-dismiss="modal">&times;</button>
-								<h4>Đăng nhập vào tài khoản</h4>
+								<h4>Lựa chọn hình thức đăng nhập</h4>
 							</div>
 							<div class="modal-body">
-								<label id="errorLabel" style="color:red"></label>
-			         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
-								<input type="password" id="passwordInput" class="form-control" placeholder="Mật khẩu"  required>
+								<ul class="nav nav-tabs" id="signinTabs">
+									<li class="active"><a data-toggle="tab" href="#signin">Đã có tài khoản</a></li>
+									<li><a data-toggle="tab" href="#guest">Tài khoản khách</a></li>
+								</ul>
+
+								<div class="tab-content">
+									<div id="signin" class="tab-pane active fade in">
+										<label id="errorLabel" style="color:red"></label>
+					         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
+										<input type="password" id="passwordInput" class="form-control" placeholder="Mật khẩu"  required>
+										<hr>
+										<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signin()">
+									</div>
+									<div id="guest" class="tab-pane fade in">
+										<label style="color:red" id="errorLabelGuest"></label>
+										<input type="input" id="displayNameGuest" class="form-control" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required>
+										<input type="input" id="emailInputGuest" class="form-control" placeholder="Địa chỉ email"  required>
+										<hr>
+										<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signinGuest()">
+									</div>	
+								</div>
 			       	 		</div>
-							<div class="modal-footer">
-					          	<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signin()">
-					        </div>
 
 						</div>
 					</div>

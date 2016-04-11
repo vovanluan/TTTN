@@ -321,10 +321,12 @@ $(document).ready(function() {
     
 });
 
+function getTabIndex () {
+    return $("ul li.ui-state.active").index();
+}
 function signin () {
     var email = $('#emailInput').val();
     var pass = $('#passwordInput').val();
-
     $.ajax({
             method: "GET",
             url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users/checkLogin?email=" + email + "&password=" + pass,
