@@ -39,7 +39,6 @@ public class RequestsFacadeREST extends AbstractFacade<Requests> {
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     public void create(Requests entity) {
-        System.out.println(entity);
         super.create(entity);
     }
 

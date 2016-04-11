@@ -113,17 +113,7 @@ function districtChange () {
 
     }
 }
-function uploadImage (event) {
-    var fileName = $('#fileupload')[0].value;
-    console.log(fileName);
-    fileName = fileName.replace(/.*[\/\\]/, '');
-    $('#fileNameFinal')[0].innerText = $('#fileName')[0].innerText = fileName;
-    var reader = new FileReader();
-    reader.onload = function(){
-        $('#image-holder-Final')[0].src = $('#image-holder')[0].src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
+
 function step1Click () {
     var subInfo = $('#subject option:selected').val();
     var detailInfo;
@@ -264,75 +254,118 @@ function formatLocalDate(time) {
 function prev () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 }
-
 $(document).ready(function() {
+    var imgBase64 = "";
+    // Handle choose image to upload
+
+    $('.fileUpload').change(function chooseImage(event) {
+        var fileName = $('#fileUpload')[0].value;
+        console.log(fileName);
+        fileName = fileName.replace(/.*[\/\\]/, '');
+        $('#fileNameFinal')[0].innerText = $('#fileName')[0].innerText = fileName;
+        var reader = new FileReader();
+        reader.onload = function(){
+            $('#image-holder-Final')[0].src = $('#image-holder')[0].src = reader.result;
+            //Convert image to base64
+            imgBase64 = reader.result.replace(/^data:image\/(png|jpg);base64,/, "");     
+        };
+        reader.readAsDataURL(event.target.files[0]);        
+    });
+
+    // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
-    });            
+    });      
+
+    // Handle google map and location          
     initMap();   
+
+    // Handle when press submit button ("Gửi")    
     $(".btn-success").click(function(){  
-        var clientId = "db6c533fcea590a";
+        var clientId = "254c1d5f74f2518";
+        var urlToImage = "";
         // Handle upload image
-/*        $.ajax({ 
+        if(imgBase64 != "") {
+            $.ajax({ 
             url: 'https://api.imgur.com/3/image',
             headers: {
-                'Authorization': 'Client-ID YOUR_CLIENT_ID'
+                'Authorization': 'Client-ID ' + clientId
             },
             type: 'POST',
+            datatype: "json",
             data: {
-                'image': 'helloworld.jpg'
+                'image': imgBase64,
+                'type' : 'base64'
             },
-            success: function() { console.log('cool'); }
-        });
-*/
-        var content = new Object();
-        content.address = $("#addInfo").val();   
-        content.description = $("#desInfo").val();
-        var happen = $("#outputDatetime").val();
-        var date = new Date(happen);
-        content.happenDatetime = formatLocalDate(date);
-        content.requestedDatetime = formatLocalDate(new Date());
-        content.statusId = 0;
-        var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
-        for(var i=0; i<allTags.length;i++){
-            if(allTags[i].style.display == 'inline'){
-                content.serviceName = getSelectedText(allTags[i].id);
-                break;
-            }
-        }
-        switch($('#subInfo option:selected').val()){
-            case "dien":
-                content.serviceCode = 0;
-                break;
-            case "nuoc":
-                content.serviceCode = 1;
-                break;
-            case "tiengon":
-                content.serviceCode = 2;
-                break;
-        
-        }
-        
-        content.serviceRequestId = 1;
-        content.latitude = $('#latitude').val();
-        content.longitude = $('#longitude').val();
-        $.ajax({
-            method: "POST",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
-            data: JSON.stringify(content),
-            contentType: "application/json;charset=UTF-8"
-        })  
-        .done(function(data) {
-                console.log("success");
             })
-            .fail(function(msg) {
-                console.log("error : " + msg);
-        });
-        
+            .then(function(response) {
+                urlToImage = response.data.link;
+                sendRequest(urlToImage);
+            })
+            .fail(function(error){
+                console.log("Error when upload image: " + error);
+            });
+            return;            
+        }
+        sendRequest(urlToImage);        
     });
     
 });
 
+function sendRequest(urlToImage) {
+    // Get address :
+    var address = $("#addInfo").val() + ", " + $("#wardInfo").val() + ", " + $("#disInfo").val();
+    console.log(address);
+
+    // Generate content before sending request
+    var content = new Object();
+    content.address = address;   
+    content.description = $("#desInfo").val();
+    var happen = $("#outputDatetime").val();
+    var date = new Date(happen);
+    content.happenDatetime = formatLocalDate(date);
+    content.requestedDatetime = formatLocalDate(new Date());
+    content.statusId = 0;
+    content.mediaUrl = urlToImage;
+    var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
+    for(var i=0; i<allTags.length;i++){
+        if(allTags[i].style.display == 'inline'){
+            content.serviceName = getSelectedText(allTags[i].id);
+            break;
+        }
+    }
+    switch($('#subInfo option:selected').val()){
+        case "dien":
+            content.serviceCode = 0;
+            break;
+        case "nuoc":
+            content.serviceCode = 1;
+            break;
+        case "tiengon":
+            content.serviceCode = 2;
+            break;
+    
+    }
+    
+    content.serviceRequestId = 1;
+    content.latitude = $('#latitude').val();
+    content.longitude = $('#longitude').val();
+
+    console.log(JSON.stringify(content));   
+    // create request
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
+        data: JSON.stringify(content),
+        contentType: "application/json;charset=UTF-8"
+    })  
+    .done(function(data) {
+            console.log("success");
+        })
+        .fail(function(msg) {
+            console.log("error : " + msg);
+    });        
+}
 function signin () {
     var email = $('#emailInput').val();
     var pass = $('#passwordInput').val();
@@ -367,7 +400,6 @@ function signup () {
     var error = {msg : ''};
     var p = checkErrorSignup(error);
     p.then( function() {
-            console.log("Finish");
             if (error.msg != '') {
                 console.log(error.msg);
                 $('#errorLabelSignup').text(error.msg);

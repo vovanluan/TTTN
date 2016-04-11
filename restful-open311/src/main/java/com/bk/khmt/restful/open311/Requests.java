@@ -96,7 +96,6 @@ public class Requests implements Serializable {
     private Integer addressId;
     
     @Basic(optional = false)
-    @NotNull
     @Column(name = "happen_datetime", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date happenDatetime;
