@@ -126,7 +126,6 @@ function uploadImage (event) {
 }
 function step1Click () {
     var subInfo = $('#subject option:selected').val();
-    console.log(subInfo);
     var detailInfo;
     var dateInfo = $('#inputDatetime').val();
     var desInfo = $('#des').val();
@@ -158,9 +157,7 @@ function step1Click () {
             break;
     }
 
-    console.log(dateInfo);
     $('#subInfo').val(subInfo);
-    console.log(dateInfo);
     $('#outputDatetime').val(dateInfo);
     $('#desInfo').val(desInfo);
 
@@ -263,9 +260,11 @@ function formatLocalDate(time) {
         + ':' + pad(tzo % 60);
 
 }
-$('.btnPrev').click(function(){
+
+function prev () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-});
+}
+
 $(document).ready(function() {
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
@@ -317,7 +316,6 @@ $(document).ready(function() {
         content.serviceRequestId = 1;
         content.latitude = $('#latitude').val();
         content.longitude = $('#longitude').val();
-        console.log(JSON.stringify(content));
         $.ajax({
             method: "POST",
             url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
@@ -347,8 +345,6 @@ function signin () {
     .done(function(data){
         if(jQuery.isEmptyObject(data)){
             $('#errorLabel').text("Email hoặc mật khẩu không đúng!");
-            $('#emailInput').val('');
-            $('#passwordInput').val('');
             $('#emailInput').focus();
         }   
         else{
