@@ -6,10 +6,13 @@
 package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Calendar;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +24,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import support.General.Status;
 
 /**
  *
@@ -40,9 +44,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Requests.findByLongitude", query = "SELECT r FROM Requests r WHERE r.longitude = :longitude"),
     @NamedQuery(name = "Requests.findByAddress", query = "SELECT r FROM Requests r WHERE r.address = :address"),
     @NamedQuery(name = "Requests.findByAddressId", query = "SELECT r FROM Requests r WHERE r.addressId = :addressId"),
-    @NamedQuery(name = "Requests.findByRequestedDatetime", query = "SELECT r FROM Requests r WHERE r.requestedDatetime = :requestedDatetime"),
-    @NamedQuery(name = "Requests.findByUpdatedDatetime", query = "SELECT r FROM Requests r WHERE r.updatedDatetime = :updatedDatetime"),
-    @NamedQuery(name = "Requests.findByExpectedDatetime", query = "SELECT r FROM Requests r WHERE r.expectedDatetime = :expectedDatetime"),
+    @NamedQuery(name = "Requests.findByRequestedCalendartime", query = "SELECT r FROM Requests r WHERE r.requestedCalendartime = :requestedCalendartime"),
+    @NamedQuery(name = "Requests.findByUpdatedCalendartime", query = "SELECT r FROM Requests r WHERE r.updatedCalendartime = :updatedCalendartime"),
+    @NamedQuery(name = "Requests.findByExpectedCalendartime", query = "SELECT r FROM Requests r WHERE r.expectedCalendartime = :expectedCalendartime"),
     @NamedQuery(name = "Requests.findByZipcode", query = "SELECT r FROM Requests r WHERE r.zipcode = :zipcode"),
     @NamedQuery(name = "Requests.findByStatusId", query = "SELECT r FROM Requests r WHERE r.statusId = :statusId"),
     @NamedQuery(name = "Requests.findByMediaUrl", query = "SELECT r FROM Requests r WHERE r.mediaUrl = :mediaUrl"),
@@ -53,37 +57,30 @@ public class Requests implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "service_request_id")
     private Integer serviceRequestId;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "service_code")
     private int serviceCode;
     
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "service_name")
     private String serviceName;
     
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
     @Column(name = "description")
     private String description;
     
-    @Basic(optional = false)
     @Column(name = "metadata", nullable = true)
     private boolean metadata;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "latitude")
     private float latitude;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "longitude")
     private float longitude;
@@ -95,33 +92,27 @@ public class Requests implements Serializable {
     @Column(name = "address_id", nullable = true)
     private Integer addressId;
     
-    @Basic(optional = false)
-    @Column(name = "happen_datetime", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date happenDatetime;
+    @Column(name = "happen_datetime", nullable = false, columnDefinition="TIMESTAMPTZ")
+    private Calendar happenCalendartime;
     
-    @Basic(optional = false)
     @NotNull
-    @Column(name = "requested_datetime", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date requestedDatetime;
+    @Column(name = "requested_datetime", nullable = false, columnDefinition="TIMESTAMPTZ")
+    private Calendar requestedCalendartime;
     
-    @Column(name = "updated_datetime", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedDatetime;
+    @Column(name = "updated_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
+    private Calendar updatedCalendartime;
     
-    @Column(name = "expected_datetime", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expectedDatetime;
+    @Column(name = "expected_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
+    private Calendar expectedCalendartime;
     
     @Size(max = 100)
     @Column(name = "zipcode", nullable = true)
     private String zipcode;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "status_id")
-    private int statusId;
+    @Enumerated(EnumType.STRING)
+    private Status statusId;
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -142,7 +133,7 @@ public class Requests implements Serializable {
         this.serviceRequestId = serviceRequestId;
     }
 
-    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Date requestedDatetime, Date updatedDatetime, Date expectedDatetime, int statusId) {
+    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Calendar requestedCalendartime, Calendar updatedCalendartime, Calendar expectedCalendartime, Status statusId) {
         this.serviceRequestId = serviceRequestId;
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
@@ -150,9 +141,9 @@ public class Requests implements Serializable {
         this.metadata = metadata;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.requestedDatetime = requestedDatetime;
-        this.updatedDatetime = updatedDatetime;
-        this.expectedDatetime = expectedDatetime;
+        this.requestedCalendartime = requestedCalendartime;
+        this.updatedCalendartime = updatedCalendartime;
+        this.expectedCalendartime = expectedCalendartime;
         this.statusId = statusId;
     }
 
@@ -228,28 +219,28 @@ public class Requests implements Serializable {
         this.addressId = addressId;
     }
 
-    public Date getRequestedDatetime() {
-        return requestedDatetime;
+    public Calendar getRequestedCalendartime() {
+        return requestedCalendartime;
     }
 
-    public void setRequestedDatetime(Date requestedDatetime) {
-        this.requestedDatetime = requestedDatetime;
+    public void setRequestedCalendartime(Calendar requestedCalendartime) {
+        this.requestedCalendartime = requestedCalendartime;
     }
 
-    public Date getUpdatedDatetime() {
-        return updatedDatetime;
+    public Calendar getUpdatedCalendartime() {
+        return updatedCalendartime;
     }
 
-    public void setUpdatedDatetime(Date updatedDatetime) {
-        this.updatedDatetime = updatedDatetime;
+    public void setUpdatedCalendartime(Calendar updatedCalendartime) {
+        this.updatedCalendartime = updatedCalendartime;
     }
 
-    public Date getExpectedDatetime() {
-        return expectedDatetime;
+    public Calendar getExpectedCalendartime() {
+        return expectedCalendartime;
     }
 
-    public void setExpectedDatetime(Date expectedDatetime) {
-        this.expectedDatetime = expectedDatetime;
+    public void setExpectedCalendartime(Calendar expectedCalendartime) {
+        this.expectedCalendartime = expectedCalendartime;
     }
 
     public String getZipcode() {
@@ -260,11 +251,11 @@ public class Requests implements Serializable {
         this.zipcode = zipcode;
     }
 
-    public int getStatusId() {
+    public Status getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Status statusId) {
         this.statusId = statusId;
     }
 
