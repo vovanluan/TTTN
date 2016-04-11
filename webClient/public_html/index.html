@@ -65,7 +65,7 @@
 								<td class="col-md-4">Hình ảnh:</td>
 								<td>
 									<label class="btn-upload" style="vertical-align:middle;">
-								   		<input type="file" id="fileupload" onchange="alertFileName(event)" accept="image/jpg, image/jpeg, image/png">
+								   		<input type="file" class="fileUpload" id="fileUpload"  accept="image/jpg, image/jpeg, image/png">
 								   		<button class="btn btn-primary">Chọn ảnh</button>
 									</label>
 									<label id="fileName" style="padding-left:5px;"></label>
@@ -257,6 +257,19 @@
 								<td class="col-md-4">Thời gian:</td>
 								<td><input type="text" data-field="datetime" id="outputDatetime" disabled class="form-control">		
 							</tr>
+							<tr>
+								<td class="col-md-4">Hình ảnh:</td>
+								<td>
+									<label class="btn-upload" style="vertical-align:middle;">
+								   		<input class = "infoStep1 fileUpload" type="file" id="fileUploadFinal"  accept="image/jpg, image/jpeg, image/png" >
+								   		<button class="btn btn-primary" id ="chooseImgFinal" disabled>Chọn ảnh</button>
+									</label>
+									<label id="fileNameFinal" style="padding-left:5px;"></label>
+									<br>
+									
+									<img id="image-holder-Final" style="max-width: 300px; max-height: 320px;"/> 
+								</td>
+							</tr>							
 							<tr>
 								<td class="col-md-4">Mô tả thêm:</td>
 								<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3"  readonly="readonly"></textarea></td>

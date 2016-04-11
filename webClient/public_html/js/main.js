@@ -113,20 +113,7 @@ function districtChange () {
 
     }
 }
-function alertFileName (event) {
-    var fileName = document.getElementById('fileupload').value;
-    fileName = fileName.replace(/.*[\/\\]/, '');
-    document.getElementById('fileName').innerText = fileName;
 
-    var reader = new FileReader();
-    reader.onload = function(){
-    var output = document.getElementById('image-holder');
-    output.src = reader.result;
-};
-reader.readAsDataURL(event.target.files[0]);
-
-
-}
 function step1Click () {
     var subInfo = $('#subject option:selected').val();
     var detailInfo;
@@ -215,6 +202,7 @@ function step3Click () {
 function step1Edit () {
     $('.infoStep1').removeAttr('readonly');
     $('#subInfo').prop('disabled',false);
+    $('#chooseImgFinal').prop('disabled', false);
     $('#outputDatetime').prop('disabled',false);
     $('#subInfo').focus();
     var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
@@ -266,63 +254,117 @@ function formatLocalDate(time) {
 function prev () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 }
-
 $(document).ready(function() {
+    var imgBase64 = "";
+    // Handle choose image to upload
+
+    $('.fileUpload').change(function chooseImage(event) {
+        var fileName = $('#fileUpload')[0].value;
+        console.log(fileName);
+        fileName = fileName.replace(/.*[\/\\]/, '');
+        $('#fileNameFinal')[0].innerText = $('#fileName')[0].innerText = fileName;
+        var reader = new FileReader();
+        reader.onload = function(){
+            $('#image-holder-Final')[0].src = $('#image-holder')[0].src = reader.result;
+            //Convert image to base64
+            imgBase64 = reader.result.replace(/^data:image\/(png|jpg);base64,/, "");     
+        };
+        reader.readAsDataURL(event.target.files[0]);        
+    });
+
+    // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
-    });            
+    });      
+
+    // Handle google map and location          
     initMap();   
-    $(".btn-success").click(function(){                
-        var content = new Object();
-        content.address = $("#addInfo").val();   
-        content.description = $("#desInfo").val();
-        var happen = $("#outputDatetime").val();
-        var date = new Date(happen);
-        content.happenDatetime = formatLocalDate(date);
-        content.requestedDatetime = formatLocalDate(new Date());
-        content.statusId = 0;
-        var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
-        for(var i=0; i<allTags.length;i++){
-            if(allTags[i].style.display == 'inline'){
-                content.serviceName = getSelectedText(allTags[i].id);
-                break;
-            }
-        }
-        switch($('#subInfo option:selected').val()){
-            case "dien":
-                content.serviceCode = 0;
-                break;
-            case "nuoc":
-                content.serviceCode = 1;
-                break;
-            case "tiengon":
-                content.serviceCode = 2;
-                break;
-        
-        }
-        
-        content.serviceRequestId = 1;
-        content.latitude = $('#latitude').val();
-        content.longitude = $('#longitude').val();
-        $.ajax({
-            method: "POST",
-            url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
-            data: JSON.stringify(content),
-            contentType: "application/json;charset=UTF-8"
-        })  
-        .done(function(data) {
-                console.log("success");
+
+    // Handle when press submit button ("Gửi")    
+    $(".btn-success").click(function(){  
+        var clientId = "254c1d5f74f2518";
+        var urlToImage = "";
+        // Handle upload image
+        if(imgBase64 != "") {
+            $.ajax({ 
+            url: 'https://api.imgur.com/3/image',
+            headers: {
+                'Authorization': 'Client-ID ' + clientId
+            },
+            type: 'POST',
+            datatype: "json",
+            data: {
+                'image': imgBase64,
+                'type' : 'base64'
+            },
             })
-            .fail(function(msg) {
-                console.log("error : " + msg);
-        });
-        
+            .then(function(response) {
+                urlToImage = response.data.link;
+                sendRequest(urlToImage);
+            })
+            .fail(function(error){
+                console.log("Error when upload image: " + error);
+            });
+            return;            
+        }
+        sendRequest(urlToImage);        
     });
     
 });
 
-function getTabIndex () {
-    return $("ul li.ui-state.active").index();
+function sendRequest(urlToImage) {
+    // Get address :
+    var address = $("#addInfo").val() + ", " + $("#wardInfo").val() + ", " + $("#disInfo").val();
+    console.log(address);
+
+    // Generate content before sending request
+    var content = new Object();
+    content.address = address;   
+    content.description = $("#desInfo").val();
+    var happen = $("#outputDatetime").val();
+    var date = new Date(happen);
+    content.happenDatetime = formatLocalDate(date);
+    content.requestedDatetime = formatLocalDate(new Date());
+    content.statusId = 0;
+    content.mediaUrl = urlToImage;
+    var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
+    for(var i=0; i<allTags.length;i++){
+        if(allTags[i].style.display == 'inline'){
+            content.serviceName = getSelectedText(allTags[i].id);
+            break;
+        }
+    }
+    switch($('#subInfo option:selected').val()){
+        case "dien":
+            content.serviceCode = 0;
+            break;
+        case "nuoc":
+            content.serviceCode = 1;
+            break;
+        case "tiengon":
+            content.serviceCode = 2;
+            break;
+    
+    }
+    
+    content.serviceRequestId = 1;
+    content.latitude = $('#latitude').val();
+    content.longitude = $('#longitude').val();
+
+    console.log(JSON.stringify(content));   
+    // create request
+    $.ajax({
+        method: "POST",
+        url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
+        data: JSON.stringify(content),
+        contentType: "application/json;charset=UTF-8"
+    })  
+    .done(function(data) {
+            console.log("success");
+        })
+        .fail(function(msg) {
+            console.log("error : " + msg);
+    });        
 }
 function signin () {
     var email = $('#emailInput').val();
@@ -357,7 +399,6 @@ function signup () {
     var error = {msg : ''};
     var p = checkErrorSignup(error);
     p.then( function() {
-            console.log("Finish");
             if (error.msg != '') {
                 console.log(error.msg);
                 $('#errorLabelSignup').text(error.msg);
@@ -436,3 +477,86 @@ function checkErrorSignup(error) {
     },200);
     return deferred.promise();
 }
+
+//Handle Image upload
+    // var imgUrl = "";
+    // var memberUploadAvatarId;
+    // $('#file-input').change(function(e) {
+    //     var file = e.target.files[0];
+    //     imageType = /image.*/;
+    //     if (!file.type.match(imageType)) {
+    //         console.log("File didn't match");
+    //         return;
+    //     }
+    //     var reader = new FileReader();
+    //     reader.onload = function fileOnLoad(e) {
+    //         var $img = $('<img>', {src: e.target.result});
+    //         $("#imgNewAvatar").attr("src", $img.attr("src"));
+    //         var canvas = document.createElement('canvas');
+    //         var context = canvas.getContext('2d');
+    //         $img.load(function() {
+    //             canvas.width = this.width;
+    //             canvas.height = this.height;
+    //             context.drawImage(this, 0, 0);
+    //             imgUrl = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "");
+    //         })
+    //     }
+    //     reader.readAsDataURL(file);
+    // })
+    // var clientId = "ae6e3c4095f9247";
+    // function showMeError(err) {
+    //     console.log(err);
+    // }
+    // function updateAvatarForDB(data, isAddMem) {
+    //     var imgLink = data.data.link;
+    //     if (isAddMem == 1) {
+    //         $("#modal-add-user .memberModalAvatar").attr("src", imgLink);
+    //         $('#modal-uploading').modal('hide');
+    //     }
+    //     else {
+    //         $.ajax({
+    //             url: 'http://localhost:8080/hello-restful/webservice/giapha/changeavatar',
+    //             type: 'POST',
+    //             contentType: "application/json",
+    //             data: JSON.stringify({
+    //                 sentData: {
+    //                     avatar : data.data.link,
+    //                     memberID : memberUploadAvatarId
+    //                 }
+    //             }),
+    //             dataType: 'json',
+    //             beforeSend: function(request) {
+    //                 var authstring = getCookie("giaphaauth");
+    //                 if (authstring != "")
+    //                     request.setRequestHeader("Authorization", "Basic " + getCookie("giaphaauth"));
+    //                 else
+    //                     document.location.href = "index.php";
+    //             }
+    //         }).done(function (data) {
+    //             $("#mem" + memberUploadAvatarId).find(".memberAvatar").attr("src", imgLink);
+    //             $("#modal-edit-user .memberModalAvatar").attr("src", imgLink);
+    //             $("#mem" + memberUploadAvatarId).data("memberinfo", data);
+    //             $('#modal-uploading').modal('hide');
+    //         }).fail(function () {
+    //             console.log("Failed to upload avatar !")
+    //         });
+    //     }
+    // }
+    // $("#btnUploadAvatar").click(function(){
+    //     memberUploadAvatarId = $(this).attr("data-memid");
+    //     var isAddMem = $(this).attr("data-addmem");
+    //     $.ajax({
+    //         url: "https://api.imgur.com/3/upload",
+    //         type: "POST",
+    //         datatype: "json",
+    //         data: {image: imgUrl},
+    //         success: function(data) {
+    //             updateAvatarForDB(data, isAddMem);
+    //         },
+    //         error: showMeError,
+    //         beforeSend: function (xhr) {
+    //             $('#modal-uploading').modal('show');
+    //             xhr.setRequestHeader("Authorization", "Client-ID " + clientId);
+    //         }
+    //     });
+    // })
