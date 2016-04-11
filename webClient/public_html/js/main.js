@@ -394,6 +394,31 @@ function signin () {
 
 }
 
+function signinGuest () {
+    var displayName = $('#displayNameGuest').val();
+    var email = $('#emailInputGuest').val();
+
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest/checkLoginGuest?displayName=" + displayName + "&email=" + email,
+        contentType: "application/json;charset=UTF-8"
+    })
+    .done(function(data){
+        if(jQuery.isEmptyObject(data)){
+            $('#errorLabelGuest').text("Email trùng!");
+        }   
+        else{
+            $('#name').val(data.guestName);
+            $('#email').val(data.guestEmail);
+            $('#signinModal').modal('toggle');
+        } 
+    })
+    .fail(function(errMsg) {
+        console.log("error: " + errMsg);
+    });
+
+}
+
 function signup () {
     // Check error before sign up
     var error = {msg : ''};
