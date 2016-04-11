@@ -37,11 +37,13 @@ public class Guest implements Serializable {
     @NotNull
     @Column(name = "guest_id")
     private Integer guestId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "guest_name")
     private String guestName;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)

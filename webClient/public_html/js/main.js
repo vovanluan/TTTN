@@ -30,7 +30,6 @@ function success(pos) {
         title: "Di chuyển để xác định đúng vị trí"
     });
     map.setCenter(latlng);
-    console.log(map.getCenter());
     map.setZoom(15);
     google.maps.event.addListener(marker, "dragend", function (event) {
         $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
@@ -267,7 +266,6 @@ $(document).ready(function() {
 
     $('.fileUpload').change(function chooseImage(event) {
         var fileName = $('#fileUpload')[0].value;
-        console.log(fileName);
         fileName = fileName.replace(/.*[\/\\]/, '');
         $('#fileNameFinal')[0].innerText = $('#fileName')[0].innerText = fileName;
         var reader = new FileReader();
@@ -409,12 +407,12 @@ function signinGuest () {
         contentType: "application/json;charset=UTF-8"
     })
     .done(function(data){
-        if(jQuery.isEmptyObject(data)){
+        if(!jQuery.isEmptyObject(data)){
             $('#errorLabelGuest').text("Email trùng!");
         }   
         else{
-            $('#name').val(data.guestName);
-            $('#email').val(data.guestEmail);
+            $('#name').val(displayName);
+            $('#email').val(email);
             $('#signinModal').modal('toggle');
         } 
     })
@@ -498,7 +496,6 @@ function checkErrorSignup(error) {
                     })
                     .done(function(data){
                         if (data!=null) {
-                            console.log('id email existed');
                             error.msg = "CMND đã đăng ký.Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
                         }
                         deferred.resolve("from checkErrorSignup");
