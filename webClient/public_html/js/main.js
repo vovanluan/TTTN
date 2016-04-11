@@ -113,19 +113,16 @@ function districtChange () {
 
     }
 }
-function alertFileName (event) {
-    var fileName = document.getElementById('fileupload').value;
+function uploadImage (event) {
+    var fileName = $('#fileupload')[0].value;
+    console.log(fileName);
     fileName = fileName.replace(/.*[\/\\]/, '');
-    document.getElementById('fileName').innerText = fileName;
-
+    $('#fileNameFinal')[0].innerText = $('#fileName')[0].innerText = fileName;
     var reader = new FileReader();
     reader.onload = function(){
-    var output = document.getElementById('image-holder');
-    output.src = reader.result;
-};
-reader.readAsDataURL(event.target.files[0]);
-
-
+        $('#image-holder-Final')[0].src = $('#image-holder')[0].src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
 }
 function step1Click () {
     var subInfo = $('#subject option:selected').val();
@@ -218,6 +215,7 @@ function step3Click () {
 function step1Edit () {
     $('.infoStep1').removeAttr('readonly');
     $('#subInfo').prop('disabled',false);
+    $('#chooseImgFinal').prop('disabled', false);
     $('#outputDatetime').prop('disabled',false);
     $('#subInfo').focus();
     var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
@@ -273,7 +271,21 @@ $(document).ready(function() {
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });            
     initMap();   
-    $(".btn-success").click(function(){                
+    $(".btn-success").click(function(){  
+        var clientId = "db6c533fcea590a";
+        // Handle upload image
+/*        $.ajax({ 
+            url: 'https://api.imgur.com/3/image',
+            headers: {
+                'Authorization': 'Client-ID YOUR_CLIENT_ID'
+            },
+            type: 'POST',
+            data: {
+                'image': 'helloworld.jpg'
+            },
+            success: function() { console.log('cool'); }
+        });
+*/
         var content = new Object();
         content.address = $("#addInfo").val();   
         content.description = $("#desInfo").val();
@@ -438,3 +450,86 @@ function checkErrorSignup(error) {
     },200);
     return deferred.promise();
 }
+
+//Handle Image upload
+    // var imgUrl = "";
+    // var memberUploadAvatarId;
+    // $('#file-input').change(function(e) {
+    //     var file = e.target.files[0];
+    //     imageType = /image.*/;
+    //     if (!file.type.match(imageType)) {
+    //         console.log("File didn't match");
+    //         return;
+    //     }
+    //     var reader = new FileReader();
+    //     reader.onload = function fileOnLoad(e) {
+    //         var $img = $('<img>', {src: e.target.result});
+    //         $("#imgNewAvatar").attr("src", $img.attr("src"));
+    //         var canvas = document.createElement('canvas');
+    //         var context = canvas.getContext('2d');
+    //         $img.load(function() {
+    //             canvas.width = this.width;
+    //             canvas.height = this.height;
+    //             context.drawImage(this, 0, 0);
+    //             imgUrl = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "");
+    //         })
+    //     }
+    //     reader.readAsDataURL(file);
+    // })
+    // var clientId = "ae6e3c4095f9247";
+    // function showMeError(err) {
+    //     console.log(err);
+    // }
+    // function updateAvatarForDB(data, isAddMem) {
+    //     var imgLink = data.data.link;
+    //     if (isAddMem == 1) {
+    //         $("#modal-add-user .memberModalAvatar").attr("src", imgLink);
+    //         $('#modal-uploading').modal('hide');
+    //     }
+    //     else {
+    //         $.ajax({
+    //             url: 'http://localhost:8080/hello-restful/webservice/giapha/changeavatar',
+    //             type: 'POST',
+    //             contentType: "application/json",
+    //             data: JSON.stringify({
+    //                 sentData: {
+    //                     avatar : data.data.link,
+    //                     memberID : memberUploadAvatarId
+    //                 }
+    //             }),
+    //             dataType: 'json',
+    //             beforeSend: function(request) {
+    //                 var authstring = getCookie("giaphaauth");
+    //                 if (authstring != "")
+    //                     request.setRequestHeader("Authorization", "Basic " + getCookie("giaphaauth"));
+    //                 else
+    //                     document.location.href = "index.php";
+    //             }
+    //         }).done(function (data) {
+    //             $("#mem" + memberUploadAvatarId).find(".memberAvatar").attr("src", imgLink);
+    //             $("#modal-edit-user .memberModalAvatar").attr("src", imgLink);
+    //             $("#mem" + memberUploadAvatarId).data("memberinfo", data);
+    //             $('#modal-uploading').modal('hide');
+    //         }).fail(function () {
+    //             console.log("Failed to upload avatar !")
+    //         });
+    //     }
+    // }
+    // $("#btnUploadAvatar").click(function(){
+    //     memberUploadAvatarId = $(this).attr("data-memid");
+    //     var isAddMem = $(this).attr("data-addmem");
+    //     $.ajax({
+    //         url: "https://api.imgur.com/3/upload",
+    //         type: "POST",
+    //         datatype: "json",
+    //         data: {image: imgUrl},
+    //         success: function(data) {
+    //             updateAvatarForDB(data, isAddMem);
+    //         },
+    //         error: showMeError,
+    //         beforeSend: function (xhr) {
+    //             $('#modal-uploading').modal('show');
+    //             xhr.setRequestHeader("Authorization", "Client-ID " + clientId);
+    //         }
+    //     });
+    // })
