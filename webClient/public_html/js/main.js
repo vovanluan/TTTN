@@ -1,9 +1,9 @@
 function initMap() {
     var myLatLng = {lat: 10.78, lng: 106.65};
-    map = new google.maps.Map(document.getElementById('googleMap'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: myLatLng
-    });
+    });   
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success
             , function (errMsg) {
@@ -21,20 +21,21 @@ function initMap() {
 function success(pos) {
     $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
     $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
-    var lonlat = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
     var marker = new google.maps.Marker({
-        position: lonlat,
+        position: latlng,
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
         title: "Di chuyển để xác định đúng vị trí"
     });
-    map.setCenter(lonlat);
+    map.setCenter(latlng);
     console.log(map.getCenter());
     map.setZoom(15);
     google.maps.event.addListener(marker, "dragend", function (event) {
         $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
-        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));;
+        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
+        map.setCenter(event.latLng);
     });
 }
 
@@ -151,26 +152,26 @@ function step1Click () {
     $('#outputDatetime').val(dateInfo);
     $('#desInfo').val(desInfo);
 
-    $('.nav-tabs > .active').next('li').find('a').trigger('click');
+    $('.nav-tabs > .active').next('li').find('a').trigger('click');     
 }
 function step2Click () {
     var disInfo = $('#district option:selected').text();
     var wardInfo;
     var addInfo = $('#address').val();
     switch(disInfo){
-        case 'Quận 1':
+        case '1':
             wardInfo=$('#quan1 option:selected').text();
             break;
-        case 'Quận 2':
+        case '2':
             wardInfo=$('#quan2 option:selected').text();
             break;
-        case 'Quận 10':
+        case '10':
             wardInfo=$('#quan10 option:selected').text();
             break;
-        case 'Quận Bình Thạnh':
+        case 'Bình Thạnh':
             wardInfo=$('#quanbinhthanh option:selected').text();
             break;
-        case 'Quận Thủ Đức':
+        case 'Thủ Đức':
             wardInfo=$('#quanthuduc option:selected').text();
             break;
     }
@@ -255,6 +256,12 @@ function prev () {
     $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 }
 $(document).ready(function() {
+    var c = 0;
+    $('a[href="#step2"]').on('shown.bs.tab', function(e) {
+        c++;
+        if (c == 1)
+            initMap();
+    }); 
     var imgBase64 = "";
     // Handle choose image to upload
 
@@ -267,7 +274,7 @@ $(document).ready(function() {
         reader.onload = function(){
             $('#image-holder-Final')[0].src = $('#image-holder')[0].src = reader.result;
             //Convert image to base64
-            imgBase64 = reader.result.replace(/^data:image\/(png|jpg);base64,/, "");     
+            imgBase64 = reader.result.replace(/data:image\/(png|jpg|jpeg);base64,/, "");     
         };
         reader.readAsDataURL(event.target.files[0]);        
     });
@@ -276,9 +283,6 @@ $(document).ready(function() {
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });      
-
-    // Handle google map and location          
-    initMap();   
 
     // Handle when press submit button ("Gửi")    
     $(".btn-success").click(function(){  
@@ -300,6 +304,7 @@ $(document).ready(function() {
             })
             .then(function(response) {
                 urlToImage = response.data.link;
+
                 sendRequest(urlToImage);
             })
             .fail(function(error){
@@ -314,7 +319,7 @@ $(document).ready(function() {
 
 function sendRequest(urlToImage) {
     // Get address :
-    var address = $("#addInfo").val() + ", " + $("#wardInfo").val() + ", " + $("#disInfo").val();
+    var address = $("#addInfo").val() + ", Phường " + $("#wardInfo").val() + ", Quận " + $("#disInfo").val();
     console.log(address);
 
     // Generate content before sending request

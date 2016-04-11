@@ -6,10 +6,14 @@
 package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import support.General.Status;
 
 /**
  *
@@ -53,37 +58,30 @@ public class Requests implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "service_request_id")
     private Integer serviceRequestId;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "service_code")
     private int serviceCode;
     
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "service_name")
     private String serviceName;
     
-    @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 500)
     @Column(name = "description")
     private String description;
     
-    @Basic(optional = false)
     @Column(name = "metadata", nullable = true)
     private boolean metadata;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "latitude")
     private float latitude;
     
-    @Basic(optional = false)
     @NotNull
     @Column(name = "longitude")
     private float longitude;
@@ -95,23 +93,21 @@ public class Requests implements Serializable {
     @Column(name = "address_id", nullable = true)
     private Integer addressId;
     
-    @Basic(optional = false)
     @NotNull
-    @Column(name = "happen_datetime", nullable = false)
+    @Column(name = "happen_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date happenDatetime;
-    
-    @Basic(optional = false)
+  
     @NotNull
-    @Column(name = "requested_datetime", nullable = false)
+    @Column(name = "requested_datetime", nullable = false, columnDefinition="TIMESTAMPTZ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requestedDatetime;
     
-    @Column(name = "updated_datetime", nullable = true)
+    @Column(name = "updated_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedDatetime;
     
-    @Column(name = "expected_datetime", nullable = true)
+    @Column(name = "expected_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
     @Temporal(TemporalType.TIMESTAMP)
     private Date expectedDatetime;
     
@@ -119,10 +115,11 @@ public class Requests implements Serializable {
     @Column(name = "zipcode", nullable = true)
     private String zipcode;
     
-    @Basic(optional = false)
+    
     @NotNull
     @Column(name = "status_id")
-    private int statusId;
+    //@Enumerated(EnumType.STRING)
+    private Integer statusId;
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -131,6 +128,7 @@ public class Requests implements Serializable {
     @Size(max = 100)
     @Column(name = "keywords", nullable = true, length=100)
     private String keywords;
+    
     
     @Size(max = 20)
     @Column(name = "group_name", nullable = true)
@@ -143,7 +141,7 @@ public class Requests implements Serializable {
         this.serviceRequestId = serviceRequestId;
     }
 
-    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Date requestedDatetime, Date updatedDatetime, Date expectedDatetime, int statusId) {
+    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Date requestedDatetime, Date updatedDatetime, Date expectedDatetime, Integer statusId) {
         this.serviceRequestId = serviceRequestId;
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
@@ -228,7 +226,15 @@ public class Requests implements Serializable {
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
+    
+    public Date getHappenDatetime() {
+        return happenDatetime;
+    }
 
+    public void setHappenDatetime(Date happenDatetime) {
+        this.happenDatetime = happenDatetime;
+    }
+    
     public Date getRequestedDatetime() {
         return requestedDatetime;
     }
@@ -261,11 +267,11 @@ public class Requests implements Serializable {
         this.zipcode = zipcode;
     }
 
-    public int getStatusId() {
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
 
@@ -307,10 +313,7 @@ public class Requests implements Serializable {
             return false;
         }
         Requests other = (Requests) object;
-        if ((this.serviceRequestId == null && other.serviceRequestId != null) || (this.serviceRequestId != null && !this.serviceRequestId.equals(other.serviceRequestId))) {
-            return false;
-        }
-        return true;
+        return !((this.serviceRequestId == null && other.serviceRequestId != null) || (this.serviceRequestId != null && !this.serviceRequestId.equals(other.serviceRequestId)));
     }
 
     @Override
