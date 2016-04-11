@@ -95,7 +95,6 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         query.setParameter("password", password);
         List<Users> users = query.getResultList();
         if(!users.isEmpty()){
-            System.out.print(users.get(0).getUserEmail());
             return users.get(0);
         }
         else return null;

@@ -7,7 +7,8 @@ package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Calendar;
+import java.util.Date;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,9 +45,9 @@ import support.General.Status;
     @NamedQuery(name = "Requests.findByLongitude", query = "SELECT r FROM Requests r WHERE r.longitude = :longitude"),
     @NamedQuery(name = "Requests.findByAddress", query = "SELECT r FROM Requests r WHERE r.address = :address"),
     @NamedQuery(name = "Requests.findByAddressId", query = "SELECT r FROM Requests r WHERE r.addressId = :addressId"),
-    @NamedQuery(name = "Requests.findByRequestedCalendartime", query = "SELECT r FROM Requests r WHERE r.requestedCalendartime = :requestedCalendartime"),
-    @NamedQuery(name = "Requests.findByUpdatedCalendartime", query = "SELECT r FROM Requests r WHERE r.updatedCalendartime = :updatedCalendartime"),
-    @NamedQuery(name = "Requests.findByExpectedCalendartime", query = "SELECT r FROM Requests r WHERE r.expectedCalendartime = :expectedCalendartime"),
+    @NamedQuery(name = "Requests.findByRequestedDatetime", query = "SELECT r FROM Requests r WHERE r.requestedDatetime = :requestedDatetime"),
+    @NamedQuery(name = "Requests.findByUpdatedDatetime", query = "SELECT r FROM Requests r WHERE r.updatedDatetime = :updatedDatetime"),
+    @NamedQuery(name = "Requests.findByExpectedDatetime", query = "SELECT r FROM Requests r WHERE r.expectedDatetime = :expectedDatetime"),
     @NamedQuery(name = "Requests.findByZipcode", query = "SELECT r FROM Requests r WHERE r.zipcode = :zipcode"),
     @NamedQuery(name = "Requests.findByStatusId", query = "SELECT r FROM Requests r WHERE r.statusId = :statusId"),
     @NamedQuery(name = "Requests.findByMediaUrl", query = "SELECT r FROM Requests r WHERE r.mediaUrl = :mediaUrl"),
@@ -92,27 +93,33 @@ public class Requests implements Serializable {
     @Column(name = "address_id", nullable = true)
     private Integer addressId;
     
-    @Column(name = "happen_datetime", nullable = false, columnDefinition="TIMESTAMPTZ")
-    private Calendar happenCalendartime;
-    
+    @NotNull
+    @Column(name = "happen_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date happenDatetime;
+  
     @NotNull
     @Column(name = "requested_datetime", nullable = false, columnDefinition="TIMESTAMPTZ")
-    private Calendar requestedCalendartime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date requestedDatetime;
     
     @Column(name = "updated_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
-    private Calendar updatedCalendartime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedDatetime;
     
     @Column(name = "expected_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
-    private Calendar expectedCalendartime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date expectedDatetime;
     
     @Size(max = 100)
     @Column(name = "zipcode", nullable = true)
     private String zipcode;
     
+    
     @NotNull
     @Column(name = "status_id")
-    @Enumerated(EnumType.STRING)
-    private Status statusId;
+    //@Enumerated(EnumType.STRING)
+    private Integer statusId;
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -121,6 +128,7 @@ public class Requests implements Serializable {
     @Size(max = 100)
     @Column(name = "keywords", nullable = true, length=100)
     private String keywords;
+    
     
     @Size(max = 20)
     @Column(name = "group_name", nullable = true)
@@ -133,7 +141,7 @@ public class Requests implements Serializable {
         this.serviceRequestId = serviceRequestId;
     }
 
-    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Calendar requestedCalendartime, Calendar updatedCalendartime, Calendar expectedCalendartime, Status statusId) {
+    public Requests(Integer serviceRequestId, int serviceCode, String serviceName, String description, boolean metadata, float latitude, float longitude, Date requestedDatetime, Date updatedDatetime, Date expectedDatetime, Integer statusId) {
         this.serviceRequestId = serviceRequestId;
         this.serviceCode = serviceCode;
         this.serviceName = serviceName;
@@ -141,9 +149,9 @@ public class Requests implements Serializable {
         this.metadata = metadata;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.requestedCalendartime = requestedCalendartime;
-        this.updatedCalendartime = updatedCalendartime;
-        this.expectedCalendartime = expectedCalendartime;
+        this.requestedDatetime = requestedDatetime;
+        this.updatedDatetime = updatedDatetime;
+        this.expectedDatetime = expectedDatetime;
         this.statusId = statusId;
     }
 
@@ -218,29 +226,37 @@ public class Requests implements Serializable {
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
-
-    public Calendar getRequestedCalendartime() {
-        return requestedCalendartime;
+    
+    public Date getHappenDatetime() {
+        return happenDatetime;
     }
 
-    public void setRequestedCalendartime(Calendar requestedCalendartime) {
-        this.requestedCalendartime = requestedCalendartime;
+    public void setHappenDatetime(Date happenDatetime) {
+        this.happenDatetime = happenDatetime;
+    }
+    
+    public Date getRequestedDatetime() {
+        return requestedDatetime;
     }
 
-    public Calendar getUpdatedCalendartime() {
-        return updatedCalendartime;
+    public void setRequestedDatetime(Date requestedDatetime) {
+        this.requestedDatetime = requestedDatetime;
     }
 
-    public void setUpdatedCalendartime(Calendar updatedCalendartime) {
-        this.updatedCalendartime = updatedCalendartime;
+    public Date getUpdatedDatetime() {
+        return updatedDatetime;
     }
 
-    public Calendar getExpectedCalendartime() {
-        return expectedCalendartime;
+    public void setUpdatedDatetime(Date updatedDatetime) {
+        this.updatedDatetime = updatedDatetime;
     }
 
-    public void setExpectedCalendartime(Calendar expectedCalendartime) {
-        this.expectedCalendartime = expectedCalendartime;
+    public Date getExpectedDatetime() {
+        return expectedDatetime;
+    }
+
+    public void setExpectedDatetime(Date expectedDatetime) {
+        this.expectedDatetime = expectedDatetime;
     }
 
     public String getZipcode() {
@@ -251,11 +267,11 @@ public class Requests implements Serializable {
         this.zipcode = zipcode;
     }
 
-    public Status getStatusId() {
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(Status statusId) {
+    public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
 
@@ -297,10 +313,7 @@ public class Requests implements Serializable {
             return false;
         }
         Requests other = (Requests) object;
-        if ((this.serviceRequestId == null && other.serviceRequestId != null) || (this.serviceRequestId != null && !this.serviceRequestId.equals(other.serviceRequestId))) {
-            return false;
-        }
-        return true;
+        return !((this.serviceRequestId == null && other.serviceRequestId != null) || (this.serviceRequestId != null && !this.serviceRequestId.equals(other.serviceRequestId)));
     }
 
     @Override
