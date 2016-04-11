@@ -107,7 +107,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         Query query = em.createQuery("Select u FROM Users u WHERE u.userEmail = :email");
         query.setParameter("email", email);
         List<Users> users = query.getResultList();
-
+        System.out.println("check by email");
         if(!users.isEmpty()){
             
             return users.get(0);
@@ -123,6 +123,7 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
         Query query = em.createQuery("Select u FROM Users u WHERE u.userId = :id");
         query.setParameter("id", id);
         List<Users> users = query.getResultList();
+        System.out.println("check by id");
         if(!users.isEmpty()){
             return users.get(0);
         }
