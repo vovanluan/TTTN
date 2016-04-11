@@ -398,23 +398,24 @@ function signin () {
 }
 
 function signinGuest () {
-    var displayName = $('#displayNameGuest').val();
-    var email = $('#emailInputGuest').val();
+    var content = new Object();
+
+    content.guestName = $('#displayNameGuest').val();
+    content.guestEmail = $('#emailInputGuest').val();
 
     $.ajax({
-        method: "GET",
-        url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest/checkLoginGuest?displayName=" + displayName + "&email=" + email,
+        method: "POST",
+        url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest",
+        data:JSON.stringify(content),
         contentType: "application/json;charset=UTF-8"
     })
     .done(function(data){
-        if(!jQuery.isEmptyObject(data)){
-            $('#errorLabelGuest').text("Email trùng!");
-        }   
-        else{
-            $('#name').val(displayName);
-            $('#email').val(email);
-            $('#signinModal').modal('toggle');
-        } 
+        $('#name').val(content.guestName);
+        $('#email').val(content.guestEmail);
+        $('#phone').hide();
+        $('#identify').hide();
+        $('.info').hide();
+        $('#signinModal').modal('toggle');
     })
     .fail(function(errMsg) {
         console.log("error: " + errMsg);
