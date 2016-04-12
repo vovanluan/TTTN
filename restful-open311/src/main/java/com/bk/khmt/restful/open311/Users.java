@@ -6,7 +6,9 @@
 package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,10 +16,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,6 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findByUserName", query = "SELECT u FROM Users u WHERE u.userName = :userName"),
     @NamedQuery(name = "Users.findByPassWord", query = "SELECT u FROM Users u WHERE u.passWord = :passWord")})
 public class Users implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<Comments> commentsCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -152,6 +159,15 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "com.bk.khmt.restful.open311.Users[ userId=" + userId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Comments> getCommentsCollection() {
+        return commentsCollection;
+    }
+
+    public void setCommentsCollection(Collection<Comments> commentsCollection) {
+        this.commentsCollection = commentsCollection;
     }
     
 }
