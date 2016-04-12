@@ -64,7 +64,7 @@ public class RequestsFacadeREST extends AbstractFacade<Requests> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Requests> findAll() {
         return super.findAll();
     }
