@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -82,7 +84,47 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     public String countREST() {
         return String.valueOf(super.count());
     }
-
+    
+    @GET
+    @Path("getUserByEmail")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Users getUserByEmail(@QueryParam("email") String email) {
+        System.out.println("GO HERE");
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userEmail=:email");
+        query.setParameter("email", email);
+        List<Users> users = query.getResultList();
+        if (!users.isEmpty()) {
+            return users.get(0);
+        }
+        return null;
+    }
+    
+    @GET
+    @Path("getUserById")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Users getUserById (@QueryParam("id") Integer id) {
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userId=:id");
+        query.setParameter("id", id);
+        List<Users> users = query.getResultList();
+        if (!users.isEmpty()) {
+            return users.get(0);
+        }
+        return null;
+    }
+    
+    @GET
+    @Path("checkLogin")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Users checkLogin (@QueryParam("email") String email, @QueryParam("password") String password) {
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userEmail=:email and u.passWord = :password");
+        query.setParameter("password", password);
+        query.setParameter("email", email);
+        List<Users> users = query.getResultList();
+        if (!users.isEmpty()) {
+            return users.get(0);
+        }
+        return null;
+    }        
     @Override
     protected EntityManager getEntityManager() {
         return em;
