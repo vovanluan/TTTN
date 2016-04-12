@@ -5,7 +5,7 @@
  */
 package com.bk.khmt.restful.open311.service;
 
-import com.bk.khmt.restful.open311.Users;
+import com.bk.khmt.restful.open311.Comments;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author Luan
  */
 @Stateless
-@Path("com.bk.khmt.restful.open311.users")
-public class UsersFacadeREST extends AbstractFacade<Users> {
+@Path("com.bk.khmt.restful.open311.comments")
+public class CommentsFacadeREST extends AbstractFacade<Comments> {
 
     @PersistenceContext(unitName = "com.bk.khmt_restful-open311_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public UsersFacadeREST() {
-        super(Users.class);
+    public CommentsFacadeREST() {
+        super(Comments.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Users entity) {
+    public void create(Comments entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Users entity) {
+    public void edit(@PathParam("id") Integer id, Comments entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Users find(@PathParam("id") Integer id) {
+    public Comments find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Users> findAll() {
+    public List<Comments> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Users> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Comments> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

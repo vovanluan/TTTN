@@ -37,15 +37,14 @@ public class RequestsFacadeREST extends AbstractFacade<Requests> {
 
     @POST
     @Override
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Requests entity) {
-        System.out.println(entity);
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Requests entity) {
         super.edit(entity);
     }
@@ -58,7 +57,7 @@ public class RequestsFacadeREST extends AbstractFacade<Requests> {
 
     @GET
     @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Requests find(@PathParam("id") Integer id) {
         return super.find(id);
     }
@@ -72,7 +71,7 @@ public class RequestsFacadeREST extends AbstractFacade<Requests> {
 
     @GET
     @Path("{from}/{to}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Requests> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }

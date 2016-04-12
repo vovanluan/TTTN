@@ -7,9 +7,11 @@ package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,12 +21,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import support.General.Status;
 
 /**
@@ -55,6 +59,19 @@ import support.General.Status;
     @NamedQuery(name = "Requests.findByGroupName", query = "SELECT r FROM Requests r WHERE r.groupName = :groupName")})
 public class Requests implements Serializable {
 
+    @Column(name = "metadata")
+    private Boolean metadata;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status_id")
+    private int statusId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "user_id")
+    private int userId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestId")
+    private Collection<Comments> commentsCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,8 +92,6 @@ public class Requests implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @Column(name = "metadata", nullable = true)
-    private boolean metadata;
     
     @NotNull
     @Column(name = "latitude")
@@ -116,10 +131,6 @@ public class Requests implements Serializable {
     private String zipcode;
     
     
-    @NotNull
-    @Column(name = "status_id")
-    //@Enumerated(EnumType.STRING)
-    private Integer statusId;
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -187,13 +198,6 @@ public class Requests implements Serializable {
         this.description = description;
     }
 
-    public boolean getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(boolean metadata) {
-        this.metadata = metadata;
-    }
 
     public float getLatitude() {
         return latitude;
@@ -319,6 +323,35 @@ public class Requests implements Serializable {
     @Override
     public String toString() {
         return "com.bk.khmt.restful.open311.Requests[ serviceRequestId=" + serviceRequestId + " ]";
+    }
+
+    public Boolean getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Boolean metadata) {
+        this.metadata = metadata;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @XmlTransient
+    public Collection<Comments> getCommentsCollection() {
+        return commentsCollection;
+    }
+
+    public void setCommentsCollection(Collection<Comments> commentsCollection) {
+        this.commentsCollection = commentsCollection;
     }
     
 }
