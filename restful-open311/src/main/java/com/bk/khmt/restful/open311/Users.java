@@ -53,7 +53,7 @@ public class Users implements Serializable {
     private String passWord;
     
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Roles roleId;
     
     @Basic(optional = false)

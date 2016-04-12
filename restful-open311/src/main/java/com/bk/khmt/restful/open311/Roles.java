@@ -39,11 +39,13 @@ public class Roles implements Serializable {
     @NotNull
     @Column(name = "role_id")
     private Integer roleId;
+    
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 40)
     @Column(name = "role_name")
     private String roleName;
+    
     @OneToMany(mappedBy = "roleId")
     private Collection<Users> usersCollection;
 

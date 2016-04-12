@@ -439,6 +439,11 @@ function signup () {
         content.userEmail = $('#emailInputSignup').val();
         content.userPhone = $('#phoneInputSignup').val();
         content.passWord = $('#passwordInputSignup').val();
+        var role = new Object();
+        role.roleId = 1;
+        role.roleName = 'user';
+        content.roleId = role;
+        console.log(JSON.stringify(content));
         return $.ajax({
                 method: "POST",
                 url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users",

@@ -18,7 +18,7 @@ public class General {
         DA_XOA
     }
     
-    public enum Roles {
+    public enum Role {
         ADMIN,
         USER,
         GUEST
