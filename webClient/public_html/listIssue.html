@@ -8,31 +8,16 @@
 	<link rel="stylesheet" type="text/css" href="css/DateTimePicker.css" />	
 	<script src="js/jquery-1.12.1.js"></script>
   	<script src="js/bootstrap.min.js"></script>
-	<script src="http://maps.google.com/maps/api/js?v=3.22&amp;key=AIzaSyAdS7mTduExQFMY-x090WPiYRLPoMEK_JI" type="text/javascript">
-	</script>
-	<link rel="shortcut icon" href="">	  	
+    <script src="js/main.js"></script>
 </head>
 <body>
-	<div class="container" id="content_container">
-		<section class="main col-md-8">
-			<div class="search">
-				<form>
-					<!-- Search input -->
-				</form>
-			</div>
+	<div class="container">
+		<div class="main col-md-8">
 			<div class="content-title">
-				<div class="change-view">
-					<a href="galleryView.html">
-						<i class="glyphicon glyphicon-th"></i>
-					</a>						
-					<a href="mapView.html">
-						<i class="glyphicon glyphicon-map-marker"></i>
-					</a>
-					<a href="listView.html">
-						<i class="glyphicon glyphicon-th-list"></i>
-					</a>					
-				</div>
 				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
+				<div class="change-view">
+					
+				</div>
 			</div>
 			<div id="issue-list">
 				<ul>
@@ -70,9 +55,10 @@
 									<sapn class="info">1016-14-4</sapn>
 								</li>
 							</ul>
-						</div>	
+						</div>
+						
+						
 					</li>
-
 					<li id="issue_id_2">
 						<div class="issue-image">
 							<img src="C:\Users\TranVanTai\Desktop\map\tam-quoc.png" class="thumbnail-image">
@@ -107,77 +93,55 @@
 									<sapn class="info">1016-14-4</sapn>
 								</li>
 							</ul>
-						</div>						
+						</div>
+						
 					</li>
-
+					<li id="issue_id_3">
+						<div class="issue-panel">
+							<h5 class="issue-title">
+								<a href="" class="issue-link"></a>
+							</h5>
+							<p class="issue-address"></p>
+							<p class="issue-content"></p>
+							<p class="datetime"></p>
+						</div>
+						<div class="issue-image">
+							<img src="" class="thumbnail-image">
+						</div>
+					</li>
+					<li id="issue_id_4">
+						<div class="issue-panel">
+							<h5 class="issue-title">
+								<a href="" class="issue-link"></a>
+							</h5>
+							<p class="issue-address"></p>
+							<p class="issue-content"></p>
+							<p class="datetime"></p>
+						</div>
+						<div class="issue-image">
+							<img src="" class="thumbnail-image">
+						</div>
+					</li>
+					<li id="issue_id_5">
+						<div class="issue-panel">
+							<h5 class="issue-title">
+								<a href="" class="issue-link"></a>
+							</h5>
+							<p class="issue-address"></p>
+							<p class="issue-content"></p>
+							<p class="datetime"></p>
+						</div>
+						<div class="issue-image">
+							<img src="" class="thumbnail-image">
+						</div>
+					</li>
 				</ul>
 			</div>	
-		</section>
-		<section class="sidebar col-md-4" id ="mainMap" style="height:380px">
-		</section>
-		
+			</div>
+		<div class="side-bar col-md-4">
+			
+		</div>
 		
 	</div>
-	<script type="text/javascript">
-		alert("hello;")
-		var items = [];
-		var iconBase = "resources/markerIcon/";
-		$.ajax({
-			method: "GET",
-			url: "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests",
-			contentType: "application/json;charset=UTF-8"
-		})
-		.done(function(data) {		
-			// init Map
-		    var myLatLng = {lat: 10.78, lng: 106.65};
-		    map = new google.maps.Map(document.getElementById('mainMap'), {
-		        zoom: 11,
-		        center: myLatLng
-		    });   			
-			$.each(data, function(index, item) {
-				items.push(item);
-				console.log(JSON.stringify(item));
-				var latlng = new google.maps.LatLng(item.latitude, item.longitude);
-				var icon = "";
-				switch(item.statusId) {
-					case 0:
-						icon = 'green.png';
-						break;
-					case 1:
-						icon = 'blue.png';
-						break;
-					case 2:
-						icon = 'red.png';
-						break;
-				}
-				var marker = new google.maps.Marker({
-			        position: latlng,
-			        map: map,
-			        draggable: false,
-			        animation: google.maps.Animation.DROP,
-			        icon : iconBase + icon
-			    });			
-			  	var infowindow = new google.maps.InfoWindow({
-			    	content: item.serviceName
-			  	});			    
-				marker.addListener('mouseover', function() {
-				   	infowindow.open(map, marker);
-				});			  	
-				marker.addListener('mouseout', function() {
-				   	infowindow.close(map, marker);
-				});					
-			});
-					
-		})
-		.fail(function(msg){
-			console.log(msg);
-		});
-		
-
-
-		$(document).ready(function() {
-		})
-
-	</script>
 </body>
 </html>
