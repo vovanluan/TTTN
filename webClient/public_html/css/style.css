@@ -19,3 +19,16 @@
     vertical-align: top;
     padding-bottom: 10px;
 }
+.content-title{
+    border-bottom: 4px solid #DBDBDB;
+}
+#issue-list ul li{
+    list-style-type: none;
+    border-bottom: 1px solid #DBDBDB;
+}
+.issue-link{
+    color: #1171B4;
+    text-decoration: none !important;
+    outline: none;
+    font-weight: bold;
+}
