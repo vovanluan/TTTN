@@ -59,7 +59,7 @@ public class GuestFacadeREST extends AbstractFacade<Guest> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Guest find(@PathParam("id") Integer id) {
         return super.find(id);
     }

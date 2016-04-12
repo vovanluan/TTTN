@@ -117,3 +117,11 @@
     margin-left: 4px;
     border-radius: 2px;
 }
+#issue-list-ul li:last-child{
+    border:none;
+}
+#mainMap{
+}
+body{
+    background-color: #fcfcfc
+}
