@@ -61,14 +61,16 @@ public class Requests implements Serializable {
 
     @Column(name = "metadata")
     private Boolean metadata;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "status_id")
     private int statusId;
+    
     @Basic(optional = false)
-    @NotNull
     @Column(name = "user_id")
     private int userId;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestId")
     private Collection<Comments> commentsCollection;
 

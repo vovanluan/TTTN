@@ -328,7 +328,7 @@ function sendRequest(urlToImage) {
     var date = new Date(happen);
     content.happenDatetime = formatLocalDate(date);
     content.requestedDatetime = formatLocalDate(new Date());
-    content.statusId = 0;
+    content.statusId = 1;
     content.mediaUrl = urlToImage;
     var allTags = document.getElementById('detailInfo').getElementsByTagName('*');
     for(var i=0; i<allTags.length;i++){
