@@ -19,8 +19,26 @@
     vertical-align: top;
     padding-bottom: 10px;
 }
+.main{
+    border: 1px solid #ddd;
+    padding: 0px;
+}
+.issue-title{
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
 .content-title{
     border-bottom: 4px solid #DBDBDB;
+    background-color: #E6E6E6;
+    padding:10px;
+}
+.content-title h4{
+    margin: 0;
+}
+.issue-address{
+    color:#999999;
+    font-style: italic;
+    margin-bottom: 5px;
 }
 #issue-list ul li{
     list-style-type: none;
@@ -31,4 +49,27 @@
     text-decoration: none !important;
     outline: none;
     font-weight: bold;
+}
+.issue-content{
+    margin-bottom: 0px;
+}
+.info{
+    color: #999999;
+    font-size: 12px;
+}
+.sep{
+    color:#999999;
+    padding:0 5px;
+}
+.user{
+    color: #1171B4;
+    text-decoration: none !important;
+    outline: none;
+}
+.thumbnail-image{
+    width: auto;
+    height: 200px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
 }
