@@ -16,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -71,7 +72,7 @@ public class Requests implements Serializable {
     @Column(name = "user_id")
     private int userId;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requestId", fetch=FetchType.LAZY)
     private Collection<Comments> commentsCollection;
 
     private static final long serialVersionUID = 1L;

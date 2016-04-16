@@ -1,3 +1,4 @@
 '*.pwc' 
 '*.class'
 restful-open311/target
+/webClient-Angular/nbproject/private/
