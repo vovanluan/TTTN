@@ -44,6 +44,9 @@ app.constant('issues', {
 			{name: "Công trình"}
 		]
 });
+
+app.constant('clientId', "254c1d5f74f2518");
+
 app.factory('Request', [function(){
 	function Request(requestData){
 		if(requestData){
@@ -67,8 +70,9 @@ app.factory('requestManager', ['Request', 'requestUrl', '$http', '$q', function(
             return deferred.promise;
         },
         postRequest: function(request){
-        	$http.post(requestUrl, request).then(function successCallBack(response){
-
+        	console.log(JSON.stringify(request));
+        	$http.post(requestUrl, JSON.stringify(request)).then(function successCallBack(response){
+        		console.log("success");
         	}, function errorCallBack(response){
 
         	});
@@ -99,34 +103,19 @@ app.filter('dateTime', function(){
 });
 
 app.filter('convertServiceCode', function(){
-	return function(input, toCode){
+	return function(input){
 		var result;
-		if(toCode){
-			switch(input){
-		        case "dien":
-		            result = 0;
-		            break;
-		        case "nuoc":
-		            result = 1;
-		            break;
-		        case "tiengon":
-		            result = 2;
-		            break;
-			}
+		switch(input){
+	        case "Điện":
+	            result = 0;
+	            break;
+	        case "Nước":
+	            result = 1;
+	            break;
+	        case "Tiếng ồn":
+	            result = 2;
+	            break;
 		}
-		else {
-			switch(input){
-		        case 0:
-		            result = "dien";
-		            break;
-		        case 1:
-		            result = "nuoc";
-		            break;
-		        case 2:
-		            result = "tiengon";
-		            break;
-		    }			
-		};
 
 		return result;
 	};
@@ -221,12 +210,15 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('reportTabController', ['$scope', 'requestManager', 'convertServiceCodeFilter', 
-	'dateTimeFilter', 'districts', 'issues', function($scope, requestManager, convertServiceCodeFilter, dateTimeFilter, districts, issues){
+app.controller('reportTabController', ['$scope', '$http', 'Upload', 'requestManager', 
+	'convertServiceCodeFilter', 'dateTimeFilter', 'districts', 'issues', 'clientId', 
+	function($scope, $http, Upload, requestManager, convertServiceCodeFilter, 
+		dateTimeFilter, districts, issues, clientId){
 	this.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
 	$scope.serviceName;
+	$scope.picFile;
 	$scope.description;
 	$scope.options = [];
 	$scope.happenDateTime;
@@ -234,9 +226,9 @@ app.controller('reportTabController', ['$scope', 'requestManager', 'convertServi
 	$scope.district = districts["1"];
 	$scope.ward;
 	$scope.street;
-	$scope.latitude;
-	$scope.longitude;
-
+	$scope.latitude = 10.78;
+	$scope.longitude = 106.65;
+	$scope.mediaUrl;
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
@@ -279,6 +271,7 @@ app.controller('reportTabController', ['$scope', 'requestManager', 'convertServi
 	        alert("Do not support Geolocation");
 	    }
 	};
+	this.initMap();
 	this.selectTab = function(setTab){
 		this.tab = setTab;
 	};
@@ -286,5 +279,41 @@ app.controller('reportTabController', ['$scope', 'requestManager', 'convertServi
 		return this.tab === checkTab;
 	};
 
+	this.submitReport = function() {
+		var request = new Object();
+		request.serviceRequestId = 1;
+		request.serviceCode = convertServiceCodeFilter($scope.serviceType);
+		request.serviceName = $scope.serviceName.name;
+		request.happenDatetime = dateTimeFilter($scope.happenDateTime);
+		request.requestedDatetime = dateTimeFilter(new Date());
+		request.description = $scope.description;
+		request.address = $scope.street + ", Phường " + $scope.ward.name + ", Quận " + $("#disInfo option:selected").text();
+		request.latitude = $scope.latitude;
+		request.longitude = $scope.longitude;
+		request.statusId = 1;
+		if($scope.picFile) {
+	        Upload.base64DataUrl($scope.picFile).then(
+	            function (url){
+	               	var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
+					$http({
+			            headers: {'Authorization': 'Client-ID ' + clientId},
+			            url: '  https://api.imgur.com/3/upload',
+			            method: 'POST',            
+			            data: {
+			                image: uploadImageBase64, 
+			                'type':'base64'
+			            }
+			        }).then(function successCallback(response) {            
+			            request.mediaUrl = response.data.data.link;
+			            requestManager.postRequest(request);
+			        }, function errorCallback(err) {
+			        });	               
+	            });
+		}
+		else {
+			requestManager.postRequest(request);
+		}
+
+	}
 	
 }]);

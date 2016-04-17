@@ -15,7 +15,6 @@
 				<li ng-class="{active: reportTab.isSelectedTab(4)}">
 					<a data-toggle="tab" href="" id="tab4" ng-click="reportTab.selectTab(4)">Bước 4</a>
 				</li>
-				<li>{{reportTab.tab}}</li>
 			</ul>
 			<div class="tab-content" style="padding-top:20px;">
 				<div id="step1" class="tab-pane fade in" ng-class="{active: reportTab.isSelectedTab(1)}">	
@@ -48,7 +47,6 @@
 							<td class="col-md-4">Hình ảnh:</td>
 							<td>
 								<button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
-								<label>{{picFile.name}}</label>
 							</td>
 						</tr>
 						<tr>
@@ -83,7 +81,7 @@
 						<tr>
 							<td class="col-md-4">Quận:</td>
 							<td>
-								<select class="form-control" id="district" style="width:100%"
+								<select class="form-control" style="width:100%"
 								ng-model="district" ng-options="d for (d, w) in districts">
 								</select>
 							</td>
@@ -131,9 +129,9 @@
 				</div>
 
 				<div id="step3" class="tab-pane" ng-class="{active: reportTab.isSelectedTab(3)}">
-					<strong><a href="#" data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+					<strong><a href="" data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
 					<br><br>
-					<strong><a href="#" data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
+					<strong><a href="" data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
 					<hr style="margin:10px 0px 30px 0px;">
 					<form action="form.html" id="step3Form">
 						<table class="stepTable">
@@ -168,8 +166,8 @@
 						<table class="col-md-12">
 							<tr>
 								<td style="direction:rtl">
-									<a class="btn btn-primary btnNext" onclick="step3Click()">Đi tới</a>
-									<a class="btn btn-primary btnPrev" onclick="prev()" >Trở về</a>
+									<a class="btn btn-primary btnNext" ng-click="reportTab.tab = 4">Đi tới</a>
+									<a class="btn btn-primary btnPrev" ng-click="reportTab.tab = 2">Trở về</a>
 									<button class="btn btn-danger">Hủy bỏ</button>
 								</td>
 							</tr>
@@ -181,79 +179,70 @@
 					<strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong>
 					<hr style="margin:10px 0px 30px 0px;">
 					<h4 style="display:inline;padding-right:10px;color:#39A">Bước 1: Vấn đề</h4>
-					<button class="btn btn-default" onclick="step1Edit()" style="float:right">
-						<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-					</button>	
 					<hr>
 					<table class="stepTable" style="margin-bottom:30px;">
 						<tr> 
 							<td class="col-md-4">Chủ đề:</td>
 							<td>
-								<select class="form-control col-md-8" id="subInfo" name="chude" onchange="subjectStep4Change()" style="width:100%" disabled>
-									<option value="dien">Điện</option>
-									<option value="nuoc">Nước</option>
-									<option value="tiengon">Tiếng ồn</option>
-								</select>
+								<select class="form-control col-md-8" id="subInfo" name="chude" style="width:100%" ng-model="serviceType" ng-options="issue for (issue, value) in issues" >
+								</select>						
 							</td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Chi tiết:</td>
 							<td id="detailInfo">
-								<select class="form-control" id="electricityStep4" style="display:inline;width:100%" disabled>
-									<option value="matdien">Mất điện</option>
-									<option value="dienyeu">Điện yếu</option>										
+								<select class="form-control" style="display:inline;width:100%" ng-model="serviceName"
+								ng-options="issue.name for issue in serviceType" >			
 								</select>
-
-								<select class="form-control" id="waterStep4" style="display:none;width:100%" disabled>
-									<option value="matnuoc">Mất nước</option>	
-									<option value="nuocyeu">Nước yếu</option>
-								</select>
-								<select class="form-control" id="noiseStep4" style="display:none;width:100%" disabled>
-									<option value="giaothong">Giao thông</option>
-									<option value="congtrinh">Công trình</option>
-								</select>
-
 							</td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Thời gian:</td>
-							<td><input type="text" data-field="datetime" id="outputDatetime" disabled class="form-control">		
+							<td><input type="text" data-field="datetime" ng-model="happenDateTime" class="form-control" >		
 						</tr>
 						<tr>
 							<td class="col-md-4">Hình ảnh:</td>
 							<td>
-								<label class="btn-upload" style="vertical-align:middle;">
-							   		<input class = "infoStep1 fileUpload" type="file" id="fileUploadFinal"  accept="image/jpg, image/jpeg, image/png" >
-							   		<button class="btn btn-primary" id ="chooseImgFinal" disabled>Chọn ảnh</button>
-								</label>
-								<label id="fileNameFinal" style="padding-left:5px;"></label>
-								<br>
-								
-								<img id="image-holder-Final" style="max-width: 300px; max-height: 320px;"/> 
+								<button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB"  
+								>Chọn ảnh</button>
 							</td>
-						</tr>							
+						</tr>
+						<tr>
+							<td class ="col-md-4"></td>
+							<td>
+								<button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile" >Xoá ảnh</button>						
+								<img ng-show="picFile" ngf-thumbnail="picFile" class="thumb" />
+							</td>
+						</tr>				
 						<tr>
 							<td class="col-md-4">Mô tả thêm:</td>
-							<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3"  readonly="readonly"></textarea></td>
+							<td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3" ng-model="description" ></textarea></td>
 						</tr>
 					</table>
 					<h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
-					<button class="btn btn-default" onclick="step2Edit()" style="float:right">
-						<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-					</button>
 					<hr>
 					<table class="stepTable" style="margin-bottom:30px;">
-						<tr> 
-							<td class="col-md-4">Địa chỉ:</td>
-							<td><input class="form-control infoStep2" id="addInfo" type="text" style="width:300px" readonly="true"></td>
-						</tr>
-						<tr>
-							<td class="col-md-4">Phường:</td>
-							<td><input class="form-control infoStep2" id="wardInfo" type="text" style="width:100%" readonly="true"></td>
-						</tr>
 						<tr>
 							<td class="col-md-4">Quận:</td>
-							<td><input class="form-control infoStep2" id="disInfo" type="text" style="width:100%" readonly="true"></td>
+							<td>								
+								<select class="form-control" style="width:100%" id="disInfo"
+								ng-model="district" ng-options="d for (d, w) in districts">
+								</select>
+							</td>
+						</tr>						
+						<tr>
+							<td class="col-md-4">Phường:</td>
+							<td>
+								<select class="form-control" style="display:inline;width:100%"
+								ng-model="ward" ng-options="ward.name for ward in district">
+								</select>
+							</td>
+						</tr>
+						<tr> 
+							<td class="col-md-4">Địa chỉ:</td>
+							<td>
+								<input class="form-control" id="addInfo" type="text" style="width:300px" ng-model="street">
+							</td>
 						</tr>
 					</table>
 					<h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
@@ -283,8 +272,8 @@
 					<table class="col-md-12">
 						<tr>
 							<td style="direction:rtl">
-								<button type="submit" form="step4Form" class="btn btn-success">Gửi</button>
-								<a class="btn btn-primary btnPrev" onclick="prev()" >Trở về</a>
+								<button type="submit" form="step4Form" class="btn btn-success" ng-click="reportTab.submitReport()">Gửi</button>
+								<a class="btn btn-primary btnPrev" ng-click="reportTab = 3" >Trở về</a>
 								<button class="btn btn-danger">Hủy bỏ</button>
 							</td>
 						</tr>
@@ -300,7 +289,7 @@
 						</div>
 						<div class="modal-body">
 							<ul class="nav nav-tabs" id="signinTabs">
-								<li class="active"><a data-toggle="tab" href="#signin">Đã có tài khoản</a></li>
+								<li class="active"><a data-toggle="tab" href="">Đã có tài khoản</a></li>
 								<li><a data-toggle="tab" href="#guest">Tài khoản khách</a></li>
 							</ul>
 
