@@ -23,10 +23,52 @@ app.factory('requestManager', ['Request', 'requestUrl', '$http', '$q', function(
                     deferred.reject();
                 });
             return deferred.promise;
+        },
+        postRequest: function(request){
+        	$http.post(requestUrl, request).then(function successCallBack(response){
+
+        	}, function errorCallBack(response){
+
+        	});
+
         }
 	};
 	return requestManager;
 }]);
+
+app.filter('convertServiceCode', function(){
+	return function(input, toCode){
+		var result;
+		if(toCode){
+			switch(input){
+		        case "dien":
+		            result = 0;
+		            break;
+		        case "nuoc":
+		            result = 1;
+		            break;
+		        case "tiengon":
+		            result = 2;
+		            break;
+			}
+		}
+		else {
+			switch(input){
+		        case 0:
+		            result = "dien";
+		            break;
+		        case 1:
+		            result = "nuoc";
+		            break;
+		        case 2:
+		            result = "tiengon";
+		            break;
+		    }			
+		};
+
+		return result;
+	};
+});
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
@@ -37,6 +79,11 @@ app.config(['$routeProvider', function($routeProvider){
 	.when('/map', {
 		templateUrl: 'app/components/map/view.html',
 		controller: 'viewController'
+	})
+	.when('/reportIssue', {
+		templateUrl: 'app/components/reportIssue/view.html',
+		controller: 'reportTabController',
+		controllerAs: 'reportTab'
 	})
     .otherwise({
         redirectTo: '/'
@@ -90,5 +137,43 @@ app.controller('viewController', ['$scope', 'requestManager', function($scope, r
 		});		
 	});
 
+}]);
 
+app.controller('mainTabController', function(){
+	this.tab = 1;
+	this.selectTab = function(setTab){
+		this.tab = setTab;
+	};
+	this.isSelected = function(checkTab){
+		return this.tab === checkTab;
+	};
+});
+
+app.controller('dropDownViewController', function(){
+	this.tab = 1;
+	this.selectTab = function(setTab){
+		this.tab = setTab;
+	};
+	this.isSelected = function(checkTab){
+		return this.tab === checkTab;
+	};
+});
+
+app.controller('reportTabController', ['$scope', 'requestManager', 'convertServiceCodeFilter', function($scope, requestManager, convertServiceCodeFilter){
+	this.tab = 1;
+	var request = new Object;
+	$scope.serviceType;
+	$scope.serviceCode;
+	$scope.serviceCode = convertServiceCodeFilter($scope.serviceType, true);
+	$scope.$watch("serviceType", function(newValue){
+		$scope.serviceCode = convertServiceCodeFilter($scope.serviceType, true);
+	}); 
+	this.selectTab = function(setTab){
+		this.tab = setTab;
+	};
+	this.isSelected = function(checkTab){
+		return this.tab === checkTab;
+	};
+
+	
 }]);

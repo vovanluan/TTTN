@@ -17,7 +17,8 @@
 	
 </head>
 <body ng-app="mainApp">
-	<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+	<nav class="navbar navbar-inverse navbar-embossed" role="navigation" 
+	ng-controller ="mainTabController as mainTab">
 		<div class="container">
 		  <div class="navbar-header">
 		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -32,14 +33,23 @@
 		  </div>
 		  <div class="collapse navbar-collapse" id="navbar-collapse-01">
 		    <ul class="nav navbar-nav">
-		        <li class="active dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Home<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li class="active"><a href="#/">List View</a></li>
-		            <li><a href="#/map">Map View</a></li>
-		          </ul>
+		        <li class="dropdown" ng-class="{active: mainTab.isSelected(1)}">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="" 
+			          ng-click="mainTab.selectTab(1)">Home
+			          <span class="caret"></span>
+			      	</a>
+		          	<ul class="dropdown-menu" ng-controller = "mainTabController as m">
+		            	<li ng-class="{active: m.isSelected(1)}">
+		            		<a href="#/" ng-click="m.selectTab(1)">List View</a>
+		            	</li>
+		            	<li ng-class="{active: m.isSelected(2)}">
+		            		<a href="#/map" ng-click="m.selectTab(2)">Map View</a>
+		            	</li>
+		          	</ul>
 		        </li>              
-		      	<li><a href="#/reportIssue">Report an Issue</a></li>
+		      	<li ng-class="{active: mainTab.isSelected(2)}">
+		      		<a href="#/reportIssue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
+		      	</li>
 		    </ul>          
 		  </div><!-- /.navbar-collapse -->
 		</div> <!-- /.container -->
