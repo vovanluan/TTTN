@@ -1,7 +1,49 @@
-var app = angular.module('mainApp', ['ngRoute']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload']);
 
 app.constant("requestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests");
 
+app.constant("districts", {
+	"1": [
+			{name: "Đa Kao"},
+			{name: "Tân Định"},
+			{name: "Bến Thành"}	
+			],
+	"2": [
+			{name: "Thảo Điền"},
+			{name: "An Phú"},
+			{name: "Bình An"}
+			],
+	"10": [
+			{name: "1"},
+			{name: "2"},
+			{name: "3"}	
+			],
+	"Bình Thạnh": [
+			{name: "1"},
+			{name: "2"},
+			{name: "3"}
+			],
+	"Thủ đức": [
+			{name: "Linh Xuân"},
+			{name: "Bình Chiểu"},
+			{name: "Linh Trung"},	
+			]			
+});
+
+app.constant('issues', {
+		"Điện": [
+			{name: "Mất điện"},
+			{name: "Hư điện"}
+		],
+		"Nước": [
+			{name: "Mất nước"},
+			{name: "Hư đường dây"}
+		],
+		"Tiếng ồn": [
+			{name: "Giao thông"},
+			{name: "Công trình"}
+		]
+});
 app.factory('Request', [function(){
 	function Request(requestData){
 		if(requestData){
@@ -35,6 +77,26 @@ app.factory('requestManager', ['Request', 'requestUrl', '$http', '$q', function(
 	};
 	return requestManager;
 }]);
+
+app.filter('dateTime', function(){
+	return function (input) {
+	var date = new Date(input);
+    tzo = -date.getTimezoneOffset(),
+    dif = tzo >= 0 ? '+' : '-',
+    pad = function(num) {
+        var norm = Math.abs(Math.floor(num));
+        return (norm < 10 ? '0' : '') + norm;
+    };
+    return date.getFullYear() 
+        + '-' + pad(date.getMonth()+1)
+        + '-' + pad(date.getDate())
+        + 'T' + pad(date.getHours())
+        + ':' + pad(date.getMinutes()) 
+        + ':' + pad(date.getSeconds()) 
+        + dif + pad(tzo / 60) 
+        + ':' + pad(tzo % 60);
+	};
+});
 
 app.filter('convertServiceCode', function(){
 	return function(input, toCode){
@@ -159,19 +221,68 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('reportTabController', ['$scope', 'requestManager', 'convertServiceCodeFilter', function($scope, requestManager, convertServiceCodeFilter){
+app.controller('reportTabController', ['$scope', 'requestManager', 'convertServiceCodeFilter', 
+	'dateTimeFilter', 'districts', 'issues', function($scope, requestManager, convertServiceCodeFilter, dateTimeFilter, districts, issues){
 	this.tab = 1;
-	var request = new Object;
-	$scope.serviceType;
-	$scope.serviceCode;
-	$scope.serviceCode = convertServiceCodeFilter($scope.serviceType, true);
-	$scope.$watch("serviceType", function(newValue){
-		$scope.serviceCode = convertServiceCodeFilter($scope.serviceType, true);
-	}); 
+	$scope.issues = issues;
+	$scope.serviceType = issues["Điện"];
+	$scope.serviceName;
+	$scope.description;
+	$scope.options = [];
+	$scope.happenDateTime;
+	$scope.districts = districts;
+	$scope.district = districts["1"];
+	$scope.ward;
+	$scope.street;
+	$scope.latitude;
+	$scope.longitude;
+
+    // Handle show date time
+    var dtpicker = $("#dtBox").DateTimePicker({
+        dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
+    });
+    
+	this.initMap = function(){
+		var myLatLng = {lat: 10.78, lng: 106.65};
+	    $scope.map = new google.maps.Map(document.getElementById('map'), {
+	        zoom: 12,
+	        center: myLatLng
+	    });   
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(function success(pos) {
+/*			    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
+			    $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
+			    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+			    var marker = new google.maps.Marker({
+			        position: latlng,
+			        map: $scope.map,
+			        draggable: true,
+			        animation: google.maps.Animation.DROP,
+			        title: "Di chuyển để xác định đúng vị trí"
+			    });
+			    $scope.map.setCenter(latlng);
+			    $scope.map.setZoom(15);
+			    google.maps.event.addListener(marker, "dragend", function (event) {
+			        $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
+			        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
+			        $scope.map.setCenter(event.latLng);
+			    });*/
+			}
+	            , function (errMsg) {
+	            console.log(errMsg);
+	        }, {
+	            enableHighAccuracy: false,
+	            timeout: 6 * 1000,
+	            maximumAge: 1000 * 60 * 10
+	        });
+	    } else {
+	        alert("Do not support Geolocation");
+	    }
+	};
 	this.selectTab = function(setTab){
 		this.tab = setTab;
 	};
-	this.isSelected = function(checkTab){
+	this.isSelectedTab = function(checkTab){
 		return this.tab === checkTab;
 	};
 

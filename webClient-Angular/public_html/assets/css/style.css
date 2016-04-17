@@ -123,3 +123,10 @@
 body{
     background-color: #fcfcfc
 }
+.thumb {
+    width: 128px;
+    height: 128px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
