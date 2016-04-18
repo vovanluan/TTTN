@@ -105,12 +105,12 @@
 					<div id="map" style="width:480px;height:380px;margin-bottom:10px;"></div>
 					<table class="longlat stepTable">
 						<tr>
-							<td class="col-md-3"> Kinh độ </td>
-							<td class="col-md-3">
+							<td class="col-md-2"> Kinh độ </td>
+							<td class="col-md-4">
 								<input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="longitude">
 							</td>
-							<td class="col-md-3"> Vĩ độ </td>
-							<td class="col-md-3">
+							<td class="col-md-2"> Vĩ độ </td>
+							<td class="col-md-4">
 								<input class="form-control" readonly="readonly" id="latitude"
 								ng-model="latitude">
 							</td>								
@@ -120,8 +120,8 @@
 					<table class="col-md-12">
 						<tr>
 							<td style="direction:rtl">
-								<a class="btn btn-primary btnNext" ng-click="reportTab.tab = 3">Đi tới</a>
-								<a class="btn btn-primary btnPrev" ng-click="reportTab.tab = 1" >Trở về</a>
+								<a class="btn btn-primary btnNext" ng-click="tab = 3">Đi tới</a>
+								<a class="btn btn-primary btnPrev" ng-click="tab = 1" >Trở về</a>
 								<button class="btn btn-danger">Hủy bỏ</button>
 							</td>
 						</tr>
@@ -168,8 +168,8 @@
 						<table class="col-md-12">
 							<tr>
 								<td style="direction:rtl">
-									<a class="btn btn-primary btnNext" ng-click="reportTab.tab = 4">Đi tới</a>
-									<a class="btn btn-primary btnPrev" ng-click="reportTab.tab = 2">Trở về</a>
+									<a class="btn btn-primary btnNext" ng-click="tab = 4">Đi tới</a>
+									<a class="btn btn-primary btnPrev" ng-click="tab = 2">Trở về</a>
 									<button class="btn btn-danger">Hủy bỏ</button>
 								</td>
 							</tr>
@@ -272,7 +272,7 @@
 						<tr>
 							<td style="direction:rtl">
 								<button type="submit" form="step4Form" class="btn btn-success" ng-click="reportTab.submitReport()">Gửi</button>
-								<a class="btn btn-primary btnPrev" ng-click="reportTab.tab = 3" >Trở về</a>
+								<a class="btn btn-primary btnPrev" ng-click="tab = 3" >Trở về</a>
 								<button class="btn btn-danger">Hủy bỏ</button>
 							</td>
 						</tr>

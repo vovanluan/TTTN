@@ -2,7 +2,7 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 	'convertServiceCodeFilter', 'dateTimeFilter', 'districts', 'issues', 'clientId', 
 	function($scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
 		dateTimeFilter, districts, issues, clientId){
-	this.tab = 1;
+	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
 	$scope.districts = districts;
@@ -14,7 +14,7 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     
-	this.initMap = function(){
+	$scope.initMap = function(){
 		var myLatLng = {lat: 10.78, lng: 106.65};
 	    $scope.map = new google.maps.Map(document.getElementById('map'), {
 	        zoom: 12,
@@ -22,7 +22,7 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 	    });   
 	    if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(function success(pos) {
-/*			    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
+			    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
 			    $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
 			    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 			    var marker = new google.maps.Marker({
@@ -38,7 +38,7 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 			        $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
 			        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
 			        $scope.map.setCenter(event.latLng);
-			    });*/
+			    });
 			}
 	            , function (errMsg) {
 	            console.log(errMsg);
@@ -51,12 +51,20 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 	        alert("Do not support Geolocation");
 	    }
 	};
-	this.initMap();
+	var c = 0;
+	$scope.$watch('tab', function(newValue){
+		if (newValue === 2){
+			c++;
+			if(c === 1)
+				$scope.initMap();
+		}
+	});
+
 	this.selectTab = function(setTab){
-		this.tab = setTab;
+		$scope.tab = setTab;
 	};
 	this.isSelectedTab = function(checkTab){
-		return this.tab === checkTab;
+		return $scope.tab === checkTab;
 	};
 
 	this.submitReport = function() {
