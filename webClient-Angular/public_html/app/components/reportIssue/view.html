@@ -129,35 +129,35 @@
 				</div>
 
 				<div id="step3" class="tab-pane" ng-class="{active: reportTab.isSelectedTab(3)}">
-					<strong><a href="" data-toggle="modal" data-target="#signupModal">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+					<strong><a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
 					<br><br>
-					<strong><a href="" data-toggle="modal" data-target="#signinModal">Đăng nhập</a> nếu đã có tài khoản</strong>
+					<strong><a href="" ng-click="logInModal()">Đăng nhập</a> nếu đã có tài khoản</strong>
 					<hr style="margin:10px 0px 30px 0px;">
 					<form action="form.html" id="step3Form">
 						<table class="stepTable">
 							<tr>
 								<td class="col-md-6">Tên hiển thị:</td>
 								<td>
-									<input class="form-control" type="text" id="name" required style="width:300px" readonly="true">
+									<input class="form-control" type="text" id="name" required style="width:300px" readonly="true" ng-model="name">
 								</td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Email:</td>
 								<td>
-									<input class="form-control" type="text" id="email" required style="width:300px" readonly="true">
+									<input class="form-control" type="text" id="email" required style="width:300px" readonly="true" ng-model="email">
 								</td>
 							</tr>
 							<tr>
 								<td class="col-md-6 info">Số điện thoại:</td>
 								<td>
-									<input class="form-control" type="text" id="phone" required style="width:300px" readonly="true">
+									<input class="form-control" type="text" id="phone" required style="width:300px" readonly="true" ng-model="phone">
 								</td>
 							</tr>
 							
 							<tr>
 								<td class="col-md-6 info">CMND:</td>
 								<td>
-									<input class="form-control" type="text" id="identify"  style="width:300px" readonly="true">
+									<input class="form-control" type="text" id="identify"  style="width:300px" readonly="true" ng-model="id">
 								</td>
 							</tr>
 						</table>
@@ -246,26 +246,23 @@
 						</tr>
 					</table>
 					<h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
-					<button id="step3Btn" class="btn btn-default" onclick="step3Edit()" style="float:right">
-						<span class="glyphicon glyphicon-edit"></span> Chỉnh sửa
-					</button>
 					<hr>
 					<table class="stepTable" style="margin-bottom:10px;">
 						<tr> 
-							<td class="col-md-4">Họ tên:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true"></td>
+							<td class="col-md-4">Tên hiển thị:</td>
+							<td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true" ng-model="name"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Số điện thoại:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true" ng-model="phone"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Email:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true" ng-model="email"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">CMND:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true" ng-model="id"></td>
 						</tr>
 					</table>
 					<hr>
@@ -273,67 +270,11 @@
 						<tr>
 							<td style="direction:rtl">
 								<button type="submit" form="step4Form" class="btn btn-success" ng-click="reportTab.submitReport()">Gửi</button>
-								<a class="btn btn-primary btnPrev" ng-click="reportTab = 3" >Trở về</a>
+								<a class="btn btn-primary btnPrev" ng-click="reportTab.tab = 3" >Trở về</a>
 								<button class="btn btn-danger">Hủy bỏ</button>
 							</td>
 						</tr>
 					</table>
-				</div>
-
-
-				<div class="modal fade col-md-4 col-md-offset-4" id="signinModal" style="padding-top:30px">
-					<div class="modal-content">
-						<div class="modal-header" style="background:#F2F2F2">
-							<button class="close" data-dismiss="modal">&times;</button>
-							<h4 style="margin:0 0 0 0">Lựa chọn hình thức đăng nhập</h4>
-						</div>
-						<div class="modal-body">
-							<ul class="nav nav-tabs" id="signinTabs">
-								<li class="active"><a data-toggle="tab" href="">Đã có tài khoản</a></li>
-								<li><a data-toggle="tab" href="#guest">Tài khoản khách</a></li>
-							</ul>
-
-							<div class="tab-content">
-								<div id="signin" class="tab-pane active fade in">
-									<label id="errorLabel" style="color:red"></label>
-				         			<input type="input" id="emailInput" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
-									<input type="password" id="passwordInput" class="form-control" placeholder="Mật khẩu"  required>
-									<hr>
-									<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signin()">
-								</div>
-								<div id="guest" class="tab-pane fade in">
-									<label style="color:red" id="errorLabelGuest"></label>
-									<input type="input" id="displayNameGuest" class="form-control" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required>
-									<input type="input" id="emailInputGuest" class="form-control" placeholder="Địa chỉ email"  required>
-									<hr>
-									<input type="submit" class="btn btn-primary btn-block" value="Đăng nhập" onclick="signinGuest()">
-								</div>	
-							</div>
-		       	 		</div>
-
-					</div>
-				</div>
-
-				<div class="modal fade col-md-4 col-md-offset-4" id="signupModal" style="padding-top:30px">
-					<div class="modal-content">
-						<div class="modal-header" style="background:#F2F2F2;">
-							<button class="close" data-dismiss="modal">&times;</button>
-							<h4 style="margin:0 0 0 0">Đăng ký tài khoản</h4>
-						</div>
-						<div class="modal-body">
-							<label id="errorLabelSignup" style="color:Red"></label>
-							<input type="input" class="form-control" id="displayNameInput" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required>
-		         			<input type="input" id="emailInputSignup" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" required>
-							<input type="password" id="passwordInputSignup" class="form-control" placeholder="Mật khẩu" required style="margin-bottom:10px">
-							<input type="password" id="confirmPasswordInputSignup" class="form-control" placeholder="Nhập lại mật khẩu" required style="margin-bottom:10px">
-							<input type="input" id="phoneInputSignup" class="form-control" placeholder="Điện thoại" required style="margin-bottom:10px">
-							<input type="input" id="idInputSignup" class="form-control" placeholder="CMND" required>
-	       	 			</div>
-						<div class="modal-footer">
-			          		<input type="submit" class="btn btn-primary btn-block" value="Đăng ký" onclick="signup()">
-			        	</div>
-						
-					</div>
 				</div>
 
 				<div id="dtBox"></div>
