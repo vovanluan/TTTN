@@ -130,4 +130,20 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 			console.log("Modal dismiss");
 		});
   	};
+
+  	$scope.logInAsGuestModal = function(){
+		var modalInstance = $uibModal.open({
+			templateUrl: 'app/components/guest/view.html',
+			controller: 'logInAsGuestModalController',
+			resolve: {
+			}
+		});
+
+		modalInstance.result.then(function close(guest) {
+			$scope.name = guest.guestName;
+			$scope.email = guest.guestEmail;
+		}, function dismiss() {
+			console.log("Modal dismiss");
+		});
+  	};  	
 }]);

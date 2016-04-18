@@ -2,6 +2,7 @@ var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap'])
 
 app.constant("requestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests");
 app.constant("userUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users");
+app.constant("guestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest");
 
 app.constant("districts", {
 	"1": [
