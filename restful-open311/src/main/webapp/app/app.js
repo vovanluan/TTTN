@@ -156,6 +156,10 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl: 'app/components/gallery/view.html',
 		controller: 'viewController'
 	})
+	.when('/issue/:issueId', {
+		templateUrl: 'app/components/issueDetail/view.html',
+		controller: 'issueDetaiController'
+	})
 	.when('/reportIssue', {
 		templateUrl: 'app/components/reportIssue/view.html',
 		controller: 'reportTabController',
@@ -245,3 +249,24 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
+app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManager', '$routeParams', function($scope, requestManager, commentManager, $routeParams){
+	$scope.requestIndex = {};
+	$scope.requests = []
+	$scope.comments = [];
+	$scope.issue_id = $routeParams.issueId;
+	$scope.countComment = {};
+
+	commentManager.loadAllComments().then(function(comments){
+		angular.forEach(comments, function(comment,index){
+			if(comment.requestId.serviceRequestId==$scope.issue_id)
+				$scope.comments.push(comment);
+		});
+		$scope.countComment = $scope.comments.length;
+	});
+
+	requestManager.loadAllRequests().then(function(requests){
+		$scope.requests = requests;
+		$scope.requestIndex = requests[$scope.issue_id];
+		
+	});
+}]);
