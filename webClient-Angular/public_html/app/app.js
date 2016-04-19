@@ -133,6 +133,10 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl: 'app/components/map/view.html',
 		controller: 'viewController'
 	})
+	.when('/gallery', {
+		templateUrl: 'app/components/gallery/view.html',
+		controller: 'viewController'
+	})
 	.when('/reportIssue', {
 		templateUrl: 'app/components/reportIssue/view.html',
 		controller: 'reportTabController',
