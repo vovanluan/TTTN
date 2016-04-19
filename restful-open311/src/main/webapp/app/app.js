@@ -3,6 +3,7 @@ var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap'])
 app.constant("requestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests");
 app.constant("userUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users");
 app.constant("guestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest");
+app.constant("commentUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.comments");
 
 app.constant("districts", {
 	"1": [
@@ -84,6 +85,24 @@ app.factory('requestManager', ['Request', 'requestUrl', '$http', '$q', function(
 	return requestManager;
 }]);
 
+
+app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl, $http, $q){
+	var commentManager = {
+		loadAllComments: function(){
+			var deferred = $q.defer();
+			$http.get(commentUrl)
+				.success(function(comments){
+					deferred.resolve(comments);
+				})
+				.error(function(){
+					deferred.reject();
+				});
+			return deferred.promise;
+		}
+	};
+	return commentManager;
+}]);
+
 app.filter('dateTime', function(){
 	return function (input) {
 	var date = new Date(input);
@@ -147,7 +166,7 @@ app.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-app.controller('viewController', ['$scope', 'requestManager', function($scope, requestManager){
+app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){
 	// Init map and request
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
@@ -157,6 +176,15 @@ app.controller('viewController', ['$scope', 'requestManager', function($scope, r
 	}); 
 	$scope.requests = [];
 	$scope.markers = [];
+	$scope.comments = [];
+
+	commentManager.loadAllComments().then(function(comments){
+		$scope.comments = comments;
+	});
+
+	$scope.checkId = function(commentRequestId,serviceRequestId){
+		return (commentRequestId==serviceRequestId);
+	}
 	requestManager.loadAllRequests().then(function(requests){
 		$scope.requests = requests;
 		//create map 
@@ -193,6 +221,7 @@ app.controller('viewController', ['$scope', 'requestManager', function($scope, r
 			$scope.markers.push(marker);
 		});		
 	});
+
 
 }]);
 

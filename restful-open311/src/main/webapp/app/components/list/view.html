@@ -20,8 +20,8 @@
 			<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
 		</div>
 		<div id="issue-list">
-			<ul id="issue-list-ul" ng-repeat="request in requests">
-				<li ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+			<ul id="issue-list-ul" >
+				<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 					<div class="issue-image">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image">
 					</div>
@@ -37,18 +37,11 @@
 							<a href="" class="user">Luan TEMP</a>
 						</span>
 						<ul class="issue-comments">
-							<li id="comment_id_2">
+							<li ng-repeat="comment in comments" ng-show="checkId({{comment.requestId.serviceRequestId}}, {{request.serviceRequestId}})">
 								<h5 class="user-name">
 									<a href="" class="user-link">User 1</a>
 								</h5>
-								<div class="commentText">Đã ghi nhận trường hợp này</div>
-								<span class="info">2016-14-4</span>
-							</li>
-							<li id="comment_id_1">
-								<h5 class="user-name">
-									<a href="" class="user-link">User 2</a>
-								</h5>
-								<div class="commentText">Đã giải quyết trường hợp này</div>
+								<div class="commentText">{{comment.commentContent}}</div>
 								<span class="info">2016-14-4</span>
 							</li>
 						</ul>
