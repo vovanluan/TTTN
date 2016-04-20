@@ -22,7 +22,7 @@
 			<div id="issue-list">
 				<ul id="issue-list-ul" class="hoverbox">
 					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<a href="#">
+						<a href="#/issue/{{request.serviceRequestId}}">
 							<img ng-src="{{request.mediaUrl}}" class="gallery-image">
 							<img ng-src="{{request.mediaUrl}}" class="preview">
 						</a>

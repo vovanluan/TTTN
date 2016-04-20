@@ -64,7 +64,7 @@ public class CommentsFacadeREST extends AbstractFacade<Comments> {
 
     @GET
     @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Comments> findAll() {
         return super.findAll();
     }
