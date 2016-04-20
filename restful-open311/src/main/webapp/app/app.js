@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage']);
 
 app.constant("requestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests");
 app.constant("userUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users");
