@@ -68,6 +68,7 @@ public class GuestFacadeREST extends AbstractFacade<Guest> {
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Guest> findAll() {
+        System.out.print("dsds");
         return super.findAll();
     }
 

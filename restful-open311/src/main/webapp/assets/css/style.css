@@ -234,3 +234,16 @@ body{
 .issue-detail-comments li:last-child{
     border-bottom: none;
 }
+.post-comment{
+    padding:12px;
+    padding-bottom: 45px;
+}
+#comment-textarea{
+    padding: 5px;
+    width: 100%;
+}
+.btn-send-comment{
+    margin-top:5px;
+    display: inline-block;
+    float: right;
+}

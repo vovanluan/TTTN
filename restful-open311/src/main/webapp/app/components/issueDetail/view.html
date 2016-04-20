@@ -18,19 +18,29 @@
 				</div>
 			</div>
 		</div>
-		<div class="comment-box bordered">
+		<div class="comment-box bordered" ng-show="{{countComment}}">
 			<div class="content-title">
-				<h4>Có {{countComment}} bình luận</h4>
+				<h4>Có {{countComment}} bình luận</h4> 
 			</div>	
 			<ul class="issue-detail-comments">
 				<li ng-repeat="comment in comments">
 					<h5 class="user-name">
-						<a href="" class="user-link">User 1</a>
+						<a href="" class="user-link">{{getUsername(comment)}}</a>
 					</h5>
 					<div class="commentText">{{comment.commentContent}}</div>
-					<span class="info">2016-14-4</span>
+					<span class="info">{{comment.postDatetime}}</span>
 				</li>
 			</ul>
+		</div>
+
+		<div class="post-comment-box bordered">
+			<div class="content-title">
+				<h4>Đăng bình luận</h4> 
+			</div>	
+			<div class="post-comment">
+				<textarea id="comment-textarea" placeholder="Viết bình luận..." ng-model="textContent"></textarea>
+				<button type="submit" class="btn btn-success btn-send-comment" data-error="Hãy viết 1 bình luận vào" ng-click="submitComment(requestIndex)">Gửi bình luận</button>
+			</div>
 		</div>
 
 		
@@ -48,7 +58,7 @@
 					</div>
 					<div class="issue-panel">
 						<h5 class="issue-title">
-							<a href="" class="issue-link">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
+							<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
 						</h5>
 						<p class="issue-address">{{request.address}}</p>
 						<p class="issue-content">{{request.description}}</p>

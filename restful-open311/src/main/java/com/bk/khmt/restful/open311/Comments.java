@@ -6,6 +6,7 @@
 package com.bk.khmt.restful.open311;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Comments.findAll", query = "SELECT c FROM Comments c"),
     @NamedQuery(name = "Comments.findByCommentId", query = "SELECT c FROM Comments c WHERE c.commentId = :commentId"),
-    @NamedQuery(name = "Comments.findByCommentContent", query = "SELECT c FROM Comments c WHERE c.commentContent = :commentContent"),
-    @NamedQuery(name = "Comments.findByCommentStatus", query = "SELECT c FROM Comments c WHERE c.commentStatus = :commentStatus")})
+    @NamedQuery(name = "Comments.findByCommentContent", query = "SELECT c FROM Comments c WHERE c.commentContent = :commentContent")})
 public class Comments implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,11 +48,36 @@ public class Comments implements Serializable {
     @Size(min = 1, max = 400)
     @Column(name = "comment_content")
     private String commentContent;
-    @Column(name = "comment_status")
-    private Integer commentStatus;
+   
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
     private Users userId;
+    
+    @JoinColumn(name = "guest_id", referencedColumnName = "guest_id")
+    @ManyToOne(optional = false)
+    private Guest guestId;
+    
+    @NotNull
+    @Column(name = "post_datetime", nullable = true, columnDefinition="TIMESTAMPTZ")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date postDatetime;
+
+    public Date getPostDatetime() {
+        return postDatetime;
+    }
+
+    public void setPostDatetime(Date postDatetime) {
+        this.postDatetime = postDatetime;
+    }
+
+    public Guest getGuestId() {
+        return guestId;
+    }
+
+    public void setGuestId(Guest guestId) {
+        this.guestId = guestId;
+    }
+    
     @JoinColumn(name = "request_id", referencedColumnName = "service_request_id")
     @ManyToOne(optional = false)
     private Requests requestId;
@@ -81,14 +108,6 @@ public class Comments implements Serializable {
 
     public void setCommentContent(String commentContent) {
         this.commentContent = commentContent;
-    }
-
-    public Integer getCommentStatus() {
-        return commentStatus;
-    }
-
-    public void setCommentStatus(Integer commentStatus) {
-        this.commentStatus = commentStatus;
     }
 
     public Users getUserId() {

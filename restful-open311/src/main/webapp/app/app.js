@@ -98,6 +98,14 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 					deferred.reject();
 				});
 			return deferred.promise;
+		},
+		postComment: function(comment){
+			console.log(JSON.stringify(comment));
+			$http.post(commentUrl, JSON.stringify(comment)).then(function successCallBack(response){
+				console.log("success");
+			}, function errorCallBack(response){
+
+			});
 		}
 	};
 	return commentManager;
@@ -189,6 +197,11 @@ app.controller('viewController', ['$scope', 'requestManager', 'commentManager', 
 	$scope.checkId = function(commentRequestId,serviceRequestId){
 		return (commentRequestId==serviceRequestId);
 	}
+
+	$scope.getUsername = function  (comment) {
+		if(comment.guestId!=null) return comment.guestId.guestName;
+		else return comment.userId.userName;
+	}
 	requestManager.loadAllRequests().then(function(requests){
 		$scope.requests = requests;
 		//create map 
@@ -249,7 +262,7 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManager', '$routeParams', function($scope, requestManager, commentManager, $routeParams){
+app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManager', '$routeParams', 'dateTimeFilter', function($scope, requestManager, commentManager, $routeParams,dateTimeFilter){
 	$scope.requestIndex = {};
 	$scope.requests = []
 	$scope.comments = [];
@@ -263,6 +276,10 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 		$scope.countComment = $scope.comments.length;
 	});
 
+	$scope.getUsername = function  (comment) {
+		if(comment.guestId!=null) return comment.guestId.guestName;
+		else return comment.userId.userName;
+	}
 	requestManager.loadAllRequests().then(function(requests){
 		$scope.requests = requests;
 		//$scope.requestIndex = requests[$scope.issue_id];
@@ -274,4 +291,21 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 		}
 
 	});
+
+	$scope.submitComment = function(requestObj){
+		var comment = new Object();
+		var guest = new Object();
+
+		guest.guestId = 3;
+		guest.guestName = 'WenKai';
+		guest.guestEmail = 'tai@gmail.com';
+
+		comment.guestId = guest;
+		comment.requestId = requestObj;
+		comment.commentContent = $scope.textContent;
+		comment.postDatetime = dateTimeFilter(new Date());
+
+		commentManager.postComment(comment);
+
+	}
 }]);
