@@ -14,10 +14,6 @@ ul{
     height: 100%;
     display: block;
 }
-.container{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
 .stepTable tr td{
     vertical-align: top;
     padding-bottom: 10px;
@@ -179,7 +175,7 @@ body{
     color: inherit;
     display: inline;
     float: left;
-    margin: 3px;
+    margin: 10px;
     padding: 5px;
     position: relative;
 }

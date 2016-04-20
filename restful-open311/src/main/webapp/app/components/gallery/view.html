@@ -20,7 +20,7 @@
 				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
 			</div>
 			<div id="issue-list">
-				<ul id="issue-list-ul" class="hoverbox">
+				<ul id="issue-galley" class="hoverbox">
 					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<a href="#/issue/{{request.serviceRequestId}}">
 							<img ng-src="{{request.mediaUrl}}" class="gallery-image">

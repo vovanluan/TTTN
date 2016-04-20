@@ -307,5 +307,7 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 
 		commentManager.postComment(comment);
 
+		$scope.textContent = '';
+
 	}
 }]);
