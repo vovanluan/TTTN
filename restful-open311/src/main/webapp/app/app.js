@@ -255,7 +255,6 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
 	$scope.countComment = {};
-
 	commentManager.loadAllComments().then(function(comments){
 		angular.forEach(comments, function(comment,index){
 			if(comment.requestId.serviceRequestId==$scope.issue_id)
@@ -266,7 +265,13 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 
 	requestManager.loadAllRequests().then(function(requests){
 		$scope.requests = requests;
-		$scope.requestIndex = requests[$scope.issue_id];
-		
+		//$scope.requestIndex = requests[$scope.issue_id];
+		for(var i = 0; i < requests.length; i++){
+			if($scope.issue_id == requests[i].serviceRequestId) {
+				$scope.requestIndex = requests[i];
+				break;
+			}			
+		}
+
 	});
 }]);
