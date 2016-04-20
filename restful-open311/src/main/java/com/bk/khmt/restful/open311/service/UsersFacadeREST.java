@@ -6,7 +6,11 @@
 package com.bk.khmt.restful.open311.service;
 
 import com.bk.khmt.restful.open311.Users;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +25,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import support.General;
 
 /**
  *
@@ -41,7 +46,14 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Users entity) {
-        super.create(entity);
+        try {
+            entity.setPassWord((new General()).hashPassword(entity.getPassWord()));
+            em.persist(entity);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(UsersFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @PUT
@@ -89,7 +101,6 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @Path("getUserByEmail")
     @Produces(MediaType.APPLICATION_JSON)
     public Users getUserByEmail(@QueryParam("email") String email) {
-        System.out.println("GO HERE");
         Query query = em.createQuery("SELECT u FROM Users u WHERE u.userEmail=:email");
         query.setParameter("email", email);
         List<Users> users = query.getResultList();
@@ -115,9 +126,9 @@ public class UsersFacadeREST extends AbstractFacade<Users> {
     @GET
     @Path("checkLogin")
     @Produces(MediaType.APPLICATION_JSON)
-    public Users checkLogin (@QueryParam("email") String email, @QueryParam("password") String password) {
+    public Users checkLogin (@QueryParam("email") String email, @QueryParam("password") String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         Query query = em.createQuery("SELECT u FROM Users u WHERE u.userEmail=:email and u.passWord = :password");
-        query.setParameter("password", password);
+        query.setParameter("password", (new General()).hashPassword(password));
         query.setParameter("email", email);
         List<Users> users = query.getResultList();
         if (!users.isEmpty()) {
