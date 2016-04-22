@@ -1,0 +1,15 @@
+
+<div class="modal-header" style="background:#F2F2F2">
+	<button class="close" data-dismiss="modal">&times;</button>
+	<h4 style="margin:0 0 0 0">Đăng nhập dưới dạng khách</h4>
+</div>
+<div class="modal-body">
+	<label style="color:red" id="errorLabelGuest" ng-model="error">{{error}}</label>
+	<input type="input" id="displayNameGuest" class="form-control" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required ng-model="name">
+	<input type="email" id="emailInputGuest" class="form-control" placeholder="Địa chỉ email"  required ng-model="email">
+	<hr>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Hủy</button>
+</div>

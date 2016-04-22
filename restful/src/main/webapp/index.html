@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>List issue</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/DateTimePicker.css" />	
+	<link rel="shortcut icon" href="">	  	
+	<!-- Add libs -->
+	<script src="assets/libs/jquery-1.12.1.js"></script>
+  	<script src="assets/libs/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="assets/libs/DateTimePicker.js"></script>
+  	<script type="text/javascript" src="assets/libs/angular.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+  	<script type="text/javascript" src="assets/libs/ui-bootstrap-tpls-1.3.2.min.js"></script>
+	<script src="assets/libs/ng-file-upload-shim.js"></script> <!-- for no html5 browsers support -->
+	<script src="assets/libs/ng-file-upload.min.js"></script>
+	<script src="http://maps.google.com/maps/api/js?v=3.22&amp;key=AIzaSyAdS7mTduExQFMY-x090WPiYRLPoMEK_JI" type="text/javascript">
+	</script>
+	
+</head>
+<body ng-app="mainApp">
+	<nav class="navbar navbar-inverse navbar-embossed" role="navigation" 
+	ng-controller ="mainTabController as mainTab">
+		<div class="container">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+
+		    <a class="navbar-brand" href="">Ho Chi Minh city</a>
+
+		  </div>
+		  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+		    <ul class="nav navbar-nav">
+		        <li class="dropdown" ng-class="{active: mainTab.isSelected(1)}">
+			        <a class="dropdown-toggle" data-toggle="dropdown" href="" 
+			          ng-click="mainTab.selectTab(1)">Home
+			          <span class="caret"></span>
+			      	</a>
+		          	<ul class="dropdown-menu" ng-controller = "mainTabController as m">
+		            	<li ng-class="{active: m.isSelected(1)}">
+		            		<a href="#/" ng-click="m.selectTab(1)">List View</a>
+		            	</li>
+		            	<li ng-class="{active: m.isSelected(2)}">
+		            		<a href="#/map" ng-click="m.selectTab(2)">Map View</a>
+		            	</li>
+		            	<li ng-class="{active: m.isSelected(3)}">
+		            		<a href="#/gallery" ng-click="m.selectTab(3)">Gallery View</a>
+		            	</li>		            	
+		          	</ul>
+		        </li>              
+		      	<li ng-class="{active: mainTab.isSelected(2)}">
+		      		<a href="#/reportIssue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
+		      	</li>
+		    </ul>
+		  </div><!-- /.navbar-collapse -->
+		</div> <!-- /.container -->
+	</nav><!-- /navbar --> 
+
+	<div ng-view></div>
+
+	<!-- Add scripts -->	
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/components/login/controller.js"></script>	
+	<script type="text/javascript" src="app/components/signup/controller.js"></script>	
+	<script type="text/javascript" src="app/components/guest/controller.js"></script>	
+	<script type="text/javascript" src="app/components/reportIssue/controller.js"></script>		
+</body>
+</html>
