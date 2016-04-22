@@ -71,10 +71,6 @@ public class Comment implements Serializable {
     public void setPostDatetime(Date postDatetime) {
         this.postDatetime = postDatetime;
     }
-    
-//    @JoinColumn(name = "request_id", referencedColumnName = "service_request_id")
-//    @ManyToOne(optional = false)
-//    private Request requestId;
 
     public Comment() {
     }
