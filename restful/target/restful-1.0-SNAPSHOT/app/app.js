@@ -1,9 +1,9 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap']);
 
-app.constant("requestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.requests");
-app.constant("userUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.users");
-app.constant("guestUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.guest");
-app.constant("commentUrl", "http://localhost:8080/restful-open311/webresources/com.bk.khmt.restful.open311.comments");
+app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
+app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
+app.constant("guestUrl", "http://localhost:8080/restful/webresources/entity.guest");
+app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 
 app.constant("districts", {
 	"1": [
@@ -50,16 +50,7 @@ app.constant('issues', {
 
 app.constant('clientId', "254c1d5f74f2518");
 
-app.factory('Request', [function(){
-	function Request(requestData){
-		if(requestData){
-			this.setData(requestData);
-		}
-	}
-	return Request;
-}]);
-
-app.factory('requestManager', ['Request', 'requestUrl', '$http', '$q', function(Request, requestUrl, $http, $q){
+app.factory('requestManager', ['requestUrl', '$http', '$q', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
             var deferred = $q.defer();
@@ -177,6 +168,10 @@ app.config(['$routeProvider', function($routeProvider){
         redirectTo: '/'
     });
 }]);
+
+app.controller('mainController', function(){
+
+});
 
 app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){
 	// Init map and request
