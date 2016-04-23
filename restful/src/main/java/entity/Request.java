@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +27,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import support.Status;
 
 /**
  *
@@ -98,8 +101,9 @@ public class Request implements Serializable {
     @Column(name = "metadata")
     private Boolean metadata;
     
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "status_id", nullable = false)
-    private int statusId;
+    private Status statusId;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OneToOne
@@ -233,11 +237,11 @@ public class Request implements Serializable {
         this.metadata = metadata;
     }
 
-    public int getStatusId() {
+    public Status getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Status statusId) {
         this.statusId = statusId;
     }
 

@@ -7,6 +7,7 @@ package service;
 
 import entity.Request;
 import java.util.List;
+import javafx.animation.Animation;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import support.Status;
 
 /**
  *
@@ -39,6 +41,7 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     public void create(Request entity) {
+        entity.setStatusId(Status.values()[entity.getStatusId().getValue()]);
         super.create(entity);
     }
 
