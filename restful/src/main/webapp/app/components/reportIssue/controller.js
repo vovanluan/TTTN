@@ -1,7 +1,7 @@
-app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload', 'requestManager', 
-	'convertServiceCodeFilter', 'dateTimeFilter', 'districts', 'issues', 'clientId', 
-	function($scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
-		dateTimeFilter, districts, issues, clientId){
+app.controller('reportTabController', ['$rootScope','$scope', '$http', '$uibModal', 'Upload', 'requestManager', 
+	'convertServiceCodeFilter', 'dateTimeFilter', 'districts', 'issues', 'clientId', 'Modal',
+	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
+		dateTimeFilter, districts, issues, clientId, Modal){
 	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
@@ -104,39 +104,11 @@ app.controller('reportTabController', ['$scope', '$http', '$uibModal', 'Upload',
 	}
 
 	$scope.logInModal = function(){
-		var modalInstance = $uibModal.open({
-			templateUrl: 'app/components/login/view.html',
-			controller: 'logInModalController',
-			resolve: {
-			}
-		});
-
-		modalInstance.result.then(function close(user) {
-			$scope.name = user.userName;
-			$scope.email = user.userEmail;
-			$scope.phone = user.userPhone;
-			$scope.id = user.userId;
-		}, function dismiss() {
-			console.log("Modal dismiss");
-		});
+		Modal.logInModal();
   	};
 
   	$scope.signUpModal = function(){
-		var modalInstance = $uibModal.open({
-			templateUrl: 'app/components/signup/view.html',
-			controller: 'signUpModalController',
-			resolve: {
-			}
-		});
-
-		modalInstance.result.then(function close(user) {
-			$scope.name = user.userName;
-			$scope.email = user.userEmail;
-			$scope.phone = user.userPhone;
-			$scope.id = user.userId;
-		}, function dismiss() {
-			console.log("Modal dismiss");
-		});
+  		Modal.signUpModal();
   	};
 
   	$scope.logInAsGuestModal = function(){

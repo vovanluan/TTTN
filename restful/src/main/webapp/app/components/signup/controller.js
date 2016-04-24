@@ -1,11 +1,12 @@
-app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance', 'userUrl', function($scope, $http, $uibModalInstance, userUrl){
+app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance', 'userUrl', 'Auth', 
+	function($scope, $http, $uibModalInstance, userUrl, Auth){
 	$scope.signUp = function(){
 		if(!($scope.password === $scope.confirmPassword)) {
 			$scope.error = "Mật khẩu không khớp!";
 			$('#passwordInputSignup').focus();
 		}
 		else {
-			$http.get(userUrl + "/getUserByEmail", {
+/*			$http.get(userUrl + "/getUserByEmail", {
 				params: {email: $scope.email}
 			}).then(
 				function successCallBack(response){
@@ -30,13 +31,17 @@ app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance',
 									role.roleId = 1;
 									role.roleName = 'user';
 									user.roleId = role;
-									$http.post(userUrl, JSON.stringify(user)).then(
-										function successCallBack(response){
-											$uibModalInstance.close(user);
-										},
-										function errorCallBack(response){
-											$scope.error = "Xảy ra lỗi khi tạo tài khoản mới!";
-										});
+						            Auth.save(data, function(res) {
+						                if (res.type == false) {
+						                    alert(res.data)
+						                } else {
+						                    $localStorage.token = res.data.token;
+						                    $uibModalInstance.close(user);
+						                    window.location = "/"   
+						                }
+						            }, function() {
+						                $rootScope.error = 'Failed to signup';
+						            });
 								}
 							},
 							function errorCallBack(argument) {
@@ -50,7 +55,26 @@ app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance',
 				function errorCallBack(response){
 
 				}
-			);
+			);*/
+			// POST user to server
+			var user = new Object();
+			user.name = $scope.name;
+			user.email = $scope.email;
+			user.identifyCard = $scope.id;
+			user.phoneNumber = $scope.phone;
+			user.passWord = $scope.password;
+			console.log(JSON.stringify(user));
+            Auth.save(user, function(res) {
+                if (res.type == false) {
+                    alert(res.data)
+                } else {
+                    $localStorage.token = res.data.token;
+                    $uibModalInstance.close(user);
+                    window.location = "/"   
+                }
+            }, function() {
+                $rootScope.error = 'Failed to signup';
+            });
 		}
 	};
 	$scope.cancel = function(){

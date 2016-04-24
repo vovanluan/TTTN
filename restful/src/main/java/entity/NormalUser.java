@@ -5,6 +5,7 @@
  */
 package entity;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -20,7 +21,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="normal_user")
 @DiscriminatorValue("normal")
 @XmlRootElement
+//@AttributeOverride(name = "email", column = @Column(name = "email", unique = true))
 public class NormalUser extends User {
+    
     @Size(min = 1, max = 40)
     @Column(name = "password", nullable = false)
     private String passWord;

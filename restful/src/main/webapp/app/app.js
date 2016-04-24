@@ -1,4 +1,5 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 
+	'angular-jwt']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -102,6 +103,76 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
+app.factory('Auth', ['$http', '$localStorage', 'jwtHelper', function($http, $localStorage, jwtHelper){
+        var baseUrl = "http://localhost:8080/restful/webresources";
+        function changeUser(user) {
+            angular.extend(currentUser, user);
+        }
+
+        function getUserFromToken() {
+        	$localStorage.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
+            var token = $localStorage.token;
+            var tokenPayload = {};
+            if (typeof token !== 'undefined') {
+                tokenPayload = jwtHelper.decodeToken(token);
+                console.log(tokenPayload);
+            }
+            return tokenPayload;
+        }
+
+        var currentUser = getUserFromToken();
+
+        return {
+            save: function(data, success, error) {
+                $http.post(baseUrl + '/signin', data).success(success).error(error)
+            },
+            signin: function(data, success, error) {
+                $http.post(baseUrl + '/authenticate', data).success(success).error(error)
+            },
+            me: function(success, error) {
+                $http.get(baseUrl + '/me').success(success).error(error)
+            },
+            logout: function(success) {
+                changeUser({});
+                delete $localStorage.token;
+                success();
+            }
+        };
+    }
+]);
+
+app.factory('Modal', ['$rootScope', '$uibModal', function($rootScope, $uibModal){
+	return {
+		logInModal: function(){
+			var modalInstance = $uibModal.open({
+				templateUrl: 'app/components/login/view.html',
+				controller: 'logInModalController',
+				resolve: {
+				}
+			});
+
+			modalInstance.result.then(function close(user) {
+				$rootScope.user = user;
+			}, function dismiss() {
+				console.log("Modal dismiss");
+			});			
+		},
+		signUpModal: function(){
+			var modalInstance = $uibModal.open({
+				templateUrl: 'app/components/signup/view.html',
+				controller: 'signUpModalController',
+				resolve: {
+				}
+			});
+
+			modalInstance.result.then(function close(user) {
+				$rootScope.user = user;
+			}, function dismiss() {
+				console.log("Modal dismiss");
+			});
+  		}
+	}
+}])
 app.filter('dateTime', function(){
 	return function (input) {
 	var date = new Date(input);
@@ -141,7 +212,7 @@ app.filter('convertServiceCode', function(){
 	};
 });
 
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
 	$routeProvider
 	.when('/', {
 		templateUrl: 'app/components/list/view.html',
@@ -167,11 +238,41 @@ app.config(['$routeProvider', function($routeProvider){
     .otherwise({
         redirectTo: '/'
     });
+
+    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.token) {
+                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                    }
+                    return config;
+                },
+                'responseError': function(response) {
+                    if(response.status === 401 || response.status === 403) {
+                        //$location.path('/signin');
+                    }
+                    return $q.reject(response);
+                }
+            };
+    }]);    
 }]);
 
-app.controller('mainController', function(){
+app.controller('mainController',['$rootScope','$scope', '$uibModal', 'Modal', 
+	function($rootScope, $scope, $uibModal, Modal){
+	$rootScope.authenticated = false; 
+	$rootScope.user = {};
+	$scope.logInModal = function(){
+		Modal.logInModal();
+  	};
 
-});
+  	$scope.signUpModal = function(){
+		Modal.signUpModal();
+  	};
+
+
+
+}]);
 
 app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){
 	// Init map and request
