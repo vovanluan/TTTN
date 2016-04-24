@@ -6,7 +6,11 @@
 package service;
 
 import entity.NormalUser;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import support.General;
 
 /**
  *
@@ -38,7 +43,14 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(NormalUser entity) {
+    public void create(NormalUser entity)  {
+        try {
+            entity.setPassWord( (new General()).hashPassword(entity.getPassWord()));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
         super.create(entity);
     }
 

@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @DiscriminatorValue("normal")
 @XmlRootElement
 public class NormalUser extends User {
+    
     @Size(min = 1, max = 40)
     @Column(name = "password", nullable = false)
     private String passWord;
