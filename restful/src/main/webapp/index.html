@@ -20,6 +20,7 @@
 	</script>
 	<script src="assets/libs/ngStorage.js"></script>
 	<script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
 </head>
 <body ng-controller="mainController">
 	<nav class="navbar navbar-inverse navbar-embossed" role="navigation" 
@@ -59,12 +60,14 @@
 		      		<a href="#/reportIssue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
 		      	</li>
 		    </ul>
-            <ul class="nav navbar-nav navbar-right">
- 			 	<li><a href="" ng-if="!authenticated" ng-click="logInModal()">Sign  in</a></li>
-              	<li><a href="" ng-if="!authenticated" ng-click="signUpModal()">Sign  up</a></li>
- 			 	<li><a href="" ng-if="authenticated">Your profile</a></li>
-              	<li><a href="" ng-if="authenticated">Log out</a></li>              	
-            </ul>	            	    
+            <ul class="nav navbar-nav navbar-right" ng-show="!isAuthenticated" >
+ 			 	<li><a href="" ng-click="logInModal()">Sign  in</a></li>
+              	<li><a href="" ng-click="signUpModal()">Sign  up</a></li>              	
+            </ul>	            
+            <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated" >
+            	<li><a href="">Your profile</a></li>
+              	<li><a href="">Log out</a></li>
+            </ul>	    
 		  </div><!-- /.navbar-collapse -->
 		</div> <!-- /.container -->
 	</nav><!-- /navbar --> 

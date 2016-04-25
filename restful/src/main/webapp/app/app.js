@@ -5,6 +5,7 @@ app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.re
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
 app.constant("guestUrl", "http://localhost:8080/restful/webresources/entity.guest");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
+app.constant("baseUrl", "http://localhost:8080/restful/webresources/");
 
 app.constant("districts", {
 	"1": [
@@ -51,7 +52,23 @@ app.constant('issues', {
 
 app.constant('clientId', "254c1d5f74f2518");
 
-app.factory('requestManager', ['requestUrl', '$http', '$q', function(requestUrl, $http, $q){
+app.constant('AUTH_EVENTS', {
+  loginSuccess: 'auth-login-success',
+  loginFailed: 'auth-login-failed',
+  logoutSuccess: 'auth-logout-success',
+  tokenTimeOut: 'auth-token-timeout',
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+});
+
+app.constant('USER_ROLES', {
+  admin: 'admin',
+  editor: 'editor',
+  user : 'normal_user',
+  guest: 'guest'
+});
+
+app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
             var deferred = $q.defer();
@@ -75,7 +92,7 @@ app.factory('requestManager', ['requestUrl', '$http', '$q', function(requestUrl,
         }
 	};
 	return requestManager;
-}]);
+});
 
 
 app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl, $http, $q){
@@ -103,45 +120,33 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.factory('Auth', ['$http', '$localStorage', 'jwtHelper', function($http, $localStorage, jwtHelper){
-        var baseUrl = "http://localhost:8080/restful/webresources";
-        function changeUser(user) {
-            angular.extend(currentUser, user);
-        }
+app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper){
+    this.isAuthenticated = function () {
+	    if($localStorage.token) {
+	    	return !jwtHelper.isTokenExpired($localStorage.token);
+	    }
+	    return false;
+	};
+    this.signin = function(data, success, error) {
+    	$localStorage.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0NjE2MDQ0MTQsImV4cCI6MTQ5MzE0MDQzMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.7NV_KMFc5IsjBrH0x5CfW2uOeLhO_fpR_zyVa6Ehljg";
+        $http.post(baseUrl + '/authenticate', data).success(success).error(error);
+    };
+    this.signup = function(data, success, error) {
+        $http.post(baseUrl + '/signup', data).success(success).error(error)
+    },            
+    this.profile = function(success, error) {
+        $http.get(baseUrl + '/profile').success(success).error(error)
+    };
+    this.logout = function(success) {
+        Session.destroy();
+        delete $localStorage.token;
+        success();
+    };
 
-        function getUserFromToken() {
-        	$localStorage.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3NhbXBsZXMuYXV0aDAuY29tLyIsInN1YiI6ImZhY2Vib29rfDEwMTU0Mjg3MDI3NTEwMzAyIiwiYXVkIjoiQlVJSlNXOXg2MHNJSEJ3OEtkOUVtQ2JqOGVESUZ4REMiLCJleHAiOjE0MTIyMzQ3MzAsImlhdCI6MTQxMjE5ODczMH0.7M5sAV50fF1-_h9qVbdSgqAnXVF7mz3I6RjS6JiH0H8';
-            var token = $localStorage.token;
-            var tokenPayload = {};
-            if (typeof token !== 'undefined') {
-                tokenPayload = jwtHelper.decodeToken(token);
-                console.log(tokenPayload);
-            }
-            return tokenPayload;
-        }
+});
 
-        var currentUser = getUserFromToken();
 
-        return {
-            save: function(data, success, error) {
-                $http.post(baseUrl + '/signin', data).success(success).error(error)
-            },
-            signin: function(data, success, error) {
-                $http.post(baseUrl + '/authenticate', data).success(success).error(error)
-            },
-            me: function(success, error) {
-                $http.get(baseUrl + '/me').success(success).error(error)
-            },
-            logout: function(success) {
-                changeUser({});
-                delete $localStorage.token;
-                success();
-            }
-        };
-    }
-]);
-
-app.factory('Modal', ['$rootScope', '$uibModal', function($rootScope, $uibModal){
+app.factory('Modal', function($rootScope, $uibModal){
 	return {
 		logInModal: function(){
 			var modalInstance = $uibModal.open({
@@ -172,7 +177,7 @@ app.factory('Modal', ['$rootScope', '$uibModal', function($rootScope, $uibModal)
 			});
   		}
 	}
-}])
+});
 app.filter('dateTime', function(){
 	return function (input) {
 	var date = new Date(input);
@@ -212,9 +217,11 @@ app.filter('convertServiceCode', function(){
 	};
 });
 
-app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+
+// First run in the app, we can use provider in config()
+app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
 	$routeProvider
-	.when('/', {
+	.when('/list', {
 		templateUrl: 'app/components/list/view.html',
 		controller: 'viewController'
 	})
@@ -236,43 +243,49 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
 		controllerAs: 'reportTab'
 	})
     .otherwise({
-        redirectTo: '/'
+        redirectTo: '/list'
     });
 
-    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
-            return {
-                'request': function (config) {
-                    config.headers = config.headers || {};
-                    if ($localStorage.token) {
-                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                    }
-                    return config;
-                },
-                'responseError': function(response) {
-                    if(response.status === 401 || response.status === 403) {
-                        //$location.path('/signin');
-                    }
-                    return $q.reject(response);
-                }
-            };
-    }]);    
-}]);
+    jwtInterceptorProvider.tokenGetter = function() {
+    	return $localStorageProvider.get('token');
+    }
 
-app.controller('mainController',['$rootScope','$scope', '$uibModal', 'Modal', 
-	function($rootScope, $scope, $uibModal, Modal){
-	$rootScope.authenticated = false; 
-	$rootScope.user = {};
-	$scope.logInModal = function(){
-		Modal.logInModal();
-  	};
+    $httpProvider.interceptors.push('jwtInterceptor');    
+});
 
-  	$scope.signUpModal = function(){
-		Modal.signUpModal();
-  	};
+// Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
+app.run(function($rootScope, $localStorage, $location){
+	// enumerate routes that don't need authentication
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
 
+	// check if current location matches route  
+    var routeClean = function (route) {
+    return _.find(routesThatDontRequireAuth,
+      function (noAuthRoute) {
+        return route.startsWith(noAuthRoute);
+      });
+  };
 
+  $rootScope.$on('$routeChangeStart', function (next, current) {
+    // if route requires authentication and user is not logged in
+    if (!routeClean($location.url())) {
+      // redirect back to list view
+      $location.path('/list');
+    }
+  });	
+});	
 
-}]);
+// Run after .run()
+app.controller('mainController',
+	function($rootScope, $scope, $uibModal, Modal, AuthService){
+		$scope.logInModal = function(){
+			Modal.logInModal();
+	  	};
+
+	  	$scope.signUpModal = function(){
+			Modal.signUpModal();
+	  	};
+});
 
 app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){
 	// Init map and request
@@ -338,7 +351,14 @@ app.controller('viewController', ['$scope', 'requestManager', 'commentManager', 
 
 }]);
 
-app.controller('mainTabController', function(){
+app.controller('mainTabController', function($localStorage, $scope, AuthService){
+	$scope.isAuthenticated = AuthService.isAuthenticated();
+	$scope.$watch(function() {
+	    return angular.toJson($localStorage);
+	}, function() {
+		$scope.isAuthenticated = AuthService.isAuthenticated();
+	});
+
 	this.tab = 1;
 	this.selectTab = function(setTab){
 		this.tab = setTab;

@@ -1,5 +1,5 @@
-app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance', 'userUrl', 'Auth', 
-	function($scope, $http, $uibModalInstance, userUrl, Auth){
+app.controller('signUpModalController',
+	function($scope, $http, $uibModalInstance, userUrl, AuthService){
 	$scope.signUp = function(){
 		if(!($scope.password === $scope.confirmPassword)) {
 			$scope.error = "Mật khẩu không khớp!";
@@ -31,7 +31,7 @@ app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance',
 									role.roleId = 1;
 									role.roleName = 'user';
 									user.roleId = role;
-						            Auth.save(data, function(res) {
+						            AuthService.save(data, function(res) {
 						                if (res.type == false) {
 						                    alert(res.data)
 						                } else {
@@ -64,7 +64,7 @@ app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance',
 			user.phoneNumber = $scope.phone;
 			user.passWord = $scope.password;
 			console.log(JSON.stringify(user));
-            Auth.save(user, function(res) {
+            AuthService.signup(user, function(res) {
                 if (res.type == false) {
                     alert(res.data)
                 } else {
@@ -80,4 +80,4 @@ app.controller('signUpModalController', ['$scope', '$http', '$uibModalInstance',
 	$scope.cancel = function(){
 		$uibModalInstance.dismiss('cancel');
 	}
-}]);
+});
