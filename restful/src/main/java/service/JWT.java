@@ -18,14 +18,17 @@ import java.util.Date;
 public class JWT {
     Key key = MacProvider.generateKey();
     
-    String createJWT(String id, long ttlMillis) {
+    String createJWT(String id, long ttlMillis, String role) {
         System.out.println("vo create nhen " + id);
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
 
-        JwtBuilder builder = Jwts.builder().setId(id)
+        JwtBuilder builder = Jwts.builder().claim("role",role)
+                                .setId(id)
                                 .setIssuedAt(now)
                                 .signWith(SignatureAlgorithm.HS512, key);
+        
+        
 
         //if it has been specified, let's add the expiration
         if (ttlMillis >= 0) {
