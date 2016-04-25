@@ -68,6 +68,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     }
 
     @GET
+    @Secured
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public NormalUser find(@PathParam("id") Integer id) {

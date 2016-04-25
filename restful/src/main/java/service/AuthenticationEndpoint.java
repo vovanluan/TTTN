@@ -36,7 +36,7 @@ public class AuthenticationEndpoint {
     @Consumes({MediaType.APPLICATION_JSON})
     public Response authenticationUser(@QueryParam("email") String email, @QueryParam("password") String password) throws Exception{
         if(authentication(email,password)){
-            String token = issueToken(email);
+            String token = issueToken(email, "normal_user");
             Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
             queryEmail.setParameter("email", email);
             List<User> users = queryEmail.getResultList();
@@ -68,8 +68,8 @@ public class AuthenticationEndpoint {
         else return false;   
     }
 
-    private String issueToken(String username) throws Exception{
+    private String issueToken(String username, String role) throws Exception{
         JWT jwt = new JWT();
-        return jwt.createJWT(username,20000);
+        return jwt.createJWT(username,20000, role);
     }
 }
