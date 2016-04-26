@@ -60,7 +60,8 @@ public class AuthenticationEndpoint {
         else return Response.status(Response.Status.UNAUTHORIZED).build();        
     }
 
-    private boolean authentication(String email, String password) throws Exception{       
+
+    private boolean authentication(String email, String password) throws Exception{ 
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email and u.passWord=:password");
         q.setParameter("email", email);
         q.setParameter("password", (new General()).hashPassword(password));

@@ -16,6 +16,7 @@ import java.util.Map;
  * @author Luan
  */
 public class General {
+    public static final int EXPIRE_TIME = 86400 * 1000; //86400 seconds = 1 day
     public String hashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
         String generatedPassword = null;
         try {
