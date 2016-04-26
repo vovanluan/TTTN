@@ -11,10 +11,11 @@ app.controller('logInModalController',
 	        } else {
 	        	// Get user information from db and update user role
 	        	$rootScope.user = res;
+	        	console.log($rootScope.user);
 	            $localStorage.token = res.token;
 	            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
 	            $rootScope.userRole = tokenPayload.role;
-	            $uibModalInstance.close(res);
+	            $uibModalInstance.close();
 	        }
 	    }, function() {
 	        $scope.error = 'Failed to signin';
@@ -23,5 +24,13 @@ app.controller('logInModalController',
 	};
 	$scope.cancel = function(){
 		$uibModalInstance.dismiss('cancel');
-	}
+	};
+
+	$scope.logInModal = function(){
+		Modal.logInModal();
+  	};
+
+  	$scope.signUpModal = function(){
+  		Modal.signUpModal();
+  	};
 });

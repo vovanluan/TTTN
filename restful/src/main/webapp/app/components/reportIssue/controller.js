@@ -1,6 +1,6 @@
 app.controller('reportTabController', 
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
-		dateTimeFilter, districts, issues, clientId, Modal){
+		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS){
 	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
@@ -8,6 +8,7 @@ app.controller('reportTabController',
 	$scope.district = districts["1"];
 	$scope.latitude = 10.78;
 	$scope.longitude = 106.65;
+	$scope.user = $rootScope.user;
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
@@ -102,6 +103,19 @@ app.controller('reportTabController',
 		}
 	}
 
+	$scope.goNext = function () {
+	 	if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
+	 		$scope.tab = 4;
+	 	else {
+	 		console.log("HERE");
+	 		Modal.logInModal();
+	 	}
+	};
+
+	$scope.isAuthorizedGuest = function () {
+		return AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest';
+	};
+
 	$scope.logInModal = function(){
 		Modal.logInModal();
   	};
@@ -111,18 +125,6 @@ app.controller('reportTabController',
   	};
 
   	$scope.logInAsGuestModal = function(){
-		var modalInstance = $uibModal.open({
-			templateUrl: 'app/components/guest/view.html',
-			controller: 'logInAsGuestModalController',
-			resolve: {
-			}
-		});
-
-		modalInstance.result.then(function close(guest) {
-			$scope.name = guest.guestName;
-			$scope.email = guest.guestEmail;
-		}, function dismiss() {
-			console.log("Modal dismiss");
-		});
+  		Modal.logInAsGuestModal();
   	};  	
 });

@@ -64,8 +64,15 @@ app.constant('AUTH_EVENTS', {
 app.constant('USER_ROLES', {
   admin: 'admin',
   editor: 'editor',
-  user : 'normal_user'
+  user : 'normal_user',
+  guest: 'guest'
 });
+
+app.constant('USER_ACCESS', ['admin', 'editor', 'normal_user']);
+
+app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal_user', 'guest']);
+
+app.constant('ADMIN_ACCESS', ['admin']);
 
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
@@ -119,31 +126,32 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.service('AuthService', function($rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
-    this.isAuthenticated = function () {
+app.service('AuthService', function(USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+    var self = this;
+    self.isAuthenticated = function () {
 	    if($localStorage.token) {
 	    	return !jwtHelper.isTokenExpired($localStorage.token);
 	    }
 	    return false;
 	};
 
-	this.isAuthorized = function(authorizedRole) {
-		return this.isAuthenticated() && (authorizedRole === $rootScope.userRole);
+	self.isAuthorized = function(authorizedRoles) {
+		return self.isAuthenticated() && _.contains(authorizedRoles, $rootScope.userRole);
 	};
 
-    this.signin = function(data, success, error) {
+    self.signin = function(data, success, error) {
         $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
     };
 
-    this.signup = function(data, success, error) {
+    self.signup = function(data, success, error) {
         $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
     },         
 
-    this.profile = function(success, error) {
+    self.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
     };
 
-    this.logout = function() {
+    self.logout = function() {
         delete $localStorage.token;
         $rootScope.user = {};
         $rootScope.userRole = null;
@@ -164,8 +172,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 				}
 			});
 
-			modalInstance.result.then(function close(user) {
-				$rootScope.user = user;
+			modalInstance.result.then(function close() {
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});			
@@ -399,12 +406,17 @@ app.controller('viewController', function($scope, requestManager, commentManager
 
 });
 
-app.controller('mainTabController', function($localStorage, $scope, AuthService){
-	$scope.isAuthenticated = AuthService.isAuthenticated();
-	$scope.$watch(function() {
-	    return angular.toJson($localStorage);
-	}, function() {
-		$scope.isAuthenticated = AuthService.isAuthenticated();
+app.controller('mainTabController', 
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS){
+
+	$scope.isAuthorizedUser = function () {
+	 	return AuthService.isAuthorized(USER_ACCESS);
+	};
+	// Watch userRole change
+	$scope.$watch($rootScope.userRole, function() {
+		$scope.isAuthorizedUser = function () {
+		 	return AuthService.isAuthorized(USER_ACCESS);
+		};
 	});
 
 	this.tab = 1;
