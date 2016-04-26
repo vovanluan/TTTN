@@ -38,7 +38,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         System.out.println("Header: "+ authourizationHeader);
         
-        if(authourizationHeader == null | !authourizationHeader.startsWith("Bearer")){
+        if(authourizationHeader == null || !authourizationHeader.startsWith("Bearer")){
             throw new NotAuthorizedException("Authorize header must be provided");
         }
         
@@ -51,15 +51,14 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         }
         catch(Exception e){
             requestContext.abortWith(
-                Response.status(Response.Status.BAD_GATEWAY).build());
+                Response.status(Response.Status.UNAUTHORIZED).build());
         }
     }
 
     private void validateToken(String token) throws Exception {
-        Query q = em.createNamedQuery("SELECT u FROM User u WHERE u.token=:token");
+        Query q = em.createQuery("SELECT u FROM User u WHERE u.token=:token");
         q.setParameter("token", token);
         List<User> users = q.getResultList();
-        
         System.out.println("token trong db " + users.get(0).getToken());
         if(users.isEmpty()) throw new Exception();
     }

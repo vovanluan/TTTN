@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -22,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import support.Credentials;
 import support.General;
@@ -75,6 +77,20 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     public NormalUser find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    
+    
+    @POST
+    @Secured
+    @Path("getInfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public NormalUser getInfo(@QueryParam("email") String email) {
+        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
+        q.setParameter("email", email);
+        NormalUser user = (NormalUser) q.getSingleResult();
+        return user;
+    }
+    
+    
 
     @GET
     @Override
