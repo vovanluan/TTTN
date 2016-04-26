@@ -3,7 +3,6 @@ var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
-app.constant("guestUrl", "http://localhost:8080/restful/webresources/entity.guest");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 

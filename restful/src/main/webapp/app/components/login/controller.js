@@ -1,5 +1,5 @@
 app.controller('logInModalController',
-	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper){
+	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper, Modal){
 	$scope.logIn = function(){
 	    var data = {
 	        email: $scope.email,
@@ -26,11 +26,13 @@ app.controller('logInModalController',
 		$uibModalInstance.dismiss('cancel');
 	};
 
-	$scope.logInModal = function(){
-		Modal.logInModal();
+	$scope.logInAsGuestModal = function(){
+		$uibModalInstance.close();
+		Modal.logInAsGuestModal();
   	};
 
   	$scope.signUpModal = function(){
+  		$uibModalInstance.close();
   		Modal.signUpModal();
   	};
 });

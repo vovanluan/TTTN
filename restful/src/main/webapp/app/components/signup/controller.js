@@ -1,5 +1,6 @@
 app.controller('signUpModalController',
-	function($rootScope, $scope, $http, $uibModalInstance, $localStorage, userUrl, AuthService, jwtHelper){
+	function($rootScope, $scope, $http, $uibModalInstance, $localStorage, userUrl, 
+		AuthService, jwtHelper, Modal){
 	$scope.signUp = function(){
 		if(!($scope.password === $scope.confirmPassword)) {
 			$scope.error = "Mật khẩu không khớp!";
@@ -82,5 +83,15 @@ app.controller('signUpModalController',
 	};
 	$scope.cancel = function(){
 		$uibModalInstance.dismiss('cancel');
+	}
+
+	$scope.logInModal = function(){
+		$uibModalInstance.close();
+		Modal.logInModal();
+	}
+
+	$scope.logInAsGuestModal = function (){
+		$uibModalInstance.close();
+		Modal.logInAsGuestModal();
 	}
 });
