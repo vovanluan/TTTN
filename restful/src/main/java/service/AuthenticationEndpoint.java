@@ -20,6 +20,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import support.Credentials;
 import support.General;
 
 /**
@@ -31,10 +32,13 @@ import support.General;
 public class AuthenticationEndpoint {
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
+    private final int EXPIRE_TIME = 86400 * 1000; //86400(s) = 1 day
     
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response authenticationUser(@QueryParam("email") String email, @QueryParam("password") String password) throws Exception{
+    public Response authenticationUser(Credentials credentials) throws Exception{
+        String email = credentials.getEmail();
+        String password = credentials.getPassword();
         if(authentication(email,password)){
             String token = issueToken(email, "normal_user");
             Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
@@ -58,6 +62,7 @@ public class AuthenticationEndpoint {
         Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
         queryEmail.setParameter("email", email);
         List<User> usersEmail = queryEmail.getResultList();
+        System.out.println(usersEmail.get(0).getEmail());
         if(!usersEmail.isEmpty()){
             Query queryPassword = em.createQuery("SELECT v FROM NormalUser v WHERE v.passWord=:password");
             queryPassword.setParameter("password", (new General()).hashPassword(password));
@@ -70,6 +75,6 @@ public class AuthenticationEndpoint {
 
     private String issueToken(String username, String role) throws Exception{
         JWT jwt = new JWT();
-        return jwt.createJWT(username,20000, role);
+        return jwt.createJWT(username,EXPIRE_TIME, role);
     }
 }

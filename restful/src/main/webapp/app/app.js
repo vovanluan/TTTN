@@ -5,7 +5,7 @@ app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.re
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
 app.constant("guestUrl", "http://localhost:8080/restful/webresources/entity.guest");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
-app.constant("baseUrl", "http://localhost:8080/restful/webresources/");
+app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 
 app.constant("districts", {
 	"1": [
@@ -128,8 +128,7 @@ app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper){
 	    return false;
 	};
     this.signin = function(data, success, error) {
-    	$localStorage.token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0NjE2MDQ0MTQsImV4cCI6MTQ5MzE0MDQzMCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0.7NV_KMFc5IsjBrH0x5CfW2uOeLhO_fpR_zyVa6Ehljg";
-        $http.post(baseUrl + '/authenticate', data).success(success).error(error);
+        $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
     };
     this.signup = function(data, success, error) {
         $http.post(baseUrl + '/signup', data).success(success).error(error)
@@ -137,10 +136,9 @@ app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper){
     this.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
     };
-    this.logout = function(success) {
-        Session.destroy();
+    this.logout = function() {
         delete $localStorage.token;
-        success();
+        console.log("Delete");
     };
 
 });
@@ -285,6 +283,10 @@ app.controller('mainController',
 	  	$scope.signUpModal = function(){
 			Modal.signUpModal();
 	  	};
+
+	  	$scope.logout = function(){
+	  		AuthService.logout();
+	  	}
 });
 
 app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){

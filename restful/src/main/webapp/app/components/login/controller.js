@@ -9,9 +9,10 @@ app.controller('logInModalController',
 	        if (res.type == false) {
 	            alert(res.data);    
 	        } else {
-	            $localStorage.token = res.data.token;
-	            $uibModalInstance.close(response.data);
-	            window.location = "/";    
+	            $localStorage.token = res;
+	            var tokenPayload = jwtHelper.decodeToken(res);
+	            console.log(tokenPayload);
+	            $uibModalInstance.close(res);
 	        }
 	    }, function() {
 	        $scope.error = 'Failed to signin';

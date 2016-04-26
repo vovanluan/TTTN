@@ -60,13 +60,13 @@
 		      		<a href="#/reportIssue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
 		      	</li>
 		    </ul>
-            <ul class="nav navbar-nav navbar-right" ng-show="!isAuthenticated" >
- 			 	<li><a href="" ng-click="logInModal()">Sign  in</a></li>
-              	<li><a href="" ng-click="signUpModal()">Sign  up</a></li>              	
+            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthenticated" >
+ 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
+              	<li><a href="" ng-click="signUpModal()">Đăng ký</a></li>              	
             </ul>	            
-            <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated" >
-            	<li><a href="">Your profile</a></li>
-              	<li><a href="">Log out</a></li>
+            <ul class="nav navbar-nav navbar-right" ng-if="isAuthenticated" >
+            	<li><a href="">Trang cá nhân</a></li>
+              	<li><a href="" ng-click="logout()">Đăng xuất</a></li>
             </ul>	    
 		  </div><!-- /.navbar-collapse -->
 		</div> <!-- /.container -->
