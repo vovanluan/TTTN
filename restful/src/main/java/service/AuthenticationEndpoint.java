@@ -7,6 +7,7 @@ package service;
 
 import entity.NormalUser;
 import entity.User;
+import io.jsonwebtoken.Claims;
 import java.util.List;
 import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
@@ -39,7 +40,8 @@ public class AuthenticationEndpoint {
         String password = credentials.getPassword();
         if(authentication(email,password)){
             // Generate new token
-            String token = issueToken(email, "normal_user");      
+            String token = issueToken(email, "normal_user"); 
+            Claims claims = (new JWT()).parseJWT(token);
             
             // Update new token into database
             UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");

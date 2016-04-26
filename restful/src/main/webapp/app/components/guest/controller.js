@@ -1,14 +1,16 @@
 app.controller('logInAsGuestModalController', 
-	function($rootScope, $scope, $http, $uibModalInstance, baseUrl, Modal){
+	function($rootScope, $scope, $http, $uibModalInstance, $timeout, baseUrl, Modal){
 	$scope.logIn = function(){
 		var guest = new Object();
-		guest.guestName = $scope.name;
-		guest.guestEmail = $scope.email;
+		guest.name = $scope.name;
+		guest.email = $scope.email;
 		$http.post(baseUrl + "/entity.guestuser", guest).then(
 			function successCallBack(response){
-				$uibModalInstance.close(guest);
-				$rootScope.user = guest;
-				$rootScope.userRole = 'guest';
+				$uibModalInstance.close();
+				$timeout(function(){
+					$rootScope.user = guest;
+					$rootScope.userRole = 'guest';
+				});
 			},
 			function errorCallBack(response){
 				$scope.error = "Xảy ra lỗi";

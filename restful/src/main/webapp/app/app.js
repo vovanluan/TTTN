@@ -185,7 +185,6 @@ app.factory('Modal', function($rootScope, $uibModal){
 			});
 
 			modalInstance.result.then(function close(user) {
-				$rootScope.user = user;
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
@@ -200,6 +199,8 @@ app.factory('Modal', function($rootScope, $uibModal){
 			});
 
 			modalInstance.result.then(function close(guest) {
+				$rootScope.user = guest;
+				console.log($rootScope.user);
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
@@ -310,7 +311,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
   		var email = tokenPayload.sub;
-  		$rootScope.userRole = tokenPayload.role;  		
+  		$rootScope.userRole = tokenPayload.rol;  		
   		console.log($rootScope.userRole);
   		$http({
   			method: "post",
@@ -412,7 +413,9 @@ app.controller('mainTabController',
 	 	return AuthService.isAuthorized(USER_ACCESS);
 	};
 	// Watch userRole change
-	$scope.$watch($rootScope.userRole, function() {
+	$scope.$watch(function (){
+		return $localStorage;
+	}, function() {
 		$scope.isAuthorizedUser = function () {
 		 	return AuthService.isAuthorized(USER_ACCESS);
 		};
