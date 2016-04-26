@@ -6,7 +6,9 @@
 package service;
 
 import entity.User;
+import io.jsonwebtoken.Claims;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Priority;
 import javax.persistence.EntityManager;
@@ -19,7 +21,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-
 /**
  *
  * @author TranVanTai
@@ -36,7 +37,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException{
         //Get HTTP header from the request
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-        System.out.println("Header: "+ authourizationHeader);
         
         if(authourizationHeader == null || !authourizationHeader.startsWith("Bearer")){
             throw new NotAuthorizedException("Authorize header must be provided");
@@ -44,7 +44,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         
         //Extract the token 
         String token = authourizationHeader.substring("Bearer".length()).trim();
-        System.out.println("token của bearer " + token);
+        System.out.println("Bearer: " + token);
         
         try{
             validateToken(token);
@@ -55,11 +55,22 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         }
     }
 
-    private void validateToken(String token) throws Exception {
+    private void validateToken(String token) throws Exception {     
+        JWT jwt = new JWT();
+    
+        //Check if token exists in database 
         Query q = em.createQuery("SELECT u FROM User u WHERE u.token=:token");
         q.setParameter("token", token);
         List<User> users = q.getResultList();
-        System.out.println("token trong db " + users.get(0).getToken());
-        if(users.isEmpty()) throw new Exception();
+        
+        if(users.isEmpty()){
+            throw new Exception();
+        }
+        
+        //Check if token expired
+        Claims claim = jwt.parseJWT(token);
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+        if(now.after(claim.getExpiration())) throw new Exception();
     }
 }

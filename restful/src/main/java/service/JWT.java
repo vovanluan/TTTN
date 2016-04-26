@@ -5,49 +5,48 @@
  */
 package service;
 
-import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.MacProvider;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
  * @author TranVanTai
  */
 public class JWT {
-    Key key = MacProvider.generateKey();
-    
+    static Key key = MacProvider.generateKey();
+   
     String createJWT(String email, long ttlMillis, String role) {
-        System.out.println("vo create nhen " + email);
         long nowMillis = System.currentTimeMillis();
+        long expMillis = nowMillis + ttlMillis;
         Date now = new Date(nowMillis);
+        Date exp = new Date(expMillis);
 
+        Random random = new SecureRandom();
+        String tokenId = new BigInteger(20, random).toString(8);
+        
         JwtBuilder builder = Jwts.builder()
-                                .setIssuedAt(now)
+                                .setId(tokenId)
                                 .setSubject(email)
-                                .claim("role", role)
-                                .signWith(SignatureAlgorithm.HS512, key);
+                                .claim("rol", role)
+                                .setIssuedAt(now)
+                                .setExpiration(exp)
+                                .signWith(SignatureAlgorithm.HS256, key);
         
-        
-
-        //if it has been specified, let's add the expiration
-        if (ttlMillis >= 0) {
-            long expMillis = nowMillis + ttlMillis;
-            Date exp = new Date(expMillis);
-            builder.setExpiration(exp);
-        }
         return builder.compact();
     }
     
-    private void parseJWT(String jwt) {
+    Claims parseJWT(String jwt) {
         //This line will throw an exception if it is not a signed JWS (as expected)
         Claims claims;
         claims = Jwts.parser()         
-                .setSigningKey(DatatypeConverter.parseBase64Binary(key.toString()))
+                .setSigningKey(key)
                 .parseClaimsJws(jwt).getBody();
-        System.out.println("ID: " + claims.getId());
-        System.out.println("Expiration: " + claims.getExpiration());
+        return claims;
     }
 }
 
