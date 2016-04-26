@@ -11,6 +11,7 @@ app.controller('logInModalController',
 	        } else {
 	        	// Get user information from db
 	        	$rootScope.user = res;
+	        	console.log($rootScope.user);
 	            $localStorage.token = res.token;
 	            $uibModalInstance.close(res);
 	        }

@@ -120,7 +120,7 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper){
+app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper, $location){
     this.isAuthenticated = function () {
 	    if($localStorage.token) {
 	    	return !jwtHelper.isTokenExpired($localStorage.token);
@@ -138,7 +138,8 @@ app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper){
     };
     this.logout = function() {
         delete $localStorage.token;
-        console.log("Delete");
+        //redirect to list view
+        $location.path('/list');
     };
 
 });
@@ -245,6 +246,10 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 		templateUrl: 'app/components/gallery/view.html',
 		controller: 'viewController'
 	})
+	.when('/profile', {
+		templateUrl: 'app/components/profile/view.html',
+		controller: 'viewController'
+	})	
 	.when('/issue/:issueId', {
 		templateUrl: 'app/components/issueDetail/view.html',
 		controller: 'issueDetailController'
@@ -319,7 +324,6 @@ app.controller('viewController', function($scope, requestManager, commentManager
 	$scope.requests = [];
 	$scope.markers = [];
 	$scope.comments = [];
-
 	commentManager.loadAllComments().then(function(comments){
 		$scope.comments = comments;
 	});

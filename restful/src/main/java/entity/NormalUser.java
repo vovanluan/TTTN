@@ -34,7 +34,7 @@ public class NormalUser extends User {
     
     @Size(min = 1, max = 40)
     @Column(name = "identify_card", nullable = false)
-    private String indentifyCard;
+    private String identifyCard;
 
     public String getPassWord() {
         return passWord;
@@ -52,11 +52,11 @@ public class NormalUser extends User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getIndentifyCard() {
-        return indentifyCard;
+    public String getIdentifyCard() {
+        return identifyCard;
     }
 
-    public void setIndentifyCard(String indentifyCard) {
-        this.indentifyCard = indentifyCard;
+    public void setIdentifyCard(String identifyCard) {
+        this.identifyCard = identifyCard;
     }
 }

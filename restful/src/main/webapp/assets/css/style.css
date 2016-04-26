@@ -243,3 +243,33 @@ body{
     display: inline-block;
     float: right;
 }
+#profile {
+    width: 500px;
+    height: 200px;
+    background-color: #E6E6E6;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+}
+
+#profile img {
+    float: left;
+}
+
+.profile_name {
+    background-color: black;
+    color: white;
+    width: 480px;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.profile_details {
+    float: left;
+    width: 370px;
+    height: 120px;
+    color: white;
+    font-size: 1.4em;
+    padding: 10px;
+}
