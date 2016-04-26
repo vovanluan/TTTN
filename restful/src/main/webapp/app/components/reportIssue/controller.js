@@ -1,5 +1,4 @@
-app.controller('reportTabController', ['$rootScope','$scope', '$http', '$uibModal', 'Upload', 'requestManager', 
-	'convertServiceCodeFilter', 'dateTimeFilter', 'districts', 'issues', 'clientId', 'Modal',
+app.controller('reportTabController', 
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
 		dateTimeFilter, districts, issues, clientId, Modal){
 	$scope.tab = 1;
@@ -126,4 +125,4 @@ app.controller('reportTabController', ['$rootScope','$scope', '$http', '$uibModa
 			console.log("Modal dismiss");
 		});
   	};  	
-}]);
+});

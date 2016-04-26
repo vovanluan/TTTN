@@ -9,9 +9,9 @@ app.controller('logInModalController',
 	        if (res.type == false) {
 	            alert(res.data);    
 	        } else {
-	            $localStorage.token = res;
-	            var tokenPayload = jwtHelper.decodeToken(res);
-	            console.log(tokenPayload);
+	        	// Get user information from db
+	        	$rootScope.user = res;
+	            $localStorage.token = res.token;
 	            $uibModalInstance.close(res);
 	        }
 	    }, function() {

@@ -173,6 +173,20 @@ app.factory('Modal', function($rootScope, $uibModal){
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
+  		},
+
+  		logInAsGuestModal: function() {
+	  		var modalInstance = $uibModal.open({
+				templateUrl: 'app/components/guest/view.html',
+				controller: 'logInAsGuestModalController',
+				resolve: {
+				}
+			});
+
+			modalInstance.result.then(function close(guest) {
+			}, function dismiss() {
+				console.log("Modal dismiss");
+			});
   		}
 	}
 });
@@ -233,7 +247,7 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 	})
 	.when('/issue/:issueId', {
 		templateUrl: 'app/components/issueDetail/view.html',
-		controller: 'issueDetaiController'
+		controller: 'issueDetailController'
 	})
 	.when('/reportIssue', {
 		templateUrl: 'app/components/reportIssue/view.html',
@@ -252,25 +266,30 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location){
+app.run(function($rootScope, $localStorage, $location, jwtHelper, baseUrl, AuthService){
 	// enumerate routes that don't need authentication
 	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
 
 	// check if current location matches route  
     var routeClean = function (route) {
     return _.find(routesThatDontRequireAuth,
-      function (noAuthRoute) {
-        return route.startsWith(noAuthRoute);
-      });
-  };
+        function (noAuthRoute) {
+    	    return route.startsWith(noAuthRoute);
+        });
+    };
 
-  $rootScope.$on('$routeChangeStart', function (next, current) {
-    // if route requires authentication and user is not logged in
-    if (!routeClean($location.url())) {
-      // redirect back to list view
-      $location.path('/list');
-    }
-  });	
+  	$rootScope.$on('$routeChangeStart', function (next, current) {
+	    // if route requires authentication and user is not logged in
+	    if (!routeClean($location.url()) && !AuthService.isAuthenticated()) {
+	      // redirect back to list view
+	      $location.path('/list');
+	    }
+  	});	
+
+  	if ($localStorage.token) {
+  		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+  		//$http.post(baseUrl + "/entity.normaluser")
+  	}
 });	
 
 // Run after .run()
@@ -289,7 +308,7 @@ app.controller('mainController',
 	  	}
 });
 
-app.controller('viewController', ['$scope', 'requestManager', 'commentManager', function($scope, requestManager, commentManager){
+app.controller('viewController', function($scope, requestManager, commentManager){
 	// Init map and request
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
@@ -351,7 +370,7 @@ app.controller('viewController', ['$scope', 'requestManager', 'commentManager', 
 	});
 
 
-}]);
+});
 
 app.controller('mainTabController', function($localStorage, $scope, AuthService){
 	$scope.isAuthenticated = AuthService.isAuthenticated();
@@ -380,7 +399,7 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManager', '$routeParams', 'dateTimeFilter', function($scope, requestManager, commentManager, $routeParams,dateTimeFilter){
+app.controller('issueDetailController',function($scope, requestManager, commentManager, $routeParams,dateTimeFilter){
 	$scope.requestIndex = {};
 	$scope.requests = []
 	$scope.comments = [];
@@ -428,4 +447,4 @@ app.controller('issueDetaiController',['$scope', 'requestManager', 'commentManag
 		$scope.textContent = '';
 
 	}
-}]);
+});

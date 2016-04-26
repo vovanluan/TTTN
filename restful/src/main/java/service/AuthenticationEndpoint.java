@@ -40,11 +40,10 @@ public class AuthenticationEndpoint {
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         if(authentication(email,password)){
-            String token = issueToken(email, "normal_user");
-            Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
-            queryEmail.setParameter("email", email);
-            List<User> users = queryEmail.getResultList();
+            // Generate new token
+            String token = issueToken(email, "normal_user");      
             
+            // Update new token into database
             UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
             transaction.begin();
             Query q = em.createQuery ("UPDATE User s SET s.token = :token WHERE s.email = :email");
@@ -52,25 +51,38 @@ public class AuthenticationEndpoint {
             q.setParameter ("token", token);
             int updated = q.executeUpdate();
             transaction.commit();
+            
+            // get user information, then send it to client
+            Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
+            queryEmail.setParameter("email", email);
+            List<NormalUser> users = queryEmail.getResultList();
 
-            return Response.ok(token).build();
+            return Response.ok(users.get(0)).build();
         } 
         else return Response.status(Response.Status.UNAUTHORIZED).build();        
     }
 
     private boolean authentication(String email, String password) throws Exception{
-        Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
-        queryEmail.setParameter("email", email);
-        List<User> usersEmail = queryEmail.getResultList();
-        System.out.println(usersEmail.get(0).getEmail());
-        if(!usersEmail.isEmpty()){
-            Query queryPassword = em.createQuery("SELECT v FROM NormalUser v WHERE v.passWord=:password");
-            queryPassword.setParameter("password", (new General()).hashPassword(password));
-            List<NormalUser> usersPassword = queryPassword.getResultList();
-            if(!usersPassword.isEmpty()) return true;
-            else return false;
-        }
-        else return false;   
+//        Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
+//        queryEmail.setParameter("email", email);
+//        List<User> usersEmail = queryEmail.getResultList();
+//        System.out.println(usersEmail.get(0).getEmail());
+//        if(!usersEmail.isEmpty()){
+//            Query queryPassword = em.createQuery("SELECT v FROM NormalUser v WHERE v.passWord=:password");
+//            queryPassword.setParameter("password", (new General()).hashPassword(password));
+//            List<NormalUser> usersPassword = queryPassword.getResultList();
+//            if(!usersPassword.isEmpty()) return true;
+//            else return false;
+//        }
+//        else return false;   
+        
+        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email and u.passWord=:password");
+        q.setParameter("email", email);
+        q.setParameter("password", (new General()).hashPassword(password));
+        NormalUser user = (NormalUser) q.getSingleResult();
+        if(user == null) 
+            return false;
+        return true;
     }
 
     private String issueToken(String username, String role) throws Exception{

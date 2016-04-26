@@ -18,14 +18,15 @@ import java.util.Date;
 public class JWT {
     Key key = MacProvider.generateKey();
     
-    String createJWT(String id, long ttlMillis, String role) {
-        System.out.println("vo create nhen " + id);
+    String createJWT(String email, long ttlMillis, String role) {
+        System.out.println("vo create nhen " + email);
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
 
-        JwtBuilder builder = Jwts.builder().claim("role",role)
-                                .setId(id)
+        JwtBuilder builder = Jwts.builder()
                                 .setIssuedAt(now)
+                                .setSubject(email)
+                                .claim("role", role)
                                 .signWith(SignatureAlgorithm.HS512, key);
         
         

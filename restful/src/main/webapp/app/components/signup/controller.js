@@ -68,9 +68,8 @@ app.controller('signUpModalController',
                 if (res.type == false) {
                     alert(res.data)
                 } else {
-                    $localStorage.token = res.data.token;
+                    $localStorage.token = res;
                     $uibModalInstance.close(user);
-                    window.location = "/"   
                 }
             }, function() {
                 $rootScope.error = 'Failed to signup';

@@ -23,6 +23,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import support.Credentials;
 import support.General;
 
 /**
@@ -53,7 +54,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         }
         super.create(entity);
     }
-
+    
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
