@@ -63,19 +63,6 @@ public class AuthenticationEndpoint {
     }
 
     private boolean authentication(String email, String password) throws Exception{
-//        Query queryEmail = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
-//        queryEmail.setParameter("email", email);
-//        List<User> usersEmail = queryEmail.getResultList();
-//        System.out.println(usersEmail.get(0).getEmail());
-//        if(!usersEmail.isEmpty()){
-//            Query queryPassword = em.createQuery("SELECT v FROM NormalUser v WHERE v.passWord=:password");
-//            queryPassword.setParameter("password", (new General()).hashPassword(password));
-//            List<NormalUser> usersPassword = queryPassword.getResultList();
-//            if(!usersPassword.isEmpty()) return true;
-//            else return false;
-//        }
-//        else return false;   
-        
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email and u.passWord=:password");
         q.setParameter("email", email);
         q.setParameter("password", (new General()).hashPassword(password));

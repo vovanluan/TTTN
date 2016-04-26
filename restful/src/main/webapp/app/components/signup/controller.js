@@ -1,5 +1,5 @@
 app.controller('signUpModalController',
-	function($scope, $http, $uibModalInstance, userUrl, AuthService){
+	function($rootScope, $scope, $http, $uibModalInstance, $localStorage, userUrl, AuthService, jwtHelper){
 	$scope.signUp = function(){
 		if(!($scope.password === $scope.confirmPassword)) {
 			$scope.error = "Mật khẩu không khớp!";
@@ -68,11 +68,15 @@ app.controller('signUpModalController',
                 if (res.type == false) {
                     alert(res.data)
                 } else {
-                    $localStorage.token = res;
-                    $uibModalInstance.close(user);
+		        	$rootScope.user = res;
+		            $localStorage.token = res.token;
+		            console.log(res);
+		            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+		            $rootScope.userRole = tokenPayload.role;
+		            $uibModalInstance.close(res);
                 }
             }, function() {
-                $rootScope.error = 'Failed to signup';
+                $scope.error = 'Failed to signup';
             });
 		}
 	};

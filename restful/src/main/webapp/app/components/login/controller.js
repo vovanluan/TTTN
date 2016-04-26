@@ -9,10 +9,11 @@ app.controller('logInModalController',
 	        if (res.type == false) {
 	            alert(res.data);    
 	        } else {
-	        	// Get user information from db
+	        	// Get user information from db and update user role
 	        	$rootScope.user = res;
-	        	console.log($rootScope.user);
 	            $localStorage.token = res.token;
+	            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+	            $rootScope.userRole = tokenPayload.role;
 	            $uibModalInstance.close(res);
 	        }
 	    }, function() {

@@ -64,8 +64,7 @@ app.constant('AUTH_EVENTS', {
 app.constant('USER_ROLES', {
   admin: 'admin',
   editor: 'editor',
-  user : 'normal_user',
-  guest: 'guest'
+  user : 'normal_user'
 });
 
 app.factory('requestManager', function(requestUrl, $http, $q){
@@ -120,24 +119,34 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.service('AuthService', function($http, $localStorage, baseUrl, jwtHelper, $location){
+app.service('AuthService', function($rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     this.isAuthenticated = function () {
 	    if($localStorage.token) {
 	    	return !jwtHelper.isTokenExpired($localStorage.token);
 	    }
 	    return false;
 	};
+
+	this.isAuthorized = function(authorizedRole) {
+		return this.isAuthenticated() && (authorizedRole === $rootScope.userRole);
+	};
+
     this.signin = function(data, success, error) {
         $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
     };
+
     this.signup = function(data, success, error) {
-        $http.post(baseUrl + '/signup', data).success(success).error(error)
-    },            
+        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
+    },         
+
     this.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
     };
+
     this.logout = function() {
         delete $localStorage.token;
+        $rootScope.user = {};
+        $rootScope.userRole = null;
         //redirect to list view
         $location.path('/list');
     };
@@ -271,7 +280,7 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location, jwtHelper, baseUrl, AuthService){
+app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService){
 	// enumerate routes that don't need authentication
 	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
 
@@ -291,9 +300,23 @@ app.run(function($rootScope, $localStorage, $location, jwtHelper, baseUrl, AuthS
 	    }
   	});	
 
-  	if ($localStorage.token) {
+  	// Check if token exists, then get user information and user role
+  	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
-  		//$http.post(baseUrl + "/entity.normaluser")
+  		var email = tokenPayload.sub;
+  		$rootScope.userRole = tokenPayload.role;  		
+  		console.log($rootScope.userRole);
+  		$http({
+  			method: "post",
+  			url: baseUrl + "/entity.normaluser/getInfo?email=" + email,
+  			data : {},
+  		})
+  		.success(function (data){
+  			$rootScope.user = data;
+  		})
+  		.error(function(error){
+  			console.log(error);
+  		});
   	}
 });	
 

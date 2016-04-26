@@ -51,7 +51,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comment> comments;
     
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 1000)
     @Column(name = "token")
     private String token;
 

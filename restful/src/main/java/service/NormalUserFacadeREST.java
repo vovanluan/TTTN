@@ -12,9 +12,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,8 +30,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import support.Credentials;
 import support.General;
+import static support.General.EXPIRE_TIME;
 
 /**
  *
@@ -44,17 +51,33 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     }
 
     @POST
-    @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(NormalUser entity)  {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response signUp(NormalUser user) throws Exception  {
+        // Check email or identifyCard exist
+        Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email OR u.identifyCard=:identifyCard");
+        queryEmail.setParameter("email", user.getEmail());
+        queryEmail.setParameter("identifyCard", user.getIdentifyCard());
+        List <NormalUser> result = queryEmail.getResultList();
+        if (!result.isEmpty())
+            return Response.status(Response.Status.CONFLICT).build();
+
+        // Hash password
         try {
-            entity.setPassWord( (new General()).hashPassword(entity.getPassWord()));
+            user.setPassWord( (new General()).hashPassword(user.getPassWord()));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvalidKeySpecException ex) {
             Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
         }
-        super.create(entity);
+        
+        // Generate new token
+        String token = (new JWT()).createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
+        user.setToken(token);
+        
+        super.create(user);
+        
+        return Response.ok(user).build();
     }
     
     @PUT
