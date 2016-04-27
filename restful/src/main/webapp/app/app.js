@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 
-	'angular-jwt']);
+	'angular-jwt', 'oitozero.ngSweetAlert']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -87,13 +87,15 @@ app.factory('requestManager', function(requestUrl, $http, $q){
             return deferred.promise;
         },
         postRequest: function(request){
-        	console.log(JSON.stringify(request));
-        	$http.post(requestUrl, JSON.stringify(request)).then(function successCallBack(response){
-        		console.log("success");
-        	}, function errorCallBack(response){
-
-        	});
-
+        	var deferred = $q.defer();
+        	$http.post(requestUrl, JSON.stringify(request))
+        	    .success(function() {
+                    deferred.resolve();
+                })
+                .error(function() {
+                    deferred.reject();
+                });
+            return deferred.promise;
         }
 	};
 	return requestManager;
@@ -124,43 +126,6 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	};
 	return commentManager;
 }]);
-
-app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
-    var self = this;
-    self.isAuthenticated = function () {
-	    if($localStorage.token) {
-	    	return !jwtHelper.isTokenExpired($localStorage.token);
-	    }
-	    return false;
-	};
-
-	self.isAuthorized = function(authorizedRoles) {
-		return self.isAuthenticated() && _.contains(authorizedRoles, $rootScope.userRole);
-	};
-
-    self.signin = function(data, success, error) {
-        $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
-    };
-
-    self.signup = function(data, success, error) {
-        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
-    },         
-
-    self.profile = function(success, error) {
-        $http.get(baseUrl + '/profile').success(success).error(error)
-    };
-
-    self.logout = function() {
-        delete $localStorage.token;
-        $rootScope.user = {};
-        $rootScope.userRole = null;
-        //if this route requires authentication, redirect to list view
-        if(!RouteClean($location.url()))
-        	$location.path('/list');
-    };
-
-});
-
 
 app.factory('Modal', function($rootScope, $uibModal){
 	return {
@@ -260,7 +225,41 @@ app.filter('convertServiceCode', function(){
 	};
 });
 
+app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+    var self = this;
+    self.isAuthenticated = function () {
+	    if($localStorage.token) {
+	    	return !jwtHelper.isTokenExpired($localStorage.token);
+	    }
+	    return false;
+	};
 
+	self.isAuthorized = function(authorizedRoles) {
+		return self.isAuthenticated() && _.contains(authorizedRoles, $rootScope.userRole);
+	};
+
+    self.signin = function(data, success, error) {
+        $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
+    };
+
+    self.signup = function(data, success, error) {
+        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
+    },         
+
+    self.profile = function(success, error) {
+        $http.get(baseUrl + '/profile').success(success).error(error)
+    };
+
+    self.logout = function() {
+        delete $localStorage.token;
+        $rootScope.user = {};
+        $rootScope.userRole = null;
+        //if this route requires authentication, redirect to list view
+        if(!RouteClean($location.url()))
+        	$location.path('/list');
+    };
+
+});
 // First run in the app, we can use provider in config()
 app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
 	$routeProvider
@@ -306,8 +305,8 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
-	      // redirect back to list view
-	      $location.path('/list');
+	    	// redirect back to list view
+	      	$location.path('/list');
 	    }
   	});	
 

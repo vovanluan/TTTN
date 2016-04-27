@@ -7,9 +7,7 @@ app.controller('logInAsGuestModalController',
 		$http.post(baseUrl + "/entity.guestuser", guest).then(
 			function successCallBack(response){
 				$uibModalInstance.close();
-				console.log(guest);
-				$rootScope.user.email = guest.email;
-				$rootScope.user.name = guest.name;
+				$rootScope.user = response.data;
 				$rootScope.userRole = 'guest';
 			},
 			function errorCallBack(response){

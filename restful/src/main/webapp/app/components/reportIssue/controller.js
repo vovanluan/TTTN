@@ -1,6 +1,6 @@
 app.controller('reportTabController', 
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
-		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS){
+		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
 	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
@@ -50,6 +50,7 @@ app.controller('reportTabController',
 	        alert("Do not support Geolocation");
 	    }
 	};
+
 	var c = 0;
 	$scope.$watch('tab', function(newValue){
 		if (newValue === 2){
@@ -59,6 +60,30 @@ app.controller('reportTabController',
 		}
 	});
 
+	$scope.upload = function() {
+		if($scope.picFile) {
+			console.log("upload");
+			Upload.base64DataUrl($scope.picFile).then(
+            function (url){
+               	var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
+				$http({
+		            headers: {'Authorization': 'Client-ID ' + clientId},
+		            url: '  https://api.imgur.com/3/upload',
+		            method: 'POST',            
+		            data: {
+		                image: uploadImageBase64, 
+		                'type':'base64'
+		            }
+		        }).then(function successCallback(response) {            
+		            request.mediaUrl = response.data.data.link;
+		        }, function errorCallback(err) {
+		        	console.log(err);
+		        });	               
+            });		
+		}
+		console.log("not upload");
+
+	}
 	this.selectTab = function(setTab){
 		$scope.tab = setTab;
 	};
@@ -77,7 +102,8 @@ app.controller('reportTabController',
 		request.address = $scope.street + ", Phường " + $scope.ward.name + ", Quận " + $("#disInfo option:selected").text();
 		request.latitude = $scope.latitude;
 		request.longitude = $scope.longitude;
-		request.statusId = 1;
+		request.statusId = 0;
+		request.user = $rootScope.user;
 		if($scope.picFile) {
 	        Upload.base64DataUrl($scope.picFile).then(
 	            function (url){
@@ -92,14 +118,18 @@ app.controller('reportTabController',
 			            }
 			        }).then(function successCallback(response) {            
 			            request.mediaUrl = response.data.data.link;
-			            requestManager.postRequest(request);
 			        }, function errorCallback(err) {
 			        });	               
 	            });
 		}
-		else {
-			requestManager.postRequest(request);
-		}
+		requestManager.postRequest(request).then(
+			function success(){
+				SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+				$location.path('/list');
+			},
+			function error(err){
+				SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+			});
 	}
 
 	$scope.goNext = function () {

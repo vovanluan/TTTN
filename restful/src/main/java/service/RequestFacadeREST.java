@@ -41,7 +41,8 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Override
     @Consumes(MediaType.APPLICATION_JSON)
     public void create(Request entity) {
-        entity.setStatusId(Status.values()[entity.getStatusId().getValue()]);
+        //TO DO: wrong enum
+        entity.setStatusId(Status.values()[0]);
         super.create(entity);
     }
 
