@@ -125,7 +125,7 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.service('AuthService', function(USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
 	    if($localStorage.token) {
@@ -154,8 +154,9 @@ app.service('AuthService', function(USER_ROLES, $rootScope, $http, $localStorage
         delete $localStorage.token;
         $rootScope.user = {};
         $rootScope.userRole = null;
-        //redirect to list view
-        $location.path('/list');
+        //if this route requires authentication, redirect to list view
+        if(!RouteClean($location.url()))
+        	$location.path('/list');
     };
 
 });
@@ -198,14 +199,27 @@ app.factory('Modal', function($rootScope, $uibModal){
 				}
 			});
 
-			modalInstance.result.then(function close(guest) {
-				$rootScope.user = guest;
-				console.log($rootScope.user);
+			modalInstance.result.then(function close() {
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
   		}
 	}
+});
+
+// Check if a route requires authentication or not
+app.factory('RouteClean', function(){
+	// enumerate routes that don't need authentication
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
+
+	// check if current location matches route  
+    return function(route) {
+    	return _.find(routesThatDontRequireAuth,
+	        function (noAuthRoute) {
+	    	    return route.startsWith(noAuthRoute);
+	    });
+    };
+
 });
 app.filter('dateTime', function(){
 	return function (input) {
@@ -287,26 +301,26 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService){
-	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
-
-	// check if current location matches route  
-    var routeClean = function (route) {
-    return _.find(routesThatDontRequireAuth,
-        function (noAuthRoute) {
-    	    return route.startsWith(noAuthRoute);
-        });
-    };
+app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService, RouteClean){
 
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
-	    if (!routeClean($location.url()) && !AuthService.isAuthenticated()) {
+	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
 	      // redirect back to list view
 	      $location.path('/list');
 	    }
   	});	
 
+  	$rootScope.user = {
+  		type: "",
+  		email: "",
+  		id: 1,
+  		name : "",
+  		token: "",
+  		identifyCar: "",
+  		passWord: "",
+  		phoneNumber: ""
+  	};
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);

@@ -7,10 +7,10 @@ app.controller('logInAsGuestModalController',
 		$http.post(baseUrl + "/entity.guestuser", guest).then(
 			function successCallBack(response){
 				$uibModalInstance.close();
-				$timeout(function(){
-					$rootScope.user = guest;
-					$rootScope.userRole = 'guest';
-				});
+				console.log(guest);
+				$rootScope.user.email = guest.email;
+				$rootScope.user.name = guest.name;
+				$rootScope.userRole = 'guest';
 			},
 			function errorCallBack(response){
 				$scope.error = "Xảy ra lỗi";

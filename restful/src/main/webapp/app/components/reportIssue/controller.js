@@ -8,7 +8,6 @@ app.controller('reportTabController',
 	$scope.district = districts["1"];
 	$scope.latitude = 10.78;
 	$scope.longitude = 106.65;
-	$scope.user = $rootScope.user;
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
@@ -104,6 +103,8 @@ app.controller('reportTabController',
 	}
 
 	$scope.goNext = function () {
+		console.log($rootScope.user);
+		console.log($rootScope.userRole);
 	 	if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
 	 		$scope.tab = 4;
 	 	else {

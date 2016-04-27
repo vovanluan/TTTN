@@ -12,7 +12,7 @@ app.controller('logInModalController',
 	        } else {
 	        	// Get user information from db and update user role
 	        	$rootScope.user = res;
-	        	console.log(res);
+	        	console.log(JSON.stringify(res));
 	            $localStorage.token = res.token;
 	            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
 	            $rootScope.userRole = tokenPayload.rol;
