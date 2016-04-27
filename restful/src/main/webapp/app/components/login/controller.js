@@ -1,6 +1,7 @@
 app.controller('logInModalController',
-	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper){
+	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper, Modal){
 	$scope.logIn = function(){
+		console.log($rootScope.user);
 	    var data = {
 	        email: $scope.email,
 	        password: $scope.password
@@ -11,10 +12,11 @@ app.controller('logInModalController',
 	        } else {
 	        	// Get user information from db and update user role
 	        	$rootScope.user = res;
+	        	console.log(JSON.stringify(res));
 	            $localStorage.token = res.token;
 	            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
-	            $rootScope.userRole = tokenPayload.role;
-	            $uibModalInstance.close(res);
+	            $rootScope.userRole = tokenPayload.rol;
+	            $uibModalInstance.close();
 	        }
 	    }, function() {
 	        $scope.error = 'Failed to signin';
@@ -23,5 +25,15 @@ app.controller('logInModalController',
 	};
 	$scope.cancel = function(){
 		$uibModalInstance.dismiss('cancel');
-	}
+	};
+
+	$scope.logInAsGuestModal = function(){
+		$uibModalInstance.close();
+		Modal.logInAsGuestModal();
+  	};
+
+  	$scope.signUpModal = function(){
+  		$uibModalInstance.close();
+  		Modal.signUpModal();
+  	};
 });

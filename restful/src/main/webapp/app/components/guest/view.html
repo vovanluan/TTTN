@@ -1,9 +1,14 @@
-
 <div class="modal-header" style="background:#F2F2F2">
-	<button class="close" data-dismiss="modal">&times;</button>
+	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
 	<h4 style="margin:0 0 0 0">Đăng nhập dưới dạng khách</h4>
 </div>
 <div class="modal-body">
+	<div>
+		<strong><a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+		<br><br>
+		<strong><a href="" ng-click="logInModal()">Đăng nhập</a> nếu đã có tài khoản</strong>
+		<br><br>
+	</div>
 	<label style="color:red" id="errorLabelGuest" ng-model="error">{{error}}</label>
 	<input type="input" id="displayNameGuest" class="form-control" placeholder="Tên hiển thị" style="margin-bottom:10px" autofocus required ng-model="name">
 	<input type="email" id="emailInputGuest" class="form-control" placeholder="Địa chỉ email"  required ng-model="email">

@@ -12,15 +12,21 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Date;
 import java.util.Random;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
  * @author TranVanTai
  */
 public class JWT {
-    static Key key = MacProvider.generateKey();
-   
+    private static final String apiKey = "LongAndHardToGuessValueWithSpecialCharacters@^($%*$%";
+
     String createJWT(String email, long ttlMillis, String role) {
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(apiKey);        
+        Key key = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());      
         long nowMillis = System.currentTimeMillis();
         long expMillis = nowMillis + ttlMillis;
         Date now = new Date(nowMillis);
@@ -35,7 +41,7 @@ public class JWT {
                                 .claim("rol", role)
                                 .setIssuedAt(now)
                                 .setExpiration(exp)
-                                .signWith(SignatureAlgorithm.HS256, key);
+                                .signWith(signatureAlgorithm, key);
         
         return builder.compact();
     }
@@ -44,7 +50,7 @@ public class JWT {
         //This line will throw an exception if it is not a signed JWS (as expected)
         Claims claims;
         claims = Jwts.parser()         
-                .setSigningKey(key)
+                .setSigningKey(DatatypeConverter.parseBase64Binary(apiKey))
                 .parseClaimsJws(jwt).getBody();
         return claims;
     }

@@ -110,6 +110,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
         q.setParameter("email", email);
         NormalUser user = (NormalUser) q.getSingleResult();
+        System.out.println(user.getEmail());
         return user;
     }
     

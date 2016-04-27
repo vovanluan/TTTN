@@ -3,7 +3,6 @@ var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
-app.constant("guestUrl", "http://localhost:8080/restful/webresources/entity.guest");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 
@@ -64,8 +63,15 @@ app.constant('AUTH_EVENTS', {
 app.constant('USER_ROLES', {
   admin: 'admin',
   editor: 'editor',
-  user : 'normal_user'
+  user : 'normal_user',
+  guest: 'guest'
 });
+
+app.constant('USER_ACCESS', ['admin', 'editor', 'normal_user']);
+
+app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal_user', 'guest']);
+
+app.constant('ADMIN_ACCESS', ['admin']);
 
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
@@ -119,36 +125,38 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-app.service('AuthService', function($rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
-    this.isAuthenticated = function () {
+app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+    var self = this;
+    self.isAuthenticated = function () {
 	    if($localStorage.token) {
 	    	return !jwtHelper.isTokenExpired($localStorage.token);
 	    }
 	    return false;
 	};
 
-	this.isAuthorized = function(authorizedRole) {
-		return this.isAuthenticated() && (authorizedRole === $rootScope.userRole);
+	self.isAuthorized = function(authorizedRoles) {
+		return self.isAuthenticated() && _.contains(authorizedRoles, $rootScope.userRole);
 	};
 
-    this.signin = function(data, success, error) {
+    self.signin = function(data, success, error) {
         $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
     };
 
-    this.signup = function(data, success, error) {
+    self.signup = function(data, success, error) {
         $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
     },         
 
-    this.profile = function(success, error) {
+    self.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
     };
 
-    this.logout = function() {
+    self.logout = function() {
         delete $localStorage.token;
         $rootScope.user = {};
         $rootScope.userRole = null;
-        //redirect to list view
-        $location.path('/list');
+        //if this route requires authentication, redirect to list view
+        if(!RouteClean($location.url()))
+        	$location.path('/list');
     };
 
 });
@@ -164,8 +172,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 				}
 			});
 
-			modalInstance.result.then(function close(user) {
-				$rootScope.user = user;
+			modalInstance.result.then(function close() {
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});			
@@ -179,7 +186,6 @@ app.factory('Modal', function($rootScope, $uibModal){
 			});
 
 			modalInstance.result.then(function close(user) {
-				$rootScope.user = user;
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
@@ -193,7 +199,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 				}
 			});
 
-			modalInstance.result.then(function close(guest) {
+			modalInstance.result.then(function close() {
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
@@ -212,6 +218,21 @@ app.factory('Modal', function($rootScope, $uibModal){
   			});
   		}
 	}
+});
+
+// Check if a route requires authentication or not
+app.factory('RouteClean', function(){
+	// enumerate routes that don't need authentication
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
+
+	// check if current location matches route  
+    return function(route) {
+    	return _.find(routesThatDontRequireAuth,
+	        function (noAuthRoute) {
+	    	    return route.startsWith(noAuthRoute);
+	    });
+    };
+
 });
 app.filter('dateTime', function(){
 	return function (input) {
@@ -293,31 +314,31 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService){
-	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
-
-	// check if current location matches route  
-    var routeClean = function (route) {
-    return _.find(routesThatDontRequireAuth,
-        function (noAuthRoute) {
-    	    return route.startsWith(noAuthRoute);
-        });
-    };
+app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService, RouteClean){
 
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
-	    if (!routeClean($location.url()) && !AuthService.isAuthenticated()) {
+	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
 	      // redirect back to list view
 	      $location.path('/list');
 	    }
   	});	
 
+  	$rootScope.user = {
+  		type: "",
+  		email: "",
+  		id: 1,
+  		name : "",
+  		token: "",
+  		identifyCar: "",
+  		passWord: "",
+  		phoneNumber: ""
+  	};
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
   		var email = tokenPayload.sub;
-  		$rootScope.userRole = tokenPayload.role;  		
+  		$rootScope.userRole = tokenPayload.rol;  		
   		console.log($rootScope.userRole);
   		$http({
   			method: "post",
@@ -412,12 +433,19 @@ app.controller('viewController', function($scope, requestManager, commentManager
 
 });
 
-app.controller('mainTabController', function($localStorage, $scope, AuthService){
-	$scope.isAuthenticated = AuthService.isAuthenticated();
-	$scope.$watch(function() {
-	    return angular.toJson($localStorage);
+app.controller('mainTabController', 
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS){
+
+	$scope.isAuthorizedUser = function () {
+	 	return AuthService.isAuthorized(USER_ACCESS);
+	};
+	// Watch userRole change
+	$scope.$watch(function (){
+		return $localStorage;
 	}, function() {
-		$scope.isAuthenticated = AuthService.isAuthenticated();
+		$scope.isAuthorizedUser = function () {
+		 	return AuthService.isAuthorized(USER_ACCESS);
+		};
 	});
 
 	this.tab = 1;

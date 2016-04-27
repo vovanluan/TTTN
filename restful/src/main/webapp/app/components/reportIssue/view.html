@@ -129,37 +129,39 @@
 				</div>
 
 				<div id="step3" class="tab-pane" ng-class="{active: reportTab.isSelectedTab(3)}">
-					<strong><a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
-					<br><br>
-					<strong><a href="" ng-click="logInModal()">Đăng nhập</a> nếu đã có tài khoản</strong>
-					<br><br>
-					<strong><a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
-					<hr style="margin:10px 0px 30px 0px;">
+					<div ng-hide="isAuthorizedGuest()">
+						<strong><a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+						<br><br>
+						<strong><a href="" ng-click="logInModal()">Đăng nhập</a> nếu đã có tài khoản</strong>
+						<br><br>
+						<strong><a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
+						<hr style="margin:10px 0px 30px 0px;">
+					</div>
 					<form action="form.html" id="step3Form">
 						<table class="stepTable">
 							<tr>
-								<td class="col-md-6">Tên hiển thị:</td>
+								<td class="col-md-6">Tên hiển thị: {{user.name}}</td>
 								<td>
-									<input class="form-control" type="text" id="name" required style="width:300px" readonly="true" ng-model="name">
+									<input class="form-control" type="text" id="name" required style="width:300px" readonly="true" ng-model="user.name">
 								</td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Email:</td>
 								<td>
-									<input class="form-control" type="text" id="email" required style="width:300px" readonly="true" ng-model="email">
+									<input class="form-control" type="text" id="email" required style="width:300px" readonly="true" ng-model="user.email">
 								</td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Số điện thoại:</td>
 								<td>
-									<input class="form-control" type="text" id="phone" required style="width:300px" readonly="true" ng-model="phone">
+									<input class="form-control" type="text" id="phone" required style="width:300px" readonly="true" ng-model="user.phoneNumber">
 								</td>
 							</tr>
 							
 							<tr>
 								<td class="col-md-6">CMND:</td>
 								<td>
-									<input class="form-control" type="text" id="identify"  style="width:300px" readonly="true" ng-model="id">
+									<input class="form-control" type="text" id="identify"  style="width:300px" readonly="true" ng-model="user.identifyCard">
 								</td>
 							</tr>
 						</table>
@@ -168,7 +170,7 @@
 						<table class="col-md-12">
 							<tr>
 								<td style="direction:rtl">
-									<a class="btn btn-primary btnNext" ng-click="tab = 4">Đi tới</a>
+									<a class="btn btn-primary btnNext" ng-click="goNext()">Đi tới</a>
 									<a class="btn btn-primary btnPrev" ng-click="tab = 2">Trở về</a>
 									<button class="btn btn-danger">Hủy bỏ</button>
 								</td>
@@ -252,19 +254,19 @@
 					<table class="stepTable" style="margin-bottom:10px;">
 						<tr> 
 							<td class="col-md-4">Tên hiển thị:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true" ng-model="name"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true" ng-model="user.name"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Số điện thoại:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true" ng-model="phone"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true" ng-model="user.phoneNumber"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">Email:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true" ng-model="email"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true" ng-model="user.email"></td>
 						</tr>
 						<tr>
 							<td class="col-md-4">CMND:</td>
-							<td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true" ng-model="id"></td>
+							<td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true" ng-model="user.identifyCard"></td>
 						</tr>
 					</table>
 					<hr>
