@@ -197,6 +197,19 @@ app.factory('Modal', function($rootScope, $uibModal){
 			}, function dismiss() {
 				console.log("Modal dismiss");
 			});
+  		},
+  		changePasswordModal: function(){
+  			var modalInstance = $uibModal.open({
+  				templateUrl: 'app/components/changePassword/view.html',
+  				controller: 'changePasswordModalController',
+  				resolve: {
+  				}
+  			});
+
+  			modalInstance.result.then(function close(user){
+  			}, function dismiss(){
+  				console.log("Modal dismiss");
+  			});
   		}
 	}
 });
@@ -257,7 +270,7 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 	})
 	.when('/profile', {
 		templateUrl: 'app/components/profile/view.html',
-		controller: 'viewController'
+		controller: 'profileController'
 	})	
 	.when('/issue/:issueId', {
 		templateUrl: 'app/components/issueDetail/view.html',
@@ -473,5 +486,17 @@ app.controller('issueDetailController',function($scope, requestManager, commentM
 
 		$scope.textContent = '';
 
+	}
+});
+
+app.controller('profileController', function($rootScope, $scope, $uibModal, Modal){
+	$scope.changePasswordModal = function(){
+		Modal.changePasswordModal();
+	}
+});
+
+app.controller('changePasswordModalController', function($rootScope, $scope, $http, $uibModalInstance){
+	$scope.cancle = function(){
+		$uibModalInstance.dismiss('cancle');
 	}
 });
