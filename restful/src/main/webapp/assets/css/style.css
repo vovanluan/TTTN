@@ -273,3 +273,26 @@ body{
     font-size: 1.4em;
     padding: 10px;
 }
+#profile-content{
+    padding:10px 20px;
+    background-color: #fff;
+}
+.info-row{
+    padding: 13px 0px;
+}
+.border-btm{
+    border-bottom: 1px solid #eee;
+}
+.info-row label{
+    float: left;
+}
+.info-text{
+    margin-left: 130px;
+}
+.edit-info{
+    margin: 10px 0px 10px 0px;
+    float: right;
+}
+.form-control{
+    margin-bottom: 10px;
+}
