@@ -8,7 +8,7 @@ app.controller('reportTabController',
 	$scope.district = districts["1"];
 	$scope.latitude = 10.78;
 	$scope.longitude = 106.65;
-
+	$scope.showSpinner = false
 	$scope.tabActivity=[true, false, false, false];
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
@@ -96,6 +96,7 @@ app.controller('reportTabController',
 	};
 
 	this.submitReport = function() {
+		$scope.showSpinner = true;
 		var request = new Object();
 		request.serviceRequestId = 1;
 		request.serviceCode = convertServiceCodeFilter($scope.serviceType);
@@ -126,13 +127,19 @@ app.controller('reportTabController',
 			            console.log(JSON.stringify(request));
 						requestManager.postRequest(request).then(
 							function success(){
+								$scope.showSpinner = false;
 								SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+								requestManager.loadAllRequests().then(function(requests){
+									$rootScope.requests = requests;
+								});
 								$location.path('/list');
 							},
 							function error(err){
+								$scope.showSpinner = false;
 								SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
 							});			            
 			        }, function errorCallback(err) {
+			        	$scope.showSpinner = false;
 			        	SweetAlert.swal("Error!", "Xảy ra lỗi khi upload anh!", "error");
 			        });	               
 	            });
@@ -140,10 +147,15 @@ app.controller('reportTabController',
 		else {
 			requestManager.postRequest(request).then(
 				function success(){
+					$scope.showSpinner = false;
 					SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+					requestManager.loadAllRequests().then(function(requests){
+						$rootScope.requests = requests;
+					});
 					$location.path('/list');
 				},
 				function error(err){
+					$scope.showSpinner = false;
 					SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
 				});				
 		}

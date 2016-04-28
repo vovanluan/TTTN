@@ -51,12 +51,10 @@ public class AuthenticationEndpoint {
             q.setParameter ("token", token);
             int updated = q.executeUpdate();
             transaction.commit();
-            
             // get user information, then send it to client
             Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
             queryEmail.setParameter("email", email);
             List<NormalUser> users = queryEmail.getResultList();
-
             return Response.ok(users.get(0)).build();
         } 
         else return Response.status(Response.Status.UNAUTHORIZED).build();        

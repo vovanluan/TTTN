@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 
-	'angular-jwt', 'oitozero.ngSweetAlert']);
+	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -277,7 +277,10 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
 });
 // First run in the app, we can use provider in config()
-app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
+app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
+	
+	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
+
 	$routeProvider
 	.when('/list', {
 		templateUrl: 'app/components/list/view.html',
@@ -341,12 +344,19 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
   		var email = tokenPayload.sub;
-  		$rootScope.userRole = tokenPayload.rol;  		
-  		console.log($rootScope.userRole);
+  		$rootScope.userRole = tokenPayload.rol; 
+  		var childUrl = ""; 		
+  		switch($rootScope.userRole){
+  			case 'normal_user':
+  				childUrl =  "/entity.normaluser/getInfo?email=" + email;
+  				break;
+  			case 'admin':
+  				break;
+  		}
   		$http({
   			method: "post",
-  			url: baseUrl + "/entity.normaluser/getInfo?email=" + email,
-  			data : {},
+  			url: baseUrl + childUrl,
+  			data : {}
   		})
   		.success(function (data){
   			$rootScope.user = data;
@@ -359,7 +369,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
 // Run after .run()
 app.controller('mainController',
-	function($rootScope, $scope, $uibModal, Modal, AuthService){
+	function($rootScope, $scope, $uibModal, Modal, AuthService, SweetAlert){
 		$scope.logInModal = function(){
 			Modal.logInModal();
 	  	};
@@ -369,7 +379,20 @@ app.controller('mainController',
 	  	};
 
 	  	$scope.logout = function(){
-	  		AuthService.logout();
+			SweetAlert.swal({
+			   title: "Bạn có chắc chắn muốn đăng xuất?",
+			   type: "warning",
+			   showCancelButton: true,
+			   cancelButtonText: "Không, tôi sẽ ở lại",
+			   confirmButtonColor: "#DD6B55",
+			   confirmButtonText: "Vâng, tôi muốn!",
+			   closeOnConfirm: true,
+			   closeOnCancel: true
+			}, 
+			function(isConfirm){ 
+				if (isConfirm)
+			   		AuthService.logout();
+			});	  		
 	  	}
 });
 
@@ -479,7 +502,6 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 		if(comment.request.serviceRequestId==$scope.issue_id)
 			$scope.comments.push(comment);
 	});
-	$scope.countComment = $scope.comments.length;
 	//$scope.requestIndex = requests[$scope.issue_id];
 	for(var i = 0; i < $rootScope.requests.length; i++){
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
@@ -501,7 +523,6 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			comment.request = requestObj;
 			comment.content = $scope.textContent;
 			//comment.postDatetime = dateTimeFilter(new Date());
-			console.log(JSON.stringify(comment));
 			commentManager.postComment(comment).then(
 				function success(){
 					$scope.comments.push(comment);					
@@ -513,7 +534,6 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			$scope.textContent = '';
 		}
 	 	else {
-	 		console.log("HERE");
 	 		Modal.logInModal();
 	 	}		
 	}

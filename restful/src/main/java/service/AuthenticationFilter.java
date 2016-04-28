@@ -57,15 +57,19 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     private void validateToken(String token) throws Exception {     
         JWT jwt = new JWT();
-
+        System.out.println("FUCK");
         //Check if token exists in database 
-        Query q = em.createQuery("SELECT u FROM User u WHERE u.token=:token");
-        q.setParameter("token", token);
-        List<User> users = q.getResultList();
-        if(users.isEmpty()){
-            throw new Exception();
-        }
-
+        
+        //TO DO: check token exists in database
+//        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
+//        q.setParameter("token", token);
+//        System.out.println("FUCK1");
+//        List<User> users = q.getResultList();
+//        System.out.println("FUCK2");
+//        if(users.isEmpty()){
+//            System.out.println("Token doesn't exist");
+//            throw new Exception();
+//        }
         //Check if token expired
         Claims claims = jwt.parseJWT(token);
         long nowMillis = System.currentTimeMillis();

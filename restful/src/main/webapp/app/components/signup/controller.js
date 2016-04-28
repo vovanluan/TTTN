@@ -1,7 +1,9 @@
 app.controller('signUpModalController',
 	function($rootScope, $scope, $http, $uibModalInstance, $localStorage, userUrl, 
 		AuthService, jwtHelper, Modal){
+	$scope.showSpinner = false;		
 	$scope.signUp = function(){
+		$scope.showSpinner = true;
 		if(!($scope.password === $scope.confirmPassword)) {
 			$scope.error = "Mật khẩu không khớp!";
 			$('#passwordInputSignup').focus();
@@ -15,6 +17,7 @@ app.controller('signUpModalController',
 			user.passWord = $scope.password;
 			console.log(JSON.stringify(user));
             AuthService.signup(user, function(res) {
+            	$scope.showSpinner = false;
                 if (res.type == false) {
                     alert(res.data)
                 } else {
@@ -27,6 +30,7 @@ app.controller('signUpModalController',
 		            $uibModalInstance.close(res);
                 }
             }, function() {
+            	$scope.showSpinner = false;
                 $scope.error = 'Failed to signup';
             });
 		}

@@ -1,12 +1,15 @@
 app.controller('logInModalController',
 	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper, Modal){
+	$scope.showSpinner = false;
 	$scope.logIn = function(){
+		$scope.showSpinner = true;
 		console.log($rootScope.user);
 	    var data = {
 	        email: $scope.email,
 	        password: $scope.password
 	    }
 	    AuthService.signin(data, function(res) {
+	    	$scope.showSpinner = false;
 	        if (res.type == false) {
 	            alert(res.data);    
 	        } else {
@@ -18,6 +21,7 @@ app.controller('logInModalController',
 	            $uibModalInstance.close();
 	        }
 	    }, function() {
+	    	$scope.showSpinner = false;
 	        $scope.error = 'Failed to signin';
             $('#email').focus();        
 	    });

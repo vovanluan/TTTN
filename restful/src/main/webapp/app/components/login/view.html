@@ -13,7 +13,9 @@
 		<label id="errorLabel" style="color:red" ng-model="error">{{error}}</label>
 		<input type="email" id="email" ng-model="email" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
 		<input type="password" id="password" ng-model="password" class="form-control" placeholder="Mật khẩu"  required>
-	</div>	
+	</div>
+
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>	
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button>
