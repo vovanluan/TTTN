@@ -25,9 +25,9 @@
 			<ul class="issue-detail-comments">
 				<li ng-repeat="comment in comments">
 					<h5 class="user-name">
-						<a href="" class="user-link">{{getUsername(comment)}}</a>
+						<a href="" class="user-link">{{comment.user.name}}</a>
 					</h5>
-					<div class="commentText">{{comment.commentContent}}</div>
+					<div class="commentText">{{comment.content}}</div>
 					<span class="info">{{comment.postDatetime}}</span>
 				</li>
 			</ul>

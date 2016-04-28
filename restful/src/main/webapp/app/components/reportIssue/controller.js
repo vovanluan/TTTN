@@ -123,6 +123,7 @@ app.controller('reportTabController',
 			        }).then(function successCallback(response) {            
 			            request.mediaUrl = response.data.data.link;
 			            console.log(request.mediaUrl);
+			            console.log(JSON.stringify(request));
 						requestManager.postRequest(request).then(
 							function success(){
 								SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");

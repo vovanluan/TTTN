@@ -116,12 +116,15 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 			return deferred.promise;
 		},
 		postComment: function(comment){
-			console.log(JSON.stringify(comment));
-			$http.post(commentUrl, JSON.stringify(comment)).then(function successCallBack(response){
-				console.log("success");
-			}, function errorCallBack(response){
-
-			});
+			var deferred = $q.defer();
+			$http.post(commentUrl, JSON.stringify(comment))
+				.success(function(){
+					deferred.resolve();
+				})
+				.error(function(){
+					deferred.reject();
+				});
+			return deferred.promise;
 		}
 	};
 	return commentManager;
@@ -314,7 +317,7 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, 
-	baseUrl, AuthService, RouteClean, requestManager){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager){
 
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
@@ -328,6 +331,10 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	// Get all requests from server
 	requestManager.loadAllRequests().then(function(requests){
 		$rootScope.requests = requests;
+	});
+
+	commentManager.loadAllComments().then(function(comments){
+		$rootScope.comments = comments;
 	});
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
@@ -468,18 +475,11 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
 	$scope.countComment = {};
-	commentManager.loadAllComments().then(function(comments){
-		angular.forEach(comments, function(comment,index){
-			if(comment.requestId.serviceRequestId==$scope.issue_id)
-				$scope.comments.push(comment);
-		});
-		$scope.countComment = $scope.comments.length;
+	angular.forEach($rootScope.comments, function(comment,index){
+		if(comment.request.serviceRequestId==$scope.issue_id)
+			$scope.comments.push(comment);
 	});
-
-	$scope.getUsername = function  (comment) {
-		if(comment.guestId!=null) return comment.guestId.guestName;
-		else return comment.userId.userName;
-	}
+	$scope.countComment = $scope.comments.length;
 	//$scope.requestIndex = requests[$scope.issue_id];
 	for(var i = 0; i < $rootScope.requests.length; i++){
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
@@ -502,9 +502,13 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			comment.content = $scope.textContent;
 			//comment.postDatetime = dateTimeFilter(new Date());
 			console.log(JSON.stringify(comment));
-			commentManager.postComment(comment);
-
-			//reload all comments
+			commentManager.postComment(comment).then(
+				function success(){
+					$scope.comments.push(comment);					
+				},
+				function error(){
+					console.log("Error");
+				});
 			
 			$scope.textContent = '';
 		}

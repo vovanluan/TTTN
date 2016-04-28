@@ -40,14 +40,14 @@
 						<span class="info">{{request.happenDatetime}}
 							<span class="sep">•</span>
 							<span>Đăng bởi </span>
-							<a href="" class="user">Luan TEMP</a>
+							<a href="" class="user">{{request.user.name}}</a>
 						</span>
 						<ul class="issue-comments">
-							<li ng-repeat="comment in comments" ng-show="checkId({{comment.requestId.serviceRequestId}}, {{request.serviceRequestId}})">
+							<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 								<h5 class="user-name">
-									<a href="" class="user-link">{{getUsername(comment)}}</a>
+									<a href="" class="user-link">{{comment.user.name}}</a>
 								</h5>
-								<div class="commentText">{{comment.commentContent}}</div>
+								<div class="commentText">{{comment.content}}</div>
 								<span class="info">{{comment.postDatetime}}</span>
 							</li>
 						</ul>
