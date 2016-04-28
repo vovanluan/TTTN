@@ -12,7 +12,7 @@
 				<div class="issue-detail-panel">
 					<strong>Id phản ánh: </strong>{{requestIndex.serviceRequestId}}<br>
 					<strong>Ngày đăng bài: </strong>{{requestIndex.requestedDatetime}}<br>
-					<strong>Người đăng bài: </strong><a href="" class="user">Luan TEMP</a><br>
+					<strong>Người đăng bài: </strong><a href="" class="user">{{requestIndex.user.name}}</a><br>
 					<strong>Chi tiết phản ánh: </strong>{{requestIndex.description}}<br>
 					<strong>Trạng thái phản ánh: </strong>{{requestIndex.statusId}}	
 				</div>
@@ -65,7 +65,7 @@
 						<span class="info">{{request.happenDatetime}}
 							<span class="sep">•</span>
 							<span>Đăng bởi </span>
-							<a href="" class="user">Luan TEMP</a>
+							<a href="" class="user">{{requestIndex.user.name}}</a>
 						</span>
 						
 					</div>

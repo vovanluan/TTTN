@@ -2,6 +2,7 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-5">
+
 			<ul class="nav nav-tabs">
 				<li class="active" ng-class="{active: reportTab.isSelectedTab(1)}">
 					<a data-toggle="tab" href="" id="tab1" ng-click="reportTab.selectTab(1)">Bước 1</a>
@@ -140,7 +141,7 @@
 					<form action="form.html" id="step3Form">
 						<table class="stepTable">
 							<tr>
-								<td class="col-md-6">Tên hiển thị: {{user.name}}</td>
+								<td class="col-md-6">Tên hiển thị: </td>
 								<td>
 									<input class="form-control" type="text" id="name" required style="width:300px" readonly="true" ng-model="user.name">
 								</td>
@@ -284,8 +285,6 @@
 				<div id="dtBox"></div>
 
 			</div>
-		</div>
-		<div class="col-md-4"></div>
-
+	<div class="col-md-4"></div>
 	</div>
 </div>

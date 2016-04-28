@@ -8,11 +8,13 @@ app.controller('reportTabController',
 	$scope.district = districts["1"];
 	$scope.latitude = 10.78;
 	$scope.longitude = 106.65;
+
+	$scope.tabActivity=[true, false, false, false];
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
-    
+    var count = 0;
 	$scope.initMap = function(){
 		var myLatLng = {lat: 10.78, lng: 106.65};
 	    $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -59,31 +61,33 @@ app.controller('reportTabController',
 				$scope.initMap();
 		}
 	});
+	// Implement upload multiple images
 
-	$scope.upload = function() {
-		if($scope.picFile) {
-			console.log("upload");
-			Upload.base64DataUrl($scope.picFile).then(
-            function (url){
-               	var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
-				$http({
-		            headers: {'Authorization': 'Client-ID ' + clientId},
-		            url: '  https://api.imgur.com/3/upload',
-		            method: 'POST',            
-		            data: {
-		                image: uploadImageBase64, 
-		                'type':'base64'
-		            }
-		        }).then(function successCallback(response) {            
-		            request.mediaUrl = response.data.data.link;
-		        }, function errorCallback(err) {
-		        	console.log(err);
-		        });	               
-            });		
-		}
-		console.log("not upload");
+	// $scope.upload = function() {
+	// 	if($scope.picFile) {
+	// 		console.log("upload");
+	// 		Upload.base64DataUrl($scope.picFile).then(
+ //            function (url){
+ //               	var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
+	// 			$http({
+	// 	            headers: {'Authorization': 'Client-ID ' + clientId},
+	// 	            url: '  https://api.imgur.com/3/upload',
+	// 	            method: 'POST',            
+	// 	            data: {
+	// 	                image: uploadImageBase64, 
+	// 	                'type':'base64'
+	// 	            }
+	// 	        }).then(function successCallback(response) {            
+	// 	            request.mediaUrl = response.data.data.link;
+	// 	        }, function errorCallback(err) {
+	// 	        	console.log(err);
+	// 	        });	               
+ //            });		
+	// 	}
+	// 	console.log("not upload");
 
-	}
+	// }
+
 	this.selectTab = function(setTab){
 		$scope.tab = setTab;
 	};
@@ -118,23 +122,33 @@ app.controller('reportTabController',
 			            }
 			        }).then(function successCallback(response) {            
 			            request.mediaUrl = response.data.data.link;
+			            console.log(request.mediaUrl);
+						requestManager.postRequest(request).then(
+							function success(){
+								SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+								$location.path('/list');
+							},
+							function error(err){
+								SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+							});			            
 			        }, function errorCallback(err) {
+			        	SweetAlert.swal("Error!", "Xảy ra lỗi khi upload anh!", "error");
 			        });	               
 	            });
 		}
-		requestManager.postRequest(request).then(
-			function success(){
-				SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
-				$location.path('/list');
-			},
-			function error(err){
-				SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
-			});
+		else {
+			requestManager.postRequest(request).then(
+				function success(){
+					SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+					$location.path('/list');
+				},
+				function error(err){
+					SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+				});				
+		}
 	}
 
 	$scope.goNext = function () {
-		console.log($rootScope.user);
-		console.log($rootScope.userRole);
 	 	if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
 	 		$scope.tab = 4;
 	 	else {

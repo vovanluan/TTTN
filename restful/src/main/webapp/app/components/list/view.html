@@ -19,7 +19,13 @@
 			</div>
 			<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
 		</div>
+		<div ng-hide="requests.length"> 
+			<label>
+				Chưa có phản hồi nào
+			</label>
+		</div>		
 		<div id="issue-list">
+
 			<ul id="issue-list-ul" >
 				<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 					<div class="issue-image">

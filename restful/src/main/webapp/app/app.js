@@ -313,7 +313,8 @@ app.config(function($routeProvider, $httpProvider, jwtInterceptorProvider, $loca
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl, AuthService, RouteClean){
+app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, 
+	baseUrl, AuthService, RouteClean, requestManager){
 
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
@@ -323,16 +324,12 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, baseUrl
 	    }
   	});	
 
-  	$rootScope.user = {
-  		type: "",
-  		email: "",
-  		id: 1,
-  		name : "",
-  		token: "",
-  		identifyCar: "",
-  		passWord: "",
-  		phoneNumber: ""
-  	};
+  	$rootScope.user = {};
+  	// Get all requests from server
+	requestManager.loadAllRequests().then(function(requests){
+		$rootScope.requests = requests;
+	});
+  	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
@@ -369,7 +366,7 @@ app.controller('mainController',
 	  	}
 });
 
-app.controller('viewController', function($scope, requestManager, commentManager){
+app.controller('viewController', function($rootScope, $scope, requestManager, commentManager){
 	// Init map and request
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
@@ -377,7 +374,6 @@ app.controller('viewController', function($scope, requestManager, commentManager
 	    zoom: 11,
 	    center: myLatLng
 	}); 
-	$scope.requests = [];
 	$scope.markers = [];
 	$scope.comments = [];
 	commentManager.loadAllComments().then(function(comments){
@@ -392,44 +388,45 @@ app.controller('viewController', function($scope, requestManager, commentManager
 		if(comment.guestId!=null) return comment.guestId.guestName;
 		else return comment.userId.userName;
 	}
-	requestManager.loadAllRequests().then(function(requests){
-		$scope.requests = requests;
-		//create map 
-		$.each($scope.requests, function(index, request) {
-			var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-			var icon = "";
-			switch(request.statusId) {
-				case 0:
-					icon = 'green.png';
-					break;
-				case 1:
-					icon = 'blue.png';
-					break;
-				case 2:
-					icon = 'red.png';
-					break;
-			}
-			var marker = new google.maps.Marker({
-		        position: latlng,
-		        map: $scope.map,
-		        draggable: false,
-		        animation: google.maps.Animation.DROP,
-		        icon : iconBase + icon
-		    });			
-		  	var infowindow = new google.maps.InfoWindow({
-		    	content: request.serviceName
-		  	});			    
-			marker.addListener('mouseover', function() {
-			   	infowindow.open($scope.map, marker);
-			});			  	
-			marker.addListener('mouseout', function() {
-			   	infowindow.close($scope.map, marker);
-			});
-			$scope.markers.push(marker);
-		});		
-	});
 
-
+	//create map 
+	$.each($rootScope.requests, function(index, request) {
+		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+		var icon = "";
+		switch(request.statusId) {
+			case 0:
+			// blue circle
+				icon = 'http://i.imgur.com/UvpFBxi.png';
+				break;
+			case 1:
+			// green circle
+				icon = 'http://i.imgur.com/nqFCc3z.png';
+				break;
+			case 2:
+			// red circle
+				icon = 'http://i.imgur.com/xPYbdLB.png';
+				break;
+		}
+		var marker = new google.maps.Marker({
+	        position: latlng,
+	        map: $scope.map,
+	        draggable: false,
+	        animation: google.maps.Animation.DROP,
+	        //icon : iconBase + icon
+	        icon: icon
+	    });			
+	  	var infowindow = new google.maps.InfoWindow({
+	    	content: request.serviceName
+	  	});			    
+		marker.addListener('mouseover', function() {
+		   	infowindow.open($scope.map, marker);
+		});			  	
+		marker.addListener('mouseout', function() {
+		   	infowindow.close($scope.map, marker);
+		});
+		$scope.markers.push(marker);
+	});		
+	
 });
 
 app.controller('mainTabController', 
@@ -466,9 +463,8 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('issueDetailController',function($scope, requestManager, commentManager, $routeParams,dateTimeFilter){
+app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, $rootScope, $scope, requestManager, commentManager, $routeParams,dateTimeFilter){
 	$scope.requestIndex = {};
-	$scope.requests = []
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
 	$scope.countComment = {};
@@ -484,35 +480,38 @@ app.controller('issueDetailController',function($scope, requestManager, commentM
 		if(comment.guestId!=null) return comment.guestId.guestName;
 		else return comment.userId.userName;
 	}
-	requestManager.loadAllRequests().then(function(requests){
-		$scope.requests = requests;
-		//$scope.requestIndex = requests[$scope.issue_id];
-		for(var i = 0; i < requests.length; i++){
-			if($scope.issue_id == requests[i].serviceRequestId) {
-				$scope.requestIndex = requests[i];
-				break;
-			}			
-		}
+	//$scope.requestIndex = requests[$scope.issue_id];
+	for(var i = 0; i < $rootScope.requests.length; i++){
+		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
+			$scope.requestIndex = $rootScope.requests[i];
+			console.log($scope.requestIndex);
+			break;
+		}			
+	}
 
-	});
 
 	$scope.submitComment = function(requestObj){
-		var comment = new Object();
-		var guest = new Object();
+		if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
+		{
+			var comment = new Object();
+			var guest = new Object();
 
-		guest.guestId = 3;
-		guest.guestName = 'WenKai';
-		guest.guestEmail = 'tai@gmail.com';
+			comment.id = 1;
+			comment.user = $rootScope.user;
+			comment.request = requestObj;
+			comment.content = $scope.textContent;
+			//comment.postDatetime = dateTimeFilter(new Date());
+			console.log(JSON.stringify(comment));
+			commentManager.postComment(comment);
 
-		comment.guestId = guest;
-		comment.requestId = requestObj;
-		comment.commentContent = $scope.textContent;
-		comment.postDatetime = dateTimeFilter(new Date());
-
-		commentManager.postComment(comment);
-
-		$scope.textContent = '';
-
+			//reload all comments
+			
+			$scope.textContent = '';
+		}
+	 	else {
+	 		console.log("HERE");
+	 		Modal.logInModal();
+	 	}		
 	}
 });
 

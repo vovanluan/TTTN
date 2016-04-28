@@ -5,12 +5,14 @@
  */
 package service;
 
+import entity.NormalUser;
 import entity.Request;
 import java.util.List;
 import javafx.animation.Animation;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +22,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import support.Status;
 
 /**
@@ -59,15 +64,27 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
         super.remove(super.find(id));
     }
 
+//    @GET
+//    @Path("{id}")
+//    @XmlTransient
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Request find(@PathParam("id") Integer id) {
+//        return super.find(id);
+//    }
+    
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Request find(@PathParam("id") Integer id) {
-        return super.find(id);
+    public Response find(@PathParam("id") Integer id) {
+        Query queryEmail = em.createQuery("SELECT r FROM Request r WHERE r.serviceRequestId=:id");
+        queryEmail.setParameter("id", id);
+        Request result = (Request) queryEmail.getSingleResult();
+        return Response.ok(result).build();
     }
-
+    
     @GET
     @Override
+    @XmlTransient
     @Produces(MediaType.APPLICATION_JSON)
     public List<Request> findAll() {
         return super.findAll();
