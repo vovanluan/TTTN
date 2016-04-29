@@ -128,7 +128,13 @@ app.controller('reportTabController',
 						requestManager.postRequest(request).then(
 							function success(){
 								$scope.showSpinner = false;
-								SweetAlert.swal("OK!", "Bạn đã gửi yêu cầu thành công!", "success");
+								SweetAlert.swal({
+						        	title: "OK",
+						        	text: "Bạn đã gửi yêu cầu thành công!",
+						        	type: "success",
+						        	timer: 1000,
+						        	showConfirmButton: false
+						        });
 								requestManager.loadAllRequests().then(function(requests){
 									$rootScope.requests = requests;
 								});

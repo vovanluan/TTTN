@@ -344,7 +344,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
   		var email = tokenPayload.sub;
-  		$rootScope.userRole = tokenPayload.rol; 
+  		$rootScope.userRole = tokenPayload.rol;   	  		
   		var childUrl = ""; 		
   		switch($rootScope.userRole){
   			case 'normal_user':
@@ -360,9 +360,12 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		})
   		.success(function (data){
   			$rootScope.user = data;
+
   		})
   		.error(function(error){
   			console.log(error);
+  			delete $localStorage.token;
+  			$rootScope.userRole = null;
   		});
   	}
 });	
@@ -412,11 +415,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 
 	$scope.checkId = function(commentRequestId,serviceRequestId){
 		return (commentRequestId==serviceRequestId);
-	}
-
-	$scope.getUsername = function  (comment) {
-		if(comment.guestId!=null) return comment.guestId.guestName;
-		else return comment.userId.userName;
 	}
 
 	//create map 
@@ -506,7 +504,6 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	for(var i = 0; i < $rootScope.requests.length; i++){
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
 			$scope.requestIndex = $rootScope.requests[i];
-			console.log($scope.requestIndex);
 			break;
 		}			
 	}
@@ -518,14 +515,15 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			var comment = new Object();
 			var guest = new Object();
 
-			comment.id = 1;
 			comment.user = $rootScope.user;
+			console.log(JSON.stringify(comment.user));
 			comment.request = requestObj;
 			comment.content = $scope.textContent;
-			//comment.postDatetime = dateTimeFilter(new Date());
+			comment.postDatetime = dateTimeFilter(new Date());
 			commentManager.postComment(comment).then(
 				function success(){
-					$scope.comments.push(comment);					
+					$scope.comments.push(comment);
+					$rootScope.comments.push(comment);					
 				},
 				function error(){
 					console.log("Error");

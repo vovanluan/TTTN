@@ -1,6 +1,6 @@
 app.controller('signUpModalController',
 	function($rootScope, $scope, $http, $uibModalInstance, $localStorage, userUrl, 
-		AuthService, jwtHelper, Modal){
+		AuthService, jwtHelper, Modal, SweetAlert){
 	$scope.showSpinner = false;		
 	$scope.signUp = function(){
 		$scope.showSpinner = true;
@@ -18,20 +18,40 @@ app.controller('signUpModalController',
 			console.log(JSON.stringify(user));
             AuthService.signup(user, function(res) {
             	$scope.showSpinner = false;
-                if (res.type == false) {
-                    alert(res.data)
-                } else {
-		        	$rootScope.user = res;
-		            $localStorage.token = res.token;
-		            console.log(res);
-		            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
-		            $rootScope.userRole = tokenPayload.rol;
-		            console.log(tokenPayload);
-		            $uibModalInstance.close(res);
-                }
-            }, function() {
+	        	$rootScope.user = res;
+	            $localStorage.token = res.token;
+	            console.log(res);
+	            var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+	            $rootScope.userRole = tokenPayload.rol;
+	            console.log(tokenPayload);
+	            $uibModalInstance.close(res);
+		        SweetAlert.swal({
+		        	title: "OK",
+		        	text: "Bạn đã đăng ký thành công!",
+		        	type: "success",
+		        	timer: 1000,
+		        	showConfirmButton: false
+		        });
+            }, function(data, status, header, config) {
             	$scope.showSpinner = false;
-                $scope.error = 'Failed to signup';
+            	if(status == 409) {
+            		if(data == "email"){
+						$scope.error = "Email này đã được dùng để đăng ký một tài khoản khác. Nếu bạn đã có tài khoản, vui lòng đăng nhập!";
+						$scope.email = "";            			
+            		}
+            		else if (data == "id"){
+            			$scope.error = 'CMND này đã được dùng để đăng ký một tài khoản khác!';
+            			$scope.id = "";
+            		}
+            		else {	
+            			$scope.error ="Có lỗi khi đăng ký!";
+            		}
+            	}
+            	else{
+            		$scope.error = "Có lỗi khi đăng ký!";
+            	} 
+
+                
             });
 		}
 	};

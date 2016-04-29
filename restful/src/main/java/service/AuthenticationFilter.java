@@ -5,7 +5,7 @@
  */
 package service;
 
-import entity.User;
+import entity.NormalUser;
 import io.jsonwebtoken.Claims;
 import java.io.IOException;
 import java.util.Date;
@@ -61,15 +61,15 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         //Check if token exists in database 
         
         //TO DO: check token exists in database
-//        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
-//        q.setParameter("token", token);
-//        System.out.println("FUCK1");
-//        List<User> users = q.getResultList();
-//        System.out.println("FUCK2");
-//        if(users.isEmpty()){
-//            System.out.println("Token doesn't exist");
-//            throw new Exception();
-//        }
+        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
+        q.setParameter("token", token);
+        System.out.println("FUCK1");
+        List<NormalUser> users = q.getResultList();
+        System.out.println("FUCK2");
+        if(users.isEmpty()){
+            System.out.println("Token doesn't exist");
+            throw new Exception();
+        }
         //Check if token expired
         Claims claims = jwt.parseJWT(token);
         long nowMillis = System.currentTimeMillis();

@@ -46,7 +46,7 @@ public class AuthenticationEndpoint {
             // Update new token into database
             UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
             transaction.begin();
-            Query q = em.createQuery ("UPDATE User s SET s.token = :token WHERE s.email = :email");
+            Query q = em.createQuery ("UPDATE NormalUser s SET s.token = :token WHERE s.email = :email");
             q.setParameter ("email", email);
             q.setParameter ("token", token);
             int updated = q.executeUpdate();
@@ -66,6 +66,9 @@ public class AuthenticationEndpoint {
         q.setParameter("email", email);
         q.setParameter("password", (new General()).hashPassword(password));
         NormalUser user = (NormalUser) q.getSingleResult();
+        if(user.getComments().isEmpty()) {
+            System.out.println("Cannot cascade");
+        }
         if(user == null) 
             return false;
         return true;

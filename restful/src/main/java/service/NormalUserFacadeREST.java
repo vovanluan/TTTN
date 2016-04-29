@@ -54,13 +54,22 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Produces(MediaType.APPLICATION_JSON)
     public Response signUp(NormalUser user) throws Exception  {
-        // Check email or identifyCard exist
-        Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email OR u.identifyCard=:identifyCard");
+        // Check email already exist
+        Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
         queryEmail.setParameter("email", user.getEmail());
-        queryEmail.setParameter("identifyCard", user.getIdentifyCard());
-        List <NormalUser> result = queryEmail.getResultList();
-        if (!result.isEmpty())
-            return Response.status(Response.Status.CONFLICT).build();
+        List <NormalUser> emailResult = queryEmail.getResultList();
+        if (!emailResult.isEmpty())
+        {
+            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("email").build();
+        }
+        // Check identifyCard already exist
+        Query queryID = em.createQuery("SELECT u FROM NormalUser u WHERE u.identifyCard=:identifyCard");
+        queryID.setParameter("identifyCard", user.getIdentifyCard());
+        List <NormalUser> idResult = queryID.getResultList();
+        if (!idResult.isEmpty())
+        {
+            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("id").build();
+        }        
 
         // Hash password
         try {
@@ -75,8 +84,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         String token = (new JWT()).createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
         user.setToken(token);
         
-        super.create(user);
-        
+        em.persist(user);
         return Response.ok(user).build();
     }
     
