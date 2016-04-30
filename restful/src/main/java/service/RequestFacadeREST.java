@@ -7,6 +7,7 @@ package service;
 
 import entity.NormalUser;
 import entity.Request;
+import entity.User;
 import java.util.List;
 import javafx.animation.Animation;
 import javax.ejb.Stateless;
@@ -46,8 +47,18 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Consumes(MediaType.APPLICATION_JSON)
     public void createRequest(Request entity) {
         //TO DO: wrong enum
-        entity.setStatusId(Status.values()[0]);
-        super.create(entity);
+        try {
+            entity.setStatusId(Status.values()[0]);
+            User user = em.find(User.class, entity.getUser().getId());
+            entity.setUser(user);
+            //em.merge(user);
+            em.persist(entity);      
+            user.addRequest(entity);
+        }
+        catch (Exception e){
+            throw e;
+        }
+        
     }
 
     @PUT

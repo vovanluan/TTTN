@@ -6,6 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,7 +52,10 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    private Collection<Comment> comments = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Collection<Request> requests = new ArrayList<>();
     
     @Size(min = 1, max = 1000)
     @Column(name = "token")
@@ -64,12 +69,16 @@ public class User implements Serializable {
         this.token = token;
     }
 
-    public List<Comment> getComments() {
+    public Collection<Comment> getComments() {
         return comments;
     }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+    
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
     
     public Integer getId() {
@@ -96,4 +105,15 @@ public class User implements Serializable {
         this.email = email;
     }
    
+    public Collection<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
+
+    public void addRequest(Request request){
+        this.requests.add(request);
+    }
 }

@@ -42,8 +42,12 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Comment entity) {
         User user = em.find(User.class, entity.getUser().getId());
+        System.out.println("Email: " +user.getEmail());
+        user.addComment(entity);
         entity.setUser(user);
+        //em.merge(user);
         em.persist(entity);
+        
     }
 
     @PUT

@@ -6,6 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -109,8 +111,8 @@ public class Request implements Serializable {
     @OneToOne
     private User user;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "request", fetch=FetchType.LAZY)
-    private List<Comment> comments;    
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "request", fetch=FetchType.LAZY)
+    private Collection<Comment> comments = new ArrayList<>();
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -254,12 +256,16 @@ public class Request implements Serializable {
     }
 
     @XmlTransient
-    public List<Comment> getCommentList() {
+    public Collection<Comment> getCommentList() {
         return comments;
     }
 
     public void setCommentList(List<Comment> comments) {
         this.comments = comments;
+    }
+    
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
 
     public String getMediaUrl() {

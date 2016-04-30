@@ -409,9 +409,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	}); 
 	$scope.markers = [];
 	$scope.comments = [];
-	commentManager.loadAllComments().then(function(comments){
-		$scope.comments = comments;
-	});
+	$scope.comments = $rootScope.comments;
 
 	$scope.checkId = function(commentRequestId,serviceRequestId){
 		return (commentRequestId==serviceRequestId);
