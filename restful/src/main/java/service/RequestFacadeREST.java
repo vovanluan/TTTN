@@ -53,7 +53,8 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
             entity.setUser(user);
             //em.merge(user);
             em.persist(entity);      
-            user.addRequest(entity);
+            //error when adding this line. Update an exist managed entity
+            // user.addRequest(entity);
         }
         catch (Exception e){
             throw e;
