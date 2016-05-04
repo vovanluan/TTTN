@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="user_type")
-@XmlRootElement
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;

@@ -11,7 +11,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -20,8 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="normal_user")
 @DiscriminatorValue("normal")
-@XmlRootElement
-//@AttributeOverride(name = "email", column = @Column(name = "email", unique = true))
+
 public class NormalUser extends User {
     
     @Size(min = 1, max = 40)

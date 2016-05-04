@@ -27,8 +27,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import support.Status;
 
 /**
@@ -38,7 +36,6 @@ import support.Status;
 
 @Entity
 @Table(name = "request")
-@XmlRootElement
 
 public class Request implements Serializable {
 
@@ -255,7 +252,6 @@ public class Request implements Serializable {
         this.user = user;
     }
 
-    @XmlTransient
     public Collection<Comment> getCommentList() {
         return comments;
     }
