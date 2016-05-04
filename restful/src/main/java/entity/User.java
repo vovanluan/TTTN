@@ -51,7 +51,8 @@ public class User implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.LAZY)
+    // parent, but not owning-side
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<Comment> comments = new ArrayList<>();
     
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

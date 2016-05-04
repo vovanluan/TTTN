@@ -47,14 +47,12 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Consumes(MediaType.APPLICATION_JSON)
     public void createRequest(Request entity) {
         //TO DO: wrong enum
-        try {
+        try {  
             entity.setStatusId(Status.values()[0]);
+            em.persist(entity);
             User user = em.find(User.class, entity.getUser().getId());
             entity.setUser(user);
-            //em.merge(user);
-            em.persist(entity);      
-            //error when adding this line. Update an exist managed entity
-            // user.addRequest(entity);
+            user.getRequests().add(entity);
         }
         catch (Exception e){
             throw e;

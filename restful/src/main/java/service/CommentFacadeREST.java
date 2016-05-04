@@ -7,6 +7,7 @@ package service;
 
 import entity.Comment;
 import entity.NormalUser;
+import entity.Request;
 import entity.User;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -41,13 +42,15 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Comment entity) {
-        User user = em.find(User.class, entity.getUser().getId());
-        System.out.println("Email: " +user.getEmail());
-        user.addComment(entity);
-        entity.setUser(user);
-        //em.merge(user);
         em.persist(entity);
-        
+        User user = em.find(User.class, entity.getUser().getId());
+        Request request = em.find(Request.class, entity.getRequest().getServiceRequestId());
+        System.out.println("Email: " +user.getEmail());
+        System.out.println("Service Id: " + request.getServiceRequestId().toString());
+        user.getComments().add(entity);
+        request.getCommentList().add(entity);
+        entity.setUser(user);
+        entity.setRequest(request);
     }
 
     @PUT

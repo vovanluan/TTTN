@@ -49,7 +49,7 @@ public class Comment implements Serializable {
     private User user;
     
     @JoinColumn(name = "request_id", referencedColumnName = "service_request_id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Request request;
 
     public Request getRequest() {

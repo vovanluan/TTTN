@@ -20,8 +20,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -108,10 +108,10 @@ public class Request implements Serializable {
     private Status statusId;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @OneToOne
+    @ManyToOne(optional = false)
     private User user;
     
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "request", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
     private Collection<Comment> comments = new ArrayList<>();
     
     @Size(max = 200)
