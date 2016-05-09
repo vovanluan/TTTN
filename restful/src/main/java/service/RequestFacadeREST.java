@@ -5,11 +5,12 @@
  */
 package service;
 
+import entity.Comment;
 import entity.NormalUser;
 import entity.Request;
 import entity.User;
+import java.util.ArrayList;
 import java.util.List;
-import javafx.animation.Animation;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,7 +25,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import support.Status;
 
@@ -47,17 +47,10 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Consumes(MediaType.APPLICATION_JSON)
     public void createRequest(Request entity) {
         //TO DO: wrong enum
-        try {  
-            entity.setStatusId(Status.values()[0]);
-            em.persist(entity);
-            User user = em.find(User.class, entity.getUser().getId());
-            entity.setUser(user);
-            user.getRequests().add(entity);
-        }
-        catch (Exception e){
-            throw e;
-        }
-        
+        entity.setStatusId(Status.values()[0]);
+        super.create(entity);
+        User user = em.find(User.class, entity.getUser().getId());
+        user.addRequest(entity);
     }
 
     @PUT

@@ -7,7 +7,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -105,11 +104,11 @@ public class Request implements Serializable {
     private Status statusId;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
-    private Collection<Comment> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();    
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -252,17 +251,20 @@ public class Request implements Serializable {
         this.user = user;
     }
 
-    public Collection<Comment> getCommentList() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setCommentList(List<Comment> comments) {
-        this.comments = comments;
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setRequest(this);
     }
     
-    public void addComment(Comment comment){
-        this.comments.add(comment);
+    public void removeComment(Comment comment) {
+        comment.setRequest(null);
+        this.comments.remove(comment);
     }
+    
 
     public String getMediaUrl() {
         return mediaUrl;

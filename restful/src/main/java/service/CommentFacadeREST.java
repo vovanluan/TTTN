@@ -6,7 +6,6 @@
 package service;
 
 import entity.Comment;
-import entity.NormalUser;
 import entity.Request;
 import entity.User;
 import java.util.List;
@@ -45,12 +44,8 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
         em.persist(entity);
         User user = em.find(User.class, entity.getUser().getId());
         Request request = em.find(Request.class, entity.getRequest().getServiceRequestId());
-        System.out.println("Email: " +user.getEmail());
-        System.out.println("Service Id: " + request.getServiceRequestId().toString());
-        user.getComments().add(entity);
-        request.getCommentList().add(entity);
-        entity.setUser(user);
-        entity.setRequest(request);
+        user.addComment(entity);
+        request.addComment(entity);
     }
 
     @PUT
@@ -58,6 +53,10 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, Comment entity) {
         super.edit(entity);
+        User user = em.find(User.class, entity.getUser().getId());
+        Request request = em.find(Request.class, entity.getRequest().getServiceRequestId());
+        user.addComment(entity);
+        request.addComment(entity);
     }
 
     @DELETE
