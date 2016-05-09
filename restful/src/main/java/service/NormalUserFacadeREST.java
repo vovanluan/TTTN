@@ -5,9 +5,12 @@
  */
 package service;
 
+import entity.Comment;
 import entity.NormalUser;
+import entity.Request;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,7 +77,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         // Generate new token
         String token = (new JWT()).createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
         user.setToken(token);
-        
         super.create(user);
         
         return Response.ok(user).build();

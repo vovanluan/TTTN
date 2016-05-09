@@ -6,6 +6,8 @@
 package service;
 
 import entity.Comment;
+import entity.Request;
+import entity.User;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,6 +49,10 @@ public class CommentFacadeREST extends AbstractFacade<Comment> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Comment entity) {
         super.edit(entity);
+        User user = em.find(User.class, entity.getUser().getId());
+        Request request = em.find(Request.class, entity.getRequest().getServiceRequestId());
+        user.addComment(entity);
+        request.addComment(entity);
     }
 
     @DELETE

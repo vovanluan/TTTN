@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -18,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -106,11 +108,11 @@ public class Request implements Serializable {
     private Status statusId;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "request", fetch=FetchType.LAZY)
-    private List<Comment> comments;    
+    @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();    
     
     @Size(max = 200)
     @Column(name = "media_url", nullable = true)
@@ -253,13 +255,18 @@ public class Request implements Serializable {
         this.user = user;
     }
 
-    @XmlTransient
-    public List<Comment> getCommentList() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setCommentList(List<Comment> comments) {
-        this.comments = comments;
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setRequest(this);
+    }
+    
+    public void removeComment(Comment comment) {
+        comment.setRequest(null);
+        this.comments.remove(comment);
     }
 
     public String getMediaUrl() {

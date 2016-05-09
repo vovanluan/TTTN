@@ -65,8 +65,8 @@ public class AuthenticationEndpoint {
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email and u.passWord=:password");
         q.setParameter("email", email);
         q.setParameter("password", (new General()).hashPassword(password));
-        NormalUser user = (NormalUser) q.getSingleResult();
-        if(user == null) 
+        List<NormalUser> user = q.getResultList();
+        if(user.isEmpty()) 
             return false;
         return true;
     }

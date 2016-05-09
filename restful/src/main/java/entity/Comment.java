@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,11 +45,11 @@ public class Comment implements Serializable {
     private String content;
    
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
     @JoinColumn(name = "request_id", referencedColumnName = "service_request_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Request request;
 
     public Request getRequest() {

@@ -5,8 +5,11 @@
  */
 package service;
 
+import entity.Comment;
 import entity.NormalUser;
 import entity.Request;
+import entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.Animation;
 import javax.ejb.Stateless;
@@ -48,6 +51,8 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
         //TO DO: wrong enum
         entity.setStatusId(Status.values()[0]);
         super.create(entity);
+        User user = em.find(User.class, entity.getUser().getId());
+        user.addRequest(entity);
     }
 
     @PUT

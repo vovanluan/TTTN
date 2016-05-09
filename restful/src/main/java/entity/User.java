@@ -6,11 +6,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,8 +50,11 @@ public class User implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Comment> comments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Request> requests = new ArrayList<>();
     
     @Size(min = 1, max = 1000)
     @Column(name = "token")
@@ -67,10 +72,29 @@ public class User implements Serializable {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setUser(this);
     }
     
+    public void removeComment(Comment comment){
+        comment.setUser(null);
+        this.comments.remove(comment);
+    }
+    
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void addRequest(Request request) {
+        this.requests.add(request);
+        request.setUser(this);
+    }
+    
+    public void removeRequest(Request request){
+        request.setUser(null);
+        this.requests.remove(request);
+    }
     public Integer getId() {
         return Id;
     }
