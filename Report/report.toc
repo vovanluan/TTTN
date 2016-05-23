@@ -4,17 +4,18 @@
 \contentsline {section}{\numberline {2}C\IeC {\'a}c d\IeC {\d \uhorn } \IeC {\'a}n t\IeC {\uhorn }\IeC {\ohorn }ng t\IeC {\d \uhorn }}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}Tr\IeC {\^e}n th\IeC {\'\ecircumflex } gi\IeC {\'\ohorn }i}{4}{subsection.2.1}
 \contentsline {subsubsection}{\numberline {2.1.1}New York}{4}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Singapore}{5}{subsubsection.2.1.2}
-\contentsline {subsection}{\numberline {2.2}T\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{6}{subsection.2.2}
-\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Open311}{6}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}JPA}{6}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}AngularJS, HTML, CSS, Javascript}{6}{subsection.3.3}
-\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{6}{section.4}
-\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Client}{8}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Server}{8}{subsection.4.3}
-\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{8}{section.5}
-\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{8}{section.6}
-\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{8}{section.7}
-\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{9}{section.8}
+\contentsline {subsubsection}{\numberline {2.1.2}Singapore}{6}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}T\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{8}{subsection.2.2}
+\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Open311}{8}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`a} \IeC {\dj }\IeC {\d i}nh ngh\IeC {\~\i }a}{8}{subsubsection.3.1.1}
+\contentsline {subsection}{\numberline {3.2}JPA}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}AngularJS, HTML, CSS, Javascript}{8}{subsection.3.3}
+\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Client}{10}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Server}{10}{subsection.4.3}
+\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{10}{section.5}
+\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{10}{section.6}
+\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{10}{section.7}
+\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{11}{section.8}
