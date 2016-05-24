@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.22)  24 MAY 2016 17:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.22)  24 MAY 2016 22:06
 entering extended mode
 **./report.tex
 (report.tex
@@ -1242,6 +1242,9 @@ LaTeX Warning: Label `refhinh2' multiply defined.
 LaTeX Warning: Label `refhinh2' multiply defined.
 
 
+LaTeX Warning: Label `refhinh2' multiply defined.
+
+
 LaTeX Warning: Label `refhinh1' multiply defined.
 
 
@@ -1342,7 +1345,7 @@ LaTeX Info: Redefining \nameref on input line 96.
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
- <hcmut.png, id=102, 272.01625pt x 277.035pt>
+ <hcmut.png, id=122, 272.01625pt x 277.035pt>
 File: hcmut.png Graphic file (type png)
 
 <use hcmut.png>
@@ -1476,7 +1479,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 166--169
 
  []
 
-<2014-vietnam-edgi.PNG, id=150, 501.37312pt x 70.01157pt>
+<2014-vietnam-edgi.PNG, id=175, 501.37312pt x 70.01157pt>
 File: 2014-vietnam-edgi.PNG Graphic file (type png)
 
 <use 2014-vietnam-edgi.PNG>
@@ -1491,7 +1494,7 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 187.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [2] <2014-edgi.PNG, id=160, 501.37312pt x 331.2375pt>
+ [2] <2014-edgi.PNG, id=185, 501.37312pt x 331.2375pt>
 File: 2014-edgi.PNG Graphic file (type png)
 
 <use 2014-edgi.PNG>
@@ -1581,13 +1584,13 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 219.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [4] <newyork.PNG, id=177, 1193.20781pt x 499.11469pt>
+ [4] <newyork.PNG, id=202, 1193.20781pt x 499.11469pt>
 File: newyork.PNG Graphic file (type png)
 
 <use newyork.PNG>
 Package pdftex.def Info: newyork.PNG used on input line 223.
 (pdftex.def)             Requested size: 357.9651pt x 149.73555pt.
- <newyork_complaint.PNG, id=181, 983.17313pt x 484.81125pt>
+ <newyork_complaint.PNG, id=206, 983.17313pt x 484.81125pt>
 File: newyork_complaint.PNG Graphic file (type png)
 
 <use newyork_complaint.PNG>
@@ -1597,7 +1600,7 @@ File: hcmut.png Graphic file (type png)
  <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 239.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [5 <./newyork.PNG> <./newyork_complaint.PNG>] <newyork_payment.PNG, id=191, 98
+ [5 <./newyork.PNG> <./newyork_complaint.PNG>] <newyork_payment.PNG, id=216, 98
 4.67876pt x 481.04718pt>
 File: newyork_payment.PNG Graphic file (type png)
 
@@ -1605,14 +1608,14 @@ File: newyork_payment.PNG Graphic file (type png)
 Package pdftex.def Info: newyork_payment.PNG used on input line 243.
 (pdftex.def)             Requested size: 393.86452pt x 192.41545pt.
 
-<newyork_android.PNG, id=192, 322.95656pt x 263.48438pt>
+<newyork_android.PNG, id=217, 322.95656pt x 263.48438pt>
 File: newyork_android.PNG Graphic file (type png)
 
 <use newyork_android.PNG>
 Package pdftex.def Info: newyork_android.PNG used on input line 255.
 (pdftex.def)             Requested size: 188.21286pt x 153.55275pt.
 
-<newyork_iphones.PNG, id=193, 500.62032pt x 433.62pt>
+<newyork_iphones.PNG, id=218, 500.62032pt x 433.62pt>
 File: newyork_iphones.PNG Graphic file (type png)
 
 <use newyork_iphones.PNG>
@@ -1623,7 +1626,7 @@ File: hcmut.png Graphic file (type png)
 Package pdftex.def Info: hcmut.png used on input line 271.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
  [6 <./newyork_payment.PNG> <./newyork_android.PNG> <./newyork_iphones.PNG>]
-<singapore.PNG, id=207, 961.34157pt x 517.18219pt>
+<singapore.PNG, id=232, 961.34157pt x 517.18219pt>
 File: singapore.PNG Graphic file (type png)
  <use singapore.PNG>
 Package pdftex.def Info: singapore.PNG used on input line 284.
@@ -1712,116 +1715,29 @@ File: hcmut.png Graphic file (type png)
 Package pdftex.def Info: hcmut.png used on input line 330.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
  [8]
-
-Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 348.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ecircumflex' on input line 348.
-
-
-Package hyperref Warning: Composite letter `\textdotbelow+\uhorn'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 348.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\uhorn' on input line 348.
-
-
-Package hyperref Warning: Composite letter `\textdotbelow+\uhorn'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 348.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\uhorn' on input line 348.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ohorn' on input line 349.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\h' on input line 349.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ohorn' on input line 349.
-
-
-Package hyperref Warning: Composite letter `\texttilde+\uhorn'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\texttilde' on input line 349.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\uhorn' on input line 349.
-
-
-Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 349.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ecircumflex' on input line 349.
-
 File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 356.
+ <use hcmut.png>
+Package pdftex.def Info: hcmut.png used on input line 361.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [9] <entity-diagram.png, id=231, 644.4075pt x 575.90157pt>
-File: entity-diagram.png Graphic file (type png)
 
-<use entity-diagram.png>
-Package pdftex.def Info: entity-diagram.png used on input line 361.
-(pdftex.def)             Requested size: 418.85991pt x 374.33159pt.
+[9]
 
-Overfull \hbox (0.60623pt too wide) in paragraph at lines 361--362
- [] 
- []
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\u' on input line 373.
-
-
-Package hyperref Warning: Composite letter `\textacute+\abreve'
+Package hyperref Warning: Composite letter `\textacute+\ohorn'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textacute' on input line 373.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\abreve' on input line 373.
-
-
-Package hyperref Warning: Composite letter `\textdotbelow+u'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 373.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\h' on input line 376.
+(hyperref)                removing `\textacute' on input line 376.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\ohorn' on input line 376.
 
 
-Package hyperref Warning: Composite letter `\textdotbelow+\ocircumflex'
+Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textdotbelow' on input line 376.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ocircumflex' on input line 376.
-
-
-Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\dj' on input line 376.
+(hyperref)                removing `\ecircumflex' on input line 376.
 
 
 Package hyperref Warning: Composite letter `\textasciigrave+\ecircumflex'
@@ -1832,142 +1748,354 @@ Package hyperref Warning: Composite letter `\textasciigrave+\ecircumflex'
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\ecircumflex' on input line 376.
 
+<freelancer.PNG, id=259, 989.19562pt x 584.1825pt>
+File: freelancer.PNG Graphic file (type png)
+ <use freelancer.PNG>
+Package pdftex.def Info: freelancer.PNG used on input line 385.
+(pdftex.def)             Requested size: 296.76097pt x 175.25609pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--380
 
- []
-
-File: hcmut.png Graphic file (type png)
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 380.
-(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [10 <./entity-diagram.png>]
-
-Package hyperref Warning: Composite letter `\textacute+\ecircumflex'
-(hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textacute' on input line 388.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ecircumflex' on input line 388.
+(hyperref)                removing `\dj' on input line 391.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\abreve'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 391.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\abreve' on input line 391.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 391.
+
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png used on input line 400.
+(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
+ [10]
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\u' on input line 401.
+
+
+Package hyperref Warning: Composite letter `\textacute+\ocircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textacute' on input line 401.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ocircumflex' on input line 401.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 401.
+
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png used on input line 420.
+(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
+ [11 <./freelancer.PNG>]
+
+Package hyperref Warning: Composite letter `\textasciigrave+\acircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciigrave' on input line 425.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\acircumflex' on input line 425.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 425.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\UHORN' on input line 434.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 434.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ohorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 434.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ohorn' on input line 434.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\dj' on input line 434.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 434.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 434.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 462.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 462.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\uhorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 462.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 462.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\uhorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 462.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 462.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ohorn' on input line 463.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 463.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ohorn' on input line 463.
+
+
+Package hyperref Warning: Composite letter `\texttilde+\uhorn'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\texttilde' on input line 463.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\uhorn' on input line 463.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 463.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 463.
+
+File: hcmut.png Graphic file (type png)
+<use hcmut.png>
+Package pdftex.def Info: hcmut.png used on input line 465.
+(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
+ [12] <entity-diagram.png, id=281, 644.4075pt x 575.90157pt>
+File: entity-diagram.png Graphic file (type png)
+
+<use entity-diagram.png>
+Package pdftex.def Info: entity-diagram.png used on input line 475.
+(pdftex.def)             Requested size: 418.85991pt x 374.33159pt.
+
+Overfull \hbox (0.60623pt too wide) in paragraph at lines 475--476
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\u' on input line 487.
+
+
+Package hyperref Warning: Composite letter `\textacute+\abreve'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textacute' on input line 487.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\abreve' on input line 487.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+u'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 487.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\h' on input line 490.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ohorn' on input line 490.
+
+
+Package hyperref Warning: Composite letter `\textdotbelow+\ocircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textdotbelow' on input line 490.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ocircumflex' on input line 490.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\dj' on input line 490.
+
+
+Package hyperref Warning: Composite letter `\textasciigrave+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textasciigrave' on input line 490.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 490.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--494
+
+ []
+
+
+Package hyperref Warning: Composite letter `\textacute+\ecircumflex'
+(hyperref)                not defined in PD1 encoding,
+(hyperref)                removing `\textacute' on input line 502.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\ecircumflex' on input line 502.
 
 
 Package hyperref Warning: Composite letter `\textdotbelow+\acircumflex'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 388.
+(hyperref)                removing `\textdotbelow' on input line 502.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\acircumflex' on input line 388.
+(hyperref)                removing `\acircumflex' on input line 502.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--392
+Underfull \hbox (badness 10000) in paragraph at lines 503--506
 
  []
 
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 392.
+Package pdftex.def Info: hcmut.png used on input line 506.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [11]
+ [13]
+File: hcmut.png Graphic file (type png)
+ <use hcmut.png>
+Package pdftex.def Info: hcmut.png used on input line 506.
+(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
+ [14 <./entity-diagram.png>]
 
 Package hyperref Warning: Composite letter `\textdotbelow+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 394.
+(hyperref)                removing `\textdotbelow' on input line 508.
 
 
 Package hyperref Warning: Composite letter `\textdotbelow+u'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 394.
+(hyperref)                removing `\textdotbelow' on input line 508.
 
 
-Underfull \hbox (badness 6380) in paragraph at lines 397--398
+Underfull \hbox (badness 6380) in paragraph at lines 511--512
 []\T5/cmr/m/n/10 United Na-tion (13/01/2010). \T5/cmr/m/it/10 A Gen-eral Frame-
 work for E-Government: Def-i-ni-
  []
 
 
-Underfull \hbox (badness 7012) in paragraph at lines 397--398
+Underfull \hbox (badness 7012) in paragraph at lines 511--512
 \T5/cmr/m/it/10 tion - Ma-tu-rity Chal-lenges, Op-por-tu-ni-ties, and Suc-cess.
  \T5/cmr/m/n/10 Truy cªp 18/05/2016
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 397--398
+Underfull \hbox (badness 10000) in paragraph at lines 511--512
 \T5/cmr/m/n/10 t¤i [][]$\T5/cmtt/m/n/10 http : / / www . unpan . org / Library 
 / MajorPublications / UNEGovernmentSurvey /$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 397--398
+Underfull \hbox (badness 10000) in paragraph at lines 511--512
 $\T5/cmtt/m/n/10 PublicEGovernanceSurveyintheNews / tabid / 651 / mctl / Articl
 eView / ModuleId / 1555 /$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 400--401
+Underfull \hbox (badness 10000) in paragraph at lines 514--515
 \T5/cmr/m/n/10 Truy cªp 18/05/2016 t¤i [][]$\T5/cmtt/m/n/10 http : / / www . wo
 rldbank . org / en / topic / ict / brief /$
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 406--407
+Underfull \hbox (badness 2012) in paragraph at lines 520--521
 []\T5/cmr/m/n/10 Ministry of Fi-nance Sin-ga-pore (4/9/2013). \T5/cmr/m/it/10 E
 -Government in Sin-ga-pore. \T5/cmr/m/n/10 Truy cªp
  []
 
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 413.
+Package pdftex.def Info: hcmut.png used on input line 531.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [12pdfTeX warning (ext4): destination with the same identifier (name{cite.bib3
+ [15pdfTeX warning (ext4): destination with the same identifier (name{cite.bib3
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.413 \newpage
+l.531 \newpage
               ] (report.lof)
 \tf@lof=\write6
 \openout6 = `report.lof'.
 
 File: hcmut.png Graphic file (type png)
  <use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 433.
+Package pdftex.def Info: hcmut.png used on input line 551.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [13]
+ [16]
 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 436.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 436.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
 (report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 436.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 436.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 8784C8F225F35D9864ABA0FE71ECD1FB;1902.
 
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: FE3F33875799476E24F60CD282A39CEB;1480
-(rerunfilecheck)             After:  40DF3340B384EF83BC6E41BA09C68470;1457.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 436.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21274 strings out of 493634
- 398083 string characters out of 3143744
- 469121 words of memory out of 3000000
- 24167 multiletter control sequences out of 15000+200000
+ 21301 strings out of 493634
+ 398516 string characters out of 3143744
+ 470155 words of memory out of 3000000
+ 24182 multiletter control sequences out of 15000+200000
  19793 words of font info for 41 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,25n,76p,908b,16715s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,25n,76p,908b,16723s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y10.pfb><C:/Program Files/vntex-3.1.9/fonts/type1/vntex/vnr/vnbx10.pfb><C:/Prog
 ram Files/vntex-3.1.9/fonts/type1/vntex/vnr/vnbx12.pfb><C:/Program Files/vntex-
@@ -1976,9 +2104,9 @@ ram Files/vntex-3.1.9/fonts/type1/vntex/vnr/vnbx12.pfb><C:/Program Files/vntex-
 b><C:/Program Files/vntex-3.1.9/fonts/type1/vntex/vnr/vnti10.pfb><C:/Program Fi
 les/vntex-3.1.9/fonts/type1/vntex/vnr/vntt10.pfb><C:/Program Files/vntex-3.1.9/
 fonts/type1/vntex/vnr/vntt8.pfb>
-Output written on report.pdf (14 pages, 2134025 bytes).
+Output written on report.pdf (17 pages, 2576454 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 255 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 300 words of extra memory for PDF output out of 10000 (max. 10000000)
 
