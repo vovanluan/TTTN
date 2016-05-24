@@ -349,12 +349,12 @@ Ngoài ra, Đà Nẵng còn cung cấp "Tổng đài dịch vụ công 1022" tr�
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=0.9\linewidth]{zalo-danang-1.jpg}
+  \includegraphics[width=0.7\linewidth]{zalo-danang-1.jpg}
   \caption{}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=0.9\linewidth]{zalo-danang-2.jpg}
+  \includegraphics[width=0.7\linewidth]{zalo-danang-2.jpg}
   \caption{}
   \label{fig:sub2}
 \end{subfigure}
@@ -365,43 +365,41 @@ Việc sử dụng các mạng xã hội như Facebook và Zalo vào mô hình C
 \section{Kiến thức nền}
 \subsection{Open311}
 \subsubsection{Giới thiệu và định nghĩa}
-Hiện nay, dựa vào sự phát triển của CNTT người dân có thể gửi những yêu cầu, nguyện vọng của bản thân đến chính quyền thông qua email. Một email báo cáo việc một miếng đá lát trên đường Nguyễn Huệ bị vỡ được gửi đến một nhân viên chính quyền. Người này sẽ lấy đoạn email và lưu vào cơ sở dữ liệu, sau đó gửi đến cho ai đó cần quan tâm giải quyết vấn đề này.
-
-Thay vì vậy, nếu báo cáo về miếng đá bị vỡ được gửi trực tiếp từ người dân đến ban ngành quản lý việc sửa chữa miếng đá vỡ ấy, sẽ giảm thiểu rất nhiều chi phí quản lý. Đồng thời, thông báo người dân khi vấn đề của họ đã được giải quyết.
-
-Tạo ra một giao thức để người dân có thể gửi yêu cầu dịch vụ tới chính quyền, và nhận thông báo về tiến trình giải quyết vấn đề đó. Ý tưởng này đã được nhóm kỹ sư tại OpenPlans quan tâm và họ đã xây dựng một dự án có tên Open311.
-
+Hiện nay, dựa vào sự phát triển của CNTT người dân có thể gửi những yêu cầu, nguyện vọng của bản thân đến chính quyền thông qua email. Một email báo cáo việc một miếng đá lát trên đường Nguyễn Huệ bị vỡ được gửi đến một nhân viên chính quyền. Người này sẽ lấy đoạn email và lưu vào cơ sở dữ liệu, sau đó gửi đến cho ai đó cần quan tâm giải quyết vấn đề này.\\
+\\
+Thay vì vậy, nếu báo cáo về miếng đá bị vỡ được gửi trực tiếp từ người dân đến ban ngành quản lý việc sửa chữa miếng đá vỡ ấy, sẽ giảm thiểu rất nhiều chi phí quản lý. Đồng thời, thông báo người dân khi vấn đề của họ đã được giải quyết. Vấn đề bức thiết là phải tạo ra một giao thức để người dân có thể gửi yêu cầu dịch vụ tới chính quyền, và nhận thông báo về tiến trình giải quyết vấn đề đó. Ý tưởng này đã được nhóm kỹ sư tại OpenPlans quan tâm và họ đã xây dựng một dự án có tên Open311.\\
+\\
 Open311 là một phương thức mà người dân có thể thông qua nó để gửi các yêu cầu dịch vụ vào danh sách các việc cần làm của chính quyền địa phương, và là cách thức để người dân biết được tiến trình xử lý của chính quyền nhanh chóng và dễ dàng.
 \subsubsection{GeoReport v2}
 GeoReport v2 là một API của Open311 để xây dựng những ứng dụng có thể xem và báo cáo những vấn đền đến chính quyền.
 Một số thành phố đang sử dụng chuẩn GeoReport v2:
 \begin{itemize}
-	\item[•]\textbf{Helsinki, Finland}
-	\item[•]\textbf{Bonn, Germany}
-	\item[•]\textbf{Lamía, Greece}
-	\item[•]\textbf{Chicago, Illinois}
-	\item[•]\textbf{Toronto, Ontario}
-	\item[•]\textbf{San Francisco, California}
-	\item[•]\textbf{Washington D.C}
-	\item[•]\textbf{Boston, Massachusetts}
-	\item[•]\textbf{Baltimore, Maryland}
-	\item[•]\textbf{Bloomington, Indiana}		\item[•]\textbf{New Haven, Connecticut}							
+    \item[•]Helsinki, Finland
+	\item[•]Bonn, Germany
+	\item[•]Lamía, Greece
+	\item[•]Chicago, Illinois
+	\item[•]Toronto, Ontario
+	\item[•]San Francisco, California
+	\item[•]Washington D.C
+	\item[•]Boston, Massachusetts
+	\item[•]Baltimore, Maryland
+	\item[•]Bloomington, Indiana
+	\item[•]New Haven, Connecticut
 \end{itemize}
 Tiếp theo, nhóm xin giới thiệu một số thông tin cơ bản về chuẩn GeoReport v2
 \paragraph{Quốc tế hóa và mã hóa}
 \paragraph*{Định dạng ngày/giờ}
-Mọi ô dữ liệu kiểu ngày/giờ phải định dạng theo một tập con chung của chuẩn ISO 8601. Thông tin về múi giờ phải có trong định dạng.
-
+Mọi ô dữ liệu kiểu ngày/giờ phải định dạng theo một tập con chung của chuẩn ISO 8601. Thông tin về múi giờ phải có trong định dạng.\\
+\\
 Ví dụ: 1994-11-05T08:15:30-05:00 nghĩa là  November 5, 1994, 8:15:30 am, US Eastern Standard Time
 
 \paragraph*{Mã hóa}
-GeoReport yêu cầu sử dụng UTF-8. Mọi kí tự trả về ở dạng XML, JSON, hoặc bất kỳ một định dạng khác phải được mã hóa dưới dạng UTF-8. Những HTTP headers phải thêm thuộc tính encoding=”UTF-8”. Mọi kí tự nhận được bởi dịch vụ từ client sẽ được đưa về UTF-8 và được giải mã một cách phù hợp. 
+GeoReport yêu cầu sử dụng UTF-8. Mọi kí tự trả về ở dạng XML, JSON, hoặc bất kỳ một định dạng khác phải được mã hóa dưới dạng UTF-8. Những HTTP headers phải thêm thuộc tính encoding = "UTF-8". Mọi kí tự nhận được bởi dịch vụ từ client sẽ được đưa về UTF-8 và được giải mã một cách phù hợp. 
 \paragraph{Hỗ trợ định dạng}
 Định dạng có thể sử dụng trong GeoReport v2 là XML hoặc JSON.
-HTTP content-type headers của mỗi định dạng sẽ là: 
-
-\textbf{XML}: Content-Type: text/xml; charset=utf-8
-
+HTTP content-type headers của mỗi định dạng sẽ là: \\
+\\
+\textbf{XML}: Content-Type: text/xml; charset=utf-8\\
 \textbf{JSON}: Content-Type: application/json; charset=utf-8
 \paragraph{Các phương thức API}
 \begin{itemize}

@@ -6,28 +6,30 @@
 \contentsline {subsubsection}{\numberline {2.1.1}New York}{4}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}Singapore}{7}{subsubsection.2.1.2}
 \contentsline {subsection}{\numberline {2.2}T\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{8}{subsection.2.2}
-\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{8}{section.3}
-\contentsline {subsection}{\numberline {3.1}Open311}{8}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`a} \IeC {\dj }\IeC {\d i}nh ngh\IeC {\~\i }a}{8}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}GeoReport v2}{8}{subsubsection.3.1.2}
-\contentsline {paragraph}{\numberline {3.1.2.1}Qu\IeC {\'\ocircumflex }c t\IeC {\'\ecircumflex } h\IeC {\'o}a v\IeC {\`a} m\IeC {\~a} h\IeC {\'o}a}{9}{paragraph.3.1.2.1}
-\contentsline {paragraph}{\numberline {3.1.2.2}H\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } \IeC {\dj }\IeC {\d i}nh d\IeC {\d a}ng}{9}{paragraph.3.1.2.2}
-\contentsline {paragraph}{\numberline {3.1.2.3}C\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng th\IeC {\'\uhorn }c API}{9}{paragraph.3.1.2.3}
-\contentsline {paragraph}{\numberline {3.1.2.4}C\IeC {\'a}c thu\IeC {\d \ocircumflex }c t\IeC {\'\i }nh c\IeC {\`\acircumflex }n c\IeC {\'o} trong c\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{9}{paragraph.3.1.2.4}
-\contentsline {subsection}{\numberline {3.2}RESTful Web Service}{10}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}JPA}{10}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}AngularJS}{10}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } AngularJS}{10}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}C\IeC {\'a}c \IeC {\dj }\IeC {\d \abreve }c t\IeC {\'\i }nh c\IeC {\h u}a AngularJS}{10}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\'\ocircumflex }t l\IeC {\~o}i c\IeC {\h u}a AngularJS}{11}{subsubsection.3.4.3}
-\contentsline {subsubsection}{\numberline {3.4.4}C\IeC {\'a}c th\IeC {\`a}nh ph\IeC {\`\acircumflex }n c\IeC {\h u}a AngularJS}{12}{subsubsection.3.4.4}
-\contentsline {subsubsection}{\numberline {3.4.5}\IeC {\UHORN }u v\IeC {\`a} nh\IeC {\uhorn }\IeC {\d \ohorn }c \IeC {\dj }i\IeC {\h \ecircumflex }m}{12}{subsubsection.3.4.5}
-\contentsline {subsection}{\numberline {3.5}Android}{13}{subsection.3.5}
-\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{13}{section.4}
-\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{13}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Client}{13}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Server}{13}{subsection.4.3}
-\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{13}{section.5}
-\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{13}{section.6}
-\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{14}{section.7}
-\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{15}{section.8}
+\contentsline {subsubsection}{\numberline {2.2.1}Th\IeC {\`a}nh ph\IeC {\'\ocircumflex } H\IeC {\`\ocircumflex } Ch\IeC {\'\i } Minh}{8}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Th\IeC {\`a}nh ph\IeC {\'\ocircumflex } \IeC {\DJ }\IeC {\`a} N\IeC {\~\abreve }ng}{8}{subsubsection.2.2.2}
+\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Open311}{10}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`a} \IeC {\dj }\IeC {\d i}nh ngh\IeC {\~\i }a}{10}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}GeoReport v2}{11}{subsubsection.3.1.2}
+\contentsline {paragraph}{\numberline {3.1.2.1}Qu\IeC {\'\ocircumflex }c t\IeC {\'\ecircumflex } h\IeC {\'o}a v\IeC {\`a} m\IeC {\~a} h\IeC {\'o}a}{12}{paragraph.3.1.2.1}
+\contentsline {paragraph}{\numberline {3.1.2.2}H\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } \IeC {\dj }\IeC {\d i}nh d\IeC {\d a}ng}{12}{paragraph.3.1.2.2}
+\contentsline {paragraph}{\numberline {3.1.2.3}C\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng th\IeC {\'\uhorn }c API}{13}{paragraph.3.1.2.3}
+\contentsline {paragraph}{\numberline {3.1.2.4}C\IeC {\'a}c thu\IeC {\d \ocircumflex }c t\IeC {\'\i }nh c\IeC {\`\acircumflex }n c\IeC {\'o} trong c\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{13}{paragraph.3.1.2.4}
+\contentsline {subsection}{\numberline {3.2}RESTful Web Service}{14}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}JPA}{14}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}AngularJS}{14}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } AngularJS}{14}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}C\IeC {\'a}c \IeC {\dj }\IeC {\d \abreve }c t\IeC {\'\i }nh c\IeC {\h u}a AngularJS}{14}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\'\ocircumflex }t l\IeC {\~o}i c\IeC {\h u}a AngularJS}{15}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}C\IeC {\'a}c th\IeC {\`a}nh ph\IeC {\`\acircumflex }n c\IeC {\h u}a AngularJS}{15}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}\IeC {\UHORN }u v\IeC {\`a} nh\IeC {\uhorn }\IeC {\d \ohorn }c \IeC {\dj }i\IeC {\h \ecircumflex }m}{16}{subsubsection.3.4.5}
+\contentsline {subsection}{\numberline {3.5}Android}{16}{subsection.3.5}
+\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{16}{section.4}
+\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{16}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Client}{18}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Server}{18}{subsection.4.3}
+\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{18}{section.5}
+\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{18}{section.6}
+\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{18}{section.7}
+\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{19}{section.8}
