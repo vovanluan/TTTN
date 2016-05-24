@@ -27,6 +27,16 @@
 \usepackage{subcaption}
 \usetikzlibrary{arrows,snakes,backgrounds}
 \usepackage{hyperref}
+\usepackage{titlesec}
+
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
 %\usepackage{pstcol} 								% PSTricks with the standard color package
 
@@ -355,9 +365,163 @@ Việc sử dụng các mạng xã hội như Facebook và Zalo vào mô hình C
 \section{Kiến thức nền}
 \subsection{Open311}
 \subsubsection{Giới thiệu và định nghĩa}
+Hiện nay, dựa vào sự phát triển của CNTT người dân có thể gửi những yêu cầu, nguyện vọng của bản thân đến chính quyền thông qua email. Một email báo cáo việc một miếng đá lát trên đường Nguyễn Huệ bị vỡ được gửi đến một nhân viên chính quyền. Người này sẽ lấy đoạn email và lưu vào cơ sở dữ liệu, sau đó gửi đến cho ai đó cần quan tâm giải quyết vấn đề này.
+
+Thay vì vậy, nếu báo cáo về miếng đá bị vỡ được gửi trực tiếp từ người dân đến ban ngành quản lý việc sửa chữa miếng đá vỡ ấy, sẽ giảm thiểu rất nhiều chi phí quản lý. Đồng thời, thông báo người dân khi vấn đề của họ đã được giải quyết.
+
+Tạo ra một giao thức để người dân có thể gửi yêu cầu dịch vụ tới chính quyền, và nhận thông báo về tiến trình giải quyết vấn đề đó. Ý tưởng này đã được nhóm kỹ sư tại OpenPlans quan tâm và họ đã xây dựng một dự án có tên Open311.
+
+Open311 là một phương thức mà người dân có thể thông qua nó để gửi các yêu cầu dịch vụ vào danh sách các việc cần làm của chính quyền địa phương, và là cách thức để người dân biết được tiến trình xử lý của chính quyền nhanh chóng và dễ dàng.
+\subsubsection{GeoReport v2}
+GeoReport v2 là một API của Open311 để xây dựng những ứng dụng có thể xem và báo cáo những vấn đền đến chính quyền.
+Một số thành phố đang sử dụng chuẩn GeoReport v2:
+\begin{itemize}
+	\item[•]\textbf{Helsinki, Finland}
+	\item[•]\textbf{Bonn, Germany}
+	\item[•]\textbf{Lamía, Greece}
+	\item[•]\textbf{Chicago, Illinois}
+	\item[•]\textbf{Toronto, Ontario}
+	\item[•]\textbf{San Francisco, California}
+	\item[•]\textbf{Washington D.C}
+	\item[•]\textbf{Boston, Massachusetts}
+	\item[•]\textbf{Baltimore, Maryland}
+	\item[•]\textbf{Bloomington, Indiana}		\item[•]\textbf{New Haven, Connecticut}							
+\end{itemize}
+Tiếp theo, nhóm xin giới thiệu một số thông tin cơ bản về chuẩn GeoReport v2
+\paragraph{Quốc tế hóa và mã hóa}
+\paragraph*{Định dạng ngày/giờ}
+Mọi ô dữ liệu kiểu ngày/giờ phải định dạng theo một tập con chung của chuẩn ISO 8601. Thông tin về múi giờ phải có trong định dạng.
+
+Ví dụ: 1994-11-05T08:15:30-05:00 nghĩa là  November 5, 1994, 8:15:30 am, US Eastern Standard Time
+
+\paragraph*{Mã hóa}
+GeoReport yêu cầu sử dụng UTF-8. Mọi kí tự trả về ở dạng XML, JSON, hoặc bất kỳ một định dạng khác phải được mã hóa dưới dạng UTF-8. Những HTTP headers phải thêm thuộc tính encoding=”UTF-8”. Mọi kí tự nhận được bởi dịch vụ từ client sẽ được đưa về UTF-8 và được giải mã một cách phù hợp. 
+\paragraph{Hỗ trợ định dạng}
+Định dạng có thể sử dụng trong GeoReport v2 là XML hoặc JSON.
+HTTP content-type headers của mỗi định dạng sẽ là: 
+
+\textbf{XML}: Content-Type: text/xml; charset=utf-8
+
+\textbf{JSON}: Content-Type: application/json; charset=utf-8
+\paragraph{Các phương thức API}
+\begin{itemize}
+	\item \textbf{GET Service List} cung cấp danh sách các yêu cầu dịch vụ và các mã code tương ứng của từng loại dịch vụ.
+	\item \textbf{GET Service Definition} định nghĩa các thuộc tính tương ứng với một mã dịch vụ.
+	\item \textbf{POST Service Request} gửi một yêu cầu dịch vụ từ client lên server.
+	\item \textbf{GET Service Request} lấy thông tin về tiến trình hiện tại của yêu cầu: đang xem xét hoặc đã giải quyết...
+	\item \textbf{GET Service Requests} lấy thông tin của nhiều yêu cầu dịch vụ.
+\end{itemize}
+\paragraph{Các thuộc tính cần có trong cơ sở dữ liệu}
+Với chuẩn GeoReport v2, một số thuộc tính sau bắt buộc phải có trong cơ sở dữ liệu:
+\begin{itemize}
+	\item \textbf{jurisdiction\_id} là định danh độc nhất của từng thành phố, dùng để phân biệt các thành phố trong trường hợp hiện thực cho nhiều thành phố.
+	\item \textbf{service\_code}: Mã code quy định loai dịch vụ
+	\item \textbf{service\_name}: Tên có thể đọc được của dịch vụ
+	\item \textbf{description}: Mô tả ngắn gọn về dịch vụ, yêu cầu
+	\item \textbf{lat}: Vĩ độ vị trí xảy ra vấn đề cần gửi báo cáo, yêu cầu lên chính quyền
+	\item \textbf{long}: Kinh độ vị trí xảy ra vấn đề cần gửi báo cáo, yêu cầu lên chính quyền
+	\item \textbf{address}: người dùng nhập địa chỉ, hoặc mô tả địa điểm
+	\item \textbf{address\_id}: ID của địa chỉ
+	\item \textbf{status}: tình trạng hiện tại của yêu cầu(đang xem xét, đã giải quyết)
+	\item \textbf{agency\_responsible}: cơ quan chiệu trách nhiệm giải quyết yêu cầu
+	\item \textbf{requested\_datetime}: thời điểm yêu cầu được gửi
+	\item \textbf{updated\_datetime}: thời điểm yêu cầu được cập nhật
+	\item \textbf{expected\_datetime}: dự tính yêu cầu sẽ được giải quyết xong vào thời điểm này
+	\item \textbf{email}: địa chỉ email của người gửi yêu cầu
+	\item \textbf{device\_id}: ID độc nhất của thiết bị gửi yêu cầu
+	\item \textbf{account\_id}: ID độc nhất của tài khoản người dùng gửi yêu cầu
+	\item \textbf{first\_name}: tên của người gửi yêu cầu
+	\item \textbf{last\_name}: họ của người gửi yêu cầu
+	\item \textbf{phone}: số điện thoại của người gửi yêu cầu
+	\item \textbf{media\_url}: đường dẫn đến ảnh, clip... mô tả về yêu cầu
+\end{itemize}
 \subsection{RESTful Web Service}
 \subsection{JPA}
-\subsection{AngularJS, HTML, CSS, Javascript}
+\subsection{AngularJS}
+\subsubsection{Giới thiệu về AngularJS}
+\textbf{AngularJS là một framework có cấu trúc cho các ứng dụng web động}. AngularJS cho phép lập trình viên sử dụng HTML như là ngôn ngữ mẫu và cho phép bạn mở rộng cú pháp của HTML để diễn đạt các thành phần trong ứng dụng một cách rõ ràng và súc tích. Hai tính năng cốt lõi: \textbf{Data binding} và \textbf{Dependency injection} của AngularJS loại bỏ phần lớn code dư thừa.
+
+AngularJS được bắt đầu từ năm 2009, do lập trình viên Misko Hevery tại Google tạo ra. Misko Hevery và nhóm lúc này đang tham gia vào 1 dự án của Google tên là Google Feedback. Với AngularJS, Misko đã rút ngắn số dòng code front-end từ 17000 dòng còn chỉ khoảng 1500. Với sự thành công đó, đội ngũ của dự án Google Feedback quyết định phát triển AngularJS theo hướng mã nguồn mở.
+
+Hiện nay, nhiều websites nổi tiếng được xây dựng từ AngularJS như \url{https://www.paypal.com}, \url{https://www.freelancer.com/}...có với giao diện đẹp, thân thiện với người dùng.
+\begin{center}
+    \begin{figure}[h]
+    \begin{center}
+     \includegraphics[scale=.3]{freelancer.PNG}
+    \end{center}
+    \caption{Giao diện website \url{https://www.freelancer.com/} được xây dựng từ AngularJS}
+    \label{refhinh2}
+    \end{figure}
+\end{center}
+\subsubsection{Các đặc tính của AngularJS}
+\begin{itemize}
+	\item AngularJS là một framework phát triển mạnh mẽ dựa trên JavaScript để tạo các ứng dụng RICH Internet Application (RIA).
+
+	\item AngularJS cung cấp cho lập trình viên những tùy chọn để viết các ứng dụng client-side trong mô hình MVC (Model View Controller) một cách rõ ràng.
+
+	\item Các ứng dụng được viết bởi AngularJS tương thích với nhiều phiên bản trình duyệt web. AngularJS tự động xử lý mã JavaScript để phù hợp với mỗi trình duyệt.
+
+	\item AngularJS có mã nguồn mở, miễn phí hoàn toàn, được sử dụng bởi hàng ngàn lập trình viên trên thế giới. Nó hoạt động dưới giấy phép Apache License version 2.0.
+\end{itemize}
+\subsubsection{Các tính năng cốt lõi của AngularJS}
+\begin{itemize}
+	\item \textbf{Data-binding}: Nó tự động đồng bộ hóa dữ liệu giữa thành phần model và view.
+
+	\item \textbf{Scope}: Là những đối tượng hướng đến model, nó hoạt động như là cầu nối giữa controller và view.
+
+	\item \textbf{Controller}: Đây là những tính năng của AngularJS mà được giới hạn tới một scope cụ thể.
+
+	\item \textbf{Service}: AngularJS hoạt động với một vài dịch vụ (service) có sẵn , ví dụ \$http để tạo XMLHttpRequests. Nó là các singleton object mà được khởi tạo duy nhất một lần trong ứng dụng.
+
+	\item \textbf{Filter}: Nó lựa chọn (hay là lọc) các tập con từ tập item trong các mảng và trả về các mảng mới.
+
+	\item \textbf{Directive}: Directive là các marker trong các phần tử DOM (như các phần tử, thuộc tính, css và nhiều hơn thế). Nó có thể dùng để tạo các thẻ HTML riêng phục vụ những mục đích riêng. AngularJS có những directive có sẵn như ngBind,ngModel…
+
+	\item \textbf{Template}: Là các rendered view với các thông tin từ controller và model. Nó có thể được sử dụng trong các file riêng biệt (ví dụ như index.jsp) hoặc nhiều view với một trang sử dụng "partials".
+
+	\item \textbf{Routing}: Là khái niệm của sự chuyển dịch qua lại các view.
+
+	\item \textbf{Model View Whatever}: MVC là một mô hình thiết kế để phân chia các ứng dụng thành nhiều phần khác nhau (gọi là Model, View và Controller), một phần sử dụng với một nhiệm vụ nhất định. AngularJS không triển khai MVC theo cách truyền thống, mà gắn liền hơn với Model-View-ViewModel. Nhóm phát triển AngularJS đã đặt tên vui cho mô hình này là Model View Whatever.
+
+	\item \textbf{Deep Linking}: Cho phép bạn mã hóa trạng thái các ứng dụng trên địa chỉ URL để nó có thể được bookmark. Các ứng dụng có thể được phục hồi lại từ các địa chỉ URL với cùng một trạng thái.
+
+	\item \textbf{Dependency Injection}: AngularJS có sẵn một hệ thống con dependency injection để giúp các lập trình viên tạo ra các ứng dụng dễ phát triển, dễ hiểu và kiểm tra.
+\end{itemize}
+\subsubsection{Các thành phần của AngularJS}
+AngularJS framework có thể được chia thành ba phần chính sau:
+\begin{itemize}
+	\item \textbf{ng-app}: \textit{directive} này định nghĩa và liên kết một ứng dụng AngularJS tới HTML.
+
+	\item \textbf{ng-model}: \textit{directive} này gắn kết giá trị của dữ liệu ứng dụng AngularJS đến các điều khiển đầu vào HTML.
+
+	\item \textbf{ng-bind}: \textit{directive} này gắn kết dữ liệu ứng dụng AngularJS đến các thẻ HTML.
+\end{itemize}
+\subsubsection{Ưu và nhược điểm}
+\paragraph*{Ưu điểm của AngularJS}
+\begin{itemize}
+	\item AngularJS cung cấp khả năng tạo ra các \textit{Single Page Application} một cách rất rõ ràng và dễ dàng để duy trì.
+
+	\item AngularJS cung cấp khả năng \textit{Binding} tới HTML do đó giúp người dùng cảm giác linh hoạt, thân thiện.
+
+	\item AngularJS hỗ trợ \textit{Unit Test}.
+
+	\item AngularJS sử dụng \textit{Dependency Injection}.
+
+	\item AngularJS cung cấp khả năng tái sử dụng các component (thành phần).
+
+	\item Với AngularJS, lập trình viên sẽ viết ít code hơn, với nhiều chức năng hơn.
+
+	\item Với AngularJS, view là thành phần trong trang HTML thuần, trong khi controller được viết bởi JavaScript với quá trình xử lý chức năng logic.
+\end{itemize}
+Và trên tất cả, ứng dụng AngularJS có thể chạy trên hết các trình duyệt web, trên các nền tảng Android và iOS.
+\paragraph*{Nhược điểm của AngularJS}
+Mặc dù AngularJS có thể kể đến rất nhiều các ưu điểm, nhưng đến thời điểm này, nó vẫn có một số điểm yếu sau:
+\begin{itemize}
+	\item Ứng dụng được viết bởi AngularJS không an toàn. Phải có các tính năng bảo mật và xác thực phía server sẽ giúp ứng dụng trở nên an toàn hơn.
+
+	\item Không thể hiển thị nếu người dùng vô hiệu hóa JavaScript.
+\end{itemize}
+
 \subsection{Android}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hiện thực dự án}
@@ -419,6 +583,10 @@ United Nation (2014). \textit{Data Center: 2014 E-Government Development Index.}
 
 \bibitem{bib3}
 Ministry of Finance Singapore (4/9/2013). \textit{E-Government in Singapore.} Truy cập 23/05/2016 tại \url{http://workspace.unpan.org/sites/Internet/Documents/UNPAN90601.pdf}
+
+\bibitem{bib4}
+Open311 Documents. Truy cập tại
+ \url{http://www.open311.org/} 
 
 \bibitem{}
 Tên tác giả, năm xuất bản. \textit{Tên sách.} Lần xuất bản. Thành phố: Nhà xuất bản.
