@@ -646,12 +646,105 @@ Từ những phân tích về các chức năng của ứng dụng, chúng em x�
     \end{figure}
 \end{center}
 Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng chức năng tạo ra cơ sở dữ liệu động trong lần chạy đầu tiên của ứng dụng. Việc này được thực hiện thông qua JPA API, các bảng trong cơ sở dữ liệu tương ứng với các JPA Entity đã được hiện thực trước đó.
+\subsection{Web Service}
+Với từng thực thể nói trên, chúng em đã hiện thực các Web Service tương ứng:
+\subsubsection*{Request}
+    \begin{center}
+        \begin{table}[h]
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+            \rowcolor[HTML]{C0C0C0} 
+            \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
+            \hline
+            find & GET & id của Request & \pbox{24cm}{Lấy thông tin của một thực thể Request theo id}\\ [5pt]
+            \hline
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Request có trong cơ sở dữ liệu}\\[5pt]
+            \hline
+            create & POST & Request mới  & \pbox{24cm}{Thêm một Request mới vào cơ sở dữ liệu}\\[5pt]            
+            \hline
+            edit & PUT & \pbox{24cm}{- id của Request \\ - Request mới}  & \pbox{24cm}{Cập nhật một Request theo id của nó}\\[5pt]            
+            \hline        
+            remove & DELETE & \pbox{24cm}{id của Request}  & \pbox{24cm}{Xóa một Request theo id}\\[5pt]            
+            \hline                    
+            \end{tabular}
+        \end{table}    
+    \end{center}
+\subsubsection*{Comment}
+    \begin{center}
+        \begin{table}[h]
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+            \rowcolor[HTML]{C0C0C0} 
+            \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
+            \hline
+            find & GET & id của Comment & \pbox{24cm}{Lấy thông tin của một thực thể Comment theo id}\\ [5pt]
+            \hline
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Comment có trong cơ sở dữ liệu}\\[5pt]
+            \hline
+            create & POST & Comment mới  & \pbox{24cm}{Thêm một Comment mới vào cơ sở dữ liệu}\\[5pt]            
+            \hline
+            edit & PUT & \pbox{24cm}{- id của Comment \\ - Comment mới}  & \pbox{24cm}{Cập nhật một Comment theo id của nó}\\[5pt]            
+            \hline        
+            remove & DELETE & \pbox{24cm}{id của Comment}  & \pbox{24cm}{Xóa một Comment theo id}\\[5pt]            
+            \hline                    
+            \end{tabular}
+        \end{table}    
+    \end{center}
+\subsubsection*{GuestUser}
+    \begin{center}
+        \begin{table}[h]
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+            \rowcolor[HTML]{C0C0C0} 
+            \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
+            \hline
+            create & POST & GuestUser mới  & \pbox{24cm}{Thêm một GuestUser mới vào cơ sở dữ liệu}\\[5pt]            
+            \hline                    
+            \end{tabular}
+        \end{table}    
+    \end{center}
+\newpage
+\subsubsection*{NormalUser}
+    \begin{center}
+        \begin{table}[h]
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+            \rowcolor[HTML]{C0C0C0} 
+            \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
+            \hline
+            find & GET & id của NormalUser & \pbox{24cm}{Lấy thông tin của một thực thể NormalUser theo id}\\ [5pt]
+            \hline
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi NormalUser có trong cơ sở dữ liệu}\\[5pt]
+            \hline
+            create & POST & NormalUser mới  & \pbox{24cm}{Thêm một NormalUser mới vào cơ sở dữ liệu}\\[5pt]            
+            \hline
+            edit & PUT & \pbox{24cm}{- id của NormalUser \\ - NormalUser mới}  & \pbox{24cm}{Cập nhật một NormalUser theo id của nó}\\[5pt]            
+            \hline        
+            remove & DELETE & \pbox{24cm}{id của NormalUser}  & \pbox{24cm}{Xóa một NormalUser theo id}\\[5pt]            
+            \hline                    
+            \end{tabular}
+        \end{table}    
+    \end{center}
+\subsubsection*{Xác thực}
+Để quản lý quá trình xác thực người dùng khi đăng nhập, nhóm đã hiện thực thêm một Web Service có chức năng xác thực người dùng:
+    \begin{center}
+        \begin{table}[h]
+            \begin{tabular}{|l|l|l|l|}
+            \hline
+            \rowcolor[HTML]{C0C0C0} 
+            \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
+            \hline
+            authenticationUser & POST & \pbox{24cm}{- email \\ - password}  & \pbox{24cm}{Xác thực người dùng theo email và password}\\[5pt]            
+            \hline                    
+            \end{tabular}
+        \end{table}    
+    \end{center}
 \subsection{Client}
-
-\subsection{Server}
-
+Trong giai đoạn TTTN, nhóm đang hiện thực client trên nền tảng web.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Khó khăn và khắc phục}
+\subsection{Xác thực và phân quyền}
+Java Web Token
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mở rộng đề tài}
