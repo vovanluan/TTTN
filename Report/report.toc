@@ -26,14 +26,14 @@
 \contentsline {subsubsection}{\numberline {3.4.5}\IeC {\UHORN }u v\IeC {\`a} nh\IeC {\uhorn }\IeC {\d \ohorn }c \IeC {\dj }i\IeC {\h \ecircumflex }m}{20}{subsubsection.3.4.5}
 \contentsline {subsection}{\numberline {3.5}Android}{20}{subsection.3.5}
 \contentsline {subsubsection}{\numberline {3.5.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } Android}{20}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Nguy\IeC {\^e}n nh\IeC {\^a}n s\IeC {\d \uhorn } ph\IeC {\'a}t tri\IeC {\h \ecircumflex }n m\IeC {\d a}nh m\IeC {\~e} c\IeC {\h u}a Android}{23}{subsubsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\ohorn } b\IeC {\h a}n c\IeC {\h u}a Android}{25}{subsubsection.3.5.3}
-\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{25}{section.4}
-\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{25}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Web Service}{27}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Client}{28}{subsection.4.3}
-\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{28}{section.5}
-\contentsline {subsection}{\numberline {5.1}X\IeC {\'a}c th\IeC {\d \uhorn }c v\IeC {\`a} ph\IeC {\^a}n quy\IeC {\`\ecircumflex }n}{28}{subsection.5.1}
-\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{28}{section.6}
-\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{29}{section.7}
-\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{30}{section.8}
+\contentsline {subsubsection}{\numberline {3.5.2}Nguy\IeC {\^e}n nh\IeC {\^a}n s\IeC {\d \uhorn } ph\IeC {\'a}t tri\IeC {\h \ecircumflex }n m\IeC {\d a}nh m\IeC {\~e} c\IeC {\h u}a Android}{22}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\ohorn } b\IeC {\h a}n c\IeC {\h u}a Android}{24}{subsubsection.3.5.3}
+\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{24}{section.4}
+\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{24}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Web Service}{26}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Client}{27}{subsection.4.3}
+\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{27}{section.5}
+\contentsline {subsection}{\numberline {5.1}X\IeC {\'a}c th\IeC {\d \uhorn }c v\IeC {\`a} ph\IeC {\^a}n quy\IeC {\`\ecircumflex }n}{27}{subsection.5.1}
+\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{27}{section.6}
+\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{28}{section.7}
+\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{29}{section.8}

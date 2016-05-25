@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.22)  25 MAY 2016 22:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.22)  25 MAY 2016 23:52
 entering extended mode
 **./report.tex
 (report.tex
@@ -2303,19 +2303,13 @@ File: hcmut.png Graphic file (type png)
 Package pdftex.def Info: hcmut.png used on input line 659.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
  [21 <./android_version.jpg> <./android_shipment_market.png>]
-File: hcmut.png Graphic file (type png)
-
-<use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 659.
-(pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [22] <number_app.png, id=420, 1003.75pt x 745.78625pt>
+<number_app.png, id=414, 1003.75pt x 745.78625pt>
 File: number_app.png Graphic file (type png)
-
-<use number_app.png>
+ <use number_app.png>
 Package pdftex.def Info: number_app.png used on input line 666.
 (pdftex.def)             Requested size: 188.21286pt x 139.83458pt.
 
-<number_app_downloads.PNG, id=421, 1003.75pt x 745.78625pt>
+<number_app_downloads.PNG, id=415, 1003.75pt x 745.78625pt>
 File: number_app_downloads.PNG Graphic file (type png)
 
 <use number_app_downloads.PNG>
@@ -2353,7 +2347,7 @@ Package hyperref Warning: Composite letter `\texttilde+e'
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\h' on input line 678.
 
-<why_android.jpg, id=422, 387.4475pt x 399.4925pt>
+<why_android.jpg, id=416, 387.4475pt x 399.4925pt>
 File: why_android.jpg Graphic file (type jpg)
  <use why_android.jpg>
 Package pdftex.def Info: why_android.jpg used on input line 682.
@@ -2364,15 +2358,15 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: hcmut.png Graphic file (type png)
 <use hcmut.png>
-Package pdftex.def Info: hcmut.png used on input line 695.
+Package pdftex.def Info: hcmut.png used on input line 693.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [23 <./number_app.png> <./number_app_downloads.PNG>]
+ [22 <./number_app.png> <./number_app_downloads.PNG>]
 File: hcmut.png Graphic file (type png)
 
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 700.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [24 <./why_android.jpg>]
+ [23 <./why_android.jpg>]
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\u' on input line 701.
@@ -2455,7 +2449,7 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 734.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [25] <entity-diagram.png, id=448, 644.4075pt x 575.90157pt>
+ [24] <entity-diagram.png, id=443, 644.4075pt x 575.90157pt>
 File: entity-diagram.png Graphic file (type png)
 
 <use entity-diagram.png>
@@ -2470,7 +2464,7 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 749.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [26 <./entity-diagram.png>]
+ [25 <./entity-diagram.png>]
 Overfull \hbox (32.84279pt too wide) in paragraph at lines 752--768
 [][] 
  []
@@ -2484,7 +2478,7 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 804.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [27]
+ [26]
 Overfull \hbox (67.66762pt too wide) in paragraph at lines 808--824
 [][] 
  []
@@ -2592,12 +2586,12 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 864.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [28]
+ [27]
 File: hcmut.png Graphic file (type png)
  <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 865.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [29]
+ [28]
 
 Package hyperref Warning: Composite letter `\textdotbelow+u'
 (hyperref)                not defined in PD1 encoding,
@@ -2648,7 +2642,7 @@ File: hcmut.png Graphic file (type png)
 <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 906.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [30pdfTeX warning (ext4): destination with the same identifier (name{cite.bib3
+ [29pdfTeX warning (ext4): destination with the same identifier (name{cite.bib3
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
@@ -2662,7 +2656,7 @@ File: hcmut.png Graphic file (type png)
  <use hcmut.png>
 Package pdftex.def Info: hcmut.png used on input line 924.
 (pdftex.def)             Requested size: 22.76204pt x 22.75928pt.
- [31]
+ [30]
 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 927.
@@ -2683,14 +2677,14 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 927.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 21662 strings out of 493634
- 403508 string characters out of 3143744
+ 21661 strings out of 493634
+ 403501 string characters out of 3143744
  478587 words of memory out of 3000000
  24467 multiletter control sequences out of 15000+200000
  20614 words of font info for 42 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,25n,76p,910b,16438s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{page.32} has been referenced but do
+pdfTeX warning (dest): name{page.31} has been referenced but do
 es not exist, replaced by a fixed one
 
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
@@ -2701,9 +2695,9 @@ pfb><C:/Program Files/vntex-3.1.9/fonts/type1/vntex/vnr/vnr9.pfb><C:/Program Fi
 les/vntex-3.1.9/fonts/type1/vntex/vnr/vnti10.pfb><C:/Program Files/vntex-3.1.9/
 fonts/type1/vntex/vnr/vnti12.pfb><C:/Program Files/vntex-3.1.9/fonts/type1/vnte
 x/vnr/vntt10.pfb><C:/Program Files/vntex-3.1.9/fonts/type1/vntex/vnr/vntt8.pfb>
-Output written on report.pdf (32 pages, 5187133 bytes).
+Output written on report.pdf (31 pages, 5160100 bytes).
 PDF statistics:
- 590 PDF objects out of 1000 (max. 8388607)
- 114 named destinations out of 1000 (max. 500000)
+ 585 PDF objects out of 1000 (max. 8388607)
+ 113 named destinations out of 1000 (max. 500000)
  435 words of extra memory for PDF output out of 10000 (max. 10000000)
 
