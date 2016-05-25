@@ -6,7 +6,8 @@
 %\usepackage[utf8]{inputenc}
 %\usepackage[francais]{babel}
 \usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
-
+\usepackage[table]{xcolor}
+\usepackage{pbox}
 \usepackage{amsmath}
 \usepackage{lastpage}
 \usepackage[lined,boxed,commentsnumbered]{algorithm2e}
@@ -28,8 +29,9 @@
 \usetikzlibrary{arrows,snakes,backgrounds}
 \usepackage{hyperref}
 \usepackage{titlesec}
-
-
+\usepackage{float}
+\usepackage{wrapfig}
+\restylefloat{figure}
 \setcounter{secnumdepth}{4}
 
 \titleformat{\paragraph}
@@ -391,7 +393,6 @@ Một số thành phố đang sử dụng chuẩn GeoReport v2:
 	\item[•]New Haven, Connecticut
 \end{itemize}
 Tiếp theo, nhóm xin giới thiệu một số thông tin cơ bản về chuẩn GeoReport v2
-\paragraph{Quốc tế hóa và mã hóa}
 \paragraph*{Định dạng ngày/giờ}
 Mọi ô dữ liệu kiểu ngày/giờ phải định dạng theo một tập con chung của chuẩn ISO 8601. Thông tin về múi giờ phải có trong định dạng.\\
 \\
@@ -399,13 +400,13 @@ Ví dụ: 1994-11-05T08:15:30-05:00 nghĩa là  November 5, 1994, 8:15:30 am, US
 
 \paragraph*{Mã hóa}
 GeoReport yêu cầu sử dụng UTF-8. Mọi kí tự trả về ở dạng XML, JSON, hoặc bất kỳ một định dạng khác phải được mã hóa dưới dạng UTF-8. Những HTTP headers phải thêm thuộc tính encoding = "UTF-8". Mọi kí tự nhận được bởi dịch vụ từ client sẽ được đưa về UTF-8 và được giải mã một cách phù hợp. 
-\paragraph{Hỗ trợ định dạng}
+\paragraph*{Hỗ trợ định dạng}
 Định dạng có thể sử dụng trong GeoReport v2 là XML hoặc JSON.
 HTTP content-type headers của mỗi định dạng sẽ là: \\
 \\
 \textbf{XML}: Content-Type: text/xml; charset=utf-8\\
 \textbf{JSON}: Content-Type: application/json; charset=utf-8
-\paragraph{Các phương thức API}
+\paragraph*{Các phương thức API}
 \begin{itemize}
 	\item \textbf{GET Service List} cung cấp danh sách các yêu cầu dịch vụ và các mã code tương ứng của từng loại dịch vụ.
 	\item \textbf{GET Service Definition} định nghĩa các thuộc tính tương ứng với một mã dịch vụ.
@@ -413,7 +414,7 @@ HTTP content-type headers của mỗi định dạng sẽ là: \\
 	\item \textbf{GET Service Request} lấy thông tin về tiến trình hiện tại của yêu cầu: đang xem xét hoặc đã giải quyết...
 	\item \textbf{GET Service Requests} lấy thông tin của nhiều yêu cầu dịch vụ.
 \end{itemize}
-\paragraph{Các thuộc tính cần có trong cơ sở dữ liệu}
+\paragraph*{Các thuộc tính cần có trong cơ sở dữ liệu}
 Với chuẩn GeoReport v2, một số thuộc tính sau bắt buộc phải có trong cơ sở dữ liệu:
 \begin{itemize}
 	\item \textbf{jurisdiction\_id} là định danh độc nhất của từng thành phố, dùng để phân biệt các thành phố trong trường hợp hiện thực cho nhiều thành phố.
@@ -525,6 +526,95 @@ Mặc dù AngularJS có thể kể đến rất nhiều các ưu điểm, nhưng
 \end{itemize}
 
 \subsection{Android}
+\subsubsection{Giới thiệu về Android}
+\textit{Android là một hệ điều hành mã nguồn mở và là một hệ điều hành dựa trên Linux cho các thiết bị mobile như điện thoại thông minh và máy tính bảng}. Ban đầu Android được phát triển bởi Công ty Android với sự hỗ trợ tài chính từ Google, sau đó được Google mua lại vào năm 2005.\\
+\\
+Android đưa ra một phương pháp thống nhất để phát triển ứng dụng cho các thiết bị di động, nghĩa là các lập trình viên chỉ cần phát triển Android, và các ứng dụng khác có thể chạy trên các thiết bị khác nhau mà đã được trang bị Android.\\
+\\
+Phiên bản beta của Android Software Development Kit (SDK) được công bố bởi Google vào năm 2007, trong khi phiên bản thương mại đầu tiên Android 1.0 được công bố 9/2008.  Kể từ tháng 4 năm 2009, phiên bản Android được phát triển, đặt tên theo chủ đề bánh kẹo và phát hành theo thứ tự bảng chữ cái: Cupcake, Donut, Eclair, Froyo, Gingerbread, Honeycomb, Ice Cream Sandwich, Jelly Bean, Kitkat, Lollipop, và phiên bản hiện tại Marshmallow.
+\begin{center}
+    \begin{figure}[h]
+    \begin{center}
+     \includegraphics[scale=.5]{android_version.jpg}
+    \end{center}
+    \caption{Các phiên bản của hệ điều hành Android tính đến thời điểm hiện tại}
+    \label{refhinh1}
+    \end{figure}
+\end{center}
+
+\begin{wrapfigure}{r}{0.6\textwidth}
+    \centering
+    \includegraphics[width=0.6\textwidth]{android_shipment_market.png}
+    \caption{Thị phần điện thoại thông minh phân loại theo hệ điều hành}
+\end{wrapfigure}
+Android có mã nguồn mở và Google phát hành mã nguồn theo Giấy phép Apache. Chính mã nguồn mở cùng với một giấy phép không có nhiều ràng buộc đã cho phép các nhà phát triển thiết bị, mạng di động và các lập trình viên nhiệt huyết được điều chỉnh và phân phối Android một cách tự do. Ngoài ra, Android còn có một cộng đồng lập trình viên đông đảo chuyên viết các ứng dụng để mở rộng chức năng của thiết bị, bằng một loại ngôn ngữ lập trình Java có sửa đổi. Chính vì vây, Android có một tốc độ mở rộng và phát triển không tưởng, chiếm thị phần lớn nhất trong hệ thống điện thoại thông minh toàn cầu (84.1\% vào quý 1 năm 2016) \cite{bib6} \\
+\newpage
+ Vào tháng 2 năm 2016, có khoảng 2 triệu ứng dụng trên Android \cite{bib7}, và số lượt tải ứng dụng từ Google Play, cửa hàng ứng dụng chính của Android, ước tính khoảng 65 tỉ lượt tải \cite{bib8}
+ 
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{number_app.png}
+  \caption{Số ứng dụng trên Android giai đoạn 2009-2016}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{number_app_downloads.PNG}
+  \caption{Số lượt tải ứng dụng trên Android giai đoạn 2009-2016}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Số lượt tải và số lượng ứng dụng Android giai đoạn 2009-2016}
+\end{figure} 
+
+\subsubsection{Nguyên nhân sự phát triển mạnh mẽ của Android}
+\begin{center}
+    \begin{figure}[h]
+    \begin{center}
+     \includegraphics[scale=.5]{why_android.jpg}
+    \end{center}
+    \caption{Nguyên nhân sự phát triển mạnh mẽ của Android}
+    \label{refhinh1}
+    \end{figure}
+\end{center}
+\paragraph*{Mã nguồn mở}
+Bởi vì Android là mã nguồn mở nên lập trình viên dễ dàng tiếp cận với Android và thử nghiệm các công nghệ mới vào Android.
+\paragraph*{Mở rộng tầm ảnh hưởng của cộng đồng và lập trình viên}
+\paragraph*{Tăng hiệu quả marketing}
+Dựa vào sự hỗ trợ từ Google Play, marketing cho ứng dụng trên Android có nhiều lợi thế hơn, dễ dàng quảng cáo ứng dụng đến người dùng trên toàn cầu.
+\paragraph*{Kết hợp các ứng dụng}
+Android có tính linh động cao và có hỗ trợ để kết hợp với các ứng dụng trên các nền tảng khác
+\paragraph*{Giảm chi phí phát triển}
+Các công cụ để lập trình Android hoàn toàn miễn phí, và Google chỉ thu một khoản phí nhỏ để đưa ứng dụng Android lên Android Market. Việc xây dựng và phát triển một ứng dụng Android gần như không tốn chi phí.
+\paragraph*{Tỉ lệ thành công cao}
+\paragraph*{Môi trường lập trình tốt}
+Android cung cấp nhiều công cụ hỗ trợ tốt, SDK và các công nghệ hấp dẫn với lập trình viên để giúp họ sử dụng và phát triển ứng dụng.
+\newpage
+\subsubsection{Các tính năng cơ bản của Android}
+Android là một hệ điều hành đầy sức mạnh và hỗ trợ nhiều tính năng tuyệt vời:
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Đặc điểm} & \textbf{Miêu tả} \\[5pt] \hline
+Giao diện đẹp & \pbox{24cm}{Màn hình Android OS cơ bản cung cấp một giao diện người dùng đẹp \\và có tính thẩm mỹ cao} \\[5pt] \hline
+Tính kết nối & \pbox{24cm}{GSM/EDGE, IDEN, CDMA, EV-DO, UMTS, Bluetooth, Wi-Fi, LTE,\\ NFC và WiMAX} \\[5pt] \hline
+Lưu trữ & \pbox{24cm}{SQLite, một cơ sở dữ liệu quan hệ gọn nhẹ, được sử dụng cho mục đích \\ lưu trữ dữ liệu} \\[5pt] \hline
+Hỗ trợ Media & \pbox{24cm}{H.263, H.264, MPEG-4 SP, AMR, AMR-WB, AAC, HE-AAC, AAC 5.1,\\ MP3, MIDI, Ogg Vorbis, WAV, JPEG, PNG, GIF, và BMP} \\[5pt] \hline
+Tin nhắn & SMS và MMS \\[5pt] \hline
+Trình duyệt Web & \pbox{24cm}{Dựa trên thiết bị WebKit mã nguồn mở, đi kèm với thiết bị V8 JavaScript \\ của Chrome hỗ trợ HTML5 và CSS3} \\[5pt] \hline
+Multi-touch & \pbox{24cm}{Android hỗ trợ cho multi-touch mà đã được tạo ban đầu có sẵn cho \\ các Handset} \\[5pt] \hline
+Đa nhiệm & \pbox{24cm}{Người dùng có thể nhảy từ một tác vụ tới tác vụ khác và nhiều ứng dụng\\ có thể chạy đồng thời cùng một lúc} \\[5pt] \hline
+Widget tùy chỉnh & \pbox{24cm}{Widgets có thể thay đổi kích cỡ, vì thế người dùng có thể mở rộng để\\ hiển thị nhiều nội dung hơn, hoặc thu nhỏ để tiết kiệm không gian} \\[5pt] \hline
+Đa ngôn ngữ & Hỗ trợ text đơn hướng và song hướng \\[5pt] \hline
+GCM & \pbox{24cm}{Google Cloud Messaging (GCM) là một dịch vụ cho phép lập trình viên\\ gửi thông điệp dữ liệu ngắn tới người dùng trên thiết bị Android, \\mà không cần một Sync Solution} \\[5pt] \hline
+Wi-Fi Direct & \pbox{24cm}{Một công nghệ cho phép các ứng dụng dò tìm và ghép cặp một cách \\ trực tiếp, thông qua một kết nối peer-to-peer} \\[5pt] \hline
+Android Beam & \pbox{24cm}{Một công nghệ dựa trên NFC phổ biến cho phép người dùng chia sẻ \\ tức thì, chỉ cần kích hoạt NFC của hai điện thoại với nhau} \\[5pt] \hline
+\end{tabular}
+\caption{Các tính năng cơ bản của hệ điều hành Android}
+\label{my-label}
+\end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hiện thực dự án}
 \subsection{Cơ sở dữ liệu}
@@ -593,9 +683,22 @@ Open311 Documents. Truy cập tại
  \bibitem{bib5}
 AngularJS Documents. Truy cập tại
  \url{https://docs.angularjs.org/} 
+ 
+  \bibitem{bib6}
+Thị phần điện thoại thông minh. Truy cập tại
+ \url{http://www.statista.com/statistics/266136/global-market-share-held-by-smartphone-operating-systems/} 
 
+  \bibitem{bib7}
+Số lượng ứng dụng trên Android. Truy cập tại
+ \url{http://www.statista.com/statistics/266210/number-of-available-applications-in-the-google-play-store/}
+ 
+   \bibitem{bib8}
+Số lần tải ứng dụng trên Android. Truy cập tại
+ \url{http://www.statista.com/statistics/281106/number-of-android-app-downloads-from-google-play/}
+ 
 \bibitem{}
 Tên tác giả, năm xuất bản. \textit{Tên sách.} Lần xuất bản. Thành phố: Nhà xuất bản.
+
 
 \end{thebibliography}
 
