@@ -7,11 +7,11 @@
 \contentsline {subsubsection}{\numberline {2.1.2}Singapore}{7}{subsubsection.2.1.2}
 \contentsline {subsection}{\numberline {2.2}T\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{8}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Th\IeC {\`a}nh ph\IeC {\'\ocircumflex } H\IeC {\`\ocircumflex } Ch\IeC {\'\i } Minh}{8}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Th\IeC {\`a}nh ph\IeC {\'\ocircumflex } \IeC {\DJ }\IeC {\`a} N\IeC {\~\abreve }ng}{8}{subsubsection.2.2.2}
-\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{10}{section.3}
-\contentsline {subsection}{\numberline {3.1}Open311}{10}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`a} \IeC {\dj }\IeC {\d i}nh ngh\IeC {\~\i }a}{10}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}GeoReport v2}{11}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {2.2.2}Th\IeC {\`a}nh ph\IeC {\'\ocircumflex } \IeC {\DJ }\IeC {\`a} N\IeC {\~\abreve }ng}{9}{subsubsection.2.2.2}
+\contentsline {section}{\numberline {3}Ki\IeC {\'\ecircumflex }n th\IeC {\'\uhorn }c n\IeC {\`\ecircumflex }n}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Open311}{11}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`a} \IeC {\dj }\IeC {\d i}nh ngh\IeC {\~\i }a}{11}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}GeoReport v2}{12}{subsubsection.3.1.2}
 \contentsline {paragraph}{\numberline {3.1.2.1}Qu\IeC {\'\ocircumflex }c t\IeC {\'\ecircumflex } h\IeC {\'o}a v\IeC {\`a} m\IeC {\~a} h\IeC {\'o}a}{12}{paragraph.3.1.2.1}
 \contentsline {paragraph}{\numberline {3.1.2.2}H\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } \IeC {\dj }\IeC {\d i}nh d\IeC {\d a}ng}{12}{paragraph.3.1.2.2}
 \contentsline {paragraph}{\numberline {3.1.2.3}C\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng th\IeC {\'\uhorn }c API}{13}{paragraph.3.1.2.3}
