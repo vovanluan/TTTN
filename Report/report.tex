@@ -438,7 +438,105 @@ Với chuẩn GeoReport v2, một số thuộc tính sau bắt buộc phải có
 	\item \textbf{media\_url}: đường dẫn đến ảnh, clip... mô tả về yêu cầu
 \end{itemize}
 \subsection{RESTful Web Service}
+REST (Representational State Transfer) định nghĩa các quy tắc kiến trúc thiết kế Web services chú trọng vào tài nguyên hệ thống, các tài nguyên này được chuyển tải thông qua giao thức HTTP. REST được giới thiệu lần đầu tiên vào năm 2000 bởi Roy Fielding trong luận án của ông "Architectural Styles and the Design of Network-based Software Architectures".\\
+\\
+Việc cụ thể hóa một Web service REST sẽ tuân thủ theo bốn nguyên tắc thiết kế cơ bản sau:
+ \begin{itemize}
+ 	\item[•]Sử dụng các phương thức HTTP một cách rõ ràng
+	\item[•]Phi trạng thái
+	\item[•]URIs hiển thị theo dạng cấu trúc thư mục
+	\item[•]Biểu diễn tài nguyên 
+ \end{itemize}
+\subsubsection{Sử dụng các phương thức HTTP một cách rõ ràng}
+Một đặc tính quan trọng của dịch Web service RESTful là sử dụng một cách rõ ràng các phương thức HTTP theo cách một giao thức được xác định bởi RFC 2616. Ví dụ HTTP GET được xác định như là một phương thức sinh ra số liệu được sử dụng có chủ đích bởi các ứng dụng người dùng để thu thập tài nguyên, dữ liệu từ một máy chủ, hoặc thực thi một truy vấn mà máy chủ sẽ tìm kiếm và phản hồi cùng với một gói thông tin tương thích.\\
+\\
+Dưới đây là các phương thức HTTP được sử dụng phổ biến trong kiến trúc REST:
+\begin{itemize}
+\item[•]\textbf{GET} - truy xuất một tài nguyên 
+\item[•]\textbf{PUT} - thay đổi trạng thái một tài nguyên hoặc để cập nhật nó
+\item[•]\textbf{POST} - tạo mới một tài nguyên trên máy chủ
+\item[•]\textbf{DELETE} - huỷ bỏ hoặc xoá một tài nguyên
+\end{itemize}
+\subsubsection{Phi trạng thái}
+Trong RESTful web service, server không lưu lại trạng thái của client; mỗi khi gửi một request lên server thì client phải đóng gói thông tin đầy đủ để server có thể hiểu được. Sự giới hạn này được gọi là phi trạng thái trong RESTful web service.\\
+\\
+\textbf{Lợi ích:}
+\begin{itemize}
+	\item[•]Web service xử lý các yêu cầu của client một cách độc lập
+	\item[•]Web service không cần phải lưu lại trạng thái trước đó của client, giúp hệ thống dễ phát triển, bảo trì và mở rộng hơn
+	\item[•]Bản thân HTTP cũng là giao thức phi trạng thái, do đó RESTful web service sẽ hoạt động hiệu quả và ăn khớp với các giao thức của HTTP
+\end{itemize}
+\textbf{Bất lợi: }gia tăng lượng thông tin cần truyền tải giữa client và server
+\subsubsection{URIs hiển thị theo dạng cấu trúc thư mục}
+Đặc tính thứ ba về RESTful web service là về URIs. REST Web service URIs phải được thể hiện một cách trực quan và dễ đoán. Hãy nghĩ về URIs như một \textit{self-documenting interface} - một dạng tài liệu trong đó cần rất ít hoặc thậm chí không cần các giải thích và tham khảo để một nhà phát triển có thể hiểu được những gì nó trỏ tới hoặc rút trích ra được các thông tin liên quan.\\
+\\
+Có một cách đơn giản để có thể đạt được điều đó là thể hiện URIs theo dạng cấu trúc thư mục - trong đó URIs có thứ bậc, bắt nguồn từ một đường dẫn đơn giản, và có thể phân nhánh tại các nút con thể hiện nội dung của một dịch vụ xác định.\\
+\\
+Một ví dụ đơn giản như một đường dẫn URIs sau đây:
+\url{http://www.myservice.org/discussion/2008/12/10/{topic}}. Phần đầu tiên trong đường dẫn là năm có bốn chữ số, phần thứ hai là ngày có hai chữ số, và phần thứ ba là tháng có hai chữ số. Có vẻ hơi rắc rối khi giải thích theo cách này, nhưng đây là cách thể hiện đơn giản, dễ hiểu và dễ đoán. Nhà phát triển có thể suy ra được ngày tháng các \textit{topic} được đăng lên chuyên mục \textit{discussion}. Con người và máy móc có thể dễ dàng sinh ra các cấu trúc URIs giống như vậy vì chúng dựa trên các nguyên tắc nhất định.\\
+\\
+Một vài lưu ý khi nói đến cấu trúc địa chỉ của một REST Web service URIs:
+\begin{itemize}
+	\item[•]Giấu các đuôi tài liệu mở rộng của file (.jsp, .php, .asp), vì vậy bạn có thể chèn thêm một số thứ mà không cần thay đổi địa chỉ Urls.
+	\item[•]Sử dụng chữ thường cho tất cả các ký tự
+	\item[•]Thay thế các khoảng trống bằng gạch chân hoặc hoặc gạch nối 
+	\item[•]Tránh sử dụng các chuỗi query 
+	\item[•]Thay vì sử dụng mã \textit{404 Not Found}, luôn luôn phản hồi về tài nguyên hoặc một trang mặc định 
+\end{itemize}
+\subsubsection{Biểu diễn tài nguyên}
+Kiến trúc REST xem các loại nội dung như là một dạng tài nguyên. Các tài nguyên này có thể là tập tin văn bản, các trang HTML, hình ảnh, video hoặc các loại dữ liệu động. REST server đơn giản chỉ cung cấp quyền truy cập vào các tài nguyên cho REST client, client sẽ tiến hành truy cập và chỉnh sửa trực tiếp trên các tài nguyên. Một vài loại MIME thông dụng được sử dụng bởi dịch vụ RESTful được thể hiện trong bảng sau 
+\begin{table}[h]
+        \centering
+            \begin{tabular}{|l|l|}
+            \hline
+            \textbf{MIME-Type} & \textbf{Content-Type}\\
+            \hline
+            JSON & application/json \\
+            \hline
+            XML & application/xml \\
+            \hline
+            XHTML & application/xhtml+xml \\
+            \hline
+            \end{tabular}
+\end{table}  
+\\
+REST của không áp đặt bất kỳ hạn chế nào về định dạng của một tài nguyên. Một client có thể yêu cầu dưới định dạng JSON,một khách hàng khác có thể yêu cầu dưới định dạng XML của cùng một tài nguyên cho server. Trách nhiệm của các  REST server là trả về cho các client các tài nguyên trong các định dạng mà client hiểu.
 \subsection{JPA}
+Java Persistence API hay JPA là một đăc tả Java cho việc ánh xạ giữa các đối tượng Java tới cơ sở dữ liệu quan hệ sử dụng cộng nghệ phổ biến là ORM( Object Relational Mapping). JPA API cung cấp đầy đủ các công cụ cho phép người lập trình có thể tạo cơ sở dữ liệu một cách đơn giản và nhanh chóng. JPA API có thể dùng để persist một đối tượng business (POJO) vào trong cơ sở dữ liệu hoặc lấy dữ liệu từ cơ sở dữ liệu và ánh xạ ra các đối tượng business một cách đơn giản. Điều này làm giảm bớt gánh nặng viết code trong việc quản lý các đối tượng quan hệ, một lập trình viên khi sử dụng "JPA Provider" framework có thể dễ dàng tương tác với các instance trong cơ sở dữ liệu. \\
+\\
+JPA là một đăc tả của Sun, ra đời cùng với bản đặc tả J2EE 5. JPA không phải là một sản phẩm và không thể nó như thành phần persistence. Nó cần phải có một cài đặt ORM để hoạt động và persist các đối tượng Java. Các framework ORM có thể sử dụng cho JPA như Hibernate, Toplink, Open JPA,…\\
+\\
+Ngày nay đa số các nhà cung cấp đều hỗ trợ cài đặt JPA cho framework persistence của họ. Vì vây, người lập trình có thể lựa chọn nhà cung cấp tốt nhất tùy thuộc yêu cầu ứng dụng của mình.\\
+\\
+Sau đây ta cùng tìm hiểu một số khái niệm của JPA\\
+\\
+\textbf{Entity: }là các đối tượng persistence thể hiện một mẫu tin trong cơ sở dữ liệu. Entity chỉ là các lớp POJO đơn giản, dễ dàng tạo. Dưới đây là một số đặc điểm của một Entity:
+\begin{itemize}
+	\item[•]Entity có thể tương tác với cơ sở dữ liệu quan hệ.
+	\item[•]Entity được xác định thông qua một định danh( tương đương với khóa chình trong table của cơ sở dữ liệu quan hệ)
+	\item[•]Entity hỗ trợ giao tác (transaction)
+	\item[•]Entity hỗ trợ kế thừa giống như những lớp thường khác.
+\end{itemize}
+\textbf{EntityManager: }là một giao diện (interface) cung cấp các API cho việc tương tác với các Entity. Một số chức năng cơ bản của EntityManager như:
+\begin{itemize}
+	\item[•]Persist: phương thức này dùng để lưu một thực thể mới tạo vào cơ sở dữ liệu
+	\item[•]Merge: dùng để cập nhật trạng thái của entity vào cơ sở dữ liệu.
+	\item[•]Remove: xóa một thể hiện của entity.
+\end{itemize}
+\textbf{EntityManagerFactory: }được dùng để tạo ra một thể hiện của EntityManager\\
+\\
+Việc giới thiệu JPA vào trong đặc tả J2EE 5 là một bước tiến lớn trong việc đơn giản hóa các quy trình phát triển ứng dụng. JPA đơn giản hóa mô hình thực thể dữ liệu và cộng thểm một số tính năng mới mà phiên bản EJB trước (EJB 2.0) không có. Giờ đây người lập trình có thể ánh xạ trực tiếp các đối tượng persistence với cơ sở dữ liệu quan hệ. JPA có thể sử dụng bên ngoài container, điều này không dễ thực hiện trong EJB 2.1. Bạn cũng có thể sử dụng JPA trong các ứng dụng swing.\\
+\\
+Một số tính năng của JPA:
+\begin{itemize}
+	\item[•]JPA hỗ trợ pluggable, tức là có thể sử dụng nhiều nhà hãng cung cấp thứ ba như Hibernate hay Toplink.
+	\item[•]Hỗ trợ annotation
+	\item[•]Giảm bớt số lớp yêu cầu cho việc phát triển persistence
+	\item[•]Không cần phải viết các mô tả triển khai trong xml. Annotation dựa trên metadata đã hỗ trợ trong các ứng dụng JPA
+	\item[•]Đã chuẩn hóa ORM và dễ dàng phát triển hơn
+	\item[•]JPA hỗ trợ truy vấn động và tĩnh.
+	\item[•]Nhiều IDE hỗ trợ phát triển ứng dụng JPA và có thể tự động sinh code ánh xạ từ cơ sở dữ liệu thành các entity và ngược lại
+\end{itemize}
 \subsection{AngularJS}
 \subsubsection{Giới thiệu về AngularJS}
 \textbf{AngularJS là một framework có cấu trúc cho các ứng dụng web động}. AngularJS cho phép lập trình viên sử dụng HTML như là ngôn ngữ mẫu và cho phép bạn mở rộng cú pháp của HTML để diễn đạt các thành phần trong ứng dụng một cách rõ ràng và súc tích. Hai tính năng cốt lõi: \textbf{Data binding} và \textbf{Dependency injection} của AngularJS loại bỏ phần lớn code dư thừa.
@@ -601,9 +699,8 @@ Tên tác giả, năm xuất bản. \textit{Tên sách.} Lần xuất bản. Th�
 
 \newpage
 \section*{Phân công công việc}
-
-    \begin{center}
         \begin{table}[h]
+        \centering
             \begin{tabular}{|l|l|l|l|}
             \hline
             STT & Tên & Nhiệm vụ & Đánh giá\\
@@ -615,8 +712,7 @@ Tên tác giả, năm xuất bản. \textit{Tên sách.} Lần xuất bản. Th�
               & & chỉnh sửa thông tin, giao diện &\\
             \hline
             \end{tabular}
-        \end{table}    
-    \end{center}
+        \end{table}  
 
 \listoffigures
 \newpage

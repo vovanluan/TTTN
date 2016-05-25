@@ -17,19 +17,23 @@
 \contentsline {paragraph}{\numberline {3.1.2.3}C\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng th\IeC {\'\uhorn }c API}{13}{paragraph.3.1.2.3}
 \contentsline {paragraph}{\numberline {3.1.2.4}C\IeC {\'a}c thu\IeC {\d \ocircumflex }c t\IeC {\'\i }nh c\IeC {\`\acircumflex }n c\IeC {\'o} trong c\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{13}{paragraph.3.1.2.4}
 \contentsline {subsection}{\numberline {3.2}RESTful Web Service}{14}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}JPA}{14}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}AngularJS}{14}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } AngularJS}{14}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}C\IeC {\'a}c \IeC {\dj }\IeC {\d \abreve }c t\IeC {\'\i }nh c\IeC {\h u}a AngularJS}{14}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\'\ocircumflex }t l\IeC {\~o}i c\IeC {\h u}a AngularJS}{15}{subsubsection.3.4.3}
-\contentsline {subsubsection}{\numberline {3.4.4}C\IeC {\'a}c th\IeC {\`a}nh ph\IeC {\`\acircumflex }n c\IeC {\h u}a AngularJS}{15}{subsubsection.3.4.4}
-\contentsline {subsubsection}{\numberline {3.4.5}\IeC {\UHORN }u v\IeC {\`a} nh\IeC {\uhorn }\IeC {\d \ohorn }c \IeC {\dj }i\IeC {\h \ecircumflex }m}{16}{subsubsection.3.4.5}
-\contentsline {subsection}{\numberline {3.5}Android}{16}{subsection.3.5}
-\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{16}{section.4}
-\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{16}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Client}{18}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Server}{18}{subsection.4.3}
-\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{18}{section.5}
-\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{18}{section.6}
-\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{18}{section.7}
-\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{19}{section.8}
+\contentsline {subsubsection}{\numberline {3.2.1}S\IeC {\h \uhorn } d\IeC {\d u}ng c\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng th\IeC {\'\uhorn }c HTTP m\IeC {\d \ocircumflex }t c\IeC {\'a}ch r\IeC {\~o} r\IeC {\`a}ng}{14}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Phi tr\IeC {\d a}ng th\IeC {\'a}i}{14}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}URIs hi\IeC {\h \ecircumflex }n th\IeC {\d i} theo d\IeC {\d a}ng c\IeC {\'\acircumflex }u tr\IeC {\'u}c th\IeC {\uhorn } m\IeC {\d u}c}{15}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Bi\IeC {\h \ecircumflex }u di\IeC {\~\ecircumflex }n t\IeC {\`a}i nguy\IeC {\^e}n}{15}{subsubsection.3.2.4}
+\contentsline {subsection}{\numberline {3.3}JPA}{16}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}AngularJS}{17}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Gi\IeC {\'\ohorn }i thi\IeC {\d \ecircumflex }u v\IeC {\`\ecircumflex } AngularJS}{17}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}C\IeC {\'a}c \IeC {\dj }\IeC {\d \abreve }c t\IeC {\'\i }nh c\IeC {\h u}a AngularJS}{18}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}C\IeC {\'a}c t\IeC {\'\i }nh n\IeC {\u a}ng c\IeC {\'\ocircumflex }t l\IeC {\~o}i c\IeC {\h u}a AngularJS}{18}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}C\IeC {\'a}c th\IeC {\`a}nh ph\IeC {\`\acircumflex }n c\IeC {\h u}a AngularJS}{19}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}\IeC {\UHORN }u v\IeC {\`a} nh\IeC {\uhorn }\IeC {\d \ohorn }c \IeC {\dj }i\IeC {\h \ecircumflex }m}{19}{subsubsection.3.4.5}
+\contentsline {subsection}{\numberline {3.5}Android}{19}{subsection.3.5}
+\contentsline {section}{\numberline {4}Hi\IeC {\d \ecircumflex }n th\IeC {\d \uhorn }c d\IeC {\d \uhorn } \IeC {\'a}n}{19}{section.4}
+\contentsline {subsection}{\numberline {4.1}C\IeC {\ohorn } s\IeC {\h \ohorn } d\IeC {\~\uhorn } li\IeC {\d \ecircumflex }u}{19}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Client}{20}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Server}{20}{subsection.4.3}
+\contentsline {section}{\numberline {5}Kh\IeC {\'o} kh\IeC {\u a}n v\IeC {\`a} kh\IeC {\'\abreve }c ph\IeC {\d u}c}{20}{section.5}
+\contentsline {section}{\numberline {6}M\IeC {\h \ohorn } r\IeC {\d \ocircumflex }ng \IeC {\dj }\IeC {\`\ecircumflex } t\IeC {\`a}i}{20}{section.6}
+\contentsline {section}{\numberline {7}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{20}{section.7}
+\contentsline {section}{\numberline {8}Ph\IeC {\d u} l\IeC {\d u}c}{21}{section.8}
