@@ -13,6 +13,7 @@
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Gii thiu v\340 inh ngh\232a}{subsection.3.1}% 13
 \BOOKMARK [3][-]{subsubsection.3.1.2}{GeoReport v2}{subsection.3.1}% 14
 \BOOKMARK [2][-]{subsection.3.2}{RESTful Web Service}{section.3}% 15
+<<<<<<< HEAD
 \BOOKMARK [3][-]{subsubsection.3.2.1}{S dung c\341c phng thc HTTP mt c\341ch r\365 r\340ng}{subsection.3.2}% 16
 \BOOKMARK [3][-]{subsubsection.3.2.2}{Phi trang th\341i}{subsection.3.2}% 17
 \BOOKMARK [3][-]{subsubsection.3.2.3}{URIs hin thi theo dang cu tr\372c th muc}{subsection.3.2}% 18
@@ -30,6 +31,25 @@
 \BOOKMARK [2][-]{subsection.4.2}{Client}{section.4}% 30
 \BOOKMARK [2][-]{subsection.4.3}{Server}{section.4}% 31
 \BOOKMARK [1][-]{section.5}{Kh\363 khan v\340 khc phuc}{}% 32
+=======
+\BOOKMARK [2][-]{subsection.3.3}{JPA}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.4}{AngularJS}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Gii thiu v AngularJS}{subsection.3.4}% 18
+\BOOKMARK [3][-]{subsubsection.3.4.2}{C\341c c t\355nh cua AngularJS}{subsection.3.4}% 19
+\BOOKMARK [3][-]{subsubsection.3.4.3}{C\341c t\355nh nang ct l\365i cua AngularJS}{subsection.3.4}% 20
+\BOOKMARK [3][-]{subsubsection.3.4.4}{C\341c th\340nh phn cua AngularJS}{subsection.3.4}% 21
+\BOOKMARK [3][-]{subsubsection.3.4.5}{u v\340 nhc im}{subsection.3.4}% 22
+\BOOKMARK [2][-]{subsection.3.5}{Android}{section.3}% 23
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Gii thiu v Android}{subsection.3.5}% 24
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Nguy\352n nh\342n s ph\341t trin manh me cua Android}{subsection.3.5}% 25
+\BOOKMARK [3][-]{subsubsection.3.5.3}{C\341c t\355nh nang c ban cua Android}{subsection.3.5}% 26
+\BOOKMARK [1][-]{section.4}{Hin thc d \341n}{}% 27
+\BOOKMARK [2][-]{subsection.4.1}{C s d liu}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.2}{Web Service}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.3}{Client}{section.4}% 30
+\BOOKMARK [1][-]{section.5}{Kh\363 khan v\340 khc phuc}{}% 31
+\BOOKMARK [2][-]{subsection.5.1}{X\341c thc v\340 ph\342n quyn}{section.5}% 32
+>>>>>>> 78d85c0b44ee55f2703af00eeb12591e1b139446
 \BOOKMARK [1][-]{section.6}{M rng \040t\340i}{}% 33
 \BOOKMARK [1][-]{section.7}{Kt lun}{}% 34
 \BOOKMARK [1][-]{section.8}{Phu luc}{}% 35
