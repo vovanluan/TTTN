@@ -781,16 +781,18 @@ Lược đồ class của dự án được thể hiện ở Hình 17.
     \label{refhinh1}
     \end{figure}
 \end{center}
+
+\newpage
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.7]{class-diagram.png}
+     \includegraphics[scale=.6]{class-diagram.png}
     \end{center}
     \caption{Mô hình Class Diagram của đề án}
     \label{refhinh1}
     \end{figure}
 \end{center}
-
+\newpage
 \subsection{Web Service}
 Với từng thực thể nói trên, nhóm đã hiện thực các Web Service tương ứng:
 \subsubsection*{Request}
@@ -840,6 +842,7 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
             \end{tabular}
         \end{table}    
     \end{center}
+    \newpage
 \subsubsection*{GuestUser}
     \begin{center}
         \begin{table}[h]
@@ -853,7 +856,7 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
             \end{tabular}
         \end{table}    
     \end{center}
-\newpage
+
 \subsubsection*{NormalUser}
     \begin{center}
         \begin{table}[h]
@@ -891,96 +894,90 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
     \end{center}
 \subsection{Client}
 Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng web. Từ các yêu cầu đã được nhóm tìm hiểu ở những mục trên, nhóm đã hiện thực được các trang giao diện sau:
+\newpage
 \begin{itemize}
 	\item[•]Trang list-issue (Hình 18): Trang danh sách phản ánh cũng là trang chủ của hệ thống. Các phản ánh sẽ được hiển thị tại đây dưới dạng danh sách, cùng với đó là các bình luận dành cho mỗi phản ánh, phía bên trái là bản đồ hiển thị vị trí các phản ánh.
-	
-	\item[•]Trang map-issue (Hình 19): Hiển thị bản đồ vị trí các phản ánh một cách chi tiết hơn. Phía bên trái là danh sách thu gọn các phản ánh.
-	
-	\item[•]Trang gallery-issue (Hình 20): Hiển thị danh sách các phản ánh theo dạng danh sách ảnh. Phía bên trái là danh sách thu gọn các phản ánh.
-	
-	\item[•]Trang issue-detail (Hình 21): Hiển thị chi tiết về một phản ánh, người dùng cũng có thể đăng bình luận về phẩn ánh đó.
-	
-	\item[•]Trang report-issue (Hình 22): Cho phép người dùng đăng lên một phản ánh, trang này được chia làm bốn bước khác nhau giúp người dùng dễ dàng hơn trong việc cung cấp thông tin về phản ánh.
-	\newpage
-\end{itemize}
-\begin{center}
-    	\begin{figure}[htp]
+	\begin{center}
+    	\begin{figure}[h]
     	\begin{center}
-    	 	\includegraphics[scale=.4]{list-issue.PNG}
+    	 	\includegraphics[scale=.35]{list-issue.PNG}
     	\end{center}
     	\caption{Trang list-issue}
     	\label{refhinh1}
     	\end{figure}
     \end{center}
+	\item[•]Trang map-issue (Hình 19): Hiển thị bản đồ vị trí các phản ánh một cách chi tiết hơn. Phía bên trái là danh sách thu gọn các phản ánh.
     
 \begin{center}
-    	\begin{figure}[htp]
+    	\begin{figure}[h]
     	\begin{center}
-    	 	\includegraphics[scale=.4]{map-issue.PNG}
+    	 	\includegraphics[scale=.35]{map-issue.PNG}
     	\end{center}
     	\caption{Trang map-issue}
     	\label{refhinh1}
     	\end{figure}
-    \end{center}
-    
+    \end{center}	
+    \newpage
+	\item[•]Trang gallery-issue (Hình 20): Hiển thị danh sách các phản ánh theo dạng danh sách ảnh. Phía bên trái là danh sách thu gọn các phản ánh.
 \begin{center}
     	\begin{figure}[htp]
     	\begin{center}
-    	 	\includegraphics[scale=.4]{gallery-issue.PNG}
+    	 	\includegraphics[scale=.35]{gallery-issue.PNG}
     	\end{center}
     	\caption{Trang gallery-issue}
     	\label{refhinh1}
     	\end{figure}
-    \end{center}
-    
+    \end{center}	
+	\item[•]Trang issue-detail (Hình 21): Hiển thị chi tiết về một phản ánh, người dùng cũng có thể đăng bình luận về phẩn ánh đó.
 \begin{center}
     	\begin{figure}[htp]
     	\begin{center}
-    	 	\includegraphics[scale=.4]{issue-detail.PNG}
+    	 	\includegraphics[scale=.35]{issue-detail.PNG}
     	\end{center}
     	\caption{Trang issue-detail}
     	\label{refhinh1}
     	\end{figure}
     \end{center}
-    
+    \newpage
+	\item[•]Trang report-issue (Hình 22): Cho phép người dùng đăng lên một phản ánh, trang này được chia làm bốn bước khác nhau giúp người dùng dễ dàng hơn trong việc cung cấp thông tin về phản ánh.
 \begin{figure}[h]
 		\centering
 		\begin{subfigure}{.5\textwidth}
   			\centering
-  			\includegraphics[width=0.7\linewidth]{Step1.PNG}
+  			\includegraphics[width=0.6\linewidth]{Step1.PNG}
  		    \caption{}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
   			\centering
-  			\includegraphics[width=0.7\linewidth]{Step3.PNG}
+  			\includegraphics[width=0.6\linewidth]{Step2.PNG}
   			\caption{}
   			\label{fig:sub2}
 		\end{subfigure}
 		\begin{subfigure}{.5\textwidth}
   			\centering
-  			\includegraphics[width=0.7\linewidth]{Step2.PNG}
+  			\includegraphics[width=0.6\linewidth]{Step3.PNG}
   			\caption{}
   			\label{fig:sub2}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
   			\centering
-  			\includegraphics[width=0.7\linewidth]{Step4.PNG}
+  			\includegraphics[width=0.6\linewidth]{Step4.PNG}
   			\caption{}
   			\label{fig:sub2}
 		\end{subfigure}
 		\caption{Trang report-issue}
 	\end{figure}
-<<<<<<< HEAD
-	
-	\newpage
-	
-=======
-	\item[•]Trang cá nhân: Nếu người dùng đã đăng nhập vào hệ thống, người dùng có thể truy cập vào trang cá nhân để xem hoặc cập nhật thông tin của người dùng như tên, số chứng minh nhân dân, email, số điện thoại...
-	%Thêm ảnh	
 \end{itemize}
 
->>>>>>> 21afd6958ded816fc885d5354c7c1a5d27372bc6
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+
+    
+
+    
+
+	\newpage
+	
 
 \section{Khó khăn và thách thức}
 Ở Việt Nam, CPĐT là một cơ hội lớn để cải cách cách thức làm việc của bộ máy nhà nước, nâng cao hiệu suất và chất lượng; đồng thời giúp người dân tương tác với các dịch vụ nhà nước dễ dàng. Tuy vậy, CPĐT cũng tồn tại nhiều thách thức cần vượt qua trong quá trình triển khai ở Việt Nam. Ở phần này, nhóm xin trình bày một số thách thức trong việc triển khai CPĐT trên lĩnh vực công nghệ.
@@ -1070,18 +1067,16 @@ Advantages and Challenges}. Truy cập tại \url{http://www98.griffith.edu.au/d
 \end{thebibliography}
 
 \newpage
-\section*{Phân công công việc}
+\section*{Đánh giá mức độ đóng góp}
         \begin{table}[h]
         \centering
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|}
             \hline
-            STT & Tên & Nhiệm vụ & Đánh giá\\
+            STT & Tên & Mức độ đóng góp\\
             \hline
-            1 & Võ Văn Luận & Xây dựng database, model, router & 100\%\\
-              & &         & \\
+            1 & Võ Văn Luận & 50\%\\
             \hline
-            2 & Trần Văn Tài & Thiết kế trang đăng nhập, đăng ký, & 100\%\\
-              & & chỉnh sửa thông tin, giao diện &\\
+            2 & Trần Văn Tài & 50\%\\           
             \hline
             \end{tabular}
         \end{table}  
