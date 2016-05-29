@@ -404,12 +404,12 @@ Việc sử dụng các mạng xã hội như Facebook và Zalo vào mô hình C
 \subsubsection{Giới thiệu và định nghĩa}
 Hiện nay, dựa vào sự phát triển của CNTT người dân có thể gửi những yêu cầu, nguyện vọng của bản thân đến chính quyền thông qua email. Một email báo cáo việc một miếng đá lát trên đường Nguyễn Huệ bị vỡ được gửi đến một nhân viên chính quyền. Người này sẽ lấy đoạn email và lưu vào cơ sở dữ liệu, sau đó gửi đến cho ai đó cần quan tâm giải quyết vấn đề này.\\
 \\
-Thay vì vậy, nếu báo cáo về miếng đá bị vỡ được gửi trực tiếp từ người dân đến ban ngành quản lý việc sửa chữa miếng đá vỡ ấy, sẽ giảm thiểu rất nhiều chi phí quản lý. Đồng thời, thông báo người dân khi vấn đề của họ đã được giải quyết. Vấn đề bức thiết là phải tạo ra một giao thức để người dân có thể gửi yêu cầu dịch vụ tới chính quyền, và nhận thông báo về tiến trình giải quyết vấn đề đó. Ý tưởng này đã được nhóm kỹ sư tại OpenPlans quan tâm và họ đã xây dựng một dự án có tên Open311.\\
+Thay vì vậy, nếu báo cáo về miếng đá bị vỡ được gửi trực tiếp từ người dân đến ban ngành quản lý việc sửa chữa miếng đá vỡ ấy, sẽ giảm thiểu rất nhiều chi phí quản lý. Đồng thời, thông báo người dân khi vấn đề của họ đã được giải quyết. Vấn đề bức thiết là phải tạo ra một giao thức để người dân có thể gửi yêu cầu dịch vụ tới chính quyền, và nhận thông báo về tiến trình giải quyết vấn đề đó. Ý tưởng này đã được nhóm kỹ sư tại OpenPlans (một công ty CNTT ở Mỹ( quan tâm và họ đã xây dựng một dự án có tên Open311 vào năm 2009.\\
 \\
 Open311 là một phương thức mà người dân có thể thông qua nó để gửi các yêu cầu dịch vụ vào danh sách các việc cần làm của chính quyền địa phương, và là cách thức để người dân biết được tiến trình xử lý của chính quyền nhanh chóng và dễ dàng.
 \subsubsection{GeoReport v2}
 GeoReport v2 là một API của Open311 để xây dựng những ứng dụng có thể xem và báo cáo những vấn đền đến chính quyền.
-Một số thành phố đang sử dụng chuẩn GeoReport v2:
+Một số thành phố đang sử dụng API GeoReport v2:
 \begin{itemize}
     \item[•]Helsinki, Finland
 	\item[•]Bonn, Germany
@@ -423,7 +423,7 @@ Một số thành phố đang sử dụng chuẩn GeoReport v2:
 	\item[•]Bloomington, Indiana
 	\item[•]New Haven, Connecticut
 \end{itemize}
-Tiếp theo, nhóm xin giới thiệu một số thông tin cơ bản về chuẩn GeoReport v2
+Tiếp theo, nhóm xin giới thiệu một số thông tin cơ bản về API GeoReport v2
 \paragraph*{Định dạng ngày/giờ}
 Mọi ô dữ liệu kiểu ngày/giờ phải định dạng theo một tập con chung của chuẩn ISO 8601. Thông tin về múi giờ phải có trong định dạng.\\
 \\
@@ -603,21 +603,21 @@ Hiện nay, nhiều websites nổi tiếng được xây dựng từ AngularJS n
 
 	\item \textbf{Controller}: Đây là những tính năng của AngularJS mà được giới hạn tới một scope cụ thể.
 
-	\item \textbf{Service}: AngularJS hoạt động với một vài dịch vụ (service) có sẵn , ví dụ \$http để tạo XMLHttpRequests. Nó là các singleton object mà được khởi tạo duy nhất một lần trong ứng dụng.
+	\item \textbf{Service}: AngularJS hoạt động với một vài dịch vụ (service) có sẵn , ví dụ \$http để tạo XMLHttpRequests. Nó là các \textit{singleton object} mà được khởi tạo duy nhất một lần trong ứng dụng.
 
 	\item \textbf{Filter}: Nó lựa chọn (hay là lọc) các tập con từ tập item trong các mảng và trả về các mảng mới.
 
-	\item \textbf{Directive}: Directive là các marker trong các phần tử DOM (như các phần tử, thuộc tính, css và nhiều hơn thế). Nó có thể dùng để tạo các thẻ HTML riêng phục vụ những mục đích riêng. AngularJS có những directive có sẵn như ngBind,ngModel…
+	\item \textbf{Directive}: Directive là các marker trong các phần tử DOM (như các phần tử, thuộc tính, css và nhiều hơn thế). Nó có thể dùng để tạo các thẻ HTML riêng phục vụ những mục đích riêng. AngularJS có những directive có sẵn như \textbf{ngBind, ngModel}…
 
 	\item \textbf{Template}: Là các rendered view với các thông tin từ controller và model. Nó có thể được sử dụng trong các file riêng biệt (ví dụ như index.jsp) hoặc nhiều view với một trang sử dụng "partials".
 
 	\item \textbf{Routing}: Là khái niệm của sự chuyển dịch qua lại các view.
 
-	\item \textbf{Model View Whatever}: MVC là một mô hình thiết kế để phân chia các ứng dụng thành nhiều phần khác nhau (gọi là Model, View và Controller), một phần sử dụng với một nhiệm vụ nhất định. AngularJS không triển khai MVC theo cách truyền thống, mà gắn liền hơn với Model-View-ViewModel. Nhóm phát triển AngularJS đã đặt tên vui cho mô hình này là Model View Whatever.
+	\item \textbf{Model View Whatever}: MVC là một mô hình thiết kế để phân chia các ứng dụng thành nhiều phần khác nhau (gọi là Model, View và Controller), một phần sử dụng với một nhiệm vụ nhất định. AngularJS không triển khai MVC theo cách truyền thống, mà gắn liền hơn với \textit{Model-View-ViewModel}. Nhóm phát triển AngularJS đã đặt tên vui cho mô hình này là \textit{Model View Whatever}.
 
 	\item \textbf{Deep Linking}: Cho phép bạn mã hóa trạng thái các ứng dụng trên địa chỉ URL để nó có thể được bookmark. Các ứng dụng có thể được phục hồi lại từ các địa chỉ URL với cùng một trạng thái.
 
-	\item \textbf{Dependency Injection}: AngularJS có sẵn một hệ thống con dependency injection để giúp các lập trình viên tạo ra các ứng dụng dễ phát triển, dễ hiểu và kiểm tra.
+	\item \textbf{Dependency Injection}: AngularJS có sẵn một hệ thống con \textit{dependency injection} để giúp các lập trình viên tạo ra các ứng dụng dễ phát triển, dễ hiểu và kiểm tra.
 \end{itemize}
 \subsubsection{Các thành phần của AngularJS}
 AngularJS framework có thể được chia thành ba phần chính sau:
@@ -782,6 +782,7 @@ Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng ch�
 
 \subsection{Web Service}
 Với từng thực thể nói trên, chúng em đã hiện thực các Web Service tương ứng:
+\newpage
 \subsubsection*{Request}
     \begin{center}
         \begin{table}[h]
@@ -811,9 +812,11 @@ Với từng thực thể nói trên, chúng em đã hiện thực các Web Serv
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
             \hline
-            find & GET & id của Comment & \pbox{24cm}{Lấy thông tin của một thực thể Comment theo id}\\ [5pt]
+            find & GET & id của Comment & \pbox{24cm}{Lấy thông tin của một thực thể Comment\\ theo id}\\ [5pt]
             \hline
-            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Comment có trong cơ sở dữ liệu}\\[5pt]
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Comment có trong\\ cơ sở dữ liệu}\\[5pt]
+            \hline
+            findAllByRequestId & GET & id của Request  & \pbox{24cm}{Lấy thông tin mọi Comment trong một\\ Request theo id của Request}\\[5pt]            
             \hline
             create & POST & Comment mới  & \pbox{24cm}{Thêm một Comment mới vào cơ sở dữ liệu}\\[5pt]            
             \hline
