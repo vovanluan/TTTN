@@ -31,6 +31,29 @@
 \usepackage{titlesec}
 \usepackage{float}
 \usepackage{wrapfig}
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+ 
+\lstset{frame=tb,
+  language=HTML,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 \restylefloat{figure}
 \setcounter{secnumdepth}{4}
 \fontsize{10pt}{12pt}
@@ -198,7 +221,7 @@ Những khó khăn và trở ngại trong quá trình xây dựng CPĐT ở Vi�
 	\item[•]Cơ sở hạ tầng công nghệ thông tin ở nước ta còn yếu kém, bất cập từ các dự án công nghệ thông tin
 	\item[•]Trình độ dân trí còn thấp, khó khăn trong việc sử dụng các dịch vụ của công nghệ thông tin (Web, di động,...)
 	\item[•]Trình độ nhận thức và kỹ năng của cán bộ viên chức còn hạn chế, tâm lý không muốn chuyển đổi sang môi trường làm việc mới
-	\item[•]Quy trình nghiệp vẫn chưa ổn định, gây khó khăn cho việc xây dựng một hệ thống toàn diện
+	\item[•]Quy trình nghiệp vụ vẫn chưa ổn định, gây khó khăn cho việc xây dựng một hệ thống toàn diện
 \end{itemize}
 \begin{center}
     \begin{figure}[htp]
@@ -227,22 +250,22 @@ Môi trường làm việc:
 \section{Các dự án tương tự}
 \subsection{Trên thế giới}
 \subsubsection{New York}
-\href{nyc.gov}{Nyc.gov} là tên miền trang web CPĐT của thành phố New York. Hiện có hơn 30,000 trang nội dung và 100 dịch vụ giao dịch online trên trang web này. Giao dịch online bao gồm: mua vé đậu xe, theo dõi tình trạng bất động sản, nhận các chứng chỉ hoặc giấy phép từ chính phủ, hoặc đơn giản hơn là xem lịch đổ rác ở khu phố đang sống… Cổng CPĐT của thành phố cập nhật các thông tin khẩn cấp và thông báo đến toàn thể người dân thành phố rất dễ dàng.
+\url{Nyc.gov} là tên miền trang web CPĐT của thành phố New York. Hiện có hơn 30,000 trang nội dung và 100 dịch vụ giao dịch online trên trang web này. Giao dịch online bao gồm: mua vé đậu xe, theo dõi tình trạng bất động sản, nhận các chứng chỉ hoặc giấy phép từ chính phủ, hoặc đơn giản hơn là xem lịch đổ rác ở khu phố đang sống… Cổng CPĐT của thành phố cập nhật các thông tin khẩn cấp và thông báo đến toàn thể người dân thành phố rất dễ dàng.
 \newpage
 \begin{center}
     \begin{figure}[t]
     \begin{center}
-     \includegraphics[scale=.3]{newyork.PNG}
+     \includegraphics[scale=.34]{newyork.PNG}
     \end{center}
-    \caption{Trang web CPĐT \href{nyc.gov}{Nyc.gov} của thành phố New York}
+    \caption{Trang web CPĐT \url{Nyc.gov} của thành phố New York}
     \label{refhinh2}
     \end{figure}
 \end{center}
-Người dân có thể dễ dàng gửi một lời phàn nàn về vấn đề xung quanh như: tiếng ồn, đậu xe không đúng chỗ, xả rác, mất trật tự an ninh... đến chính quyền thành phố từ trang web \href{http://www1.nyc.gov/311/}{http://www1.nyc.gov/311/}. Chính quyền sẽ phản hồi và nhanh chóng giải quyết vấn đề. Ngoài ra, người dân cũng có thể thanh toán các dịch vụ công cộng như: vé đậu xe, vé phạt tốc độ, vượt đèn đỏ,... trên trang web này
+Người dân có thể dễ dàng gửi phản ánh về vấn đề xung quanh như: tiếng ồn, đậu xe không đúng chỗ, xả rác, mất trật tự an ninh... đến chính quyền thành phố từ trang web \url{http://www1.nyc.gov/311/}. Chính quyền sẽ phản hồi và nhanh chóng giải quyết vấn đề. Ngoài ra, người dân cũng có thể thanh toán các dịch vụ công cộng như: vé đậu xe, vé phạt tốc độ, vượt đèn đỏ,... trên trang web này.
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.4]{newyork_complaint.PNG}
+     \includegraphics[scale=.41]{newyork_complaint.PNG}
     \end{center}
     \caption{Gửi lời phàn nàn đến chính quyền}
     \label{refhinh2}
@@ -258,7 +281,9 @@ Người dân có thể dễ dàng gửi một lời phàn nàn về vấn đề
     \label{refhinh2}
     \end{figure}
 \end{center}
-Không chỉ phát triển trên nền tảng web, CPĐT ở New York còn phát triển trên các ứng dụng điện thoại di động, đặc biệt là trên hệ điều hành Android và iPhone. Với sự tiện ích và gắn bó bên cạnh người dùng của điện thoại di động, người dân có thể gửi yêu cầu đến chính quyền thành phố nhanh chóng và kịp thời.\\
+Không chỉ phát triển trên nền tảng web, CPĐT ở New York còn phát triển trên các ứng dụng điện thoại di động, đặc biệt là trên hệ điều hành Android và iPhone (Hình 6). Với sự tiện ích và gắn bó bên cạnh người dùng của điện thoại di động, người dân có thể gửi yêu cầu đến chính quyền thành phố nhanh chóng và kịp thời.\\
+\\
+Từ sau sự kiện chấn động 11/9, thành phố New York càng tập trung phát triển CPĐT để tạo ra kênh thông tin cho người dân thành phố trong các tình huống khẩn cấp. Hiện nay, New York là một trong các thành phố phát triển nhất thế giới về CPĐT.
 \begin{figure}[h]
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -266,7 +291,7 @@ Không chỉ phát triển trên nền tảng web, CPĐT ở New York còn phát
   \includegraphics[width=0.9\linewidth]{newyork_android.PNG}
   \caption{NYC android app}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.47\textwidth}
   \centering
   \includegraphics[width=0.9\linewidth]{newyork_iphones.PNG}
   \caption{NYC iPhone app}
@@ -274,9 +299,6 @@ Không chỉ phát triển trên nền tảng web, CPĐT ở New York còn phát
 \end{subfigure}
 \caption{Ứng dụng CPĐT của New York trên hệ điều hành Android và iPhone}
 \end{figure}
-
-Từ sau sự kiện chấn động 11/9, thành phố New York càng tập trung phát triển CPĐT để tạo ra kênh thông tin cho người dân thành phố trong các tình huống khẩn cấp. Hiện nay, New York là một trong các thành phố phát triển nhất thế giới về CPĐT. 
-
 \subsubsection{Singapore}
 Là một trong những quốc gia tiên phong về CPĐT, Singapore bắt tay vào CPĐT với các kế hoạch CNTT tổng thể ở cấp quốc gia và tin học hóa quản lý hành chính kể từ những năm 80 của thế kỷ 20. Singapore nổi tiếng về mô hình "một cửa" trong dịch vụ công và đã triển khai thành công CPĐT. Singapore rất nỗ lực trong việc đầu tư phát triển CPĐT và đã đạt được nhiều thành tựu quan trọng, xếp hạng cao trong các đánh giá toàn cầu về CPĐT:
 \begin{itemize}
@@ -288,17 +310,17 @@ Là một trong những quốc gia tiên phong về CPĐT, Singapore bắt tay v
 	\item[-]Đứng thứ nhất trong cuộc khảo sát hằng năm về CPĐT của trường đại học Waseda
 \end{itemize}
 CPĐT ở Singapore nhận được sự tin tưởng của người dân từ khi được triển khai. 93\% người dân hài lòng và cảm thấy có ích về những thông tin được đăng trên trang web của chính phủ, 94\% bằng lòng với chất lượng dịch vụ CPĐT.
-Hiện nay, có 4 cổng CPĐT và hơn 400 websites chi nhánh giải quyết từng vấn đề cụ thể ở Singapore. Không chỉ vậy, \href{https://www.ecitizen.gov.sg}{ecitizen.gov.sg} là cổng CPĐT riêng để người dân có thể truy cập các thông tin và dịch vụ điện tử của chính phủ.	
+Hiện nay, có 4 cổng CPĐT và hơn 400 websites chi nhánh giải quyết từng vấn đề cụ thể ở Singapore. Không chỉ vậy, \url{https://www.ecitizen.gov.sg} là cổng CPĐT riêng để người dân có thể truy cập các thông tin và dịch vụ điện tử của chính phủ.	
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.3]{singapore.PNG}
+     \includegraphics[scale=.4]{singapore.PNG}
     \end{center}
-    \caption{Trang web CPĐT \href{ecitizen.gov.sg}{ecitizen.gov.sg} của thành phố Singapore}
+    \caption{Trang web CPĐT \url{ecitizen.gov.sg} của thành phố Singapore}
     \label{refhinh2}
     \end{figure}
 \end{center}
-Người dân dễ dàng truy cập vào tất cả thông tin và dịch vụ chính phủ. Đồng thời, trang \href{ecitizen.gov.sg}{ecitizen.gov.sg} cũng liên kết đến các websites chi nhánh để cung cấp chi tiết thông tin hay dịch vụ người dân cần. 
+Người dân dễ dàng truy cập vào tất cả thông tin và dịch vụ chính phủ. Đồng thời, trang \url{ecitizen.gov.sg} cũng liên kết đến các websites chi nhánh để cung cấp chi tiết thông tin hay dịch vụ người dân cần. 
 Ngoài ra, CPĐT ở Singapore còn có hệ thống cung cấp giấy phép, chứng chỉ kinh doạnh điện tử, mang lại nhiều lợi ích về thời gian và chi phí:
 	\begin{itemize}
 	\item[•]Tự động cập nhật tình trạng qua tin nhắn hoặc email
@@ -307,7 +329,7 @@ Ngoài ra, CPĐT ở Singapore còn có hệ thống cung cấp giấy phép, ch
 	\end{itemize}
 \subsection{Tại Việt Nam}
 \subsubsection{Thành phố Hồ Chí Minh}	
-Trang web \href{hochiminhcity.gov.vn}{hochiminhcity.gov.vn} là cổng thông tin chính phủ điện tử ở tại Thành phố Hồ Chí Minh. Trang web với hơn 7000 lượt truy cập mỗi ngày, cung cấp các tin tức, hoạt động nổi bật của thành phố, các văn bản chỉ đạo điều hành, văn bản quy phạm pháp luật, các báo cáo thống kê và tình hình kinh tế - xã hội.\\
+Trang web \url{hochiminhcity.gov.vn} là cổng thông tin chính phủ điện tử ở tại Thành phố Hồ Chí Minh. Trang web với hơn 7000 lượt truy cập mỗi ngày, cung cấp các tin tức, hoạt động nổi bật của thành phố, các văn bản chỉ đạo điều hành, văn bản quy phạm pháp luật, các báo cáo thống kê và tình hình kinh tế - xã hội.\\
 \\
 Ngoài ra trang web còn cho phép công dân gửi góp ý về các quy định, thủ tục hành chính, những vướng mắc cụ thể trong việc thực hiện các quy định hành chính; người dân cũng có thể đề xuất với chính quyền các phương án xử lý những phản ánh nêu trên hoặc có sáng kiến ban hành mới quy định hành chính liên quan đến hoạt động kinh doanh, đời sống nhân dân.
 \begin{center}
@@ -315,31 +337,31 @@ Ngoài ra trang web còn cho phép công dân gửi góp ý về các quy địn
     \begin{center}
      \includegraphics[scale=.4]{egov-tphcm.PNG}
     \end{center}
-    \caption{Trang web CPĐT \href{hochiminhcity.gov.vn}{hochiminhcity.gov.vn} của thành phố Hồ Chí Minh}
+    \caption{Trang web CPĐT \url{hochiminhcity.gov.vn} của thành phố Hồ Chí Minh}
     \label{refhinh7}
     \end{figure}
 \end{center}
-Tuy nhiên, trang web vẫn còn nhiều bất cập và thiếu sót,trang góp ý (Hình \ref{refhinh7}) còn đơn giản, chưa đi sâu vào chi tiết các mảng, chưa phân hóa ra thành các mục chuyên biệt rõ ràng; trang web không hiển thị cho người xem các phản ánh trước đó, do đó người dân không biết được tình trạng cũng như các cơ quan chức năng nào đang xử lý phản ánh, góp ý, không tạo được kênh tương tác giữa chính phủ và công dân.
+Tuy nhiên, trang web vẫn còn nhiều bất cập và thiếu sót,trang góp ý (Hình 9) còn đơn giản, chưa đi sâu vào chi tiết các mảng, chưa phân hóa ra thành các mục chuyên biệt rõ ràng; trang web không hiển thị cho người xem các phản ánh trước đó, do đó người dân không biết được tình trạng cũng như các cơ quan chức năng nào đang xử lý phản ánh, góp ý, không tạo được kênh tương tác giữa chính phủ và công dân.
 \newpage
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.4]{gopy-tphcm.PNG}
+     \includegraphics[scale=.36]{gopy-tphcm.PNG}
     \end{center}
-    \caption{Trang góp ý của \href{hochiminhcity.gov.vn}{hochiminhcity.gov.vn}}
+    \caption{Trang góp ý của \url{hochiminhcity.gov.vn}}
     \label{refhinh7}
     \end{figure}
 \end{center}
 \subsubsection{Thành phố Đà Nẵng}
 Vào tháng 8/2014, ông Phạm Kim Sơn, Giám đốc Sở Thông tin \& Truyền thông công bố chia sẻ miễn phí nền tảng Chính phú điện tử \textbf{eGov Framework} cho các địa phương. \textbf{eGov Framework} là giải pháp nền tảng về Chính phủ điện tử được chuyển giao từ Chính phủ Hàn Quốc.\\
 \\
-Cùng với sự tư vấn của các chuyên gia ở Hoa Kỳ, Đà Nẵng đã phối hợp phát triển thêm nền tảng Chính phủ điện tử phù hợp với điều kiện địa phương trong suốt 2 năm với chi phí bỏ ra khoảng 630.000 USD, cho ra đời hệ thống thông tin chính quyền điện tử Thành phố Đà Nẵng tại đường dẫn \href{egov.danang.gov.vn}{egov.danang.gov.vn}. 
+Cùng với sự tư vấn của các chuyên gia ở Hoa Kỳ, Đà Nẵng đã phối hợp phát triển thêm nền tảng Chính phủ điện tử phù hợp với điều kiện địa phương trong suốt 2 năm với chi phí bỏ ra khoảng 630.000 USD, cho ra đời hệ thống thông tin chính quyền điện tử Thành phố Đà Nẵng tại đường dẫn \url{egov.danang.gov.vn}. 
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.3]{egov-danang.PNG}
+     \includegraphics[scale=.36]{egov-danang.PNG}
     \end{center}
-    \caption{Trang web CPĐT \href{egov.danang.gov.vn}{egov.danang.gov.vn} của Thành phố Đà Nẵng}
+    \caption{Trang web CPĐT \url{egov.danang.gov.vn} của Thành phố Đà Nẵng}
     \label{refhinh7}
     \end{figure}
 \end{center}
@@ -351,13 +373,13 @@ Cán bộ sử dụng Hệ thống thông tin chính quyền điện tử để 
     \begin{center}
      \includegraphics[scale=.55]{gopy-danang.PNG}
     \end{center}
-    \caption{Trang góp ý của \href{egov.danang.gov.vn}{egov.danang.gov.vn}}
+    \caption{Trang góp ý của \url{egov.danang.gov.vn}}
     \label{refhinh7}
     \end{figure}
 \end{center}
-Không những thế, chính quyền Đà Nẵng còn mở thêm cổng thông tin "Quản lý đô thị Đà Nẵng: Tiện nghi - Xanh - Sạch - Đẹp" trên mạng xã hội Facebook tiếp nhận các phản ánh của người dân về các vấn đề an ninh đô thị, môi trường, v.v\\
+Không những thế, chính quyền Đà Nẵng còn mở thêm cổng thông tin \textit{"Quản lý đô thị Đà Nẵng: Tiện nghi - Xanh - Sạch - Đẹp"} trên mạng xã hội Facebook tiếp nhận các phản ánh của người dân về các vấn đề an ninh đô thị, môi trường, v.v\\
 \\
-Ngoài ra, Đà Nẵng còn cung cấp "Tổng đài dịch vụ công 1022" trên mạng xã hội Zalo (Hình ). Tổng đài chính thức đi vào hoạt động ngày 15/12/2015, cung cấp các tin tức nổi bật hàng ngày tại Đà Nẵng, cho phép người dân tra cứu hành trình xe buýt, tình trạng nộp hồ sơ đăng ký kinh doanh. Trong tương lai, Tổng đài trên Zalo còn dự kiến cung cấp nhiều loại thông tin hữu ích khác tới người dân như tình hình bão lũ và hướng dẫn phòng tránh; lịch tiếp dân; lịch cắt điện, cắt nước; văn bản, chính sách mới của thành phố, điểm thi tốt nghiệp THCS, THPT, Đại học…
+Ngoài ra, Đà Nẵng còn cung cấp \textit{"Tổng đài dịch vụ công 1022"} trên mạng xã hội Zalo (Hình 12). Tổng đài chính thức đi vào hoạt động ngày 15/12/2015, cung cấp các tin tức nổi bật hàng ngày tại Đà Nẵng, cho phép người dân tra cứu hành trình xe buýt, tình trạng nộp hồ sơ đăng ký kinh doanh. Trong tương lai, Tổng đài trên Zalo còn dự kiến cung cấp nhiều loại thông tin hữu ích khác tới người dân như tình hình bão lũ và hướng dẫn phòng tránh; lịch tiếp dân; lịch cắt điện, cắt nước; văn bản, chính sách mới của thành phố, điểm thi tốt nghiệp THCS, THPT, Đại học…
 
 \newpage
 \begin{figure}[h]
@@ -375,7 +397,6 @@ Ngoài ra, Đà Nẵng còn cung cấp "Tổng đài dịch vụ công 1022" tr�
 \end{subfigure}
 \caption{Ứng dụng CPĐT của Đà Nẵng trên Zalo}
 \end{figure}
-
 Việc sử dụng các mạng xã hội như Facebook và Zalo vào mô hình CPĐT giúp cho thông tin có độ phủ lớn, đến với người dân rất nhanh, phản ứng của chính quyền kịp thời. Điều này cho thấy Đà Nẵng đã dẫn đầu xu hướng CPĐT tại Việt Nam, tiên phong trong việc triển khai chính phủ điện tử trên nền tảng OTT, đón đầu cả xu thế sử dụng điện thoại di động ngày càng phổ biến trong xã hội.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Kiến thức nền}
@@ -449,9 +470,9 @@ Với chuẩn GeoReport v2, một số thuộc tính sau bắt buộc phải có
 	\item \textbf{media\_url}: đường dẫn đến ảnh, clip... mô tả về yêu cầu
 \end{itemize}
 \subsection{RESTful Web Service}
-REST (Representational State Transfer) định nghĩa các quy tắc kiến trúc thiết kế Web services chú trọng vào tài nguyên hệ thống, các tài nguyên này được chuyển tải thông qua giao thức HTTP. REST được giới thiệu lần đầu tiên vào năm 2000 bởi Roy Fielding trong luận án của ông "Architectural Styles and the Design of Network-based Software Architectures".\\
+REST (Representational State Transfer) định nghĩa các quy tắc kiến trúc thiết kế Web services chú trọng vào tài nguyên hệ thống, các tài nguyên này được chuyển tải thông qua giao thức HTTP. REST được giới thiệu lần đầu tiên vào năm 2000 bởi Roy Fielding trong luận án của ông \textit{"Architectural Styles and the Design of Network-based Software Architectures"}.\\
 \\
-Việc cụ thể hóa một Web service REST sẽ tuân thủ theo bốn nguyên tắc thiết kế cơ bản sau:
+Việc cụ thể hóa một Web service REST sẽ tuân thủ theo bốn nguyên tắc thiết kế sau:
  \begin{itemize}
  	\item[•]Sử dụng các phương thức HTTP một cách rõ ràng
 	\item[•]Phi trạng thái
@@ -479,7 +500,7 @@ Trong RESTful web service, server không lưu lại trạng thái của client; 
 \end{itemize}
 \textbf{Bất lợi: }gia tăng lượng thông tin cần truyền tải giữa client và server
 \subsubsection{URIs hiển thị theo dạng cấu trúc thư mục}
-Đặc tính thứ ba về RESTful web service là về URIs. REST Web service URIs phải được thể hiện một cách trực quan và dễ đoán. Hãy nghĩ về URIs như một \textit{self-documenting interface} - một dạng tài liệu trong đó cần rất ít hoặc thậm chí không cần các giải thích và tham khảo để một nhà phát triển có thể hiểu được những gì nó trỏ tới hoặc rút trích ra được các thông tin liên quan.\\
+Đặc tính thứ ba về RESTful web service là về URIs. REST Web service URIs phải được thể hiện một cách trực quan và dễ đoán. Hãy nghĩ về URIs như một \textit{"self-documenting interface"} - một dạng tài liệu trong đó cần rất ít hoặc thậm chí không cần các giải thích và tham khảo để một nhà phát triển có thể hiểu được những gì nó trỏ tới hoặc rút trích ra được các thông tin liên quan.\\
 \\
 Có một cách đơn giản để có thể đạt được điều đó là thể hiện URIs theo dạng cấu trúc thư mục - trong đó URIs có thứ bậc, bắt nguồn từ một đường dẫn đơn giản, và có thể phân nhánh tại các nút con thể hiện nội dung của một dịch vụ xác định.\\
 \\
@@ -511,9 +532,9 @@ Kiến trúc REST xem các loại nội dung như là một dạng tài nguyên.
             \end{tabular}
 \end{table}  
 \\
-REST của không áp đặt bất kỳ hạn chế nào về định dạng của một tài nguyên. Một client có thể yêu cầu dưới định dạng JSON,một khách hàng khác có thể yêu cầu dưới định dạng XML của cùng một tài nguyên cho server. Trách nhiệm của các  REST server là trả về cho các client các tài nguyên trong các định dạng mà client hiểu.
+REST của không áp đặt bất kỳ hạn chế nào về định dạng của một tài nguyên. Một client có thể yêu cầu dưới định dạng JSON, một khách hàng khác có thể yêu cầu dưới định dạng XML của cùng một tài nguyên cho server. Trách nhiệm của các  REST server là trả về cho các client các tài nguyên trong các định dạng mà client hiểu.
 \subsection{JPA}
-Java Persistence API hay JPA là một đăc tả Java cho việc ánh xạ giữa các đối tượng Java tới cơ sở dữ liệu quan hệ sử dụng cộng nghệ phổ biến là ORM( Object Relational Mapping). JPA API cung cấp đầy đủ các công cụ cho phép người lập trình có thể tạo cơ sở dữ liệu một cách đơn giản và nhanh chóng. JPA API có thể dùng để persist một đối tượng business (POJO) vào trong cơ sở dữ liệu hoặc lấy dữ liệu từ cơ sở dữ liệu và ánh xạ ra các đối tượng business một cách đơn giản. Điều này làm giảm bớt gánh nặng viết code trong việc quản lý các đối tượng quan hệ, một lập trình viên khi sử dụng "JPA Provider" framework có thể dễ dàng tương tác với các instance trong cơ sở dữ liệu. \\
+Java Persistence API hay JPA là một đăc tả Java cho việc ánh xạ giữa các đối tượng Java tới cơ sở dữ liệu quan hệ sử dụng cộng nghệ phổ biến là ORM (Object Relational Mapping). JPA API cung cấp đầy đủ các công cụ cho phép người lập trình có thể tạo cơ sở dữ liệu một cách đơn giản và nhanh chóng. JPA API có thể dùng để persist một đối tượng business (POJO) vào trong cơ sở dữ liệu hoặc lấy dữ liệu từ cơ sở dữ liệu và ánh xạ ra các đối tượng business một cách đơn giản. Điều này làm giảm bớt gánh nặng viết code trong việc quản lý các đối tượng quan hệ, một lập trình viên khi sử dụng \textit{"JPA Provider"} framework có thể dễ dàng tương tác với các instance trong cơ sở dữ liệu. \\
 \\
 JPA là một đăc tả của Sun, ra đời cùng với bản đặc tả J2EE 5. JPA không phải là một sản phẩm và không thể nó như thành phần persistence. Nó cần phải có một cài đặt ORM để hoạt động và persist các đối tượng Java. Các framework ORM có thể sử dụng cho JPA như Hibernate, Toplink, Open JPA,…\\
 \\
@@ -523,16 +544,16 @@ Sau đây ta cùng tìm hiểu một số khái niệm của JPA\\
 \\
 \textbf{Entity: }là các đối tượng persistence thể hiện một mẫu tin trong cơ sở dữ liệu. Entity chỉ là các lớp POJO đơn giản, dễ dàng tạo. Dưới đây là một số đặc điểm của một Entity:
 \begin{itemize}
-	\item[•]Entity có thể tương tác với cơ sở dữ liệu quan hệ.
-	\item[•]Entity được xác định thông qua một định danh( tương đương với khóa chình trong table của cơ sở dữ liệu quan hệ)
+	\item[•]Entity có thể tương tác với cơ sở dữ liệu quan hệ
+	\item[•]Entity được xác định thông qua một định danh (tương đương với khóa chình trong table của cơ sở dữ liệu quan hệ)
 	\item[•]Entity hỗ trợ giao tác (transaction)
-	\item[•]Entity hỗ trợ kế thừa giống như những lớp thường khác.
+	\item[•]Entity hỗ trợ kế thừa giống như những lớp thường khác
 \end{itemize}
 \textbf{EntityManager: }là một giao diện (interface) cung cấp các API cho việc tương tác với các Entity. Một số chức năng cơ bản của EntityManager như:
 \begin{itemize}
 	\item[•]Persist: phương thức này dùng để lưu một thực thể mới tạo vào cơ sở dữ liệu
-	\item[•]Merge: dùng để cập nhật trạng thái của entity vào cơ sở dữ liệu.
-	\item[•]Remove: xóa một thể hiện của entity.
+	\item[•]Merge: dùng để cập nhật trạng thái của entity vào cơ sở dữ liệu
+	\item[•]Remove: xóa một thể hiện của entity
 \end{itemize}
 \textbf{EntityManagerFactory: }được dùng để tạo ra một thể hiện của EntityManager\\
 \\
@@ -545,20 +566,20 @@ Một số tính năng của JPA:
 	\item[•]Giảm bớt số lớp yêu cầu cho việc phát triển persistence
 	\item[•]Không cần phải viết các mô tả triển khai trong xml. Annotation dựa trên metadata đã hỗ trợ trong các ứng dụng JPA
 	\item[•]Đã chuẩn hóa ORM và dễ dàng phát triển hơn
-	\item[•]JPA hỗ trợ truy vấn động và tĩnh.
+	\item[•]JPA hỗ trợ truy vấn động và tĩnh
 	\item[•]Nhiều IDE hỗ trợ phát triển ứng dụng JPA và có thể tự động sinh code ánh xạ từ cơ sở dữ liệu thành các entity và ngược lại
 \end{itemize}
 \subsection{AngularJS}
 \subsubsection{Giới thiệu về AngularJS}
-\textbf{AngularJS là một framework có cấu trúc cho các ứng dụng web động}. AngularJS cho phép lập trình viên sử dụng HTML như là ngôn ngữ mẫu và cho phép bạn mở rộng cú pháp của HTML để diễn đạt các thành phần trong ứng dụng một cách rõ ràng và súc tích. Hai tính năng cốt lõi: \textbf{Data binding} và \textbf{Dependency injection} của AngularJS loại bỏ phần lớn code dư thừa.
-
-AngularJS được bắt đầu từ năm 2009, do lập trình viên Misko Hevery tại Google tạo ra. Misko Hevery và nhóm lúc này đang tham gia vào 1 dự án của Google tên là Google Feedback. Với AngularJS, Misko đã rút ngắn số dòng code front-end từ 17000 dòng còn chỉ khoảng 1500. Với sự thành công đó, đội ngũ của dự án Google Feedback quyết định phát triển AngularJS theo hướng mã nguồn mở.
-
-Hiện nay, nhiều websites nổi tiếng được xây dựng từ AngularJS như \url{https://www.paypal.com}, \url{https://www.freelancer.com/}...có với giao diện đẹp, thân thiện với người dùng.
+\textbf{AngularJS là một framework có cấu trúc cho các ứng dụng web động}. AngularJS cho phép lập trình viên sử dụng HTML như là ngôn ngữ mẫu và cho phép bạn mở rộng cú pháp của HTML để diễn đạt các thành phần trong ứng dụng một cách rõ ràng và súc tích. Hai tính năng cốt lõi: \textbf{Data binding} và \textbf{Dependency injection} của AngularJS loại bỏ phần lớn code dư thừa.\\
+\\
+AngularJS được bắt đầu từ năm 2009, do lập trình viên Misko Hevery tại Google tạo ra. Misko Hevery và nhóm lúc này đang tham gia vào 1 dự án của Google tên là Google Feedback. Với AngularJS, Misko đã rút ngắn số dòng code front-end từ 17000 dòng còn chỉ khoảng 1500. Với sự thành công đó, đội ngũ của dự án Google Feedback quyết định phát triển AngularJS theo hướng mã nguồn mở.\\
+\\
+Hiện nay, nhiều websites nổi tiếng được xây dựng từ AngularJS như \url{https://www.paypal.com}, \url{https://www.freelancer.com/}... có với giao diện đẹp, thân thiện với người dùng (Hình 13).
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.3]{freelancer.PNG}
+     \includegraphics[scale=.4]{freelancer.PNG}
     \end{center}
     \caption{Giao diện website \url{https://www.freelancer.com/} được xây dựng từ AngularJS}
     \label{refhinh2}
@@ -601,11 +622,11 @@ Hiện nay, nhiều websites nổi tiếng được xây dựng từ AngularJS n
 \subsubsection{Các thành phần của AngularJS}
 AngularJS framework có thể được chia thành ba phần chính sau:
 \begin{itemize}
-	\item \textbf{ng-app}: \textit{directive} này định nghĩa và liên kết một ứng dụng AngularJS tới HTML.
+	\item \lstinline{ng-app}: \textit{directive} này định nghĩa và liên kết một ứng dụng AngularJS tới HTML.
 
-	\item \textbf{ng-model}: \textit{directive} này gắn kết giá trị của dữ liệu ứng dụng AngularJS đến các điều khiển đầu vào HTML.
+	\item \lstinline{ng-model}: \textit{directive} này gắn kết giá trị của dữ liệu ứng dụng AngularJS đến các điều khiển đầu vào HTML.
 
-	\item \textbf{ng-bind}: \textit{directive} này gắn kết dữ liệu ứng dụng AngularJS đến các thẻ HTML.
+	\item \lstinline{ng-bind}: \textit{directive} này gắn kết dữ liệu ứng dụng AngularJS đến các thẻ HTML.
 \end{itemize}
 \subsubsection{Ưu và nhược điểm}
 \paragraph*{Ưu điểm của AngularJS}
@@ -643,82 +664,94 @@ Phiên bản beta của Android Software Development Kit (SDK) được công b�
 \begin{center}
     \begin{figure}[h]
     \begin{center}
-     \includegraphics[scale=.5]{android_version.jpg}
+     \includegraphics[scale=.4]{android_version.jpg}
     \end{center}
     \caption{Các phiên bản của hệ điều hành Android tính đến thời điểm hiện tại}
     \label{refhinh1}
     \end{figure}
 \end{center}
-
-\begin{wrapfigure}{r}{0.6\textwidth}
-    \centering
-    \includegraphics[width=0.6\textwidth]{android_shipment_market.png}
+Android có mã nguồn mở và Google phát hành mã nguồn theo Giấy phép Apache. Chính mã nguồn mở cùng với một giấy phép không có nhiều ràng buộc đã cho phép các nhà phát triển thiết bị, mạng di động và các lập trình viên nhiệt huyết được điều chỉnh và phân phối Android một cách tự do. Ngoài ra, Android còn có một cộng đồng lập trình viên đông đảo chuyên viết các ứng dụng để mở rộng chức năng của thiết bị, bằng một loại ngôn ngữ lập trình Java có sửa đổi. Chính vì vây, Android có một tốc độ mở rộng và phát triển không tưởng, chiếm thị phần lớn nhất trong hệ thống điện thoại thông minh toàn cầu (84.1\% vào quý 1 năm 2016) \cite{bib6} (Hình 15)
+\begin{center}
+    \begin{figure}[h]
+    \begin{center}
+     \includegraphics[scale=.3]{android_shipment_market.png}
+    \end{center}
     \caption{Thị phần điện thoại thông minh phân loại theo hệ điều hành}
-\end{wrapfigure}
-Android có mã nguồn mở và Google phát hành mã nguồn theo Giấy phép Apache. Chính mã nguồn mở cùng với một giấy phép không có nhiều ràng buộc đã cho phép các nhà phát triển thiết bị, mạng di động và các lập trình viên nhiệt huyết được điều chỉnh và phân phối Android một cách tự do. Ngoài ra, Android còn có một cộng đồng lập trình viên đông đảo chuyên viết các ứng dụng để mở rộng chức năng của thiết bị, bằng một loại ngôn ngữ lập trình Java có sửa đổi. Chính vì vây, Android có một tốc độ mở rộng và phát triển không tưởng, chiếm thị phần lớn nhất trong hệ thống điện thoại thông minh toàn cầu (84.1\% vào quý 1 năm 2016) \cite{bib6} \\
-
- Vào tháng 2 năm 2016, có khoảng 2 triệu ứng dụng trên Android \cite{bib7}, và số lượt tải ứng dụng từ Google Play, cửa hàng ứng dụng chính của Android, ước tính khoảng 65 tỉ lượt tải \cite{bib8}
- 
+    \label{refhinh1}
+    \end{figure}
+\end{center}
+Vào tháng 2 năm 2016, có khoảng 2 triệu ứng dụng trên Android \cite{bib7}, và số lượt tải ứng dụng từ Google Play, cửa hàng ứng dụng chính của Android, ước tính khoảng 65 tỉ lượt tải \cite{bib8} (Hình 16)
 \begin{figure}[h]
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=0.9\linewidth]{number_app.png}
-  \caption{Số ứng dụng trên Android giai đoạn 2009-2016}
-\end{subfigure}
+  \includegraphics[width=0.95\linewidth]{number_app.png}
+  \caption{Số ứng dụng trên Android}
+\end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=0.9\linewidth]{number_app_downloads.PNG}
-  \caption{Số lượt tải ứng dụng trên Android giai đoạn 2009-2016}
+  \includegraphics[width=0.95\linewidth]{number_app_downloads.PNG}
+  \caption{Số lượt tải ứng dụng trên Android}
   \label{fig:sub2}
 \end{subfigure}
 \caption{Số lượt tải và số lượng ứng dụng Android giai đoạn 2009-2016}
 \end{figure} 
-
 \subsubsection{Nguyên nhân sự phát triển mạnh mẽ của Android}
-\begin{center}
-    \begin{figure}[h]
-    \begin{center}
-     \includegraphics[scale=.5]{why_android.jpg}
-    \end{center}
-    \caption{Nguyên nhân sự phát triển mạnh mẽ của Android}
-    \label{refhinh1}
-    \end{figure}
-\end{center}
-\paragraph*{Mã nguồn mở}
-Bởi vì Android là mã nguồn mở nên lập trình viên dễ dàng tiếp cận với Android và thử nghiệm các công nghệ mới vào Android.
-\paragraph*{Mở rộng tầm ảnh hưởng của cộng đồng và lập trình viên}
-\paragraph*{Tăng hiệu quả marketing}
-Dựa vào sự hỗ trợ từ Google Play, marketing cho ứng dụng trên Android có nhiều lợi thế hơn, dễ dàng quảng cáo ứng dụng đến người dùng trên toàn cầu.
-\paragraph*{Kết hợp các ứng dụng}
-Android có tính linh động cao và có hỗ trợ để kết hợp với các ứng dụng trên các nền tảng khác
-\paragraph*{Giảm chi phí phát triển}
-Các công cụ để lập trình Android hoàn toàn miễn phí, và Google chỉ thu một khoản phí nhỏ để đưa ứng dụng Android lên Android Market. Việc xây dựng và phát triển một ứng dụng Android gần như không tốn chi phí.
-\paragraph*{Tỉ lệ thành công cao}
-\paragraph*{Môi trường lập trình tốt}
-Android cung cấp nhiều công cụ hỗ trợ tốt, SDK và các công nghệ hấp dẫn với lập trình viên để giúp họ sử dụng và phát triển ứng dụng.
-\newpage
+\begin{itemize}
+	\item[•] \textbf{Mã nguồn mở:} Bởi vì Android là mã nguồn mở nên lập trình viên dễ dàng tiếp cận với Android và thử nghiệm các công nghệ mới vào Android.
+	\item[•] \textbf{Mở rộng tầm ảnh hưởng của cộng đồng và lập trình viên}
+	\item[•] \textbf{Tăng hiệu quả marketing:} Dựa vào sự hỗ trợ từ Google Play, marketing cho ứng dụng trên Android có nhiều lợi thế hơn, dễ dàng quảng cáo ứng dụng đến người dùng trên toàn cầu.
+	\item[•] \textbf{Kết hợp các ứng dụng:} Android có tính linh động cao và có hỗ trợ để kết hợp với các ứng dụng trên các nền tảng khác.
+	\item[•] \textbf{Giảm chi phí phát triển: }Các công cụ để lập trình Android hoàn toàn miễn phí, và Google chỉ thu một khoản phí nhỏ để đưa ứng dụng Android lên Android Market. Việc xây dựng và phát triển một ứng dụng Android gần như không tốn chi phí.
+	\item[•] \textbf{Tỉ lệ thành công cao.}
+	\item[•] \textbf{Môi trường lập trình tốt:} Android cung cấp nhiều công cụ hỗ trợ tốt, SDK và các công nghệ hấp dẫn với lập trình viên để giúp họ sử dụng và phát triển ứng dụng.
+\end{itemize}
 \subsubsection{Các tính năng cơ bản của Android}
-Android là một hệ điều hành đầy sức mạnh và hỗ trợ nhiều tính năng tuyệt vời:
+Android là một hệ điều hành đầy sức mạnh và hỗ trợ nhiều tính năng tuyệt vời, danh sách các tính năng cơ bản của Android được nhóm liệt kê trong Bảng 1.
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-\textbf{Đặc điểm} & \textbf{Miêu tả} \\[5pt] \hline
-Giao diện đẹp & \pbox{24cm}{Màn hình Android OS cơ bản cung cấp một giao diện người dùng đẹp \\và có tính thẩm mỹ cao} \\[5pt] \hline
-Tính kết nối & \pbox{24cm}{GSM/EDGE, IDEN, CDMA, EV-DO, UMTS, Bluetooth, Wi-Fi, LTE,\\ NFC và WiMAX} \\[5pt] \hline
-Lưu trữ & \pbox{24cm}{SQLite, một cơ sở dữ liệu quan hệ gọn nhẹ, được sử dụng cho mục đích \\ lưu trữ dữ liệu} \\[5pt] \hline
-Hỗ trợ Media & \pbox{24cm}{H.263, H.264, MPEG-4 SP, AMR, AMR-WB, AAC, HE-AAC, AAC 5.1,\\ MP3, MIDI, Ogg Vorbis, WAV, JPEG, PNG, GIF, và BMP} \\[5pt] \hline
-Tin nhắn & SMS và MMS \\[5pt] \hline
-Trình duyệt Web & \pbox{24cm}{Dựa trên thiết bị WebKit mã nguồn mở, đi kèm với thiết bị V8 JavaScript \\ của Chrome hỗ trợ HTML5 và CSS3} \\[5pt] \hline
-Multi-touch & \pbox{24cm}{Android hỗ trợ cho multi-touch mà đã được tạo ban đầu có sẵn cho \\ các Handset} \\[5pt] \hline
-Đa nhiệm & \pbox{24cm}{Người dùng có thể nhảy từ một tác vụ tới tác vụ khác và nhiều ứng dụng\\ có thể chạy đồng thời cùng một lúc} \\[5pt] \hline
-Widget tùy chỉnh & \pbox{24cm}{Widgets có thể thay đổi kích cỡ, vì thế người dùng có thể mở rộng để\\ hiển thị nhiều nội dung hơn, hoặc thu nhỏ để tiết kiệm không gian} \\[5pt] \hline
-Đa ngôn ngữ & Hỗ trợ text đơn hướng và song hướng \\[5pt] \hline
-GCM & \pbox{24cm}{Google Cloud Messaging (GCM) là một dịch vụ cho phép lập trình viên\\ gửi thông điệp dữ liệu ngắn tới người dùng trên thiết bị Android, \\mà không cần một Sync Solution} \\[5pt] \hline
-Wi-Fi Direct & \pbox{24cm}{Một công nghệ cho phép các ứng dụng dò tìm và ghép cặp một cách \\ trực tiếp, thông qua một kết nối peer-to-peer} \\[5pt] \hline
-Android Beam & \pbox{24cm}{Một công nghệ dựa trên NFC phổ biến cho phép người dùng chia sẻ \\ tức thì, chỉ cần kích hoạt NFC của hai điện thoại với nhau} \\[5pt] \hline
+\textbf{Đặc điểm}& \textbf{Miêu tả} \\
+\hline
+Giao diện đẹp 	 & Màn hình Android OS cơ bản cung cấp một giao diện người dùng đẹp \\
+			  	 & và có tính thẩm mỹ cao \\ \hline
+Tính kết nối  	 & GSM/EDGE, IDEN, CDMA, EV-DO, UMTS, Bluetooth, Wi-Fi, LTE, \\ 
+			  	 & NFC và WiMAX \\ 
+\hline
+Lưu trữ 	  	 & SQLite, một cơ sở dữ liệu quan hệ gọn nhẹ, được sử dụng cho mục đích \\ 
+			  	 & lưu trữ dữ liệu \\
+\hline
+Hỗ trợ Media 	 & H.263, H.264, MPEG-4 SP, AMR, AMR-WB, AAC, HE-AAC, AAC 5.1, \\ 
+			  	 & MP3, MIDI, Ogg Vorbis, WAV, JPEG, PNG, GIF, và BMP \\
+\hline
+Tin nhắn 	  	 & SMS và MMS \\
+\hline
+Trình duyệt Web  & Dựa trên thiết bị WebKit mã nguồn mở, đi kèm với thiết bị V8  \\ 
+				 & JavaScript của Chrome hỗ trợ HTML5 và CSS3 \\
+\hline
+Multi-touch 	 & Android hỗ trợ cho multi-touch mà đã được tạo ban đầu có sẵn cho \\ 
+				 & các Handset \\
+ \hline
+Đa nhiệm 		 & Người dùng có thể nhảy từ một tác vụ tới tác vụ khác và nhiều ứng\\ 
+				 & dụng có thể chạy đồng thời cùng một lúc \\
+\hline
+Widget tùy chỉnh & Widgets có thể thay đổi kích cỡ, vì thế người dùng có thể mở rộng để\\ 
+				 & hiển thị nhiều nội dung hơn, hoặc thu nhỏ để tiết kiệm không gian\\
+\hline
+Đa ngôn ngữ 	 & Hỗ trợ text đơn hướng và song hướng \\
+\hline
+GCM 			 & Google Cloud Messaging (GCM) là một dịch vụ cho phép lập trình viên\\ 
+				 & gửi thông điệp dữ liệu ngắn tới người dùng trên thiết bị Android, mà  \\
+				 & không cần một Sync Solution \\
+\hline
+Wi-Fi Direct 	 & Một công nghệ cho phép các ứng dụng dò tìm và ghép cặp một cách \\ 
+				 & trực tiếp, thông qua một kết nối peer-to-peer \\
+\hline
+Android Beam 	 & Một công nghệ dựa trên NFC phổ biến cho phép người dùng chia sẻ tức \\ 
+				 & thì, chỉ cần kích hoạt NFC của hai điện thoại với nhau \\
+\hline
 \end{tabular}
 \caption{Các tính năng cơ bản của hệ điều hành Android}
 \label{my-label}
@@ -726,7 +759,7 @@ Android Beam & \pbox{24cm}{Một công nghệ dựa trên NFC phổ biến cho p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hiện thực dự án}
 \subsection{Cơ sở dữ liệu}
-Từ những phân tích về các chức năng của ứng dụng, chúng em xác định cơ sở dữ liệu sẽ bao gồm bảng User quản lý các tài khoản và thông tin người dùng, bảng Request và Comment lưu trữ góp ý và bình luận của người dùng. Lược đồ Entity - Relation ship giữa các thực thể trong ứng dụng được mô tả ở Hình 3, bao gồm:
+Từ những phân tích về các chức năng của ứng dụng, chúng em xác định cơ sở dữ liệu sẽ bao gồm bảng User quản lý các tài khoản và thông tin người dùng, bảng Request và Comment lưu trữ góp ý và bình luận của người dùng. Lược đồ Entity - Relationship giữa các thực thể trong ứng dụng được mô tả ở Hình 17, bao gồm:
 \begin{itemize}
 \item[•]\textbf{Request: }Là thực thể mô tả một góp ý của người dân đến chính quyền, các thuộc tính của thực thể này bao gồm tên, mã số, địa chỉ, mô tả, hình ảnh, vị trí, id người gửi, v.v
 \item[•]\textbf{Comment: }Là thực thể mô tả bình luận trong về một góp ý nào đó, có thể có nhiều bình luận trong một góp ý, các thuộc tính của thực thể bao gồm id của bình luận, thời gian gửi, nội dung và thông tin người gửi
@@ -734,6 +767,7 @@ Từ những phân tích về các chức năng của ứng dụng, chúng em x�
 \item[•]\textbf{Normal User: }Là thực thể chứa thông tin của người dùng thông thường, được thừa kế từ thưc thể User, bao gồm các thuộc tính id, số CMND, mật khẩu và số điện thoại
 \item[•]\textbf{Guest User: }Là thực thể chứa thông tin của khách, được thừa kế từ thực thể User, chỉ có một thuộc tính là id
 \end{itemize}
+Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng chức năng tạo ra cơ sở dữ liệu động trong lần chạy đầu tiên của ứng dụng. Việc này được thực hiện thông qua JPA API, các bảng trong cơ sở dữ liệu tương ứng với các JPA Entity đã được hiện thực trước đó.
 \begin{center}
     \begin{figure}[h]
     \begin{center}
@@ -743,7 +777,9 @@ Từ những phân tích về các chức năng của ứng dụng, chúng em x�
     \label{refhinh1}
     \end{figure}
 \end{center}
-Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng chức năng tạo ra cơ sở dữ liệu động trong lần chạy đầu tiên của ứng dụng. Việc này được thực hiện thông qua JPA API, các bảng trong cơ sở dữ liệu tương ứng với các JPA Entity đã được hiện thực trước đó.
+
+\newpage
+
 \subsection{Web Service}
 Với từng thực thể nói trên, chúng em đã hiện thực các Web Service tương ứng:
 \subsubsection*{Request}
