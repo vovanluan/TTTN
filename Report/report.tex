@@ -472,7 +472,7 @@ Với chuẩn GeoReport v2, một số thuộc tính sau bắt buộc phải có
 \subsection{RESTful Web Service}
 REST (Representational State Transfer) định nghĩa các quy tắc kiến trúc thiết kế Web services chú trọng vào tài nguyên hệ thống, các tài nguyên này được chuyển tải thông qua giao thức HTTP. REST được giới thiệu lần đầu tiên vào năm 2000 bởi Roy Fielding trong luận án của ông \textit{"Architectural Styles and the Design of Network-based Software Architectures"}.\\
 \\
-Việc cụ thể hóa một Web service REST sẽ tuân thủ theo bốn nguyên tắc thiết kế sau:
+Việc cụ thể hóa một Web service REST sẽ tuân thủ theo bốn nguyên tắc thiết kế sau: \cite{bib11}
  \begin{itemize}
  	\item[•]Sử dụng các phương thức HTTP một cách rõ ràng
 	\item[•]Phi trạng thái
@@ -540,9 +540,9 @@ JPA là một đăc tả của Sun, ra đời cùng với bản đặc tả J2EE
 \\
 Ngày nay đa số các nhà cung cấp đều hỗ trợ cài đặt JPA cho framework persistence của họ. Vì vây, người lập trình có thể lựa chọn nhà cung cấp tốt nhất tùy thuộc yêu cầu ứng dụng của mình.\\
 \\
-Sau đây ta cùng tìm hiểu một số khái niệm của JPA\\
+Sau đây ta cùng tìm hiểu một số khái niệm của JPA \cite{bib12}\\
 \\
-\textbf{Entity: }là các đối tượng persistence thể hiện một mẫu tin trong cơ sở dữ liệu. Entity chỉ là các lớp POJO đơn giản, dễ dàng tạo. Dưới đây là một số đặc điểm của một Entity:
+\textbf{Entity: }là các đối tượng persistence thể hiện một mẫu tin trong cơ sở dữ liệu. Entity chỉ là các lớp POJO đơn giản, dễ dàng tạo. Dưới đây là một số đặc điểm của một Entity: 
 \begin{itemize}
 	\item[•]Entity có thể tương tác với cơ sở dữ liệu quan hệ
 	\item[•]Entity được xác định thông qua một định danh (tương đương với khóa chính trong table của cơ sở dữ liệu quan hệ)
@@ -768,7 +768,9 @@ Từ những phân tích về các chức năng của ứng dụng, nhóm xác �
 \item[•]\textbf{Normal User: }Là thực thể chứa thông tin của người dùng thông thường, được thừa kế từ thưc thể User, bao gồm các thuộc tính id, số CMND, mật khẩu và số điện thoại
 \item[•]\textbf{Guest User: }Là thực thể chứa thông tin của khách, được thừa kế từ thực thể User, chỉ có một thuộc tính là id
 \end{itemize}
-Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng chức năng tạo ra cơ sở dữ liệu động trong lần chạy đầu tiên của ứng dụng. Việc này được thực hiện thông qua JPA API, các bảng trong cơ sở dữ liệu tương ứng với các JPA Entity đã được hiện thực trước đó.
+Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng chức năng tạo ra cơ sở dữ liệu động trong lần chạy đầu tiên của ứng dụng. Việc này được thực hiện thông qua JPA API, các bảng trong cơ sở dữ liệu tương ứng với các JPA Entity đã được hiện thực trước đó.\\
+\\
+Lược đồ class của dự án được thể hiện ở Hình 17.
 \begin{center}
     \begin{figure}[h]
     \begin{center}
@@ -778,28 +780,38 @@ Tuy nhiên nhóm không tạo trước cơ sở dữ liệu mà sử dụng ch�
     \label{refhinh1}
     \end{figure}
 \end{center}
-
-\newpage
+\begin{center}
+    \begin{figure}[h]
+    \begin{center}
+     \includegraphics[scale=.7]{class-diagram.png}
+    \end{center}
+    \caption{Mô hình Class Diagram của đề án}
+    \label{refhinh1}
+    \end{figure}
+\end{center}
 
 \subsection{Web Service}
 Với từng thực thể nói trên, nhóm đã hiện thực các Web Service tương ứng:
 \subsubsection*{Request}
     \begin{center}
         \begin{table}[h]
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|m{7.2cm}|}
             \hline
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
             \hline
-            find & GET & id của Request & \pbox{24cm}{Lấy thông tin của một thực thể Request theo id}\\ [5pt]
+            find & GET & id của Request & Lấy thông tin của một thực thể Request theo \\
+            	&&&id\\ 
             \hline
-            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Request có trong cơ sở dữ liệu}\\[5pt]
+            findAll & GET &   & Lấy thông tin của mọi Request có trong cơ sở \\
+            &&&dữ liệu\\
             \hline
-            create & POST & Request mới  & \pbox{24cm}{Thêm một Request mới vào cơ sở dữ liệu}\\[5pt]            
+            create & POST & Request mới  & Thêm một Request mới vào cơ sở dữ liệu\\          
             \hline
-            edit & PUT & \pbox{24cm}{- id của Request \\ - Request mới}  & \pbox{24cm}{Cập nhật một Request theo id của nó}\\[5pt]            
+            edit & PUT & - id của Request  & Cập nhật một Request theo id của nó\\
+            && - Request mới & \\
             \hline        
-            remove & DELETE & \pbox{24cm}{id của Request}  & \pbox{24cm}{Xóa một Request theo id}\\[5pt]            
+            remove & DELETE & id của Request  & Xóa một Request theo id\\            
             \hline                    
             \end{tabular}
         \end{table}    
@@ -807,22 +819,22 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
 \subsubsection*{Comment}
     \begin{center}
         \begin{table}[h]
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|m{5.0cm}|}
             \hline
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
             \hline
-            find & GET & id của Comment & \pbox{24cm}{Lấy thông tin của một thực thể Comment\\ theo id}\\ [5pt]
+            find & GET & id của Comment & \pbox{24cm}{Lấy thông tin của một thực thể\\ Comment theo id}\\ [5pt]    
             \hline
-            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Comment có trong\\ cơ sở dữ liệu}\\[5pt]
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi Comment \\có trong cơ sở dữ liệu}\\[5pt]    
             \hline
-            findAllByRequestId & GET & id của Request  & \pbox{24cm}{Lấy thông tin mọi Comment trong một\\ Request theo id của Request}\\[5pt]            
+            findAllByRequestId & GET & id của Request  & \pbox{24cm}{Lấy thông tin mọi Comment \\ trong một Request theo id \\của Request}\\       [5pt]         
             \hline
-            create & POST & Comment mới  & \pbox{24cm}{Thêm một Comment mới vào cơ sở dữ liệu}\\[5pt]            
+            create & POST & Comment mới  & \pbox{24cm}{Thêm một Comment mới vào cơ \\sở dữ liệu}\\[5pt]            
             \hline
-            edit & PUT & \pbox{24cm}{- id của Comment \\ - Comment mới}  & \pbox{24cm}{Cập nhật một Comment theo id của nó}\\[5pt]            
+            edit & PUT & \pbox{24cm}{- id của Comment \\ - Comment mới}  & \pbox{24cm}{Cập nhật một Comment theo id \\của nó}\\ [5pt]             
             \hline        
-            remove & DELETE & \pbox{24cm}{id của Comment}  & \pbox{24cm}{Xóa một Comment theo id}\\[5pt]            
+            remove & DELETE & \pbox{24cm}{id của Comment}  & \pbox{24cm}{Xóa một Comment theo id}\\ [5pt]              
             \hline                    
             \end{tabular}
         \end{table}    
@@ -830,7 +842,7 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
 \subsubsection*{GuestUser}
     \begin{center}
         \begin{table}[h]
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|m{7.6cm}|}
             \hline
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
@@ -844,16 +856,16 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
 \subsubsection*{NormalUser}
     \begin{center}
         \begin{table}[h]
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|m{6.6cm}|}
             \hline
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
             \hline
-            find & GET & id của NormalUser & \pbox{24cm}{Lấy thông tin của một thực thể NormalUser theo id}\\ [5pt]
+            find & GET & id của NormalUser & \pbox{24cm}{Lấy thông tin của một thực thể NormalUser\\ theo id}\\ [5pt]
             \hline
-            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi NormalUser có trong cơ sở dữ liệu}\\[5pt]
+            findAll & GET & \  & \pbox{24cm}{Lấy thông tin của mọi NormalUser có trong\\ cơ sở dữ liệu}\\[5pt]
             \hline
-            create & POST & NormalUser mới  & \pbox{24cm}{Thêm một NormalUser mới vào cơ sở dữ liệu}\\[5pt]            
+            create & POST & NormalUser mới  & \pbox{24cm}{Thêm một NormalUser mới vào cơ sở dữ \\liệu}\\[5pt]            
             \hline
             edit & PUT & \pbox{24cm}{- id của NormalUser \\ - NormalUser mới}  & \pbox{24cm}{Cập nhật một NormalUser theo id của nó}\\[5pt]            
             \hline        
@@ -866,12 +878,12 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
 Để quản lý quá trình xác thực người dùng khi đăng nhập, nhóm đã hiện thực thêm một Web Service có chức năng xác thực người dùng:
     \begin{center}
         \begin{table}[h]
-            \begin{tabular}{|l|l|l|l|}
+            \begin{tabular}{|l|l|l|m{6.3cm}|}
             \hline
             \rowcolor[HTML]{C0C0C0} 
             \textbf{Tên} & \textbf{Phương thức} & \textbf{Đối số} & \textbf{Mô tả}\\
             \hline
-            authenticationUser & POST & \pbox{24cm}{- email \\ - password}  & \pbox{24cm}{Xác thực người dùng theo email và password}\\[5pt]            
+            authenticationUser & POST & \pbox{24cm}{- email \\ - password}  & \pbox{24cm}{Xác thực người dùng theo email và \\password}\\[5pt]            
             \hline                    
             \end{tabular}
         \end{table}    
@@ -879,8 +891,18 @@ Với từng thực thể nói trên, nhóm đã hiện thực các Web Service 
 \subsection{Client}
 Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng web. Từ các yêu cầu đã được nhóm tìm hiểu ở những mục trên, nhóm đã hiện thực được các trang giao diện sau:
 \begin{itemize}
-	\item[•]Trang list-issue: Trang danh sách phản ánh cũng là trang chủ của hệ thống. Các phản ánh sẽ được hiển thị tại đây dưới dạng danh sách, cùng với đó là các bình luận dành cho mỗi phản ánh, phía bên trái là bản đồ hiển thị vị trí các phản ánh.
-	\begin{center}
+	\item[•]Trang list-issue (Hình 18): Trang danh sách phản ánh cũng là trang chủ của hệ thống. Các phản ánh sẽ được hiển thị tại đây dưới dạng danh sách, cùng với đó là các bình luận dành cho mỗi phản ánh, phía bên trái là bản đồ hiển thị vị trí các phản ánh.
+	
+	\item[•]Trang map-issue (Hình 19): Hiển thị bản đồ vị trí các phản ánh một cách chi tiết hơn. Phía bên trái là danh sách thu gọn các phản ánh.
+	
+	\item[•]Trang gallery-issue (Hình 20): Hiển thị danh sách các phản ánh theo dạng danh sách ảnh. Phía bên trái là danh sách thu gọn các phản ánh.
+	
+	\item[•]Trang issue-detail (Hình 21): Hiển thị chi tiết về một phản ánh, người dùng cũng có thể đăng bình luận về phẩn ánh đó.
+	
+	\item[•]Trang report-issue (Hình 22): Cho phép người dùng đăng lên một phản ánh, trang này được chia làm bốn bước khác nhau giúp người dùng dễ dàng hơn trong việc cung cấp thông tin về phản ánh.
+	\newpage
+\end{itemize}
+\begin{center}
     	\begin{figure}[htp]
     	\begin{center}
     	 	\includegraphics[scale=.4]{list-issue.PNG}
@@ -889,8 +911,8 @@ Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng w
     	\label{refhinh1}
     	\end{figure}
     \end{center}
-	\item[•]Trang map-issue: Hiển thị bản đồ vị trí các phản ánh một cách chi tiết hơn. Phía bên trái là danh sách thu gọn các phản ánh.
-	\begin{center}
+    
+\begin{center}
     	\begin{figure}[htp]
     	\begin{center}
     	 	\includegraphics[scale=.4]{map-issue.PNG}
@@ -899,8 +921,8 @@ Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng w
     	\label{refhinh1}
     	\end{figure}
     \end{center}
-	\item[•]Trang gallery-issue: Hiển thị danh sách các phản ánh theo dạng danh sách ảnh. Phía bên trái là danh sách thu gọn các phản ánh.
-	\begin{center}
+    
+\begin{center}
     	\begin{figure}[htp]
     	\begin{center}
     	 	\includegraphics[scale=.4]{gallery-issue.PNG}
@@ -909,8 +931,8 @@ Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng w
     	\label{refhinh1}
     	\end{figure}
     \end{center}
-	\item[•]Trang issue-detail: Hiển thị chi tiết về một phản ánh, người dùng cũng có thể đăng bình luận về phẩn ánh đó.
-	\begin{center}
+    
+\begin{center}
     	\begin{figure}[htp]
     	\begin{center}
     	 	\includegraphics[scale=.4]{issue-detail.PNG}
@@ -919,8 +941,8 @@ Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng w
     	\label{refhinh1}
     	\end{figure}
     \end{center}
-	\item[•]Trang report-issue: Cho phép người dùng đăng lên một phản ánh, trang này được chia làm bốn bước khác nhau giúp người dùng dễ dàng hơn trong việc cung cấp thông tin về phản ánh.
-	\begin{figure}[h]
+    
+\begin{figure}[h]
 		\centering
 		\begin{subfigure}{.5\textwidth}
   			\centering
@@ -947,14 +969,18 @@ Trong giai đoạn TTTN, nhóm đang hiện thực dự án trên nền tảng w
 		\end{subfigure}
 		\caption{Trang report-issue}
 	\end{figure}
-\end{itemize}
+	
+	\newpage
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Khó khăn và thách thức}
 Ở Việt Nam, CPĐT là một cơ hội lớn để cải cách cách thức làm việc của bộ máy nhà nước, nâng cao hiệu suất và chất lượng; đồng thời giúp người dân tương tác với các dịch vụ nhà nước dễ dàng. Tuy vậy, CPĐT cũng tồn tại nhiều thách thức cần vượt qua trong quá trình triển khai ở Việt Nam. Ở phần này, nhóm xin trình bày một số thách thức trong việc triển khai CPĐT trên lĩnh vực công nghệ.
 \subsection{Hạ tầng công nghệ thông tin và truyền thông}
 Hạ tầng công nghệ thông tin và truyền thông là một trong những thách thức lớn nhất trong quá trình hiện thực CPĐT. Công nghệ thông tin và truyền thông, gọi tắt là ICT, bao gồm tất cả các phương tiện kỹ thuật được sử dụng để xử lý thông tin và trợ giúp liên lạc như: phần cứng, mạng máy tính, các phần mềm cần thiết, điện thoại, và phương tiện truyền thông. Để chuyển đổi sang CPĐT, cần có hạ tầng công nghê thông tin theo các chuẩn và mô hình cần thiết đảm bảo cho việc chuyển đổi. Chỉ số phát triển ICT ở Việt Nam còn thấp (4.26 vào năm 2015, xếp hạng 102 trên thế giới \cite{bib9}) và tình trạng hạ tầng công nghệ thông tin và truyền thông không đồng đều, chỉ phát triển chủ yếu ở các thành phố lớn cho thấy khó khăn trong việc triển khai CPĐT ở Việt Nam.
 \subsection{Bảo mật}
 Thực tế cho thấy bảo mật là một trong những thách thức quan trọng nhất trong quá trình hiện thực CPĐT. Bảo mật có nghĩa bảo vệ mọi thông tin và hệ thống, tránh khỏi các truy cập vượt quyền, các thay đổi trái phép lên hệ thống hoặc các cuộc tấn công phá hủy hệ thống. Vì vậy, bảo mật liên quan đến việc bảo vệ hệ thống thông tin, quản lý quyền truy cập thông tin. Đó là thành phần không thể thiếu để xây dựng CPĐT, tạo nên mối quan hệ tin tưởng giữa người dân và chính phủ.\\
+\\
 Một số giải pháp có thể được sử dụng để bảo mật như: chữ ký số, mã hóa, sử dụng tên đăng nhập, mật khẩu và một số biện pháp khác có thể giải quyết vấn đề bảo mật trong các ứng dụng CPĐT.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -987,27 +1013,35 @@ World Bank (19/05/2015). \textit{Information \& Communication Technologies: e-Go
 \bibitem{bib3}
 United Nation (2014). \textit{Data Center: 2014 E-Government Development Index.} Truy cập 18/05/2016 tại \url{https://publicadministration.un.org/egovkb/en-us/Data-Center}
 
-\bibitem{bib3}
+\bibitem{bib33}
 Ministry of Finance Singapore (4/9/2013). \textit{E-Government in Singapore.} Truy cập 23/05/2016 tại \url{http://workspace.unpan.org/sites/Internet/Documents/UNPAN90601.pdf}
 
 \bibitem{bib4}
-Open311 Documents. Truy cập tại
+Open311 Documents. Truy cập 22/05/2016 tại
  \url{http://www.open311.org/} 
  
+ \bibitem{bib11}
+RESTful Web services: The basics. Truy cập 22/05/2016 tại
+ \url{https://www.ibm.com/developerworks/library/ws-restful/} 
+ 
+ \bibitem{bib12}
+Tổng quát về JPA (Java Persistence API). Truy cập 22/05/2016 tại
+ \url{http://linkit.vn/tong-quat-ve-jpa-java-persistence-api-3355720.htm} 
+ 
  \bibitem{bib5}
-AngularJS Documents. Truy cập tại
+AngularJS Documents. Truy cập 22/05/2016 tại
  \url{https://docs.angularjs.org/} 
  
   \bibitem{bib6}
-Thị phần điện thoại thông minh. Truy cập tại
+Thị phần điện thoại thông minh. Truy cập 22/05/2016 tại
  \url{http://www.statista.com/statistics/266136/global-market-share-held-by-smartphone-operating-systems/} 
 
   \bibitem{bib7}
-Số lượng ứng dụng trên Android. Truy cập tại
+Số lượng ứng dụng trên Android. Truy cập 22/05/2016 tại
  \url{http://www.statista.com/statistics/266210/number-of-available-applications-in-the-google-play-store/}
  
    \bibitem{bib8}
-Số lần tải ứng dụng trên Android. Truy cập tại
+Số lần tải ứng dụng trên Android. Truy cập 22/05/2016 tại
  \url{http://www.statista.com/statistics/281106/number-of-android-app-downloads-from-google-play/}
 
    \bibitem{bib9}
