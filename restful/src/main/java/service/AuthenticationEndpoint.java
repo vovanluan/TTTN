@@ -6,7 +6,6 @@
 package service;
 
 import entity.NormalUser;
-import entity.User;
 import io.jsonwebtoken.Claims;
 import java.util.List;
 import javax.naming.InitialContext;
@@ -31,33 +30,37 @@ import support.General;
 public class AuthenticationEndpoint {
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
-    private final int EXPIRE_TIME = 86400 * 1000; //86400(s) = 1 day
+    private final int EXPIRE_TIME = 86400 * 1000; //86400s = 1 day
     
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     public Response authenticationUser(Credentials credentials) throws Exception{
         String email = credentials.getEmail();
         String password = credentials.getPassword();
-        if(authentication(email,password)){
-            // Generate new token
-            String token = issueToken(email, "normal_user"); 
-            Claims claims = (new JWT()).parseJWT(token);
-            
-            // Update new token into database
-            UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
-            transaction.begin();
-            Query q = em.createQuery ("UPDATE NormalUser s SET s.token = :token WHERE s.email = :email");
-            q.setParameter ("email", email);
-            q.setParameter ("token", token);
-            int updated = q.executeUpdate();
-            transaction.commit();
-            // get user information, then send it to client
-            Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
-            queryEmail.setParameter("email", email);
-            List<NormalUser> users = queryEmail.getResultList();
-            return Response.ok(users.get(0)).build();
-        } 
-        else return Response.status(Response.Status.UNAUTHORIZED).build();        
+        
+        if(!authentication(email, password)){
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+        
+        // Generate new token
+        String token = issueToken(email, "normal_user"); 
+        Claims claims = JWT.parseJWT(token);
+
+        // Update new token into database
+        UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+        transaction.begin();
+        Query q = em.createQuery ("UPDATE NormalUser s SET s.token = :token WHERE s.email = :email");
+        q.setParameter ("email", email);
+        q.setParameter ("token", token);
+        int updated = q.executeUpdate();
+        transaction.commit();
+        
+        // Get user information, then send it to client
+        Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
+        queryEmail.setParameter("email", email);
+        List<NormalUser> users = queryEmail.getResultList();
+        
+        return Response.ok(users.get(0)).build();
     }
 
 
@@ -66,13 +69,10 @@ public class AuthenticationEndpoint {
         q.setParameter("email", email);
         q.setParameter("password", (new General()).hashPassword(password));
         List<NormalUser> user = q.getResultList();
-        if(user.isEmpty()) 
-            return false;
-        return true;
+        return !user.isEmpty();
     }
 
     private String issueToken(String username, String role) throws Exception{
-        JWT jwt = new JWT();
-        return jwt.createJWT(username,EXPIRE_TIME, role);
+        return JWT.createJWT(username,EXPIRE_TIME, role);
     }
 }

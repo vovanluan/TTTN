@@ -39,6 +39,7 @@ import support.Status;
 public class Request implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_request_id")
@@ -57,7 +58,6 @@ public class Request implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "description", nullable = false)
     private String description;
-    
     
     @NotNull
     @Column(name = "latitude", nullable = false)
@@ -117,7 +117,6 @@ public class Request implements Serializable {
     @Size(max = 100)
     @Column(name = "keywords", nullable = true, length=100)
     private String keywords;
-    
     
     @Size(max = 20)
     @Column(name = "group_name", nullable = true)
@@ -289,4 +288,5 @@ public class Request implements Serializable {
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
+    
 }

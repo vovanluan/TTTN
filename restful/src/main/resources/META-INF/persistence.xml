@@ -3,11 +3,13 @@
   <persistence-unit name="open311" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>java:app/jdbc/mysql-sample</jta-data-source>
-    <class>entity.Comment</class>
     <class>entity.GuestUser</class>
     <class>entity.NormalUser</class>
     <class>entity.Request</class>
     <class>entity.User</class>
+    <class>entity.DivisionUser</class>
+    <class>entity.OfficialUser</class>
+    <class>entity.VicePresidentUser</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

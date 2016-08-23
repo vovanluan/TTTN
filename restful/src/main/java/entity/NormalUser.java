@@ -5,7 +5,6 @@
  */
 package entity;
 
-import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -57,4 +56,5 @@ public class NormalUser extends User {
     public void setIdentifyCard(String identifyCard) {
         this.identifyCard = identifyCard;
     }
+    
 }

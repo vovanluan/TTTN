@@ -21,8 +21,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,7 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @DiscriminatorColumn(name="user_type")
 
 public class User implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -118,5 +118,5 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-   
+       
 }

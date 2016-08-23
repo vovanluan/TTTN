@@ -1,0 +1,43 @@
+<div id="content_container" class="container">	
+	<section class="main col-md-8">
+		<div class="search">
+				<form>
+					<!-- Search input -->
+				</form>
+			</div>
+			<div class="content-title">
+				<div class="change-view">
+					<a href="#/gallery">
+						<i class="glyphicon glyphicon-th"></i>
+					</a>						
+					<a href="#/map">
+						<i class="glyphicon glyphicon-map-marker"></i>
+					</a>
+					<a href="#/">
+						<i class="glyphicon glyphicon-th-list"></i>
+					</a>					
+				</div>
+				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
+			</div>
+		<div ng-hide="requests.length"> 
+			<label>
+				Chưa có phản hồi nào
+			</label>
+		</div>				
+			<div id="issue-list">
+				<ul id="issue-galley" class="hoverbox">
+					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+						<a href="#/issue/{{request.serviceRequestId}}">
+							<img ng-src="{{request.mediaUrl}}" class="gallery-image">
+							<img ng-src="{{request.mediaUrl}}" class="preview">
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+			
+		</section>
+	<section class="sidebar col-md-4">
+		<div id="mainMap" style="height:380px"></div>
+	</section>
+</div>

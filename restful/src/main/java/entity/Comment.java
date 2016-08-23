@@ -7,8 +7,6 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -34,6 +31,7 @@ import javax.validation.constraints.Size;
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -50,30 +48,10 @@ public class Comment implements Serializable {
     @JoinColumn(name = "request_id", referencedColumnName = "service_request_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Request request;
-
-    public Request getRequest() {
-        return request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
-    }
-    
     
     @Column(name = "post_datetime", nullable = false, columnDefinition="TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     private Date postDatetime;
-
-    public Date getPostDatetime() {
-        return postDatetime;
-    }
-
-    public void setPostDatetime(Date postDatetime) {
-        this.postDatetime = postDatetime;
-    }
-
-    public Comment() {
-    }
 
     public Integer getId() {
         return Id;
@@ -99,4 +77,20 @@ public class Comment implements Serializable {
         this.user = user;
     }
 
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+    public Date getPostDatetime() {
+        return postDatetime;
+    }
+
+    public void setPostDatetime(Date postDatetime) {
+        this.postDatetime = postDatetime;
+    }
+    
 }

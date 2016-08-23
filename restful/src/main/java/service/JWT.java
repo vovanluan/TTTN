@@ -23,7 +23,7 @@ import javax.xml.bind.DatatypeConverter;
 public class JWT {
     private static final String apiKey = "LongAndHardToGuessValueWithSpecialCharacters@^($%*$%";
 
-    String createJWT(String email, long ttlMillis, String role) {
+    public static String createJWT(String email, long ttlMillis, String role) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(apiKey);        
         Key key = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());      
@@ -46,7 +46,7 @@ public class JWT {
         return builder.compact();
     }
     
-    Claims parseJWT(String jwt) {
+    public static Claims parseJWT(String jwt) {
         //This line will throw an exception if it is not a signed JWS (as expected)
         Claims claims;
         claims = Jwts.parser()         

@@ -1,0 +1,23 @@
+<div class="modal-header" style="background:#F2F2F2">
+	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+	<h4 style="margin:0 0 0 0">Đăng nhập vào tài khoản</h4>
+</div>
+<div class="modal-body">
+	<div>
+		<strong>Chưa có tài khoản: <a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>
+		<br><br>
+		<strong>Hoặc <a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
+		<hr style="margin:10px 0px 30px 0px;">	
+	</div>
+	<div id="signin" class="tab-pane active fade in">
+		<label id="errorLabel" style="color:red" ng-model="error">{{error}}</label>
+		<input type="email" id="email" ng-model="email" class="form-control" placeholder="Địa chỉ email" style="margin-bottom:10px" autofocus required>
+		<input type="password" id="password" ng-model="password" class="form-control" placeholder="Mật khẩu"  required>
+	</div>
+
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>	
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Hủy</button>
+</div>
