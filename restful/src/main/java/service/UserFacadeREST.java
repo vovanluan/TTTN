@@ -56,6 +56,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     }
 
     @GET
+    @Secured
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User find(@PathParam("id") Integer id) {
