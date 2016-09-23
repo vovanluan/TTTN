@@ -46,7 +46,6 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void createRequest(Request entity) {
-        //TO DO: wrong enum
         entity.setStatusId(Status.values()[0]);
         super.create(entity);
         User user = em.find(User.class, entity.getUser().getId());

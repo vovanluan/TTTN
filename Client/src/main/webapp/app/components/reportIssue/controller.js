@@ -1,5 +1,5 @@
-app.controller('reportTabController', 
-	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter, 
+app.controller('reportTabController',
+	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
 		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
 	$scope.tab = 1;
 	$scope.issues = issues;
@@ -20,7 +20,7 @@ app.controller('reportTabController',
 	    $scope.map = new google.maps.Map(document.getElementById('map'), {
 	        zoom: 12,
 	        center: myLatLng
-	    });   
+	    });
 	    if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(function success(pos) {
 			    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
@@ -72,17 +72,17 @@ app.controller('reportTabController',
 	// 			$http({
 	// 	            headers: {'Authorization': 'Client-ID ' + clientId},
 	// 	            url: '  https://api.imgur.com/3/upload',
-	// 	            method: 'POST',            
+	// 	            method: 'POST',
 	// 	            data: {
-	// 	                image: uploadImageBase64, 
+	// 	                image: uploadImageBase64,
 	// 	                'type':'base64'
 	// 	            }
-	// 	        }).then(function successCallback(response) {            
+	// 	        }).then(function successCallback(response) {
 	// 	            request.mediaUrl = response.data.data.link;
 	// 	        }, function errorCallback(err) {
 	// 	        	console.log(err);
-	// 	        });	               
- //            });		
+	// 	        });
+ //            });
 	// 	}
 	// 	console.log("not upload");
 
@@ -116,12 +116,12 @@ app.controller('reportTabController',
 					$http({
 			            headers: {'Authorization': 'Client-ID ' + clientId},
 			            url: '  https://api.imgur.com/3/upload',
-			            method: 'POST',            
+			            method: 'POST',
 			            data: {
-			                image: uploadImageBase64, 
+			                image: uploadImageBase64,
 			                'type':'base64'
 			            }
-			        }).then(function successCallback(response) {            
+			        }).then(function successCallback(response) {
 			            request.mediaUrl = response.data.data.link;
 			            console.log(request.mediaUrl);
 			            console.log(JSON.stringify(request));
@@ -143,11 +143,11 @@ app.controller('reportTabController',
 							function error(err){
 								$scope.showSpinner = false;
 								SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
-							});			            
+							});
 			        }, function errorCallback(err) {
 			        	$scope.showSpinner = false;
 			        	SweetAlert.swal("Error!", "Xảy ra lỗi khi upload anh!", "error");
-			        });	               
+			        });
 	            });
 		}
 		else {
@@ -163,7 +163,7 @@ app.controller('reportTabController',
 				function error(err){
 					$scope.showSpinner = false;
 					SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
-				});				
+				});
 		}
 	}
 
@@ -190,5 +190,5 @@ app.controller('reportTabController',
 
   	$scope.logInAsGuestModal = function(){
   		Modal.logInAsGuestModal();
-  	};  	
+  	};
 });

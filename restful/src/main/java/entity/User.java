@@ -41,6 +41,9 @@ public class User implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer Id;
     
+    @Column(name = "user_type", insertable = false, updatable = false)
+    private String user_type;
+    
     @Size(min = 1, max = 40)
     @Column(name = "name", nullable = false)
     private String name;
@@ -118,5 +121,12 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-       
+    
+    public String getUserType(){
+        return user_type;
+    }
+    
+    public void setUserType(String user_type){
+        this.user_type = user_type;
+    }
 }

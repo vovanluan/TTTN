@@ -1,4 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage',
 	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
@@ -10,7 +10,7 @@ app.constant("districts", {
 	"1": [
 			{name: "Đa Kao"},
 			{name: "Tân Định"},
-			{name: "Bến Thành"}	
+			{name: "Bến Thành"}
 			],
 	"2": [
 			{name: "Thảo Điền"},
@@ -20,7 +20,7 @@ app.constant("districts", {
 	"10": [
 			{name: "1"},
 			{name: "2"},
-			{name: "3"}	
+			{name: "3"}
 			],
 	"Bình Thạnh": [
 			{name: "1"},
@@ -30,8 +30,8 @@ app.constant("districts", {
 	"Thủ đức": [
 			{name: "Linh Xuân"},
 			{name: "Bình Chiểu"},
-			{name: "Linh Trung"},	
-			]			
+			{name: "Linh Trung"},
+			]
 });
 
 app.constant('issues', {
@@ -81,8 +81,10 @@ app.factory('requestManager', function(requestUrl, $http, $q){
                 .success(function(requests) {
                     deferred.resolve(requests);
                 })
-                .error(function() {
-                    deferred.reject();
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
                 });
             return deferred.promise;
         },
@@ -92,8 +94,10 @@ app.factory('requestManager', function(requestUrl, $http, $q){
         	    .success(function() {
                     deferred.resolve();
                 })
-                .error(function() {
-                    deferred.reject();
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
                 });
             return deferred.promise;
         }
@@ -110,9 +114,11 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 				.success(function(comments){
 					deferred.resolve(comments);
 				})
-				.error(function(){
-					deferred.reject();
-				});
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
 			return deferred.promise;
 		},
 		postComment: function(comment){
@@ -121,14 +127,36 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 				.success(function(){
 					deferred.resolve();
 				})
-				.error(function(){
-					deferred.reject();
-				});
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
 			return deferred.promise;
 		}
 	};
 	return commentManager;
 }]);
+
+
+app.factory('userManager', function(userUrl, $http, $q){
+    var userManager = {
+        loadAllUsers: function() {
+            var deferred = $q.defer();
+            $http.get(userUrl)
+                .success(function(users) {
+                    deferred.resolve(users);
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        }
+    };
+    return userManager;
+});
 
 app.factory('Modal', function($rootScope, $uibModal){
 	return {
@@ -143,7 +171,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 			modalInstance.result.then(function close() {
 			}, function dismiss() {
 				console.log("Modal dismiss");
-			});			
+			});
 		},
 		signUpModal: function(){
 			var modalInstance = $uibModal.open({
@@ -193,7 +221,7 @@ app.factory('RouteClean', function(){
 	// enumerate routes that don't need authentication
 	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
 
-	// check if current location matches route  
+	// check if current location matches route
     return function(route) {
     	return _.find(routesThatDontRequireAuth,
 	        function (noAuthRoute) {
@@ -211,13 +239,13 @@ app.filter('dateTime', function(){
         var norm = Math.abs(Math.floor(num));
         return (norm < 10 ? '0' : '') + norm;
     };
-    return date.getFullYear() 
+    return date.getFullYear()
         + '-' + pad(date.getMonth()+1)
         + '-' + pad(date.getDate())
         + 'T' + pad(date.getHours())
-        + ':' + pad(date.getMinutes()) 
-        + ':' + pad(date.getSeconds()) 
-        + dif + pad(tzo / 60) 
+        + ':' + pad(date.getMinutes())
+        + ':' + pad(date.getSeconds())
+        + dif + pad(tzo / 60)
         + ':' + pad(tzo % 60);
 	};
 });
@@ -260,7 +288,7 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
     self.signup = function(data, success, error) {
         $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
-    },         
+    },
 
     self.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
@@ -278,7 +306,7 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 });
 // First run in the app, we can use provider in config()
 app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
-	
+
 	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
 
 	$routeProvider
@@ -297,7 +325,11 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 	.when('/profile', {
 		templateUrl: 'app/components/profile/view.html',
 		controller: 'profileController'
-	})	
+	})
+    .when('/authorization-management', {
+        templateUrl: 'app/components/authorization-management/view.html',
+        controller: 'authorizationManagementController'
+    })
 	.when('/issue/:issueId', {
 		templateUrl: 'app/components/issueDetail/view.html',
 		controller: 'issueDetailController'
@@ -315,20 +347,19 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
     	return $localStorageProvider.get('token');
     }
 
-    $httpProvider.interceptors.push('jwtInterceptor');    
+    $httpProvider.interceptors.push('jwtInterceptor');
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
-app.run(function($rootScope, $localStorage, $location, $http, jwtHelper, 
+app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 	baseUrl, AuthService, RouteClean, requestManager, commentManager){
-
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
 	    	// redirect back to list view
 	      	$location.path('/list');
 	    }
-  	});	
+  	});
 
   	$rootScope.user = {};
   	// Get all requests from server
@@ -344,8 +375,8 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
   		var email = tokenPayload.sub;
-  		$rootScope.userRole = tokenPayload.rol;   	  		
-  		var childUrl = ""; 		
+  		$rootScope.userRole = tokenPayload.rol;
+  		var childUrl = "";
   		switch($rootScope.userRole){
   			case 'normal_user':
   				childUrl =  "/entity.normaluser/getInfo?email=" + email;
@@ -368,7 +399,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   			$rootScope.userRole = null;
   		});
   	}
-});	
+});
 
 // Run after .run()
 app.controller('mainController',
@@ -391,11 +422,11 @@ app.controller('mainController',
 			   confirmButtonText: "Vâng, tôi muốn!",
 			   closeOnConfirm: true,
 			   closeOnCancel: true
-			}, 
-			function(isConfirm){ 
+			},
+			function(isConfirm){
 				if (isConfirm)
 			   		AuthService.logout();
-			});	  		
+			});
 	  	}
 });
 
@@ -406,7 +437,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
 	    zoom: 11,
 	    center: myLatLng
-	}); 
+	});
 	$scope.markers = [];
 	$scope.comments = [];
 	$scope.comments = $rootScope.comments;
@@ -415,7 +446,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 		return (commentRequestId==serviceRequestId);
 	}
 
-	//create map 
+	//create map
 	$.each($rootScope.requests, function(index, request) {
 		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
 		var icon = "";
@@ -440,27 +471,45 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	        animation: google.maps.Animation.DROP,
 	        //icon : iconBase + icon
 	        icon: icon
-	    });			
+	    });
 	  	var infowindow = new google.maps.InfoWindow({
 	    	content: request.serviceName
-	  	});			    
+	  	});
 		marker.addListener('mouseover', function() {
 		   	infowindow.open($scope.map, marker);
-		});			  	
+		});
 		marker.addListener('mouseout', function() {
 		   	infowindow.close($scope.map, marker);
 		});
 		$scope.markers.push(marker);
-	});		
-	
+	});
+/*    $scope.filteredRequests = [];
+    $scope.currentPage = 1;
+    $scope.numPerPage = 2;
+    $scope.maxSize = 5;
+    $scope.requests = $rootScope.requests;
+    console.log($rootScope.requests);
+    $scope.$watch("currentPage + numPerPage", function() {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+
+        $scope.filteredRequests = $scope.requests.slice(begin, end);
+    });*/
+
 });
 
-app.controller('mainTabController', 
+app.controller('mainTabController',
 	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
 	};
+
+    // Need to use ADMIN_ACCESS
+    // Waiting implement from server
+    $scope.isAdmin = function () {
+        return AuthService.isAuthorized(USER_ACCESS);
+    }
 	// Watch userRole change
 	$scope.$watch(function (){
 		return $localStorage;
@@ -503,7 +552,7 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
 			$scope.requestIndex = $rootScope.requests[i];
 			break;
-		}			
+		}
 	}
 
 
@@ -521,17 +570,17 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			commentManager.postComment(comment).then(
 				function success(){
 					$scope.comments.push(comment);
-					$rootScope.comments.push(comment);					
+					$rootScope.comments.push(comment);
 				},
 				function error(){
 					console.log("Error");
 				});
-			
+
 			$scope.textContent = '';
 		}
 	 	else {
 	 		Modal.logInModal();
-	 	}		
+	 	}
 	}
 });
 

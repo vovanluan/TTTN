@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Priority;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
@@ -25,13 +28,12 @@ import javax.ws.rs.ext.Provider;
  *
  * @author TranVanTai
  */
-
 @Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
-    @PersistenceContext(unitName = "open311")
-    private EntityManager em;
+    @PersistenceUnit(unitName = "open311")
+    private EntityManagerFactory entityManagerFactory;
     
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException{
@@ -50,6 +52,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             validateToken(token);
         }
         catch(Exception e){
+            System.out.println(e);
             requestContext.abortWith(
                 Response.status(Response.Status.UNAUTHORIZED).build());
         }
@@ -57,10 +60,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     private void validateToken(String token) throws Exception {     
         JWT jwt = new JWT();
-        System.out.println("FUCK");
         //Check if token exists in database 
         
         //TO DO: check token exists in database
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.persist(null);
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
         q.setParameter("token", token);
         System.out.println("FUCK1");
@@ -76,6 +80,20 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         Date now = new Date(nowMillis);
         if(now.after(claims.getExpiration())) {
             throw new Exception();
-        }
+        }        
+//        c
+//        q.setParameter("token", token);
+//        List<NormalUser> users = q.getResultList();
+//        if(users.isEmpty()){
+//            System.out.println("Token doesn't exist");
+//            throw new Exception();
+//        }
+//        //Check if token expired
+//        Claims claims = jwt.parseJWT(token);
+//        long nowMillis = System.currentTimeMillis();
+//        Date now = new Date(nowMillis);
+//        if(now.after(claims.getExpiration())) {
+//            throw new Exception();
+//        }
     }
 }
