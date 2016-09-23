@@ -8,8 +8,6 @@ package support;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 public class General {
     public static final int EXPIRE_TIME = 86400 * 1000; //86400 seconds = 1 day
-    public String hashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
+    public static String hashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
         String generatedPassword = null;
         try {
             // Create MessageDigest instance for MD5
