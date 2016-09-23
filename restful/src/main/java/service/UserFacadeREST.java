@@ -89,7 +89,11 @@ public class UserFacadeREST extends AbstractFacade<User> {
             g.setPassWord(u.getPassWord());
             g.setPhoneNumber(u.getPhoneNumber());
             g.setToken(u.getToken());
+            
+               
+                            
             g.setUserType(u.getUserType());
+            System.out.println("========USER TYPE========" + u.getUserType());
             generalUsers.add(g);
         }
         for(DivisionUser d: divisionUsers) {

@@ -10,7 +10,7 @@ package dto;
  */
 public class GeneralUser {
     private Integer Id;
-    private String user_type;
+    private String userType;
     private String name;
     private String email;
     private String token;
@@ -51,11 +51,11 @@ public class GeneralUser {
     }
     
     public String getUserType(){
-        return user_type;
+        return userType;
     }
     
     public void setUserType(String user_type){
-        this.user_type = user_type;
+        this.userType = user_type;
     }
     
     public String getPassWord() {
