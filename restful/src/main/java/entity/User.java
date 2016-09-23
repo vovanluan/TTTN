@@ -61,6 +61,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 1000)
     @Column(name = "token")
     private String token;
+    
+    @Size(min = 1, max = 1000)
+    @Column(name = "user_type")
+    private String userType;
 
     public String getToken() {
         return token;
@@ -121,12 +125,13 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public String getUserType(){
-        return user_type;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
     
-    public void setUserType(String user_type){
-        this.user_type = user_type;
-    }
 }

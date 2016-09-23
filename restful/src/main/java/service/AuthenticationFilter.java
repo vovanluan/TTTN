@@ -24,6 +24,7 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
+
 /**
  *
  * @author TranVanTai
@@ -32,45 +33,43 @@ import javax.ws.rs.ext.Provider;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
-    @PersistenceUnit(unitName = "open311")
-    private EntityManagerFactory entityManagerFactory;
-    
+    @PersistenceContext(unitName = "open311")
+    private EntityManager em;
+
     @Override
-    public void filter(ContainerRequestContext requestContext) throws IOException{
+    public void filter(ContainerRequestContext requestContext) throws IOException {
         //Get HTTP header from the request
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-        
-        if(authourizationHeader == null || !authourizationHeader.startsWith("Bearer")){
+
+        if (authourizationHeader == null || !authourizationHeader.startsWith("Bearer")) {
             throw new NotAuthorizedException("Authorize header must be provided");
         }
-        
+
         //Extract the token 
         String token = authourizationHeader.substring("Bearer".length()).trim();
         System.out.println("Bearer: " + token);
-        
-        try{
+
+        try {
             validateToken(token);
-        }
-        catch(Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
             requestContext.abortWith(
-                Response.status(Response.Status.UNAUTHORIZED).build());
+                    Response.status(Response.Status.UNAUTHORIZED).build());
         }
     }
 
-    private void validateToken(String token) throws Exception {     
+    private void validateToken(String token) throws Exception {
         JWT jwt = new JWT();
         //Check if token exists in database 
-        
+
         //TO DO: check token exists in database
-        EntityManager em = entityManagerFactory.createEntityManager();
-        em.persist(null);
+        //EntityManager em = entityManagerFactory.createEntityManager();
+        //em.persist(null);
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
         q.setParameter("token", token);
         System.out.println("FUCK1");
         List<NormalUser> users = q.getResultList();
         System.out.println("FUCK2");
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             System.out.println("Token doesn't exist");
             throw new Exception();
         }
@@ -78,22 +77,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         Claims claims = jwt.parseJWT(token);
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        if(now.after(claims.getExpiration())) {
+        if (now.after(claims.getExpiration())) {
             throw new Exception();
         }        
-//        c
-//        q.setParameter("token", token);
-//        List<NormalUser> users = q.getResultList();
-//        if(users.isEmpty()){
-//            System.out.println("Token doesn't exist");
-//            throw new Exception();
-//        }
-//        //Check if token expired
-//        Claims claims = jwt.parseJWT(token);
-//        long nowMillis = System.currentTimeMillis();
-//        Date now = new Date(nowMillis);
-//        if(now.after(claims.getExpiration())) {
-//            throw new Exception();
-//        }
     }
 }

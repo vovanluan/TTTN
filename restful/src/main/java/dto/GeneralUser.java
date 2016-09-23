@@ -4,19 +4,6 @@
  * and open the template in the editor.
  */
 package dto;
-
-import entity.Comment;
-import entity.Request;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
 /**
  *
  * @author Luan

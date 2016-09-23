@@ -63,13 +63,13 @@ app.constant('AUTH_EVENTS', {
 app.constant('USER_ROLES', {
   admin: 'admin',
   editor: 'editor',
-  user : 'normal_user',
+  user : 'normal',
   guest: 'guest'
 });
 
-app.constant('USER_ACCESS', ['admin', 'editor', 'normal_user']);
+app.constant('USER_ACCESS', ['admin', 'editor', 'normal']);
 
-app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal_user', 'guest']);
+app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
 
@@ -283,7 +283,7 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 	};
 
     self.signin = function(data, success, error) {
-        $http.post(baseUrl + '/authentication/normaluser', data).success(success).error(error);
+        $http.post(baseUrl + '/authentication/user', data).success(success).error(error);
     };
 
     self.signup = function(data, success, error) {
@@ -378,7 +378,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		$rootScope.userRole = tokenPayload.rol;
   		var childUrl = "";
   		switch($rootScope.userRole){
-  			case 'normal_user':
+  			case 'normal':
   				childUrl =  "/entity.normaluser/getInfo?email=" + email;
   				break;
   			case 'admin':
