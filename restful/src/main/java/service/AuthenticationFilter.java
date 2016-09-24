@@ -6,17 +6,17 @@
 package service;
 
 import entity.NormalUser;
+import entity.User;
 import io.jsonwebtoken.Claims;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Priority;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
@@ -35,8 +35,7 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("open311");
-    private EntityManager em;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("open311");
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -50,38 +49,37 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         //Extract the token 
         String token = authourizationHeader.substring("Bearer".length()).trim();
         System.out.println("Bearer: " + token);
+        Claims claims = JWT.parseJWT(token);
+        Date expirationDate = claims.getExpiration();
+        String role = (String) claims.get("rol");
 
-        try {
-            validateToken(token);
-        } catch (Exception e) {
-            System.out.println("ERROR:" + e);
+        if(!isValidToken(token, expirationDate)) {
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build());
         }
+        
     }
 
-    private void validateToken(String token) throws Exception {
-        JWT jwt = new JWT();
+    private boolean isValidToken(String token, Date expirationDate){
         //Check if token exists in database 
-
-        //TO DO: check token exists in database
-        EntityManager em = entityManagerFactory.createEntityManager();
-        //em.persist(null);
-        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
-        q.setParameter("token", token);
-        System.out.println("FUCK1");
-        List<NormalUser> users = q.getResultList();
-        System.out.println("FUCK2");
-        if (users.isEmpty()) {
+        try {
+            EntityManager em = emf.createEntityManager();
+            Query q = em.createQuery("SELECT u FROM User u WHERE u.token=:token");
+            q.setParameter("token", token);
+            User user = (User) q.getSingleResult();
+        } catch(NoResultException e) {
             System.out.println("Token doesn't exist");
-            throw new Exception();
+            return false;
         }
+        
         //Check if token expired
-        Claims claims = jwt.parseJWT(token);
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        if (now.after(claims.getExpiration())) {
-            throw new Exception();
+        if (now.after(expirationDate)) {
+            System.out.println("Token is expired");
+            return false;
         }        
+        
+        return true;
     }
 }
