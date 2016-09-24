@@ -14,6 +14,7 @@ import javax.annotation.Priority;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
@@ -34,6 +35,7 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("open311");
     private EntityManager em;
 
     @Override
@@ -52,6 +54,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         try {
             validateToken(token);
         } catch (Exception e) {
+            System.out.println("ERROR:" + e);
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build());
         }
@@ -62,7 +65,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         //Check if token exists in database 
 
         //TO DO: check token exists in database
-        //EntityManager em = entityManagerFactory.createEntityManager();
+        EntityManager em = entityManagerFactory.createEntityManager();
         //em.persist(null);
         Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.token=:token");
         q.setParameter("token", token);

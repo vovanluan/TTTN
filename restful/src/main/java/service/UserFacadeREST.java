@@ -25,6 +25,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import static org.eclipse.persistence.jpa.jpql.parser.Expression.SET;
+import static org.eclipse.persistence.jpa.jpql.parser.Expression.UPDATE;
 
 /**
  *
@@ -53,6 +55,9 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, User entity) {
+        Query query = em.createQuery("UPDATE User SET user_type =:userType WHERE id=:id");
+        query.setParameter("userType", entity.getUserType());
+        query.setParameter("id", entity.getId());
         super.edit(entity);
     }
 

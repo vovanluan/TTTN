@@ -153,7 +153,19 @@ app.factory('userManager', function(userUrl, $http, $q){
 
                 });
             return deferred.promise;
-        }
+        },
+        updateUser: function(id, user) {
+            var deferred = $q.defer();
+            $http.put(userUrl + "/" + id, JSON.stringify(user))
+                .success(function() {
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
     };
     return userManager;
 });

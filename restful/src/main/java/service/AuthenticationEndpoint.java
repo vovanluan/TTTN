@@ -76,10 +76,14 @@ public class AuthenticationEndpoint {
 
         //Check if password is correct in specific user type table
         role = user.getUserType();
-        Query sencondQuery = em.createQuery("SELECT u FROM " + role.substring(0, 1).toUpperCase() + role.substring(1) + "User u WHERE u.passWord=:password");
+        if(em == null) {
+            System.out.println("Null pointer===============");
+        }
+        Query sencondQuery = em.createQuery("SELECT u FROM " + role.substring(0, 1).toUpperCase() + role.substring(1) + "User u WHERE u.email=:email AND u.passWord=:password");
+        sencondQuery.setParameter("email", email);
         sencondQuery.setParameter("password", General.hashPassword(password));
 
-        return sencondQuery.getSingleResult() != null;
+        return sencondQuery.getResultList()!= null;
     }
 
     private String issueToken(String username, String userRole) throws Exception {
