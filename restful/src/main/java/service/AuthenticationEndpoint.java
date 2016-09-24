@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 import dto.Credentials;
 import support.General;
 import entity.NormalUser;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -44,7 +45,7 @@ public class AuthenticationEndpoint {
         }
 
         //Generate new token
-        String token = issueToken(email, role);
+        String token = JWT.createJWT(email, EXPIRE_TIME, role);
         Claims claims = JWT.parseJWT(token);
 
         //Update new token into database
@@ -65,24 +66,21 @@ public class AuthenticationEndpoint {
     }
 
     private boolean isUserExist(String email, String password) throws Exception {
-        //Check if email is correct in User table
-        Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
-        firstQuery.setParameter("email", email);
-        User user = (User) firstQuery.getSingleResult();
+        try {
+            //Check if email is correct in User table
+            Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
+            firstQuery.setParameter("email", email);
+            User user = (User) firstQuery.getSingleResult();
 
-        if (user == null) {
+            //Check if password is correct in specific user type table
+            role = user.getUserType();
+            Query sencondQuery = em.createQuery("SELECT u FROM " + role.substring(0, 1).toUpperCase() + role.substring(1) + "User u WHERE u.email=:email AND u.passWord=:password");
+            sencondQuery.setParameter("email", email);
+            sencondQuery.setParameter("password", General.hashPassword(password));
+            return sencondQuery.getSingleResult() != null;
+        } catch(NoResultException e) {
             return false;
         }
-
-        //Check if password is correct in specific user type table
-        role = user.getUserType();
-        Query sencondQuery = em.createQuery("SELECT u FROM " + role.substring(0, 1).toUpperCase() + role.substring(1) + "User u WHERE u.passWord=:password");
-        sencondQuery.setParameter("password", General.hashPassword(password));
-
-        return sencondQuery.getSingleResult() != null;
     }
 
-    private String issueToken(String username, String userRole) throws Exception {
-        return JWT.createJWT(username, EXPIRE_TIME, userRole);
-    }
 }
