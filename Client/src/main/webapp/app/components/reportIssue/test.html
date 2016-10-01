@@ -1,0 +1,282 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-5">
+              <uib-tabset type="pills">
+                <uib-tab index="0" heading="Bước 1">
+                    <div id="step1" class="tab-pane fade in">
+                    <strong>Cho biết các thông tin về chủ đề phản ánh, cung cấp các hình ảnh liên quan (nếu có)</strong>
+                    <hr style="margin:10px 0px 30px 0px;">
+                    <table class="stepTable" style="border:none">
+                        <tr>
+                            <td class="col-md-4">Chủ đề:</td>
+                            <td>
+                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="serviceType"
+                                ng-options="issue for (issue, value) in issues">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">Chi tiết:</td>
+                            <td>
+                                <select class="form-control" style="display:inline;width:100%" ng-model="serviceName"
+                                ng-options="issue.name for issue in serviceType">
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">Thời gian:</td>
+                            <td><input type="text" data-field="datetime" ng-model="happenDateTime" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">Hình ảnh:</td>
+                            <td>
+                                <button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class ="col-md-4"></td>
+                            <td>
+                                <button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile">Xoá ảnh</button>
+                                <img ng-show="picFile" ngf-thumbnail="picFile" class="thumb" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">Mô tả:</td>
+                            <td>
+                                <textarea class="form-control" ng-model="description" required cols="40" rows="3"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <table class="col-md-12">
+                        <tr>
+                            <td style="direction:rtl">
+                                <a class="btn btn-primary btnNext" ng-click="reportTab.selectTab(2)">Đi tới</a>
+                                <button class="btn btn-danger">Hủy bỏ</button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="Bước 2">
+                    <div id="step2" class="tab-pane">
+                        <strong>Cung cấp địa điểm sự việc</strong>
+                        <hr style="margin:10px 0px 30px 0px;">
+                        <table class="stepTable">
+                            <tr>
+                                <td class="col-md-4">Quận:</td>
+                                <td>
+                                    <select class="form-control" style="width:100%"
+                                    ng-model="district" ng-options="d for (d, w) in districts">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Phường:</td>
+                                <td>
+                                    <select class="form-control" style="display:inline;width:100%"
+                                    ng-model="ward" ng-options="ward.name for ward in district">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Địa chỉ:</td>
+                                <td>
+                                    <input class="form-control" type="text" style="width:300px"
+                                    ng-model="street">
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="map" style="width:480px;height:380px;margin-bottom:10px;"></div>
+                        <table class="longlat stepTable">
+                            <tr>
+                                <td class="col-md-2"> Kinh độ </td>
+                                <td class="col-md-4">
+                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="longitude">
+                                </td>
+                                <td class="col-md-2"> Vĩ độ </td>
+                                <td class="col-md-4">
+                                    <input class="form-control" readonly="readonly" id="latitude"
+                                    ng-model="latitude">
+                                </td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table class="col-md-12">
+                            <tr>
+                                <td style="direction:rtl">
+                                    <a class="btn btn-primary btnNext" ng-click="tab = 3">Đi tới</a>
+                                    <a class="btn btn-primary btnPrev" ng-click="tab = 1" >Trở về</a>
+                                    <button class="btn btn-danger">Hủy bỏ</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </uib-tab>
+                <uib-tab index="2" heading="Bước 3">
+                    <div id="step3" class="tab-pane">
+                        <div ng-hide="isAuthorizedGuest()">
+                            <strong><a href="" ng-click="signUpModal()">Đăng ký tài khoản </a>để chúng tôi có thể tương tác với bạn nhanh chóng và tiện lợi</strong>
+                            <br><br>
+                            <strong><a href="" ng-click="logInModal()">Đăng nhập</a> nếu đã có tài khoản</strong>
+                            <br><br>
+                            <strong><a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
+                            <hr style="margin:10px 0px 30px 0px;">
+                        </div>
+                        <form action="form.html" id="step3Form">
+                            <table class="stepTable">
+                                <tr>
+                                    <td class="col-md-6">Tên hiển thị: </td>
+                                    <td>
+                                        <input class="form-control" type="text" id="name" required style="width:300px" readonly="true" ng-model="user.name">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">Email:</td>
+                                    <td>
+                                        <input class="form-control" type="text" id="email" required style="width:300px" readonly="true" ng-model="user.email">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">Số điện thoại:</td>
+                                    <td>
+                                        <input class="form-control" type="text" id="phone" required style="width:300px" readonly="true" ng-model="user.phoneNumber">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="col-md-6">CMND:</td>
+                                    <td>
+                                        <input class="form-control" type="text" id="identify"  style="width:300px" readonly="true" ng-model="user.identifyCard">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="checkbox" id="infoDisplay">&nbsp;Không hiển thị thông tin cá nhân
+                            <hr>
+                            <table class="col-md-12">
+                                <tr>
+                                    <td style="direction:rtl">
+                                        <a class="btn btn-primary btnNext" ng-click="goNext()">Đi tới</a>
+                                        <a class="btn btn-primary btnPrev" ng-click="tab = 2">Trở về</a>
+                                        <button class="btn btn-danger">Hủy bỏ</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </uib-tab>
+                <uib-tab index="3" heading="Bước 4">
+                    <div id="step4" class="tab-pane">
+                        <strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong>
+                        <hr style="margin:10px 0px 30px 0px;">
+                        <h4 style="display:inline;padding-right:10px;color:#39A">Bước 1: Vấn đề</h4>
+                        <hr>
+                        <table class="stepTable" style="margin-bottom:30px;">
+                            <tr>
+                                <td class="col-md-4">Chủ đề:</td>
+                                <td>
+                                    <select class="form-control col-md-8" id="subInfo" name="chude" style="width:100%" ng-model="serviceType" ng-options="issue for (issue, value) in issues" >
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Chi tiết:</td>
+                                <td id="detailInfo">
+                                    <select class="form-control" style="display:inline;width:100%" ng-model="serviceName"
+                                    ng-options="issue.name for issue in serviceType" >
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Thời gian:</td>
+                                <td><input type="text" data-field="datetime" ng-model="happenDateTime" class="form-control" >
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Hình ảnh:</td>
+                                <td>
+                                    <button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB"
+                                    >Chọn ảnh</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class ="col-md-4"></td>
+                                <td>
+                                    <button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile" >Xoá ảnh</button>
+                                    <img ng-show="picFile" ngf-thumbnail="picFile" class="thumb" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Mô tả thêm:</td>
+                                <td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3" ng-model="description" ></textarea></td>
+                            </tr>
+                        </table>
+                        <h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
+                        <hr>
+                        <table class="stepTable" style="margin-bottom:30px;">
+                            <tr>
+                                <td class="col-md-4">Quận:</td>
+                                <td>
+                                    <select class="form-control" style="width:100%" id="disInfo"
+                                    ng-model="district" ng-options="d for (d, w) in districts">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Phường:</td>
+                                <td>
+                                    <select class="form-control" style="display:inline;width:100%"
+                                    ng-model="ward" ng-options="ward.name for ward in district">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Địa chỉ:</td>
+                                <td>
+                                    <input class="form-control" id="addInfo" type="text" style="width:300px" ng-model="street">
+                                </td>
+                            </tr>
+                        </table>
+                        <h4 style="display:inline;padding-right:10px;color:#39A">Bước 3: Thông tin cá nhân</h4>
+                        <hr>
+                        <table class="stepTable" style="margin-bottom:10px;">
+                            <tr>
+                                <td class="col-md-4">Tên hiển thị:</td>
+                                <td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true" ng-model="user.name"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Số điện thoại:</td>
+                                <td><input class="form-control col-md-8 infoStep3" id="phoneInfo" type="text" readonly="true" ng-model="user.phoneNumber"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Email:</td>
+                                <td><input class="form-control col-md-8 infoStep3" id="emailInfo" type="text" readonly="true" ng-model="user.email"></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">CMND:</td>
+                                <td><input class="form-control col-md-8 infoStep3" id="idenInfo" type="text" readonly="true" ng-model="user.identifyCard"></td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <table class="col-md-12">
+                            <tr>
+                                <td style="direction:rtl">
+                                    <button type="submit" form="step4Form" class="btn btn-success" ng-click="reportTab.submitReport()">Gửi</button>
+                                    <a class="btn btn-primary btnPrev" ng-click="tab = 3" >Trở về</a>
+                                    <button class="btn btn-danger">Hủy bỏ</button>
+                                </td>
+                            </tr>
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>
+                        </table>
+                    </div>
+                </uib-tab>
+              </uib-tabset>
+
+    <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+

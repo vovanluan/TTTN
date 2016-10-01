@@ -68,7 +68,7 @@ public class AuthenticationEndpoint {
     private boolean isUserExist(String email, String password) throws Exception {
         try {
             //Check if email is correct in User table
-            Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
+            Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email", User.class);
             firstQuery.setParameter("email", email);
             User user = (User) firstQuery.getSingleResult();
 

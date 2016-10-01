@@ -12,6 +12,7 @@ import entity.OfficialUser;
 import entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,8 +26,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import static org.eclipse.persistence.jpa.jpql.parser.Expression.SET;
-import static org.eclipse.persistence.jpa.jpql.parser.Expression.UPDATE;
 
 /**
  *
@@ -51,10 +50,12 @@ public class UserFacadeREST extends AbstractFacade<User> {
         super.create(entity);
     }
 
+    @RolesAllowed("normal")
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, User entity) {
+        //TO DO: Update entity role
         Query query = em.createQuery("UPDATE User SET user_type =:userType WHERE id=:id");
         query.setParameter("userType", entity.getUserType());
         query.setParameter("id", entity.getId());
@@ -68,7 +69,6 @@ public class UserFacadeREST extends AbstractFacade<User> {
     }
    
     @GET
-    @Secured
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User find(@PathParam("id") Integer id) {

@@ -11,6 +11,7 @@
     <class>entity.OfficialUser</class>
     <class>entity.VicePresidentUser</class>
     <class>entity.Comment</class>
+    <class>entity.AdminUser</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level.sql" value="FINE"/>

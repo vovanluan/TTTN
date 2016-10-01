@@ -96,7 +96,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     }
 
     @GET
-    @Secured
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public NormalUser find(@PathParam("id") Integer id) {
@@ -105,7 +104,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     
     
     @POST
-    @Secured
     @Path("getInfo")
     @Produces(MediaType.APPLICATION_JSON)
     public NormalUser getInfo(@QueryParam("email") String email) {

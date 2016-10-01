@@ -18,6 +18,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -30,9 +31,8 @@ import javax.ws.rs.ext.Provider;
  *
  * @author TranVanTai
  */
-@Secured
 @Provider
-@Priority(Priorities.AUTHENTICATION)
+@Priority(Priorities.AUTHORIZATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("open311");
@@ -41,7 +41,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws IOException {
         //Get HTTP header from the request
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-
         if (authourizationHeader == null || !authourizationHeader.startsWith("Bearer")) {
             throw new NotAuthorizedException("Authorize header must be provided");
         }
@@ -54,6 +53,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         String role = (String) claims.get("rol");
 
         if(!isValidToken(token, expirationDate)) {
+            System.out.println("GET METHOD: " +  requestContext.getMethod());
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build());
         }
