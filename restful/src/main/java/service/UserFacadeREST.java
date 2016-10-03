@@ -12,6 +12,7 @@ import entity.OfficialUser;
 import entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,6 +35,7 @@ import javax.ws.rs.core.MediaType;
 
 @Stateless
 @Path("entity.user")
+@PermitAll
 public class UserFacadeREST extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "open311")
@@ -50,7 +52,6 @@ public class UserFacadeREST extends AbstractFacade<User> {
         super.create(entity);
     }
 
-    @RolesAllowed("normal")
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -77,6 +78,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("normal")
     public List<GeneralUser> getAllUser() {
         List<GeneralUser> generalUsers = new ArrayList<>();
         Query q = em.createQuery("SELECT u FROM NormalUser u");
