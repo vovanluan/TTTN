@@ -1,7 +1,7 @@
 app.controller('reportTabController',
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
 		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
-	$scope.tab = 1;
+	$scope.active = 0;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
 	$scope.districts = districts;
@@ -89,7 +89,7 @@ app.controller('reportTabController',
 	// }
 
 	this.selectTab = function(setTab){
-		$scope.tab = setTab;
+		$scope.active = setTab;
 	};
 	this.isSelectedTab = function(checkTab){
 		return $scope.tab === checkTab;
