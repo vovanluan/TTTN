@@ -5,10 +5,12 @@
  */
 package service;
 
+import dto.UserRole;
 import entity.NormalUser;
 import entity.User;
 import io.jsonwebtoken.Claims;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Priority;
@@ -25,6 +27,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 
 /**
@@ -32,15 +35,24 @@ import javax.ws.rs.ext.Provider;
  * @author TranVanTai
  */
 @Provider
-@Priority(Priorities.AUTHORIZATION)
+@Priority(Priorities.AUTHENTICATION)
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("open311");
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        String method = requestContext.getMethod();
+        String path = requestContext.getUriInfo().getPath(true);
+        System.out.println("============Path========== " + path + " ===== " + method);
+        
+        if(path.equals("/authentication/user") || path.equals("/entity.request") || path.equals("/entity.comment")){
+            return;
+        }
         //Get HTTP header from the request
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
+        
+        System.out.println("============Header============ " + authourizationHeader + "===");
         if (authourizationHeader == null || !authourizationHeader.startsWith("Bearer")) {
             throw new NotAuthorizedException("Authorize header must be provided");
         }
@@ -50,13 +62,37 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         System.out.println("Bearer: " + token);
         Claims claims = JWT.parseJWT(token);
         Date expirationDate = claims.getExpiration();
-        String role = (String) claims.get("rol");
+        final String role = (String) claims.get("rol");
 
         if(!isValidToken(token, expirationDate)) {
             System.out.println("GET METHOD: " +  requestContext.getMethod());
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build());
         }
+        
+        requestContext.setSecurityContext(new SecurityContext() {
+            
+            @Override
+            public Principal getUserPrincipal() {
+                return new UserRole(role);
+            }
+
+            @Override
+            public boolean isUserInRole(String role) {
+                return role.equals(role);
+            }
+
+            @Override
+            public boolean isSecure() {
+                return false;
+            }
+
+            @Override
+            public String getAuthenticationScheme() {
+                return "custom";
+            }
+            
+        });
         
     }
 
