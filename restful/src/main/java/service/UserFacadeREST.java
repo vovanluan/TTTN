@@ -33,7 +33,7 @@ import javax.ws.rs.core.MediaType;
  * @author Luan
  */
 
-@Stateless
+//@Stateless
 @Path("entity.user")
 @PermitAll
 public class UserFacadeREST extends AbstractFacade<User> {
