@@ -607,3 +607,54 @@ app.controller('changePasswordModalController', function($rootScope, $scope, $ht
 		$uibModalInstance.dismiss('cancle');
 	}
 });
+
+/*angular.module('directives', []).directive('map', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div style="width:480px;height:380px;margin-bottom:10px;"></div>',
+        link: function($scope, element, attrs) {
+            var myLatLng = {lat: 10.78, lng: 106.65};
+            $scope.map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: myLatLng
+            });
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function success(pos) {
+                    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
+                    $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
+                    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        map: $scope.map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        title: "Di chuyển để xác định đúng vị trí"
+                    });
+                    $scope.map.setCenter(latlng);
+                    $scope.map.setZoom(15);
+                    google.maps.event.addListener(marker, "dragend", function (event) {
+                        $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
+                        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
+                        $scope.map.setCenter(event.latLng);
+                    });
+                }
+                    , function (errMsg) {
+                    console.log(errMsg);
+                }, {
+                    enableHighAccuracy: false,
+                    timeout: 6 * 1000,
+                    maximumAge: 1000 * 60 * 10
+                });
+            } else {
+                alert("Do not support Geolocation");
+            }
+
+            $scope.$watch('active', function () {
+                window.setTimeout(function(){
+                google.maps.event.trigger(map, 'resize');
+                                                 },100);
+          });
+        }
+    }
+});*/

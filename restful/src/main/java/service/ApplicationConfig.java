@@ -8,7 +8,7 @@ package service;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+//import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import support.CORSResponseFilter;
 
 /**

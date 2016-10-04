@@ -15,7 +15,38 @@ app.controller('reportTabController',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     var count = 0;
-	$scope.initMap = function(){
+
+    var center = new google.maps.LatLng(50.1, 14.4);
+
+    var map_options = {
+        zoom: 14,
+        center: center,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+    };
+
+    // create map
+    var map = new google.maps.Map(document.getElementById('map'), map_options);
+
+    // configure marker
+    var marker_options = {
+        map: map,
+        position: center
+    };
+
+    // create marker
+    var marker = new google.maps.Marker(marker_options);
+
+    $scope.$watch('active', function () {
+
+        window.setTimeout(function(){
+
+            google.maps.event.trigger(map, 'resize');
+                                             },100);
+
+  });
+
+/*	$scope.initMap = function(){
+		console.log("TEST");
 		var myLatLng = {lat: 10.78, lng: 106.65};
 	    $scope.map = new google.maps.Map(document.getElementById('map'), {
 	        zoom: 12,
@@ -51,16 +82,17 @@ app.controller('reportTabController',
 	    } else {
 	        alert("Do not support Geolocation");
 	    }
+		$scope.$watch('active', function(newValue){
+	        window.setTimeout(function(){
+	        google.maps.event.trigger($scope.map, 'resize');
+	                                         },100);
+		});
 	};
+    $scope.$watch('active', function(newValue){
+    	if(newValue == 2)
+    		$scope.initMap();
 
-	var c = 0;
-	$scope.$watch('tab', function(newValue){
-		if (newValue === 2){
-			c++;
-			if(c === 1)
-				$scope.initMap();
-		}
-	});
+    });*/
 	// Implement upload multiple images
 
 	// $scope.upload = function() {
