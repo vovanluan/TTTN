@@ -6,16 +6,15 @@
 package service;
 
 import java.util.Set;
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-//import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
+import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import support.CORSResponseFilter;
 
 /**
  *
  * @author Luan
  */
-@ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
     
     @Override
@@ -23,7 +22,7 @@ public class ApplicationConfig extends Application {
         Set<Class<?>> resources = new java.util.HashSet<>();
         addRestResourceClasses(resources);
         resources.add(CORSResponseFilter.class);
-        //resources.add(RolesAllowedDynamicFeature.class);
+        resources.add(RolesAllowedDynamicFeature.class);
         return resources;
     }
 
