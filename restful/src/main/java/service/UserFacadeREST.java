@@ -33,7 +33,7 @@ import javax.ws.rs.core.MediaType;
  * @author Luan
  */
 
-@Stateless
+//@Stateless
 @Path("entity.user")
 @PermitAll
 public class UserFacadeREST extends AbstractFacade<User> {
@@ -78,7 +78,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("normal")
+    @RolesAllowed("admin")
     public List<GeneralUser> getAllUser() {
         List<GeneralUser> generalUsers = new ArrayList<>();
         Query q = em.createQuery("SELECT u FROM NormalUser u");

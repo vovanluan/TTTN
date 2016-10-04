@@ -25,6 +25,7 @@ import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -36,12 +37,13 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 @Priority(Priorities.AUTHENTICATION)
+@PreMatching
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("open311");
 
     @Override
-    public void filter(ContainerRequestContext requestContext) throws IOException {
+    public void filter(final ContainerRequestContext requestContext) throws IOException {
         String method = requestContext.getMethod();
         String path = requestContext.getUriInfo().getPath(true);
         System.out.println("============Path========== " + path + " ===== " + method);
@@ -52,7 +54,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         //Get HTTP header from the request
         String authourizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
         
-        System.out.println("============Header============ " + authourizationHeader + "===");
         if (authourizationHeader == null || !authourizationHeader.startsWith("Bearer")) {
             throw new NotAuthorizedException("Authorize header must be provided");
         }
@@ -72,16 +73,14 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         
         System.out.println("===========PASS AUTHENTICATION===========");
         requestContext.setSecurityContext(new SecurityContext() {
-            
             @Override
             public Principal getUserPrincipal() {
-                System.out.println("======Vao role===== " + role);
                 return new UserRole(role);
             }
 
             @Override
             public boolean isUserInRole(String acceptedRole) {
-                System.out.println("=======vao compare========== " + role.equals(acceptedRole) + "\t" + acceptedRole + "\t" + role);
+                System.out.println("=======Compare Role======= " + role.equals(acceptedRole) + "\t" + acceptedRole + "\t" + role);
                 return role.equals(acceptedRole);
             }
 
@@ -93,10 +92,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             @Override
             public String getAuthenticationScheme() {
                 return "custom";
-            }
-            
+            } 
         });
-        
     }
 
     private boolean isValidToken(String token, Date expirationDate){
