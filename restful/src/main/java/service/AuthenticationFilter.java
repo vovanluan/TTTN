@@ -70,16 +70,19 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                     Response.status(Response.Status.UNAUTHORIZED).build());
         }
         
+        System.out.println("===========PASS AUTHENTICATION===========");
         requestContext.setSecurityContext(new SecurityContext() {
             
             @Override
             public Principal getUserPrincipal() {
+                System.out.println("======Vao role===== " + role);
                 return new UserRole(role);
             }
 
             @Override
-            public boolean isUserInRole(String role) {
-                return role.equals(role);
+            public boolean isUserInRole(String acceptedRole) {
+                System.out.println("=======vao compare========== " + role.equals(acceptedRole) + "\t" + acceptedRole + "\t" + role);
+                return role.equals(acceptedRole);
             }
 
             @Override
