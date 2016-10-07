@@ -1,7 +1,7 @@
 app.controller('reportTabController',
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
 		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
-	$scope.active = 0;
+	$scope.tab = 0;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
 	$scope.districts = districts;
@@ -15,38 +15,7 @@ app.controller('reportTabController',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     var count = 0;
-
-    var center = new google.maps.LatLng(50.1, 14.4);
-
-    var map_options = {
-        zoom: 14,
-        center: center,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
-    };
-
-    // create map
-    var map = new google.maps.Map(document.getElementById('map'), map_options);
-
-    // configure marker
-    var marker_options = {
-        map: map,
-        position: center
-    };
-
-    // create marker
-    var marker = new google.maps.Marker(marker_options);
-
-    $scope.$watch('active', function () {
-
-        window.setTimeout(function(){
-
-            google.maps.event.trigger(map, 'resize');
-                                             },100);
-
-  });
-
-/*	$scope.initMap = function(){
-		console.log("TEST");
+	$scope.initMap = function(){
 		var myLatLng = {lat: 10.78, lng: 106.65};
 	    $scope.map = new google.maps.Map(document.getElementById('map'), {
 	        zoom: 12,
@@ -88,11 +57,6 @@ app.controller('reportTabController',
 	                                         },100);
 		});
 	};
-    $scope.$watch('active', function(newValue){
-    	if(newValue == 2)
-    		$scope.initMap();
-
-    });*/
 	// Implement upload multiple images
 
 	// $scope.upload = function() {
@@ -121,7 +85,7 @@ app.controller('reportTabController',
 	// }
 
 	this.selectTab = function(setTab){
-		$scope.active = setTab;
+		$scope.tab = setTab;
 	};
 	this.isSelectedTab = function(checkTab){
 		return $scope.tab === checkTab;
