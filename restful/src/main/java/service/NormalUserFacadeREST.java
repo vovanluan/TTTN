@@ -34,7 +34,6 @@ import static support.General.EXPIRE_TIME;
  *
  * @author Luan
  */
-@Stateless
 @Path("entity.normaluser")
 public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
 

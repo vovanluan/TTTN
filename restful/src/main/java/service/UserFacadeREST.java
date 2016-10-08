@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -33,7 +32,6 @@ import javax.ws.rs.core.MediaType;
  * @author Luan
  */
 
-//@Stateless
 @Path("entity.user")
 @PermitAll
 public class UserFacadeREST extends AbstractFacade<User> {

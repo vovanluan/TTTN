@@ -6,13 +6,11 @@
 package service;
 
 import dto.UserRole;
-import entity.NormalUser;
 import entity.User;
 import io.jsonwebtoken.Claims;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.Priority;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +18,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -37,7 +34,6 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 @Priority(Priorities.AUTHENTICATION)
-@PreMatching
 public class AuthenticationFilter implements ContainerRequestFilter {
     @PersistenceContext(unitName = "open311")
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("open311");
@@ -80,7 +76,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
             @Override
             public boolean isUserInRole(String acceptedRole) {
-                System.out.println("=======Compare Role======= " + role.equals(acceptedRole) + "\t" + acceptedRole + "\t" + role);
                 return role.equals(acceptedRole);
             }
 
