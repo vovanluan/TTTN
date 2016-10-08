@@ -220,7 +220,7 @@ app.factory('Modal', function($rootScope, $uibModal){
   				}
   			});
 
-  			modalInstance.result.then(function close(user){
+  			modalInstance.result.then(function close(){
   			}, function dismiss(){
   				console.log("Modal dismiss");
   			});
@@ -231,7 +231,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 // Check if a route requires authentication or not
 app.factory('RouteClean', function(){
 	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/reportIssue'];
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue'];
 
 	// check if current location matches route
     return function(route) {
@@ -346,10 +346,13 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/issueDetail/view.html',
 		controller: 'issueDetailController'
 	})
-	.when('/reportIssue', {
+	.when('/report-issue', {
 		templateUrl: 'app/components/reportIssue/test.html',
 		controller: 'reportTabController',
 		controllerAs: 'reportTab'
+	})
+	.when('/signin-manager', {
+		templateUrl: 'app/components/signinManager/view.html'
 	})
     .otherwise({
         redirectTo: '/list'
