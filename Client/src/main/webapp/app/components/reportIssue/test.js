@@ -1,7 +1,7 @@
 app.controller('testTabController',
     function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
         dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
-    $scope.tab = 1;
+    $scope.active = 0;
     $scope.issues = issues;
     $scope.serviceType = issues["Điện"];
     $scope.districts = districts;
@@ -15,7 +15,7 @@ app.controller('testTabController',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     var count = 0;
-    $scope.initMap = function(){
+/*    $scope.initMap = function(){
         var myLatLng = {lat: 10.78, lng: 106.65};
         $scope.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
@@ -51,10 +51,10 @@ app.controller('testTabController',
         } else {
             alert("Do not support Geolocation");
         }
-    };
+    };*/
 
     var c = 0;
-    $scope.$watch('tab', function(newValue){
+    $scope.$watch('active', function(newValue){
         if (newValue === 2){
             c++;
             if(c === 1)
@@ -89,7 +89,7 @@ app.controller('testTabController',
     // }
 
     this.selectTab = function(setTab){
-        $scope.tab = setTab;
+        $scope.active = setTab;
     };
     this.isSelectedTab = function(checkTab){
         return $scope.tab === checkTab;
