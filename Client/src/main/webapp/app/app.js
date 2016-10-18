@@ -3,6 +3,10 @@ var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
+app.constant("normalUserUrl", "http://localhost:8080/restful/webresources/entity.normaluser");
+app.constant("adminUserUrl", "http://localhost:8080/restful/webresources/entity.adminuser");
+app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/entity.officialuser");
+app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 
@@ -154,9 +158,9 @@ app.factory('userManager', function(userUrl, $http, $q){
                 });
             return deferred.promise;
         },
-        updateUser: function(id, user) {
+        updateUser: function(id, user, url) {
             var deferred = $q.defer();
-            $http.put(userUrl + "/" + id, JSON.stringify(user))
+            $http.put(url + "/" + id, JSON.stringify(user))
                 .success(function() {
                 })
                 .error(function(msg, code) {
@@ -304,6 +308,10 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
     self.profile = function(success, error) {
         $http.get(baseUrl + '/profile').success(success).error(error)
+    };
+
+    self.changePassword = function(data, success, error) {
+    	$http.post(baseUrl + '/profile').success(success).error(error)
     };
 
     self.logout = function() {
@@ -599,17 +607,6 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	}
 });
 
-app.controller('profileController', function($rootScope, $scope, $uibModal, Modal){
-	$scope.changePasswordModal = function(){
-		Modal.changePasswordModal();
-	}
-});
-
-app.controller('changePasswordModalController', function($rootScope, $scope, $http, $uibModalInstance){
-	$scope.cancle = function(){
-		$uibModalInstance.dismiss('cancle');
-	}
-});
 
 /*angular.module('directives', []).directive('map', function() {
     return {

@@ -17,6 +17,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -34,6 +35,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("entity.user")
 @PermitAll
+@Transactional
 public class UserFacadeREST extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "open311")
@@ -54,10 +56,6 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, User entity) {
-        //TO DO: Update entity role
-        Query query = em.createQuery("UPDATE User SET user_type =:userType WHERE id=:id");
-        query.setParameter("userType", entity.getUserType());
-        query.setParameter("id", entity.getId());
         super.edit(entity);
     }
 

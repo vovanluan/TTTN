@@ -1,13 +1,20 @@
-app.controller('changePasswordModalController', 
-	function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper, Modal, SweetAlert){
-
+app.controller('changePasswordModalController',  function($rootScope, $scope, $localStorage, $uibModalInstance, userUrl, AuthService, jwtHelper, Modal, SweetAlert){
 	$scope.cancel = function(){
-		console.log('edit');
 		$uibModalInstance.dismiss('cancel');
 
 	};
 
-	$scope.edit = function(){
-		console.log('edit');
+	$scope.changePassword = function(){
+		console.log('sdfsdfds');
+		var data = {
+			oldPassword: $scope.oldPassword,
+			newPassword: $scope.newPassword
+		}
+		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+		console.log(tokenPayload);
 	};
-)}
+
+	$scope.checkPassword = function(){
+		$scope.$error = $scope.newPassword !== $scope.confirmPassword;
+	};
+});
