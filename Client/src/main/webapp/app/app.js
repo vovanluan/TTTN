@@ -303,15 +303,15 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
     };
 
     self.signup = function(data, success, error) {
-        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
+        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error);
     },
 
     self.profile = function(success, error) {
-        $http.get(baseUrl + '/profile').success(success).error(error)
+        $http.get(baseUrl + '/profile').success(success).error(error);
     };
 
-    self.changePassword = function(data, success, error) {
-    	$http.post(baseUrl + '/profile').success(success).error(error)
+    self.changePassword = function(data, id) {
+     	$http.post(baseUrl + '/entity.normaluser/changePassword/' + id).success().error();
     };
 
     self.logout = function() {

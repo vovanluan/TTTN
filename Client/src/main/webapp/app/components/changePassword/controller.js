@@ -5,13 +5,26 @@ app.controller('changePasswordModalController',  function($rootScope, $scope, $l
 	};
 
 	$scope.changePassword = function(){
-		console.log('sdfsdfds');
-		var data = {
-			oldPassword: $scope.oldPassword,
-			newPassword: $scope.newPassword
-		}
-		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
-		console.log(tokenPayload);
+  		console.log('sdfsdfds');
+  		var data = {
+   			oldPassword: $scope.oldPassword,
+   			newPassword: $scope.newPassword
+  		}
+  		AuthService.changePassword(data, $rootScope.user.id).then(
+  			function success(){
+				$scope.showSpinner = false;
+				SweetAlert.swal({
+		        	title: "OK",
+		        	text: "Bạn đã cập nhật mật khẩu thành công!",
+		        	type: "success",
+		        	timer: 1000,
+		        	showConfirmButton: false
+		        });
+			},
+			function error(err){
+				$scope.showSpinner = false;
+				SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+			});	
 	};
 
 	$scope.checkPassword = function(){

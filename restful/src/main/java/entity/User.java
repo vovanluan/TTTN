@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="user_type")
 
 public class User implements Serializable {

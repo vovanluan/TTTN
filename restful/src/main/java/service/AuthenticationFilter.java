@@ -44,7 +44,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         String path = requestContext.getUriInfo().getPath(true);
         System.out.println("============Path========== " + path + " ===== " + method);
         
-        if(path.equals("/authentication/user") || path.equals("/entity.request") || path.equals("/entity.comment")){
+        if(path.equals("/authentication/user") || path.equals("/entity.request") ||
+                path.equals("/entity.comment") || path.equals("/entity.normaluser")){
+            System.out.println("vo if");
             return;
         }
         //Get HTTP header from the request

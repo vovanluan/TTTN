@@ -5,7 +5,7 @@
  */
 package service;
 
-import entity.Comment;
+import dto.Password;
 import entity.NormalUser;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.PermitAll;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -51,6 +50,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response signUp(NormalUser user) throws Exception  {
+        System.out.println("vo signup");
         // Check email already exist
         Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
         queryEmail.setParameter("email", user.getEmail());
@@ -88,7 +88,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, NormalUser entity) {
-        System.out.println("=================hahahaha=========");
         super.edit(entity);
     }
 
@@ -105,7 +104,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         return super.find(id);
     }
     
-    
     @POST
     @Path("getInfo")
     @Produces(MediaType.APPLICATION_JSON)
@@ -117,8 +115,6 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         return user;
     }
     
-    
-
     @GET
     @Override
     @Produces(MediaType.APPLICATION_JSON)
@@ -145,4 +141,26 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         return em;
     }
     
+    @POST
+    @Path("changePassword/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response changePassword(@PathParam("id") Integer id,Password passwordObj) throws Exception {
+        NormalUser user = em.find(NormalUser.class, id);
+        
+        String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
+        System.out.println("=======Pass cu==========" + oldPasswordHash);
+        System.out.println(user);
+        if(!user.getPassWord().equals(oldPasswordHash)){
+            System.out.println(user.getPassWord());
+            System.out.println("Khong trung oldPassword");
+            return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
+        }
+        user.setPassWord(General.hashPassword(passwordObj.getNewPassword()));
+        super.edit(user);
+//        Query updateQuery = em.createQuery("UPDATE NormalUser u SET u.password=:newpassword WHERE u.id=:id");
+//        updateQuery.setParameter("newpassword", passwordObj.getNewPassword());
+//        updateQuery.setParameter("id", id);
+        return Response.ok().build();
+    }
 }
