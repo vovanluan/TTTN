@@ -6,6 +6,7 @@ app.controller('authorizationManagementController', function($rootScope, $scope,
         console.log(users);
     });
     $scope.update = function(user) {
+        console.log(user);
         userManager.updateUser(user.id, user).then(function() {
             $scope.updateStatus = "Cập nhật thành công!";
         }, function(response) {

@@ -5,7 +5,7 @@
  */
 package service;
 
-import entity.Request;
+import entity.VicePresidentUser;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,27 +25,27 @@ import javax.ws.rs.core.MediaType;
  * @author Admin
  */
 @Stateless
-@Path("entity.request")
-public class RequestFacadeREST extends AbstractFacade<Request> {
+@Path("entity.vicepresidentuser")
+public class VicePresidentUserFacadeREST extends AbstractFacade<VicePresidentUser> {
 
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
 
-    public RequestFacadeREST() {
-        super(Request.class);
+    public VicePresidentUserFacadeREST() {
+        super(VicePresidentUser.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Request entity) {
+    public void create(VicePresidentUser entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Request entity) {
+    public void edit(@PathParam("id") Integer id, VicePresidentUser entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Request find(@PathParam("id") Integer id) {
+    public VicePresidentUser find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Request> findAll() {
+    public List<VicePresidentUser> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Request> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<VicePresidentUser> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

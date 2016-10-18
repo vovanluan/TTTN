@@ -5,6 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 @Table(name = "official_user")
 @DiscriminatorValue("official")
 
+@XmlRootElement
 public class OfficialUser extends User {
     
     @Size(min = 1, max = 40)
