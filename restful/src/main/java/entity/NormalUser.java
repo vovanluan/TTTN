@@ -8,6 +8,8 @@ package entity;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -18,7 +20,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="normal_user")
 @DiscriminatorValue("normal")
-
+@NamedQueries({
+    @NamedQuery(name = "NormalUser.findByEmail", query = "SELECT u FROM NormalUser u WHERE u.email=:email"),
+    @NamedQuery(name = "NormalUser.findByIdentifyCard", query = "SELECT u FROM NormalUser u WHERE u.identifyCard=:identifyCard"),
+})
 public class NormalUser extends User {
     
     @Size(min = 1, max = 40)

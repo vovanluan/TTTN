@@ -5,16 +5,13 @@
  */
 package service;
 
-import entity.Comment;
-import entity.NormalUser;
 import entity.Request;
 import entity.User;
-import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -33,6 +30,7 @@ import support.Status;
  * @author Luan
  */
 @Path("entity.request")
+@Transactional
 public class RequestFacadeREST extends AbstractFacade<Request> {
 
     @PersistenceContext(unitName = "open311")

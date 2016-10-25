@@ -355,8 +355,8 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		controller: 'issueDetailController'
 	})
 	.when('/report-issue', {
-		templateUrl: 'app/components/reportIssue/test.html',
-		controller: 'reportTabController',
+		templateUrl: 'app/components/reportIssue/view.html',
+		controller: 'testTabController',
 		controllerAs: 'reportTab'
 	})
 	.when('/signin-manager', {

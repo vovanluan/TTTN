@@ -74,52 +74,9 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("admin")
-    public List<GeneralUser> getAllUser() {
-        List<GeneralUser> generalUsers = new ArrayList<>();
-        Query q = em.createQuery("SELECT u FROM NormalUser u");
-        List<NormalUser> normalUsers = q.getResultList();
-        q = em.createQuery("SELECT d FROM DivisionUser d");
-        List<DivisionUser> divisionUsers = q.getResultList();   
-        q = em.createQuery("SELECT o FROM OfficialUser o");
-        List<OfficialUser> officialUsers = q.getResultList();         
-        for(NormalUser u: normalUsers) {
-            GeneralUser g = new GeneralUser();
-            g.setEmail(u.getEmail());
-            g.setId(u.getId());
-            g.setIdentifyCard(u.getIdentifyCard());
-            g.setName(u.getName());
-            g.setPassWord(u.getPassWord());
-            g.setPhoneNumber(u.getPhoneNumber());
-            g.setToken(u.getToken());
-            
-               
-                            
-            g.setUserType(u.getUserType());
-            System.out.println("========USER TYPE========" + u.getUserType());
-            generalUsers.add(g);
-        }
-        for(DivisionUser d: divisionUsers) {
-            GeneralUser g = new GeneralUser();
-            g.setEmail(d.getEmail());
-            g.setId(d.getId());
-            g.setName(d.getName());
-            g.setPassWord(d.getPassWord());
-            g.setToken(d.getToken());
-            g.setUserType(d.getUserType());
-            generalUsers.add(g);
-        }
-        for(OfficialUser d: officialUsers) {
-            GeneralUser g = new GeneralUser();
-            g.setEmail(d.getEmail());
-            g.setId(d.getId());
-            g.setName(d.getName());
-            g.setPassWord(d.getPassWord());
-            g.setToken(d.getToken());
-            g.setUserType(d.getUserType());
-            generalUsers.add(g);
-        }        
-        return generalUsers;
+    @RolesAllowed("normal")
+    public List<User> getAllUser() {
+        return super.findAll();
     }
 
     @GET
