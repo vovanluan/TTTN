@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import entity.Request;
@@ -61,22 +56,12 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-
-//    @GET
-//    @Path("{id}")
-//    @XmlTransient
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Request find(@PathParam("id") Integer id) {
-//        return super.find(id);
-//    }
     
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") Integer id) {
-        Query queryEmail = em.createQuery("SELECT r FROM Request r WHERE r.serviceRequestId=:id");
-        queryEmail.setParameter("id", id);
-        Request result = (Request) queryEmail.getSingleResult();
+        Request result = em.find(Request.class, id);
         return Response.ok(result).build();
     }
     

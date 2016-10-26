@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.PermitAll;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -101,6 +102,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         String token = JWT.createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
         user.setToken(token);
         super.create(user);
+        em.flush();
         return Response.ok(user).build();
     }
 

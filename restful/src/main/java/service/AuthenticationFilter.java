@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import dto.UserRole;
@@ -94,18 +89,9 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     private boolean isValidToken(String token, Date expirationDate, String role){
         //Check if token exists in database 
-        String statement = null;
-        switch(role) {
-            case "normal": 
-                statement = "SELECT u FROM NormalUser u WHERE u.token=:token";
-                break;
-            case "admin":
-                statement = "SELECT u FROM AdminUser u WHERE u.token=:token";
-                break;
-        }
         try {
             EntityManager em = emf.createEntityManager();
-            Query q = em.createQuery(statement);
+            Query q = em.createNamedQuery("User.findByToken");
             q.setParameter("token", token);
             User user = (User) q.getSingleResult();
         } catch(NoResultException e) {

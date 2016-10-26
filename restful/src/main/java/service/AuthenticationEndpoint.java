@@ -21,7 +21,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -29,11 +31,13 @@ import javax.persistence.PersistenceContext;
  * @author TranVanTai
  */
 @Path("authentication/user")
+@Stateless
 public class AuthenticationEndpoint {
 
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
     private User userInfo;
+    String role = "";
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
@@ -50,11 +54,12 @@ public class AuthenticationEndpoint {
         }
 
         //Generate new token
-        token = JWT.createJWT(email, EXPIRE_TIME, userInfo.getUserType());
+        token = JWT.createJWT(email, EXPIRE_TIME, role);
         Claims claims = JWT.parseJWT(token);
 
         //Update new token into database
         userInfo.setToken(token);
+        
         em.merge(userInfo);
 
         return Response.ok(userInfo).build();
@@ -65,21 +70,20 @@ public class AuthenticationEndpoint {
         Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
         firstQuery.setParameter("email", email);
         User user = (User) firstQuery.getSingleResult();
-
-        String role = user.getUserType();
-        String statement = null;
+        role = (String) user.getDiscriminatorValue();
+        String statement = "";
         System.out.println("===============NULL===============" + user + role);
         switch (role) {
             case "normal":
-                statement = "SELECT u FROM NormalUser u WHERE u.email=:email AND u.passWord=:password";
+                statement = "NormalUser.findByEmailAndPassword";
                 break;
             case "admin":
-                statement = "SELECT u FROM AdminUser u WHERE u.email=:email AND u.passWord=:password";
+                statement = "AdminUser.findByEmailAndPassword";
                 break;
         }
 
         //Check if password is correct in specific user type table
-        Query sencondQuery = em.createQuery(statement);
+        Query sencondQuery = em.createNamedQuery(statement);
         sencondQuery.setParameter("email", email);
         sencondQuery.setParameter("password", General.hashPassword(password));
 

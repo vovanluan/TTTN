@@ -18,11 +18,12 @@ import javax.validation.constraints.Size;
  * @author Luan
  */
 @Entity
-@Table(name="normal_user")
 @DiscriminatorValue("normal")
 @NamedQueries({
     @NamedQuery(name = "NormalUser.findByEmail", query = "SELECT u FROM NormalUser u WHERE u.email=:email"),
     @NamedQuery(name = "NormalUser.findByIdentifyCard", query = "SELECT u FROM NormalUser u WHERE u.identifyCard=:identifyCard"),
+    @NamedQuery(name = "NormalUser.findByEmailAndPassword", query = "SELECT u FROM NormalUser u WHERE u.email=:email AND u.passWord=:password"),
+    @NamedQuery(name = "NormalUser.findByToken", query = "SELECT u FROM NormalUser u WHERE u.token=:token"),
 })
 public class NormalUser extends User {
     
