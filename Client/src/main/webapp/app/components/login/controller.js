@@ -24,7 +24,7 @@ app.controller('logInModalController',
 	        });            
 	    }, function() {
 	    	$scope.showSpinner = false;
-	        $scope.error = 'Failed to signin';
+	        $scope.error = 'Email hoặc mật khẩu không đúng!';
             $('#email').focus();        
 	    });
 	};

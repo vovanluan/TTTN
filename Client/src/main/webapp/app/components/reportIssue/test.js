@@ -15,7 +15,7 @@ app.controller('testTabController',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     var count = 0;
-/*    $scope.initMap = function(){
+    $scope.initMap = function(){
         var myLatLng = {lat: 10.78, lng: 106.65};
         $scope.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
@@ -51,7 +51,7 @@ app.controller('testTabController',
         } else {
             alert("Do not support Geolocation");
         }
-    };*/
+    };
 
     var c = 0;
     $scope.$watch('active', function(newValue){

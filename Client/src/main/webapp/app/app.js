@@ -178,6 +178,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 	return {
 		logInModal: function(){
 			var modalInstance = $uibModal.open({
+				// templateUrl: 'app/components/login/view.html',
 				templateUrl: 'app/components/login/view.html',
 				controller: 'logInModalController',
 				resolve: {
@@ -437,7 +438,7 @@ app.controller('mainController',
 
 	  	$scope.logout = function(){
 			SweetAlert.swal({
-			   title: "Bạn có chắc chắn muốn đăng xuất?",
+			   title: "Bạn có chắc muốn đăng xuất?",
 			   type: "warning",
 			   showCancelButton: true,
 			   cancelButtonText: "Không, tôi sẽ ở lại",
@@ -522,7 +523,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
@@ -531,7 +532,7 @@ app.controller('mainTabController',
     // Need to use ADMIN_ACCESS
     // Waiting implement from server
     $scope.isAdmin = function () {
-        return AuthService.isAuthorized(USER_ACCESS);
+        return AuthService.isAuthorized(ADMIN_ACCESS);
     }
 	// Watch userRole change
 	$scope.$watch(function (){
