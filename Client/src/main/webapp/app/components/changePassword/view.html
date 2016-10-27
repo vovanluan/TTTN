@@ -1,14 +1,17 @@
 <div class="modal-header" style="background:#F2F2F2;">
-	<button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 style="margin:0 0 0 0">Đổi mật khẩu</h4>
+	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+	<h4 style="margin:0 0 0 0">Đổi mật khẩu  vffg</h4>
 </div>
 <div class="modal-body">
-	<label id="errorLabelSignup" style="color:Red" ng-model="error">{{error}}</label>
-	<input type="password" id="passwordInputSignup" class="form-control" placeholder="Mật khẩu cũ" required ng-model="password">
-	<input type="password" id="passwordInputSignup" class="form-control" placeholder="Mật khẩu mới" required ng-model="password">
-	<input type="password" id="confirmPasswordInputSignup" class="form-control" placeholder="Nhập lại mật khẩu mới" required ng-model="confirmPassword">
+	<label id="errorLabel" style="color:Red" ng-model="error">{{error}}</label>
+	<span class="text-error" style="color:Red" ng-show="$error">Confirm password does not match!</span>
+	<input type="password" id="oldPassword" class="form-control" placeholder="Mật khẩu cũ" required ng-model="oldPassword">
+	<input type="password" id="newPassword" class="form-control" placeholder="Mật khẩu mới" required ng-model="newPassword">
+	<input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu mới" required ng-model="confirmPassword" ng-change="checkPassword()">
+	
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button">Cập nhật</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Hủy bỏ</button>		
+    <button class="btn btn-primary" type="button" ng-click="changePassword()">Cập nhật</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Hủy bỏ</button>		
 </div>
+

@@ -2,7 +2,7 @@
 <html lang="en" ng-App="mainApp">
 <head>
 	<meta charset="UTF-8">
-	<title>List issue</title>
+	<title>Chính phú điện tử</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
   	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/DateTimePicker.css" />
@@ -63,7 +63,7 @@
 		          	</ul>
 		        </li>
 		      	<li ng-class="{active: mainTab.isSelected(2)}">
-		      		<a href="#/reportIssue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
+		      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
 		      	</li>
 		    </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
@@ -88,5 +88,7 @@
 	<script type="text/javascript" src="app/components/guest/controller.js"></script>
 	<script type="text/javascript" src="app/components/reportIssue/controller.js"></script>
 	<script type="text/javascript" src="app/components/authorization-management/controller.js"></script>
+	<script type="text/javascript" src="app/components/changePassword/controller.js"></script>
+	<script type="text/javascript" src="app/components/profile/controller.js"></script>
 </body>
 </html>

@@ -5,12 +5,13 @@
 				<!-- Search input -->
 			</form>
 		</div>
+		<div>{{editedUser}}</div>
 		<div class="main">
 			<div class="content-title">
 				<h4>THÔNG TIN TÀI KHOẢN</h4>	
 			</div>
 			<div id="profile-content">
-				<div id="personal">
+				<div id="personal" ng-hide="isEditAccountInfo">
 					<div class="info-row border-btm">
 						<label>Tên hiển thị: </label>
 						<div class="info-text">{{user.name}}</div>
@@ -28,36 +29,40 @@
 						<div class="info-text">{{user.phoneNumber}}</div>
 					</div>
 				</div>
-				<div class="personal-edit" style="display:none;">
-					<div class="info-row border-btm">
+				<div class="personal-edit" ng-show="isEditAccountInfo">
+					<div class="info-row">
 						<label>Tên hiển thị: </label>
 						<div class="info-text">
-							<input class="form-control" value="{{user.name}}" >
+							<input class="form-control" ng-model="user.name" >
 						</div>
-						
 					</div>
-					<div class="info-row border-btm">
+					<div class="info-row">
+						<label>Email: </label>
+						<div class="info-text">
+							<input class="form-control" ng-model="user.email" disabled="true">
+						</div>
+					</div>
+					<div class="info-row">
 						<label>CMND: </label>
 						<div class="info-text">
-							<input class="form-control" value="{{user.identifyCard}}" >
+							<input class="form-control" ng-model="user.identifyCard" >
 						</div>
 					</div>
 					<div class="info-row">
 						<label>Số điện thoại: </label>
 						<div class="info-text">
-							<input class="form-control" value="{{user.phoneNumber}}" >
+							<input class="form-control" ng-model="user.phoneNumber" >
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="edit-info">
-			<button class="btn btn-info">Chỉnh sửa thông tin</button>	 
+			<button class="btn btn-success" ng-click="editAccountInfoSubmit()" ng-show="isEditAccountInfo">Submit</button>
+			<button class="btn btn-info" ng-click="editAccountInfo()">{{!isEditAccountInfo && 'Chỉnh sửa thông tin' || 'Cancel'}}</button>	 
 			<button class="btn btn-primary" ng-click="changePasswordModal()">Đổi mật khẩu</button>   
 		</div>
-
 	</section>
-	
 	<section class="sidebar col-md-4">
 		<div id="mainMap" style="height:380px"></div>
 	</section>

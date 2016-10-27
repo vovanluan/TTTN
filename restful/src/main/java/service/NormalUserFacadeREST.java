@@ -12,10 +12,12 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -34,8 +36,8 @@ import static support.General.EXPIRE_TIME;
  *
  * @author Luan
  */
-@Stateless
 @Path("entity.normaluser")
+@Transactional
 public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
 
     @PersistenceContext(unitName = "open311")
@@ -86,6 +88,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public void edit(@PathParam("id") Integer id, NormalUser entity) {
+        System.out.println("=================hahahaha=========");
         super.edit(entity);
     }
 

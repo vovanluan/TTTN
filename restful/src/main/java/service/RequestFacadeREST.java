@@ -24,7 +24,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Admin
  */
-@Stateless
 @Path("entity.request")
 public class RequestFacadeREST extends AbstractFacade<Request> {
 
