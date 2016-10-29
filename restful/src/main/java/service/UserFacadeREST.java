@@ -28,7 +28,6 @@ import javax.ws.rs.core.MediaType;
  * @author Admin
  */
 
-
 @Path("entity.user")
 @PermitAll
 @Transactional
@@ -69,9 +68,10 @@ public class UserFacadeREST extends AbstractFacade<User> {
     }
 
     @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<User> findAll() {
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
+    public List<User> getAllUser() {
+
         return super.findAll();
     }
 

@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,7 +18,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "admin_user")
 @DiscriminatorValue("admin")
 
-@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "AdminUser.findByEmail", query = "SELECT u FROM AdminUser u WHERE u.email=:email"),
+    @NamedQuery(name = "AdminUser.findByEmailAndPassword", query = "SELECT u FROM AdminUser u WHERE u.email=:email AND u.passWord=:password"),
+    @NamedQuery(name = "AdminUser.findByToken", query = "SELECT u FROM AdminUser u WHERE u.token=:token"),
+})
 public class AdminUser extends User {
     
     @Size(min = 1, max = 40)

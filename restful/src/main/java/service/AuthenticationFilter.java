@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import dto.UserRole;
@@ -44,7 +39,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         String path = requestContext.getUriInfo().getPath(true);
         System.out.println("============Path========== " + path + " ===== " + method);
         
-        if(path.equals("/authentication/user") || path.equals("/entity.request") || path.equals("/entity.comment")){
+        if(path.equals("/authentication/user") || path.equals("/entity.request") ||
+                path.equals("/entity.comment") || path.equals("/entity.normaluser")){
             return;
         }
         //Get HTTP header from the request
@@ -61,7 +57,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         Date expirationDate = claims.getExpiration();
         final String role = (String) claims.get("rol");
 
-        if(!isValidToken(token, expirationDate)) {
+        if(!isValidToken(token, expirationDate, role)) {
             System.out.println("GET METHOD: " +  requestContext.getMethod());
             requestContext.abortWith(
                     Response.status(Response.Status.UNAUTHORIZED).build());
@@ -91,17 +87,17 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         });
     }
 
-    private boolean isValidToken(String token, Date expirationDate){
+    private boolean isValidToken(String token, Date expirationDate, String role){
         //Check if token exists in database 
         try {
             EntityManager em = emf.createEntityManager();
-            Query q = em.createQuery("SELECT u FROM User u WHERE u.token=:token");
+            Query q = em.createNamedQuery("User.findByToken");
             q.setParameter("token", token);
             User user = (User) q.getSingleResult();
         } catch(NoResultException e) {
-            System.out.println("Token doesn't exist");
+            System.out.println("Token does not exist");
             return false;
-        }
+        } 
         
         //Check if token expired
         long nowMillis = System.currentTimeMillis();

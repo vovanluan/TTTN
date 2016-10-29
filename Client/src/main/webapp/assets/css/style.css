@@ -320,6 +320,14 @@ body{
   margin-top: 26px;
   margin-left: 0; }
 
+.error-label {
+    color: red;
+}
+
+.input-group-addon {
+    color: #fff;
+    background: #3276B1;
+}
 /* .fa {
   color:#666;
 }

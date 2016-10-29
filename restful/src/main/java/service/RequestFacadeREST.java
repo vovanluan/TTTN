@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import entity.Request;
+
+import entity.User;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,12 +17,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Admin
  */
 @Path("entity.request")
+@Transactional
 public class RequestFacadeREST extends AbstractFacade<Request> {
 
     @PersistenceContext(unitName = "open311")
@@ -53,12 +53,13 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-
+    
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Request find(@PathParam("id") Integer id) {
-        return super.find(id);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response find(@PathParam("id") Integer id) {
+        Request result = em.find(Request.class, id);
+        return Response.ok(result).build();
     }
 
     @GET

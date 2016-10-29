@@ -25,7 +25,6 @@ import javax.ws.rs.core.Response;
  *
  * @author Luan
  */
-@Stateless
 @Path("entity.guestuser")
 public class GuestUserFacadeREST extends AbstractFacade<GuestUser> {
 

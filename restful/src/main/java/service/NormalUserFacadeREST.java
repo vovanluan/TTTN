@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
-import entity.Comment;
+import dto.Password;
 import entity.NormalUser;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -38,6 +33,7 @@ import static support.General.EXPIRE_TIME;
  */
 @Path("entity.normaluser")
 @Transactional
+@PermitAll
 public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
 
     @PersistenceContext(unitName = "open311")
@@ -47,77 +43,12 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         super(NormalUser.class);
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response signUp(NormalUser user) throws Exception  {
-        // Check email already exist
-        Query queryEmail = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
-        queryEmail.setParameter("email", user.getEmail());
-        List <NormalUser> emailResult = queryEmail.getResultList();
-        if (!emailResult.isEmpty())
-        {
-            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("email").build();
-        }
-        // Check identifyCard already exist
-        Query queryID = em.createQuery("SELECT u FROM NormalUser u WHERE u.identifyCard=:identifyCard");
-        queryID.setParameter("identifyCard", user.getIdentifyCard());
-        List <NormalUser> idResult = queryID.getResultList();
-        if (!idResult.isEmpty())
-        {
-            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("id").build();
-        }        
-
-        // Hash password
-        try {
-            user.setPassWord( (new General()).hashPassword(user.getPassWord()));
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Generate new token
-        String token = (new JWT()).createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
-        user.setToken(token);
-        super.create(user);
-        return Response.ok(user).build();
-    }
-    
-    @PUT
-    @Path("{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void edit(@PathParam("id") Integer id, NormalUser entity) {
-        System.out.println("=================hahahaha=========");
-        super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
-
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public NormalUser find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
-    
-    @POST
-    @Path("getInfo")
-    @Produces(MediaType.APPLICATION_JSON)
-    public NormalUser getInfo(@QueryParam("email") String email) {
-        Query q = em.createQuery("SELECT u FROM NormalUser u WHERE u.email=:email");
-        q.setParameter("email", email);
-        NormalUser user = (NormalUser) q.getSingleResult();
-        System.out.println(user.getEmail());
-        return user;
-    }
-    
-    
 
     @GET
     @Override
@@ -140,9 +71,84 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
         return String.valueOf(super.count());
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response signUp(NormalUser user) throws Exception {
+        // Check email already exist
+        Query queryByEmail = em.createNamedQuery("NormalUser.findByEmail");
+        queryByEmail.setParameter("email", user.getEmail());
+        List<NormalUser> emailResult = queryByEmail.getResultList();
+        if (!emailResult.isEmpty()) {
+            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("email").build();
+        }
+
+        // Check identifyCard already exist
+        Query queryByIndentifyCard = em.createNamedQuery("NormalUser.findByIdentifyCard");
+        queryByIndentifyCard.setParameter("identifyCard", user.getIdentifyCard());
+        List<NormalUser> idResult = queryByIndentifyCard.getResultList();
+        if (!idResult.isEmpty()) {
+            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("id").build();
+        }
+
+        // Hash password
+        try {
+            user.setPassWord(General.hashPassword(user.getPassWord()));
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Generate new token
+        String token = JWT.createJWT(user.getEmail(), EXPIRE_TIME, "normal_user");
+        user.setToken(token);
+        super.create(user);
+        em.flush();
+        return Response.ok(user).build();
+    }
+
+    @POST
+    @Path("getInfo")
+    @Produces(MediaType.APPLICATION_JSON)
+    public NormalUser getInfo(@QueryParam("email") String email) {
+        Query queryByEmail = em.createNamedQuery("NormalUser.findByEmail");
+        queryByEmail.setParameter("email", email);
+        NormalUser user = (NormalUser) queryByEmail.getSingleResult();
+        return user;
+    }
+
+    @POST
+    @Path("changePassword/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response changePassword(@PathParam("id") Integer id, Password passwordObj) throws Exception {
+        NormalUser user = em.find(NormalUser.class, id);
+        String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
+        System.out.println("=========PASS==========" + passwordObj.getOldPassword() + passwordObj.getNewPassword());
+        if (!user.getPassWord().equals(oldPasswordHash)) {
+            System.out.println("Khong trung oldPassword");
+            return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
+        }
+
+        user.setPassWord(General.hashPassword(passwordObj.getNewPassword()));
+        super.edit(user);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void edit(@PathParam("id") Integer id, NormalUser entity) {
+        super.edit(entity);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public void remove(@PathParam("id") Integer id) {
+        super.remove(super.find(id));
+    }
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 }

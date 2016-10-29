@@ -178,6 +178,7 @@ app.factory('Modal', function($rootScope, $uibModal){
 	return {
 		logInModal: function(){
 			var modalInstance = $uibModal.open({
+				// templateUrl: 'app/components/login/view.html',
 				templateUrl: 'app/components/login/view.html',
 				controller: 'logInModalController',
 				resolve: {
@@ -303,11 +304,15 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
     };
 
     self.signup = function(data, success, error) {
-        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error)
+        $http.post(baseUrl + '/entity.normaluser', data).success(success).error(error);
     },
 
     self.profile = function(success, error) {
-        $http.get(baseUrl + '/profile').success(success).error(error)
+        $http.get(baseUrl + '/profile').success(success).error(error);
+    };
+
+    self.changePassword = function(data, id) {
+     	$http.post(baseUrl + '/entity.normaluser/changePassword/' + id).success().error();
     };
 
     self.changePassword = function(data, id) {
@@ -442,7 +447,7 @@ app.controller('mainController',
 
 	  	$scope.logout = function(){
 			SweetAlert.swal({
-			   title: "Bạn có chắc chắn muốn đăng xuất?",
+			   title: "Bạn có chắc muốn đăng xuất?",
 			   type: "warning",
 			   showCancelButton: true,
 			   cancelButtonText: "Không, tôi sẽ ở lại",
@@ -527,7 +532,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
@@ -536,7 +541,7 @@ app.controller('mainTabController',
     // Need to use ADMIN_ACCESS
     // Waiting implement from server
     $scope.isAdmin = function () {
-        return AuthService.isAuthorized(USER_ACCESS);
+        return AuthService.isAuthorized(ADMIN_ACCESS);
     }
 	// Watch userRole change
 	$scope.$watch(function (){

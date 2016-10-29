@@ -27,6 +27,7 @@
 	<script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
 	<script src="bower_components/spin.js/spin.js"></script>
 	<script src="bower_components/angular-spinner/angular-spinner.js"></script>
+	<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
 </head>
 <body ng-controller="mainController">
 	<nav class="navbar navbar-inverse navbar-embossed" role="navigation"
@@ -47,7 +48,7 @@
 		    <ul class="nav navbar-nav">
 		        <li class="dropdown" ng-class="{active: mainTab.isSelected(1)}">
 			        <a class="dropdown-toggle" data-toggle="dropdown" href=""
-			          ng-click="mainTab.selectTab(1)">Home
+			          ng-click="mainTab.selectTab(1)">Trang chủ
 			          <span class="caret"></span>
 			      	</a>
 		          	<ul class="dropdown-menu" ng-controller = "mainTabController as m">
@@ -63,7 +64,7 @@
 		          	</ul>
 		        </li>
 		      	<li ng-class="{active: mainTab.isSelected(2)}">
-		      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Report an Issue</a>
+		      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
 		      	</li>
 		    </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
@@ -71,7 +72,7 @@
               	<li><a href="" ng-click="signUpModal()">Đăng ký</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="isAuthorizedUser()" >
-            	<li ng-if="isAdmin()"><a href="#/authorization-management">Quản lý phân quyền</a></li>
+            	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
             	<li><a href="#/profile">Trang cá nhân</a></li>
               	<li><a href="" ng-click="logout()">Đăng xuất</a></li>
             </ul>
