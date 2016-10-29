@@ -15,7 +15,7 @@ app.controller('testTabController',
         dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
     });
     var count = 0;
-/*    $scope.initMap = function(){
+    $scope.initMap = function(){
         var myLatLng = {lat: 10.78, lng: 106.65};
         $scope.map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
@@ -51,17 +51,19 @@ app.controller('testTabController',
         } else {
             alert("Do not support Geolocation");
         }
-    };*/
-
-    var c = 0;
+        $scope.$watch('active', function(newValue){
+            window.setTimeout(function(){
+            google.maps.event.trigger($scope.map, 'resize');
+                                             },100);
+        });
+    };
     $scope.$watch('active', function(newValue){
-        if (newValue === 2){
-            c++;
-            if(c === 1)
-                $scope.initMap();
+        if (newValue == 1) {
+            $scope.initMap();
         }
     });
     // Implement upload multiple images
+
 
     // $scope.upload = function() {
     //  if($scope.picFile) {
@@ -98,7 +100,7 @@ app.controller('testTabController',
     this.submitReport = function() {
         $scope.showSpinner = true;
         var request = new Object();
-        request.serviceRequestId = 1;
+/*      request.serviceRequestId = 1;
         request.serviceCode = convertServiceCodeFilter($scope.serviceType);
         request.serviceName = $scope.serviceName.name;
         request.happenDatetime = dateTimeFilter($scope.happenDateTime);
@@ -108,8 +110,9 @@ app.controller('testTabController',
         request.latitude = $scope.latitude;
         request.longitude = $scope.longitude;
         request.statusId = 0;
-        request.user = $rootScope.user;
+        request.user = $rootScope.user;*/
         if($scope.picFile) {
+            console.log("Here");
             Upload.base64DataUrl($scope.picFile).then(
                 function (url){
                     var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
@@ -122,6 +125,7 @@ app.controller('testTabController',
                             'type':'base64'
                         }
                     }).then(function successCallback(response) {
+                        console.log("data link : " + response.data.data.link);
                         request.mediaUrl = response.data.data.link;
                         console.log(request.mediaUrl);
                         console.log(JSON.stringify(request));
@@ -167,9 +171,9 @@ app.controller('testTabController',
         }
     }
 
-    $scope.goNext = function () {
+    $scope.checkAuthorization = function () {
         if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
-            $scope.tab = 4;
+            $scope.active = 3;
         else {
             console.log("HERE");
             Modal.logInModal();

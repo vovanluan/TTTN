@@ -1,7 +1,7 @@
 app.controller('reportTabController',
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
 		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
-	$scope.tab = 0;
+	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
 	$scope.districts = districts;
@@ -51,13 +51,19 @@ app.controller('reportTabController',
 	    } else {
 	        alert("Do not support Geolocation");
 	    }
-		$scope.$watch('active', function(newValue){
+		$scope.$watch('tab', function(newValue){
 	        window.setTimeout(function(){
 	        google.maps.event.trigger($scope.map, 'resize');
 	                                         },100);
 		});
 	};
+	$scope.$watch('tab', function(newValue){
+		if (newValue == 1) {
+			$scope.initMap();
+		}
+	});
 	// Implement upload multiple images
+
 
 	// $scope.upload = function() {
 	// 	if($scope.picFile) {
@@ -163,9 +169,9 @@ app.controller('reportTabController',
 		}
 	}
 
-	$scope.goNext = function () {
+	$scope.checkAuthorization = function () {
 	 	if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
-	 		$scope.tab = 4;
+	 		$scope.tab = 3;
 	 	else {
 	 		console.log("HERE");
 	 		Modal.logInModal();

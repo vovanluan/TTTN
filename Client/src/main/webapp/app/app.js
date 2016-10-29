@@ -325,7 +325,7 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
 });
 // First run in the app, we can use provider in config()
-app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider){
+app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider, jwtOptionsProvider){
 
 	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
 
@@ -355,7 +355,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		controller: 'issueDetailController'
 	})
 	.when('/report-issue', {
-		templateUrl: 'app/components/reportIssue/test.html',
+		templateUrl: 'app/components/reportIssue/view.html',
 		controller: 'reportTabController',
 		controllerAs: 'reportTab'
 	})
@@ -371,6 +371,11 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
     }
 
     $httpProvider.interceptors.push('jwtInterceptor');
+    /* If you are calling an API that is on a domain other than your application's origin,
+     you will need to whitelist it. */
+    jwtOptionsProvider.config({
+      whiteListedDomains: ['api.imgur.com', 'localhost']
+    });
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
