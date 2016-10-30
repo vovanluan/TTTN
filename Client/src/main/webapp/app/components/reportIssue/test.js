@@ -100,20 +100,20 @@ app.controller('testTabController',
     this.submitReport = function() {
         $scope.showSpinner = true;
         var request = new Object();
-/*      request.serviceRequestId = 1;
-        request.serviceCode = convertServiceCodeFilter($scope.serviceType);
-        request.serviceName = $scope.serviceName.name;
-        request.happenDatetime = dateTimeFilter($scope.happenDateTime);
+        request.serviceRequestId = 1;
+        request.serviceCode = convertServiceCodeFilter(this.serviceType);
+        request.serviceName = this.serviceName.name;
+        request.happenDatetime = dateTimeFilter(this.happenDateTime);
         request.requestedDatetime = dateTimeFilter(new Date());
-        request.description = $scope.description;
-        request.address = $scope.street + ", Phường " + $scope.ward.name + ", Quận " + $("#disInfo option:selected").text();
-        request.latitude = $scope.latitude;
-        request.longitude = $scope.longitude;
+        request.description = this.description;
+        request.address = this.street + ", Phường " + this.ward.name + ", Quận " + $("#disInfo option:selected").text();
+        request.latitude = this.latitude;
+        request.longitude = this.longitude;
         request.statusId = 0;
-        request.user = $rootScope.user;*/
-        if($scope.picFile) {
+        request.user = $rootScope.user;
+        if(this.picFile) {
             console.log("Here");
-            Upload.base64DataUrl($scope.picFile).then(
+            Upload.base64DataUrl(this.picFile).then(
                 function (url){
                     var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
                     $http({

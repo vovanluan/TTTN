@@ -1,13 +1,12 @@
 package service;
 
 import entity.Request;
-
 import entity.User;
+
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,13 +17,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import support.Status;
 
 /**
  *
  * @author Admin
  */
 @Path("entity.request")
-@Transactional
+@Stateless
 public class RequestFacadeREST extends AbstractFacade<Request> {
 
     @PersistenceContext(unitName = "open311")
@@ -38,7 +38,10 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Request entity) {
+        entity.setStatusId(Status.DA_TIEP_NHAN);
         super.create(entity);
+        User user = em.find(User.class, entity.getUser().getId());
+        user.addRequest(entity);
     }
 
     @PUT

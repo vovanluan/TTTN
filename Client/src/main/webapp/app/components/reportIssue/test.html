@@ -1,7 +1,7 @@
 <div class="container">
-
     <div class="row">
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+        </div>
         <div class="col-md-5">
               <uib-tabset type="pills" active="active">
                 <uib-tab index="0" heading="Bước 1">
@@ -12,7 +12,7 @@
                         <tr>
                             <td class="col-md-4">Chủ đề:</td>
                             <td>
-                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="serviceType"
+                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.serviceType"
                                 ng-options="issue for (issue, value) in issues">
                                 </select>
                             </td>
@@ -20,7 +20,7 @@
                         <tr>
                             <td class="col-md-4">Chi tiết:</td>
                             <td>
-                                <select class="form-control" style="display:inline;width:100%" ng-model="serviceName"
+                                <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
                                 ng-options="issue.name for issue in serviceType">
                                 </select>
 
@@ -28,26 +28,26 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">Thời gian:</td>
-                            <td><input type="text" data-field="datetime" ng-model="happenDateTime" class="form-control">
+                            <td><input type="text" data-field="datetime" ng-model="reportTab.happenDateTime" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Hình ảnh:</td>
                             <td>
-                                <button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
+                                <button class="btn btn-primary" ngf-select ng-model="reportTab.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
                             </td>
                         </tr>
                         <tr>
                             <td class ="col-md-4"></td>
                             <td>
-                                <button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile">Xoá ảnh</button>
-                                <img ng-show="picFile" ngf-thumbnail="picFile" class="thumb" />
+                                <button class="btn btn-primary" ng-click="reportTab.picFile = null" ng-show="reportTab.picFile">Xoá ảnh</button>
+                                <img ng-show="reportTab.picFile" ngf-thumbnail="reportTab.picFile" class="thumb" />
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Mô tả:</td>
                             <td>
-                                <textarea class="form-control" ng-model="description" required cols="40" rows="3"></textarea>
+                                <textarea class="form-control" ng-model="reportTab.description" required cols="40" rows="3"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -55,8 +55,7 @@
                     <table class="col-md-12">
                         <tr>
                             <td style="direction:rtl">
-<!--                                <a class="btn btn-primary btnNext" ng-click="reportTab.selectTab(1)">Đi tới</a>-->
-                                    <a class="btn btn-primary btnNext" ng-click="reportTab.submitReport()">Đi tới</a>
+                                <a class="btn btn-primary btnNext" ng-click="reportTab.selectTab(1)">Đi tới</a>
                                 <button class="btn btn-danger">Hủy bỏ</button>
                             </td>
                         </tr>
@@ -72,7 +71,7 @@
                                 <td class="col-md-4">Quận:</td>
                                 <td>
                                     <select class="form-control" style="width:100%"
-                                    ng-model="district" ng-options="d for (d, w) in districts">
+                                    ng-model="reportTab.district" ng-options="d for (d, w) in districts">
                                     </select>
                                 </td>
                             </tr>
@@ -80,7 +79,7 @@
                                 <td class="col-md-4">Phường:</td>
                                 <td>
                                     <select class="form-control" style="display:inline;width:100%"
-                                    ng-model="ward" ng-options="ward.name for ward in district">
+                                    ng-model="reportTab.ward" ng-options="ward.name for ward in district">
                                     </select>
                                 </td>
                             </tr>
@@ -88,7 +87,7 @@
                                 <td class="col-md-4">Địa chỉ:</td>
                                 <td>
                                     <input class="form-control" type="text" style="width:300px"
-                                    ng-model="street">
+                                    ng-model="reportTab.street">
                                 </td>
                             </tr>
                         </table>
@@ -97,12 +96,12 @@
                             <tr>
                                 <td class="col-md-2"> Kinh độ </td>
                                 <td class="col-md-4">
-                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="longitude">
+                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="reportTab.longitude">
                                 </td>
                                 <td class="col-md-2"> Vĩ độ </td>
                                 <td class="col-md-4">
                                     <input class="form-control" readonly="readonly" id="latitude"
-                                    ng-model="latitude">
+                                    ng-model="reportTab.latitude">
                                 </td>
                             </tr>
                         </table>
@@ -180,39 +179,39 @@
                             <tr>
                                 <td class="col-md-4">Chủ đề:</td>
                                 <td>
-                                    <select class="form-control col-md-8" id="subInfo" name="chude" style="width:100%" ng-model="serviceType" ng-options="issue for (issue, value) in issues" >
+                                    <select class="form-control col-md-8" id="subInfo" name="chude" style="width:100%" ng-model="reportTab.serviceType" ng-options="issue for (issue, value) in issues" >
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Chi tiết:</td>
                                 <td id="detailInfo">
-                                    <select class="form-control" style="display:inline;width:100%" ng-model="serviceName"
+                                    <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
                                     ng-options="issue.name for issue in serviceType" >
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Thời gian:</td>
-                                <td><input type="text" data-field="datetime" ng-model="happenDateTime" class="form-control" >
+                                <td><input type="text" data-field="datetime" ng-model="reportTab.happenDateTime" class="form-control" >
                             </tr>
                             <tr>
                                 <td class="col-md-4">Hình ảnh:</td>
                                 <td>
-                                    <button class="btn btn-primary" ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB"
+                                    <button class="btn btn-primary" ngf-select ng-model="reportTab.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB"
                                     >Chọn ảnh</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class ="col-md-4"></td>
                                 <td>
-                                    <button class="btn btn-primary" ng-click="picFile = null" ng-show="picFile" >Xoá ảnh</button>
-                                    <img ng-show="picFile" ngf-thumbnail="picFile" class="thumb" />
+                                    <button class="btn btn-primary" ng-click="reportTab.picFile = null" ng-show="reportTab.picFile">Xoá ảnh</button>
+                                    <img ng-show="reportTab.picFile" ngf-thumbnail="reportTab.picFile" class="thumb"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Mô tả thêm:</td>
-                                <td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3" ng-model="description" ></textarea></td>
+                                <td><textarea class="form-control infoStep1" id="desInfo" cols="40" rows="3" ng-model="reportTab.description" ></textarea></td>
                             </tr>
                         </table>
                         <h4 style="display:inline;padding-right:10px;color:#39A">Bước 2: Địa điểm</h4>
@@ -222,7 +221,7 @@
                                 <td class="col-md-4">Quận:</td>
                                 <td>
                                     <select class="form-control" style="width:100%" id="disInfo"
-                                    ng-model="district" ng-options="d for (d, w) in districts">
+                                    ng-model="reportTab.district" ng-options="d for (d, w) in districts">
                                     </select>
                                 </td>
                             </tr>
@@ -230,14 +229,14 @@
                                 <td class="col-md-4">Phường:</td>
                                 <td>
                                     <select class="form-control" style="display:inline;width:100%"
-                                    ng-model="ward" ng-options="ward.name for ward in district">
+                                    ng-model="reportTab.ward" ng-options="ward.name for ward in district">
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Địa chỉ:</td>
                                 <td>
-                                    <input class="form-control" id="addInfo" type="text" style="width:300px" ng-model="street">
+                                    <input class="form-control" id="addInfo" type="text" style="width:300px" ng-model="reportTab.street">
                                 </td>
                             </tr>
                         </table>
@@ -246,7 +245,7 @@
                         <table class="stepTable" style="margin-bottom:10px;">
                             <tr>
                                 <td class="col-md-4">Tên hiển thị:</td>
-                                <td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;"readonly="true" ng-model="user.name"></td>
+                                <td><input class="form-control col-md-8 infoStep3" id="nameInfo" type="text" style="width:300px;" readonly="true" ng-model="user.name"></td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Số điện thoại:</td>

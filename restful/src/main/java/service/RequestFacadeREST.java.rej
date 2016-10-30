@@ -1,0 +1,9 @@
+diff a/restful/src/main/java/service/RequestFacadeREST.java b/restful/src/main/java/service/RequestFacadeREST.java	(rejected hunks)
+@@ -42,7 +42,6 @@
+     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+     public void create(Request entity) {
+         super.create(entity);
+-        user.addRequest(entity);
+     }
+ 
+     @PUT

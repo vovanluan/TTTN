@@ -35,9 +35,8 @@ import support.Status;
  * @author Luan
  */
 
-@Entity
+@Entity(name="Request")
 @Table(name = "request")
-
 @XmlRootElement
 public class Request implements Serializable {
 
@@ -46,7 +45,7 @@ public class Request implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_request_id")
-    private Integer serviceRequestId;
+    private long serviceRequestId;
     
     @NotNull
     @Column(name = "service_code", nullable = false)
@@ -125,11 +124,11 @@ public class Request implements Serializable {
     @Column(name = "group_name", nullable = true)
     private String groupName;
 
-    public Integer getServiceRequestId() {
+    public long getServiceRequestId() {
         return serviceRequestId;
     }
 
-    public void setServiceRequestId(Integer serviceRequestId) {
+    public void setServiceRequestId(long serviceRequestId) {
         this.serviceRequestId = serviceRequestId;
     }
 
