@@ -1,5 +1,4 @@
 app.controller('authorizationManagementController', function($rootScope, $scope, userUrl, userManager){
-
     $scope.roles = ["normal", "admin", "official", "division"];
     $scope.updateStatus = "";
     userManager.loadAllUsers().then(function(users){
@@ -11,7 +10,6 @@ app.controller('authorizationManagementController', function($rootScope, $scope,
             $scope.updateStatus = "Cập nhật thành công!";
         }, function(response) {
             console.log("Error: " + response);
-        }
-        );
+        });
     }
 });

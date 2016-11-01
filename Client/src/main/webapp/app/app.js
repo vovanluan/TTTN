@@ -203,7 +203,6 @@ app.factory('Modal', function($rootScope, $uibModal){
 				console.log("Modal dismiss");
 			});
   		},
-
   		logInAsGuestModal: function() {
 	  		var modalInstance = $uibModal.open({
 				templateUrl: 'app/components/guest/view.html',
@@ -228,6 +227,15 @@ app.factory('Modal', function($rootScope, $uibModal){
   			modalInstance.result.then(function close(){
   			}, function dismiss(){
   				console.log("Modal dismiss");
+  			});
+  		},
+  		reportManegementDetailModal: function() {
+  			var modalInstance = $uibModal.open({
+  				templateUrl: 'app/components/reportManegementDetail/view.html',
+  				controller: 'reportManegementDetailModalController',
+  				resolve: {
+
+  				}
   			});
   		}
 	}
@@ -367,6 +375,10 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 	.when('/signin-manager', {
 		templateUrl: 'app/components/signinManager/view.html'
 	})
+	.when('/report-management', {
+		templateUrl: 'app/components/report-management/view.html', 
+		controller: 'reportManegementController'
+	})
     .otherwise({
         redirectTo: '/list'
     });
@@ -412,9 +424,10 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		var childUrl = "";
   		switch($rootScope.userRole){
   			case 'normal':
-  				childUrl =  "/entity.normaluser/getInfo?email=" + email;
+  				childUrl = "/entity.normaluser/getInfo?email=" + email;
   				break;
   			case 'admin':
+  				childUrl = "/entity.adminuser/getInfo?email=" + email;
   				break;
   		}
   		$http({

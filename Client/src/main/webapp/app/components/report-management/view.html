@@ -1,0 +1,80 @@
+<div class="container">
+	<div class="col-lg-3 col-md-12">
+		<div class="content-title">
+			<h4>Quản lý</h4>
+		</div>
+
+		<div class="mini-submenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+	    </div>
+	    <div class="list-group">
+	        <!-- <span href="#" class="list-group-item active">
+	            Submenu
+	            <span class="pull-right" id="slide-submenu">
+	                <i class="fa fa-times"></i>
+	            </span>
+	        </span> -->
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
+	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
+	        </a>
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_CHUYEN'}">
+	        	<span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp; Đã chuyển đến cơ quan <span class="badge">{{(requests | filter: {statusId: 'DA_CHUYEN'}).length}}</span>
+	        </a>
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XU_LY'}">
+	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {statusId: 'DA_XU_LY'}).length}}</span>
+	        </a>
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_DUYET'}">
+	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {statusId: 'DA_DUYET'}).length}}</span>
+	        </a>
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XOA'}">
+	            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp; Đã xóa <span class="badge">{{(requests | filter: {statusId: 'DA_XOA'}).length}}</span>
+	        </a>
+	    </div>        
+	</div>
+
+	<div class="col-lg-9 col-md-12">
+		<div class="main">
+			<div class="content-title">
+				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
+			</div>
+			<div ng-hide="requests.length">
+				<label>
+					Chưa có phản hồi nào
+				</label>
+			</div>
+			<div id="issue-list">
+				<ul id="issue-list-ul" >
+					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+						<div class="issue-image">
+							<img ng-src="{{request.mediaUrl}}" class="thumbnail-image">
+						</div>
+						<div class="issue-panel">
+							<h5 class="issue-title">
+								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
+							</h5>
+							<p class="issue-address">{{request.address}}</p>
+							<p class="issue-content">{{request.description}}</p>
+							<span class="info">{{request.happenDatetime}}
+								<span class="sep">•</span>
+								<span>Đăng bởi </span>
+								<a href="" class="user">{{request.user.name}}</a>
+							</span>
+							<ul class="issue-comments">
+								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
+									<h5 class="user-name">
+										<a href="" class="user-link">{{comment.user.name}}</a>
+									</h5>
+									<div class="commentText">{{comment.content}}</div>
+									<span class="info">{{comment.postDatetime}}</span>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>
