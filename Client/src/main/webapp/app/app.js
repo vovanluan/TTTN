@@ -229,13 +229,20 @@ app.factory('Modal', function($rootScope, $uibModal){
   				console.log("Modal dismiss");
   			});
   		},
-  		reportManegementDetailModal: function() {
+  		reportManagementDetailModal: function(requestIndex) {
   			var modalInstance = $uibModal.open({
-  				templateUrl: 'app/components/reportManegementDetail/view.html',
-  				controller: 'reportManegementDetailModalController',
+  				templateUrl: 'app/components/reportManagementDetail/view.html',
+  				controller: 'reportManagementDetailModalController',
   				resolve: {
-
+  					requestIndex: function() {
+  						return requestIndex;
+  					}
   				}
+  			});
+
+  			modalInstance.result.then(function close(){
+  			}, function dismiss(){
+  				console.log("Modal dismiss");
   			});
   		}
 	}

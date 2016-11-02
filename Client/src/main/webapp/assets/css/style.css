@@ -1,7 +1,17 @@
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
-ul{
+.nav, .pagination, .carousel, .panel-title a { 
+    cursor: pointer; 
+}
+
+ul {
     list-style: none;
 }
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: medium;
+    background-color: #efefef;
+}
+
 .btn-upload {
     position: relative;
     overflow: hidden;
@@ -15,64 +25,67 @@ ul{
     height: 100%;
     display: block;
 }
-.stepTable tr td{
+.stepTable tr td {
     vertical-align: top;
     padding-bottom: 10px;
 }
-.main{
-    border: 1px solid #ddd;
+
+.main {
     padding: 0px;
+    background-color: #fff;
+    margin-bottom: 20px;
 }
-.issue-panel{
+
+.issue-panel {
     margin-left: 110px;
     margin-right:10px;
     padding-bottom: 10px;
 }
 
-.issue-image{
-    padding-right: 10px;
-    float: left;
-    margin-bottom: 10px;
-    position: relative;
-    display: block;
-}
-
 .issue-title{
     margin-bottom: 5px;
 }
+
 .content-title{
-    border-bottom: 4px solid #DBDBDB;
-    background-color: #E6E6E6;
-    padding:12px;
+    background-color: #314a93;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px;
 }
-.content-title h4{
-    margin: 0;
-}
-.issue-address{
+
+.issue-address {
     color:#999999;
     font-style: italic;
     margin-bottom: 5px;
 }
-#issue-list ul{
+
+#issue-list ul {
     padding-top: 10px;
     padding-left: 10px;
 }
-#issue-list ul li{
-    list-style-type: none;
+
+#issue-list ul li {
     border-bottom: 1px solid #DBDBDB;
 }
+
+#issue-list-ul li:last-child {
+    border:none;
+}
+
 .issue-link{
-    color: #1171B4;
     text-decoration: none !important;
     outline: none;
     font-weight: bold;
+    font-size: medium;
 }
 .issue-content{
     margin-bottom: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: medium;
 }
 .info{
     color: #999999;
-    font-size: 12px;
+    font-size: 13px;
 }
 .sep{
     color:#999999;
@@ -86,9 +99,6 @@ ul{
 .thumbnail-image{
     width: 100px;
     height: 100px;
-    padding: 3px;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
 }
 .gallery-image{
     width: 200px;
@@ -111,26 +121,13 @@ ul{
 .user-name{
     margin:0;
 }
-.change-view {
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    height: 32px;
-    width: 96px;
+.change-view a {
+    color: #e5e5e5;
+    text-decoration: none;
+    padding-left: 5px;
 }
- .change-view a {
-    background: #e4e4e4;
-    padding: 4px 6px;
-    float: right;
-    margin-left: 4px;
-    border-radius: 2px;
-}
-#issue-list-ul li:last-child{
-    border:none;
-}
-body{
-    background-color: #fcfcfc
-}
+
+
 .thumb {
     width: 128px;
     height: 128px;
@@ -192,10 +189,7 @@ body{
     display: block;
     zoom:1;
 }
-.bordered{
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-}
+
 .issue-detail{
     height: 350px;
 }
@@ -281,12 +275,19 @@ body{
 .info-row{
     padding: 13px 0px;
 }
+
 .border-btm{
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
 }
+
 .border-top{
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
 }
+
+.bordered{
+    border: 1px solid #ddd;
+}
+
 .info-row label{
     float: left;
 }
@@ -327,6 +328,14 @@ body{
 .input-group-addon {
     color: #fff;
     background: #3276B1;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
 }
 /* .fa {
   color:#666;

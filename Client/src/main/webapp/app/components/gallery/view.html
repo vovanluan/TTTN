@@ -1,15 +1,13 @@
 <div id="content_container" class="container">	
-	<section class="main col-md-8">
-		<div class="search">
+	<section class="col-lg-8 col-md-12">
+		<div class="main bordered">
+			<div class="search">
 				<form>
 					<!-- Search input -->
 				</form>
 			</div>
 			<div class="content-title">
-				<div class="change-view">
-					<a href="#/gallery">
-						<i class="glyphicon glyphicon-th"></i>
-					</a>						
+				<div class="change-view float-right">					
 					<a href="#/map">
 						<i class="glyphicon glyphicon-map-marker"></i>
 					</a>
@@ -17,13 +15,13 @@
 						<i class="glyphicon glyphicon-th-list"></i>
 					</a>					
 				</div>
-				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
+				DANH SÁCH CÁC PHẢN HỒI
 			</div>
-		<div ng-hide="requests.length"> 
-			<label>
-				Chưa có phản hồi nào
-			</label>
-		</div>				
+			<div ng-hide="requests.length"> 
+				<label>
+					Chưa có phản hồi nào
+				</label>
+			</div>				
 			<div id="issue-list">
 				<ul id="issue-galley" class="hoverbox">
 					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
@@ -32,12 +30,11 @@
 							<img ng-src="{{request.mediaUrl}}" class="preview">
 						</a>
 					</li>
-					
 				</ul>
 			</div>
-			
-		</section>
-	<section class="sidebar col-md-4">
-		<div id="mainMap" style="height:380px"></div>
+		</div>	
+	</section>
+	<section class="col-md-4">
+		<div class="main bordered" id="mainMap" style="height:380px"></div>
 	</section>
 </div>

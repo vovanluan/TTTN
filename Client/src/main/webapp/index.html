@@ -8,6 +8,10 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/DateTimePicker.css" />
 	<link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css"/>
 	<link rel="shortcut icon" href="">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+
 
 	<!-- Add libs -->
 	<script src="assets/libs/jquery-1.12.1.js"></script>
@@ -46,34 +50,17 @@
 		  </div>
 		  <div class="collapse navbar-collapse" id="navbar-collapse-01">
 		    <ul class="nav navbar-nav">
-		        <li class="dropdown" ng-class="{active: mainTab.isSelected(1)}">
-			        <a class="dropdown-toggle" data-toggle="dropdown" href=""
-			          ng-click="mainTab.selectTab(1)">Trang chủ
-			          <span class="caret"></span>
-			      	</a>
-		          	<ul class="dropdown-menu" ng-controller = "mainTabController as m">
-		            	<li ng-class="{active: m.isSelected(1)}">
-		            		<a href="#/" ng-click="m.selectTab(1)">List View</a>
-		            	</li>
-		            	<li ng-class="{active: m.isSelected(2)}">
-		            		<a href="#/map" ng-click="m.selectTab(2)">Map View</a>
-		            	</li>
-		            	<li ng-class="{active: m.isSelected(3)}">
-		            		<a href="#/gallery" ng-click="m.selectTab(3)">Gallery View</a>
-		            	</li>
-		          	</ul>
-		        </li>
 		      	<li ng-class="{active: mainTab.isSelected(2)}">
 		      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
 		      	</li>
+		      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
+            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
 		    </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
  			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
               	<li><a href="" ng-click="signUpModal()">Đăng ký</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-if="isAuthorizedUser()" >
-            	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
-            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
             	<li><a href="#/profile">Trang cá nhân</a></li>
               	<li><a href="" ng-click="logout()">Đăng xuất</a></li>
             </ul>
@@ -94,5 +81,6 @@
 	<script type="text/javascript" src="app/components/changePassword/controller.js"></script>
 	<script type="text/javascript" src="app/components/profile/controller.js"></script>
 	<script type="text/javascript" src="app/components/report-management/controller.js"></script>
+	<script type="text/javascript" src="app/components/reportManagementDetail/controller.js"></script>
 </body>
 </html>

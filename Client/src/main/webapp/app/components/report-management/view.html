@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-lg-3 col-md-12">
 		<div class="content-title">
-			<h4>Quản lý</h4>
+			Quản lý
 		</div>
 
 		<div class="mini-submenu">
@@ -35,9 +35,9 @@
 	</div>
 
 	<div class="col-lg-9 col-md-12">
-		<div class="main">
+		<div class="main bordered">
 			<div class="content-title">
-				<h4>DANH SÁCH CÁC PHẢN HỒI</h4>
+				Danh sách các phản hồi
 			</div>
 			<div ng-hide="requests.length">
 				<label>
@@ -47,12 +47,13 @@
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
 					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<div class="issue-image">
-							<img ng-src="{{request.mediaUrl}}" class="thumbnail-image">
-						</div>
+						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">
 							<h5 class="issue-title">
 								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
+								<button class="btn btn-danger float-right" ng-click="deleteIssue(request.serviceRequestId)">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								</button> 
 							</h5>
 							<p class="issue-address">{{request.address}}</p>
 							<p class="issue-content">{{request.description}}</p>
