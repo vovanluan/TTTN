@@ -3,6 +3,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-5">
+            Outside uib-tab : {{ message }}
               <uib-tabset type="pills" active="active">
                 <uib-tab index="0" heading="Bước 1">
                     <div id="step1" class="tab-pane fade in">
@@ -12,7 +13,7 @@
                         <tr>
                             <td class="col-md-4">Chủ đề:</td>
                             <td>
-                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.serviceType"
+                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="$parent.serviceType"
                                 ng-options="issue for (issue, value) in issues">
                                 </select>
                             </td>
@@ -20,8 +21,8 @@
                         <tr>
                             <td class="col-md-4">Chi tiết:</td>
                             <td>
-                                <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
-                                ng-options="issue.name for issue in serviceType">
+                                <select class="form-control" style="display:inline;width:100%" ng-model="$parent.serviceName"
+                                ng-options="issue.name for issue in $parent.serviceType">
                                 </select>
 
                             </td>
@@ -47,7 +48,7 @@
                         <tr>
                             <td class="col-md-4">Mô tả:</td>
                             <td>
-                                <textarea class="form-control" ng-model="reportTab.description" required cols="40" rows="3"></textarea>
+                                <textarea class="form-control" ng-model="$parent.description" required cols="40" rows="3" ng-change="change()"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -60,7 +61,7 @@
                             </td>
                         </tr>
                     </table>
-                    </div>
+                </div>
                 </uib-tab>
                 <uib-tab index="1" heading="Bước 2" ng-click="initMap()">
                     <div id="step2" class="tab-pane">
@@ -272,6 +273,11 @@
                             <span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>
                         </table>
                     </div>
+                </uib-tab>
+                <uib-tab index="4" heading="Static title">
+                    <input type="text" ng-model="$parent.message" ng-change="change()" />
+                    <br />
+                    Inside uib-tab : {{ message }}
                 </uib-tab>
               </uib-tabset>
             <div id="dtBox"></div>

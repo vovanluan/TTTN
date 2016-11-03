@@ -1,11 +1,20 @@
 app.controller('testTabController',
     function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
-        dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+        dateTimeFilter, Districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+        $scope.message = "my message ";
     $scope.active = 0;
     $scope.issues = issues;
     $scope.serviceType = issues["Điện"];
-    $scope.districts = districts;
-    $scope.district = districts["1"];
+    console.log(issues);
+    $scope.districts = null;
+    $scope.description = "TEST";
+    Districts.success(function (districts) {
+        console.log(districts);
+        $scope.districts = districts;
+    }).error(function (message) {
+        console.log("Error: " + message);
+    })
+    //$scope.district = $scope.districts["1"];
     $scope.latitude = 10.78;
     $scope.longitude = 106.65;
     $scope.showSpinner = false

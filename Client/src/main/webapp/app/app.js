@@ -77,6 +77,9 @@ app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
 
+app.factory('Districts', function ($http) {
+    return $http.get('assets/data/districts.json');
+});
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -330,7 +333,8 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
 });
 // First run in the app, we can use provider in config()
-app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider, jwtOptionsProvider){
+app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider,
+    $localStorageProvider, jwtOptionsProvider){
 
 	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
 

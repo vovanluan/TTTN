@@ -1,10 +1,13 @@
 app.controller('reportTabController',
 	function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
-		dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+		dateTimeFilter, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert, Districts){
 	$scope.tab = 1;
 	$scope.issues = issues;
 	$scope.serviceType = issues["Điện"];
-	$scope.districts = districts;
+    Districts.get().then(function (districts) {
+    	console.log(districts);
+        $scope.districts = districts;
+    });
 	$scope.district = districts["1"];
 	$scope.latitude = 10.78;
 	$scope.longitude = 106.65;
