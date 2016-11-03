@@ -57,7 +57,7 @@ public class Request implements Serializable {
     private String serviceName;
     
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 50000)
     @Column(name = "description", nullable = false)
     private String description;
     

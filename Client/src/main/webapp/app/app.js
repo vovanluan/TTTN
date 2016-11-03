@@ -80,6 +80,9 @@ app.constant('ADMIN_ACCESS', ['admin']);
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
 });
+app.factory('Services', function ($http) {
+    return $http.get('assets/data/services.json');
+});
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -206,7 +209,6 @@ app.factory('Modal', function($rootScope, $uibModal){
 				console.log("Modal dismiss");
 			});
   		},
-
   		logInAsGuestModal: function() {
 	  		var modalInstance = $uibModal.open({
 				templateUrl: 'app/components/guest/view.html',
@@ -225,6 +227,22 @@ app.factory('Modal', function($rootScope, $uibModal){
   				templateUrl: 'app/components/changePassword/view.html',
   				controller: 'changePasswordModalController',
   				resolve: {
+  				}
+  			});
+
+  			modalInstance.result.then(function close(){
+  			}, function dismiss(){
+  				console.log("Modal dismiss");
+  			});
+  		},
+  		reportManagementDetailModal: function(requestIndex) {
+  			var modalInstance = $uibModal.open({
+  				templateUrl: 'app/components/reportManagementDetail/view.html',
+  				controller: 'reportManagementDetailModalController',
+  				resolve: {
+  					requestIndex: function() {
+  						return requestIndex;
+  					}
   				}
   			});
 
@@ -371,6 +389,10 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 	.when('/signin-manager', {
 		templateUrl: 'app/components/signinManager/view.html'
 	})
+	.when('/report-management', {
+		templateUrl: 'app/components/report-management/view.html',
+		controller: 'reportManegementController'
+	})
     .otherwise({
         redirectTo: '/list'
     });
@@ -385,11 +407,12 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
     jwtOptionsProvider.config({
       whiteListedDomains: ['api.imgur.com', 'localhost']
     });
+
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, Districts, Services){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -416,9 +439,10 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		var childUrl = "";
   		switch($rootScope.userRole){
   			case 'normal':
-  				childUrl =  "/entity.normaluser/getInfo?email=" + email;
+  				childUrl = "/entity.normaluser/getInfo?email=" + email;
   				break;
   			case 'admin':
+  				childUrl = "/entity.adminuser/getInfo?email=" + email;
   				break;
   		}
   		$http({
@@ -436,6 +460,18 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   			$rootScope.userRole = null;
   		});
   	}
+
+    // Get Data from files
+    Districts.success(function (districts) {
+        $rootScope.districts = districts;
+    }).error(function (message) {
+        console.log("Error in districts: " + message);
+    });
+    Services.success(function (services) {
+        $rootScope.services = services.services;
+    }).error(function (message) {
+        console.log("Error in services: " + message);
+    })
 });
 
 // Run after .run()
