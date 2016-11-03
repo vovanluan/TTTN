@@ -4,10 +4,10 @@
 			<div class="content-title">
 				<div class="change-view float-right">
 					<a href="#/gallery">
-						<i class="glyphicon glyphicon-th"></i>
+						<i class="glyphicon glyphicon-picture"></i>
 					</a>
 					<a href="#/">
-						<i class="glyphicon glyphicon-th-list"></i>
+						<i class="glyphicon glyphicon-list"></i>
 					</a>
 				</div>
 				VỊ TRÍ CÁC PHẢN ÁNH
@@ -33,7 +33,7 @@
 							<h5 class="issue-title">
 								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
 							</h5>
-							<p class="issue-address">{{request.address}}</p>
+							<h5 class="issue-address">{{request.address}}</h5>
 							<p class="issue-content">{{request.description}}</p>
 							<span class="info">{{request.happenDatetime| date : format : timezone}}
 								<span class="sep">•</span>
