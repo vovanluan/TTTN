@@ -8,22 +8,25 @@
 		<div>{{editedUser}}</div>
 		<div class="main">
 			<div class="content-title">
-				<h4>THÔNG TIN TÀI KHOẢN</h4>	
+				THÔNG TIN TÀI KHOẢN	
 			</div>
 			<div id="profile-content">
 				<div id="personal" ng-hide="isEditAccountInfo">
-					<div class="info-row border-btm">
+					<div class="info-row">
 						<label>Tên hiển thị: </label>
 						<div class="info-text">{{user.name}}</div>
 					</div>
-					<div class="info-row border-btm">
+					<hr>
+					<div class="info-row">
 						<label>Email: </label>
 						<div class="info-text">{{user.email}}</div>
 					</div>
-					<div class="info-row border-btm">
+					<hr>
+					<div class="info-row">
 						<label>CMND: </label>
 						<div class="info-text">{{user.identifyCard}}</div>
 					</div>
+					<hr>
 					<div class="info-row">
 						<label>Số điện thoại: </label>
 						<div class="info-text">{{user.phoneNumber}}</div>

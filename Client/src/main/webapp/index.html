@@ -34,41 +34,60 @@
 	<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
 </head>
 <body ng-controller="mainController">
-	<nav class="navbar navbar-inverse navbar-embossed" role="navigation"
-	ng-controller ="mainTabController as mainTab">
-		<div class="container">
-		  <div class="navbar-header">
-		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-		      <span class="sr-only">Toggle navigation</span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		    </button>
+	<div id="wrapper">
+		<nav class="navbar navbar-inverse navbar-embossed" role="navigation" ng-controller ="mainTabController as mainTab">
+			<div class="container">
+			  <div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+			      <span class="sr-only">Toggle navigation</span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			    </button>
 
-		    <a class="navbar-brand" href="#/list">Ho Chi Minh city</a>
+			    <a class="navbar-brand" href="#/list">Ho Chi Minh city</a>
 
-		  </div>
-		  <div class="collapse navbar-collapse" id="navbar-collapse-01">
-		    <ul class="nav navbar-nav">
-		      	<li ng-class="{active: mainTab.isSelected(2)}">
-		      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
-		      	</li>
-		      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
-            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
-		    </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
- 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
-              	<li><a href="" ng-click="signUpModal()">Đăng ký</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="isAuthorizedUser()" >
-            	<li><a href="#/profile">Trang cá nhân</a></li>
-              	<li><a href="" ng-click="logout()">Đăng xuất</a></li>
-            </ul>
-		  </div><!-- /.navbar-collapse -->
-		</div> <!-- /.container -->
-	</nav><!-- /navbar -->
+			  </div>
+			  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+			    <ul class="nav navbar-nav">
+			      	<li>
+			      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
+			      	</li>
+			      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
+	            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
+			    </ul>
+	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
+	 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
+	              	<li><a href="" ng-click="signUpModal()">Đăng ký</a></li>
+	            </ul>
+	            <ul class="nav navbar-nav navbar-right" ng-if="isAuthorizedUser()" >
+	            	<li><a href="#/profile">Trang cá nhân</a></li>
+	              	<li><a href="" ng-click="logout()">Đăng xuất</a></li>
+	            </ul>
+			  </div><!-- /.navbar-collapse -->
+			</div> <!-- /.container -->
+		</nav><!-- /navbar -->
 
-	<div ng-view></div>
+		<div class="content" ng-view></div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="copyright">
+							© 2015 All rights reserved
+						</div>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="design">
+							 <a href="#">Điều khoản sử dụng</a> |  <a href="#">Bảo Mật</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<!-- Add scripts -->
 	<script type="text/javascript" src="app/app.js"></script>
