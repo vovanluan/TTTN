@@ -391,6 +391,15 @@ clear: both;
     color: white;
 }
 
+.parent {
+    overflow: auto;
+}
+
+.hint {
+    font-size: 13px;
+    color: grey; 
+}
+
 /* .fa {
   color:#666;
 }

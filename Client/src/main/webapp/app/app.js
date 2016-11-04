@@ -10,49 +10,6 @@ app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 
-app.constant("districts", {
-	"1": [
-			{name: "Đa Kao"},
-			{name: "Tân Định"},
-			{name: "Bến Thành"}
-			],
-	"2": [
-			{name: "Thảo Điền"},
-			{name: "An Phú"},
-			{name: "Bình An"}
-			],
-	"10": [
-			{name: "1"},
-			{name: "2"},
-			{name: "3"}
-			],
-	"Bình Thạnh": [
-			{name: "1"},
-			{name: "2"},
-			{name: "3"}
-			],
-	"Thủ đức": [
-			{name: "Linh Xuân"},
-			{name: "Bình Chiểu"},
-			{name: "Linh Trung"},
-			]
-});
-
-app.constant('issues', {
-		"Điện": [
-			{name: "Mất điện"},
-			{name: "Hư điện"}
-		],
-		"Nước": [
-			{name: "Mất nước"},
-			{name: "Hư đường dây"}
-		],
-		"Tiếng ồn": [
-			{name: "Giao thông"},
-			{name: "Công trình"}
-		]
-});
-
 app.constant('clientId', "254c1d5f74f2518");
 
 app.constant('AUTH_EVENTS', {

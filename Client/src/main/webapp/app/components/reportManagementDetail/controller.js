@@ -6,5 +6,9 @@ app.controller('reportManagementDetailModalController', function($rootScope, $sc
 
 	};
 
+	$scope.moveIssue = function() {
+		console.log("move");
+	};
+
 
 });
