@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage',
-	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner']);
+	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -178,7 +178,6 @@ app.factory('Modal', function($rootScope, $uibModal){
 	return {
 		logInModal: function(){
 			var modalInstance = $uibModal.open({
-				// templateUrl: 'app/components/login/view.html',
 				templateUrl: 'app/components/login/view.html',
 				controller: 'logInModalController',
 				resolve: {

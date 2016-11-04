@@ -5,23 +5,29 @@
 <div class="modal-body">
 	<div id="signin" class="tab-pane active fade in">
 		<label class="error-label" ng-model="error" ng-show="error">{{error}}</label>
-		<div class="form-group">
-			<div class="input-group"> 
-				<input type="email" ng-model="email" class="form-control" id="email" placeholder="Email" required autofocus="true">
-				<label for="email" class="input-group-addon glyphicon glyphicon-user"></label>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="input-group">
-				<input type="password" ng-model="password" class="form-control" id="password" placeholder="Mật khẩu" required>
-				<label for="password" class="input-group-addon glyphicon glyphicon-lock"></label>
-			</div> 
-		</div> 
+
+		<form name="signinForm">
+			<md-input-container class="md-block" flex-gt-sm>
+		        <label>Email</label>
+		        <input required="" name="email" ng-model="email">
+		        <div ng-messages="signinForm.email.$error">
+		          <div ng-message="required">Trường bắt buộc</div>
+		        </div>
+		    </md-input-container>
+
+		    <md-input-container class="md-block" flex-gt-sm>
+		        <label>Mật khẩu</label>
+		        <input required="" type="password" name="password" ng-model="password">
+		        <div ng-messages="signinForm.password.$error">
+		          <div ng-message="required">Trường bắt buộc</div>
+		        </div>
+		    </md-input-container>
+		</form>
 	</div>
 
 	<span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>	
 </div>
 <div class="modal-footer">
-	<a href="" ng-click="signUpModal()">Đăng ký</a>
-    <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button>
+    <a href="" ng-click="signUpModal()">Đăng ký</a>&nbsp;&nbsp;
+    <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button> 
 </div>
