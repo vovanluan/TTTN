@@ -77,6 +77,12 @@ app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
 
+app.factory('Districts', function ($http) {
+    return $http.get('assets/data/districts.json');
+});
+app.factory('Services', function ($http) {
+    return $http.get('assets/data/services.json');
+});
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -344,7 +350,8 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
 
 });
 // First run in the app, we can use provider in config()
-app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider, jwtOptionsProvider){
+app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider,
+    $localStorageProvider, jwtOptionsProvider){
 
 	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
 
@@ -382,7 +389,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/signinManager/view.html'
 	})
 	.when('/report-management', {
-		templateUrl: 'app/components/report-management/view.html', 
+		templateUrl: 'app/components/report-management/view.html',
 		controller: 'reportManegementController'
 	})
     .otherwise({
@@ -399,11 +406,12 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
     jwtOptionsProvider.config({
       whiteListedDomains: ['api.imgur.com', 'localhost']
     });
+
 });
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, Districts, Services){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -451,6 +459,18 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   			$rootScope.userRole = null;
   		});
   	}
+
+    // Get Data from files
+    Districts.success(function (districts) {
+        $rootScope.districts = districts;
+    }).error(function (message) {
+        console.log("Error in districts: " + message);
+    });
+    Services.success(function (services) {
+        $rootScope.services = services.services;
+    }).error(function (message) {
+        console.log("Error in services: " + message);
+    })
 });
 
 // Run after .run()

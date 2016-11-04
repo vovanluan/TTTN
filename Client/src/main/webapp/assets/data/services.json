@@ -1,0 +1,19 @@
+{
+    "services" : [
+        {
+            "name": "Điện",
+            "code": "0",
+            "specificlist": ["Mất điện", "Hư điện"]
+        },
+        {
+            "name": "Nước",
+            "code": "1",
+            "specificlist": ["Mất nước", "Hư đường dây"]
+        },
+        {
+            "name": "Tiếng ồn",
+            "code": "0",
+            "specificlist": ["Giao thông", "Công trình"]
+        }
+    ]
+}

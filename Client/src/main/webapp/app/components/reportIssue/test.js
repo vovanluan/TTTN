@@ -1,13 +1,13 @@
 app.controller('testTabController',
     function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
-        dateTimeFilter, districts, issues, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+        dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
     $scope.active = 0;
-    $scope.issues = issues;
-    $scope.serviceType = issues["Điện"];
-    $scope.districts = districts;
-    $scope.district = districts["1"];
-    $scope.latitude = 10.78;
-    $scope.longitude = 106.65;
+    this.services = null;
+    this.districts = null;
+    this.services = $rootScope.services;
+    this.districts = $rootScope.districts;
+    this.latitude = 10.78;
+    this.longitude = 106.65;
     $scope.showSpinner = false
     $scope.tabActivity=[true, false, false, false];
     // Handle show date time
@@ -101,8 +101,8 @@ app.controller('testTabController',
         $scope.showSpinner = true;
         var request = new Object();
         request.serviceRequestId = 1;
-        request.serviceCode = convertServiceCodeFilter(this.serviceType);
-        request.serviceName = this.serviceName.name;
+        request.serviceCode = this.serviceCode;
+        request.serviceName = this.serviceName;
         request.happenDatetime = dateTimeFilter(this.happenDateTime);
         request.requestedDatetime = dateTimeFilter(new Date());
         request.description = this.description;
