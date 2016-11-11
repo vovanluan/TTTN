@@ -1,43 +1,35 @@
 <i class="fa fa-spin fa-refresh fa-5x" id="loader"></i>
 <div class="container">
-  <h2>Danh sách người dùng</h2>
-  <hr>
-  <div class="row" id="userList">
-    <table class="table-responsive">
-    <thead>
-      <tr>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-2">Tên tài khoản</th>
-        <th class="col-xs-2">Email</th>
-        <th class="col-xs-3">Quyền hạn</th>
+    <div class="main bordered">
+        <h2 class="content-title">Danh sách người dùng</h2>
+        <hr>
+        <div id="userList">
+          <table class="table-responsive">
+          <thead>
+            <tr>
+              <th class="col-xs-1"></th>
+              <th class="col-xs-2">Tên tài khoản</th>
+              <th class="col-xs-2">Email</th>
+              <th class="col-xs-3">Quyền hạn</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="u in users" ng-click="showDetail(u.user)" ng-class-odd="'alt'">
-        <td class="col-xs-1"></td>
-        <td class="col-xs-2 cap">{{u.name}}</td>
-        <td class="col-xs-2 cap">{{u.email}}</td>
-        <td class="col-xs-2">
-            <select ng-model="u.userType" ng-options="x for x in roles">
-            </select>
-        </td>
-        <td class="col-xs-2">
-          <button class="btn btn-primary" type="button" ng-click="update(u)">Cập nhật</button>
-        </td>
-        <td class="col-xs-1" ng-model="updateStatus"></td>
-      </tr>
-    </tbody>
-    </table>
-
-  </div><!--/row-->
-
-  <div class="row">
-
-
-  <hr>
-
-  </div>
-
-
-</div><!--/container-->
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="u in users" ng-click="showDetail(u.user)" ng-class-odd="'alt'">
+              <td class="col-xs-1"></td>
+              <td class="col-xs-2 cap">{{u.name}}</td>
+              <td class="col-xs-2 cap">{{u.email}}</td>
+              <td class="col-xs-2">
+                  <select ng-model="u.userType" ng-options="x for x in roles">
+                  </select>
+              </td>
+              <td class="col-xs-2">
+                <button class="btn btn-primary" type="button" ng-click="update(u)">Cập nhật</button>
+              </td>
+              <td class="col-xs-1" ng-model="updateStatus"></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+    </div>
+</div>

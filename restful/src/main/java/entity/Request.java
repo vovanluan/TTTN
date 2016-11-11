@@ -109,6 +109,10 @@ public class Request implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Office office;    
+    
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();    
     
@@ -124,6 +128,14 @@ public class Request implements Serializable {
     @Column(name = "group_name", nullable = true)
     private String groupName;
 
+    public Office getOffice() {
+        return office;
+    }
+
+    public void setOffice(Office office) {
+        this.office = office;
+    }
+    
     public long getServiceRequestId() {
         return serviceRequestId;
     }
