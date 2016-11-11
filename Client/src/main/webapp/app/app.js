@@ -9,6 +9,7 @@ app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/enti
 app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
+app.constant("officeUrl", "http://localhost:8080/restful/webresources/entity.office");
 
 app.constant('clientId', "254c1d5f74f2518");
 
@@ -60,6 +61,18 @@ app.factory('requestManager', function(requestUrl, $http, $q){
         	$http.post(requestUrl, JSON.stringify(request))
         	    .success(function() {
                     deferred.resolve();
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
+        updateRequest: function(id, req) {
+            var deferred = $q.defer();
+            $http.put(requestUrl + "/" + id, JSON.stringify(req))
+                .success(function() {
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
@@ -137,6 +150,39 @@ app.factory('userManager', function(userUrl, $http, $q){
     return userManager;
 });
 
+app.factory('officeManager', function(officeUrl, $http, $q){
+    var officeManager = {
+        loadAllOffices: function() {
+            var deferred = $q.defer();
+            $http.get(officeUrl)
+                .success(function(offices) {
+                    deferred.resolve(offices);
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    console.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
+        postOffice: function(office){
+            var deferred = $q.defer();
+            console.log(office);
+            $http.post(officeUrl, JSON.stringify(office))
+                .success(function() {
+                    deferred.resolve();
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        }
+    };
+    return officeManager;
+});
+
 app.factory('Modal', function($rootScope, $uibModal){
 	return {
 		logInModal: function(){
@@ -195,6 +241,7 @@ app.factory('Modal', function($rootScope, $uibModal){
   			var modalInstance = $uibModal.open({
   				templateUrl: 'app/components/reportManagementDetail/view.html',
   				controller: 'reportManagementDetailModalController',
+          controllerAs: 'reportModal',
   				resolve: {
   					requestIndex: function() {
   						return requestIndex;
@@ -206,7 +253,20 @@ app.factory('Modal', function($rootScope, $uibModal){
   			}, function dismiss(){
   				console.log("Modal dismiss");
   			});
-  		}
+  		},
+        postOfficeModal: function() {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/components/post-office/view.html',
+                controller: 'postOfficeController',
+                resolve: {
+                }
+            });
+
+            modalInstance.result.then(function close(){
+            }, function dismiss(){
+                console.log("Modal dismiss");
+            });
+        }
 	}
 });
 
@@ -338,8 +398,8 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		controller: 'issueDetailController'
 	})
 	.when('/report-issue', {
-		templateUrl: 'app/components/reportIssue/test.html',
-		controller: 'testTabController',
+		templateUrl: 'app/components/reportIssue/view.html',
+		controller: 'reportTabController',
 		controllerAs: 'reportTab'
 	})
 	.when('/signin-manager', {
@@ -347,8 +407,12 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 	})
 	.when('/report-management', {
 		templateUrl: 'app/components/report-management/view.html',
-		controller: 'reportManegementController'
+		controller: 'reportManagementController'
 	})
+    .when('/office-management', {
+        templateUrl: 'app/components/office-management/view.html',
+        controller: 'officeManagementController'
+    })
     .otherwise({
         redirectTo: '/list'
     });
@@ -368,7 +432,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, Districts, Services){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, officeManager, Districts, Services){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -386,6 +450,10 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 	commentManager.loadAllComments().then(function(comments){
 		$rootScope.comments = comments;
 	});
+
+    officeManager.loadAllOffices().then(function(offices){
+        $rootScope.offices = offices;
+    });
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {

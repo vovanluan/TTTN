@@ -1,4 +1,4 @@
-app.controller('reportManegementController', function($rootScope, $scope, Modal, userManager, SweetAlert, requestManager, commentManager, SweetAlert){
+app.controller('reportManagementController', function($rootScope, $scope, Modal, userManager, SweetAlert, requestManager, commentManager, SweetAlert){
 	requestManager.loadAllRequests().then(function(requests){
 		$scope.requests = requests;
 		console.log(requests);

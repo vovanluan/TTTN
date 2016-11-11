@@ -40,6 +40,7 @@ public class ApplicationConfig extends Application {
         resources.add(service.DivisionUserFacadeREST.class);
         resources.add(service.GuestUserFacadeREST.class);
         resources.add(service.NormalUserFacadeREST.class);
+        resources.add(service.OfficeFacadeREST.class);
         resources.add(service.OfficialUserFacadeREST.class);
         resources.add(service.RequestFacadeREST.class);
         resources.add(service.UserFacadeREST.class);
