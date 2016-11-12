@@ -444,6 +444,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	// Get all requests from server
 	requestManager.loadAllRequests().then(function(requests){
 		$rootScope.requests = requests;
+    console.log(requests);
 	});
 
 	commentManager.loadAllComments().then(function(comments){
@@ -452,7 +453,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
     officeManager.loadAllOffices().then(function(offices){
         $rootScope.offices = offices;
-        console.log(offices);
     });
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
@@ -532,7 +532,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
 	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-	    zoom: 11,
+	    zoom: 10,
 	    center: myLatLng
 	});
 	$scope.markers = [];
@@ -546,6 +546,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	//create map
 	$.each($rootScope.requests, function(index, request) {
 		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+    console.log(latlng);
 		var icon = "";
 		switch(request.statusId) {
 			case 0:
