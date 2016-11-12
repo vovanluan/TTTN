@@ -2,4 +2,8 @@ app.controller('officeManagementController', function($rootScope, $scope, office
     $scope.postOffice = function(){
         Modal.postOfficeModal();
     }
+    officeManager.loadAllOffices().then(function(offices) {
+        $rootScope.offices = offices;
+    });
+
 });

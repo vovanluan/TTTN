@@ -17,18 +17,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="u in users" ng-click="showDetail(u.user)" ng-class-odd="'alt'">
+                  <tr ng-repeat="office in offices" ng-class-odd="'alt'">
                     <td class="col-xs-1"></td>
-                    <td class="col-xs-2 cap">{{u.name}}</td>
-                    <td class="col-xs-2 cap">{{u.email}}</td>
-                    <td class="col-xs-2">
-                        <select ng-model="u.userType" ng-options="x for x in roles">
-                        </select>
-                    </td>
-                    <td class="col-xs-2">
-                      <button class="btn btn-primary" type="button" ng-click="update(u)">Cập nhật</button>
-                    </td>
-                    <td class="col-xs-1" ng-model="updateStatus"></td>
+                    <td class="col-xs-2 cap">{{office.id}}</td>
+                    <td class="col-xs-2 cap">{{office.name}}</td>
                   </tr>
                 </tbody>
             </table>
