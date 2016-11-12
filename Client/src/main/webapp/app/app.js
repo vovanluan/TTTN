@@ -241,7 +241,6 @@ app.factory('Modal', function($rootScope, $uibModal){
   			var modalInstance = $uibModal.open({
   				templateUrl: 'app/components/reportManagementDetail/view.html',
   				controller: 'reportManagementDetailModalController',
-          controllerAs: 'reportModal',
   				resolve: {
   					requestIndex: function() {
   						return requestIndex;
@@ -453,6 +452,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
     officeManager.loadAllOffices().then(function(offices){
         $rootScope.offices = offices;
+        console.log(offices);
     });
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role

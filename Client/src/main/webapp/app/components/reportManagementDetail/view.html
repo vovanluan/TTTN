@@ -1,4 +1,4 @@
-<div class="modal-header" ng-controller="reportManagementDetailModalController">
+<div class="modal-header">
 	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
 	<h4 class="modal-title">{{requestIndex.serviceName}} [{{requestIndex.address}}]</h4>
 </div>
@@ -14,11 +14,13 @@
 	<div layout="row">
 		<md-input-container class="md-block" flex-gt-sm>
 		    <label>Cơ quan chuyên trách</label>
+
 		    <md-select ng-model="selectedId">
-		        <md-option ng-repeat="office in offices" value"office.id">
-		            {{office.name}}
-		        </md-option>
-		    </md-select>
+			    <md-option ng-repeat="office in offices" value"{{office.id}}">
+			        {{office.name}}
+			    </md-option>
+			</md-select>
+
 	    </md-input-container>
 	</div>
     <md-input-container class="md-block">
