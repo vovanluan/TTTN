@@ -237,27 +237,6 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
   				console.log("Modal dismiss");
   			});
   		},
-  		// reportManagementDetailModal: function(requestIndex) {
-  		// 	// var modalInstance = $uibModal.open({
-  		// 	// 	templateUrl: 'app/components/reportManagementDetail/view.html',
-  		// 	// 	controller: 'reportManagementDetailModalController',
-  		// 	// 	resolve: {
-  		// 	// 		requestIndex: function() {
-  		// 	// 			return requestIndex;
-  		// 	// 		}
-  		// 	// 	}
-  		// 	// });
-
-  		// 	var modalInstance = $mdDialog.show({
-		  //     	templateUrl: 'app/components/reportManagementDetail/view.html',
-		  //     	controller: 'reportManagementDetailModalController',
-		  //     	resolve: {
-		  //     		requestIndex: function() {
-		  //     			return requestIndex;
-		  //     		}
-		  //     	}
-		  //   });
-  		// },
         postOfficeModal: function() {
             var modalInstance = $uibModal.open({
                 templateUrl: 'app/components/post-office/view.html',
