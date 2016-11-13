@@ -408,13 +408,13 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/report-management/view.html',
 		controller: 'reportManagementController'
 	})
-    .when('/office-management', {
-        templateUrl: 'app/components/office-management/view.html',
-        controller: 'officeManagementController'
-    })
-    .otherwise({
-        redirectTo: '/list'
-    });
+  .when('/office-management', {
+      templateUrl: 'app/components/office-management/view.html',
+      controller: 'officeManagementController'
+  })
+  .otherwise({
+      redirectTo: '/list'
+  });
 
     jwtInterceptorProvider.tokenGetter = function() {
     	return $localStorageProvider.get('token');
@@ -546,7 +546,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	//create map
 	$.each($rootScope.requests, function(index, request) {
 		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-    console.log(latlng);
 		var icon = "";
 		switch(request.statusId) {
 			case 0:
@@ -579,7 +578,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 		marker.addListener('mouseout', function() {
 		   	infowindow.close($scope.map, marker);
 		});
-		$scope.markers.push(marker);
 	});
 /*    $scope.filteredRequests = [];
     $scope.currentPage = 1;
