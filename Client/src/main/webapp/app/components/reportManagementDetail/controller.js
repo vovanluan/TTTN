@@ -1,15 +1,12 @@
-app.controller('reportManagementDetailModalController', function($rootScope, $scope, $uibModalInstance, requestManager, requestIndex) {
-	$scope.requestIndex = requestIndex;
-    /* testing show list offices */
+app.controller('reportManagementDetailModalController', function($rootScope, $scope, $mdDialog, requestManager) {
+	// $scope.requestIndex = requestIndex;
 
-    this.offices = $rootScope.offices;
-    console.log($scope.offices);
 	$scope.cancel = function(){
-		$uibModalInstance.dismiss('cancel');
+		$mdDialog.cancel();
 	};
 
 	$scope.moveIssue = function() {
-        requestManager.updateRequest(requestIndex.id, requestIndex);
+        
 	};
 
 

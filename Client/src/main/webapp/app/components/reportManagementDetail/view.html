@@ -1,4 +1,4 @@
-<div class="modal-header">
+<!-- <div class="modal-header">
 	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
 	<h4 class="modal-title">{{requestIndex.serviceName}} [{{requestIndex.address}}]</h4>
 </div>
@@ -11,16 +11,15 @@
 			<a href="" class="user">{{requestIndex.user.name}}</a>
 		</span>
 	</div>
+
 	<div layout="row">
 		<md-input-container class="md-block" flex-gt-sm>
 		    <label>Cơ quan chuyên trách</label>
-
 		    <md-select ng-model="selectedId">
-			    <md-option ng-repeat="office in offices" value"{{office.id}}">
+			    <md-option ng-repeat="office in offices" ng-value="{{office.id}}">
 			        {{office.name}}
 			    </md-option>
 			</md-select>
-
 	    </md-input-container>
 	</div>
     <md-input-container class="md-block">
@@ -31,4 +30,55 @@
 <div class="modal-footer">
 	<a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;
     <button class="btn btn-primary" type="button" ng-click="moveIssue()">Chuyển phản ánh</button>
-</div>
+</div> -->
+
+<md-dialog flex="60">
+	<md-toolbar>
+        <div class="md-toolbar-tools">
+        	<h4>{{requestIndex.serviceName}} <span>•</span> [{{requestIndex.address}}] </h4>
+        	<span flex></span>
+        	<md-button class="md-icon-button" ng-click="cancel()">
+          	    <md-icon md-svg-src="icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        	</md-button>
+        </div>
+    </md-toolbar>
+	<md-content class="md-padding">
+		<div class="parent">
+			<p class="issue-content">{{requestIndex.description}}</p>
+			<span class="info float-right border-btm">{{requestIndex.happenDatetime}}
+				<span class="sep">•</span>
+				<span>Đăng bởi </span>
+				<a href="" class="user">{{requestIndex.user.name}}</a>
+			</span>
+		</div>
+
+		<div layout="row">
+			<md-input-container class="md-block" flex>
+			    <label>Cơ quan chuyên trách</label>
+			    <md-select ng-model="selectedId">
+				    <md-option ng-repeat="office in offices" ng-value="{{office.id}}">
+				        {{office.name}}
+				    </md-option>
+				</md-select>
+		    </md-input-container>
+		</div>
+	    <md-input-container class="md-block">
+	        <label>Bình luận</label>
+	        <textarea ng-model="user.comment" md-maxlength="500" rows="4" md-select-on-focus></textarea>
+	    </md-input-container>
+	</md-content>
+	<md-dialog-actions layout="row">
+      <<!-- md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wikipedia
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="answer('not useful')">
+       Not Useful
+      </md-button>
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button> -->
+        <a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;
+        <button class="btn btn-primary" type="button" ng-click="moveIssue()">Chuyển phản ánh</button>
+    </md-dialog-actions>
+</md-dialog>
