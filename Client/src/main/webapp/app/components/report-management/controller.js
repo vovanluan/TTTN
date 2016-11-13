@@ -1,4 +1,6 @@
 app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog) {
+	$scope.url = '';
+	$scope.controller = '';
 	requestManager.loadAllRequests().then(function(requests) {
 		$scope.requests = requests;
 		console.log(requests);
@@ -13,17 +15,27 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
-		console.log($scope.requestIndex);
+
+		switch($scope.requestIndex.statusId) {
+			case 'DA_TIEP_NHAN':
+				$scope.url = 'app/components/report-management-detail-0/view.html';
+				$scope.controller = 'reportManagementDetail0ModalController';
+				break;
+			case 'DA_CHUYEN':
+				$scope.url = 'app/components/report-management-detail-1/view.html';
+				$scope.controller = 'reportManagementDetail1ModalController';
+				break;
+		}
+
 		$mdDialog.show({
-			templateUrl: 'app/components/reportManagementDetail/view.html',
-			controller: 'reportManagementDetailModalController',
+			templateUrl: $scope.url,
+			controller: $scope.controller,
 			bindToController: true,
 			bindToController: true,
 		    clickOutsideToClose: true,
 		    preserveScope: true,
 		    scope: this
 		})
-		
 	}
 
 	$scope.deleteIssue = function(id) {

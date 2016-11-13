@@ -393,6 +393,7 @@ clear: both;
 
 .parent {
     overflow: auto;
+    margin-bottom: 5px;
 }
 
 .hint {

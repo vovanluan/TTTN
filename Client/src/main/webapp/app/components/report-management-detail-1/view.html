@@ -1,0 +1,26 @@
+<md-dialog flex="60">
+	<md-toolbar>
+        <div class="md-toolbar-tools">
+        	<h4>{{requestIndex.serviceName}} <span>•</span> [{{requestIndex.address}}] </h4>
+        	<span flex></span>
+        	<md-button class="md-icon-button" ng-click="cancel()">
+          	    <md-icon md-svg-src="icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        	</md-button>
+        </div>
+    </md-toolbar>
+	<md-content class="md-padding">
+		<div class="parent">
+			<p class="issue-content">{{requestIndex.description}}</p>
+			<span class="info float-right border-btm">{{requestIndex.happenDatetime}}
+				<span class="sep">•</span>
+				<span>Đăng bởi </span>
+				<a href="" class="user">{{requestIndex.user.name}}</a>
+			</span>
+		</div>
+		<hr>
+		<p>Phản ánh đã được chuyển đến <strong>{{requestIndex.office.name}}</strong></p>
+	</md-content>
+	<md-dialog-actions layout="row">
+		<a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;
+    </md-dialog-actions>
+</md-dialog>
