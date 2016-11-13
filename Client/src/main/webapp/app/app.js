@@ -183,7 +183,7 @@ app.factory('officeManager', function(officeUrl, $http, $q){
     return officeManager;
 });
 
-app.factory('Modal', function($rootScope, $uibModal){
+app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
 	return {
 		logInModal: function(){
 			var modalInstance = $uibModal.open({
@@ -237,22 +237,27 @@ app.factory('Modal', function($rootScope, $uibModal){
   				console.log("Modal dismiss");
   			});
   		},
-  		reportManagementDetailModal: function(requestIndex) {
-  			var modalInstance = $uibModal.open({
-  				templateUrl: 'app/components/reportManagementDetail/view.html',
-  				controller: 'reportManagementDetailModalController',
-  				resolve: {
-  					requestIndex: function() {
-  						return requestIndex;
-  					}
-  				}
-  			});
+  		// reportManagementDetailModal: function(requestIndex) {
+  		// 	// var modalInstance = $uibModal.open({
+  		// 	// 	templateUrl: 'app/components/reportManagementDetail/view.html',
+  		// 	// 	controller: 'reportManagementDetailModalController',
+  		// 	// 	resolve: {
+  		// 	// 		requestIndex: function() {
+  		// 	// 			return requestIndex;
+  		// 	// 		}
+  		// 	// 	}
+  		// 	// });
 
-  			modalInstance.result.then(function close(){
-  			}, function dismiss(){
-  				console.log("Modal dismiss");
-  			});
-  		},
+  		// 	var modalInstance = $mdDialog.show({
+		  //     	templateUrl: 'app/components/reportManagementDetail/view.html',
+		  //     	controller: 'reportManagementDetailModalController',
+		  //     	resolve: {
+		  //     		requestIndex: function() {
+		  //     			return requestIndex;
+		  //     		}
+		  //     	}
+		  //   });
+  		// },
         postOfficeModal: function() {
             var modalInstance = $uibModal.open({
                 templateUrl: 'app/components/post-office/view.html',

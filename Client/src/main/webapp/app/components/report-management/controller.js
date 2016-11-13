@@ -1,5 +1,5 @@
-app.controller('reportManagementController', function($rootScope, $scope, Modal, userManager, SweetAlert, requestManager, commentManager, SweetAlert){
-	requestManager.loadAllRequests().then(function(requests){
+app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog) {
+	requestManager.loadAllRequests().then(function(requests) {
 		$scope.requests = requests;
 		console.log(requests);
 		for(var i=0;i<requests.length;i++){
@@ -7,13 +7,23 @@ app.controller('reportManagementController', function($rootScope, $scope, Modal,
 		}
 	});
 
-	commentManager.loadAllComments().then(function(comments){
+	commentManager.loadAllComments().then(function(comments) {
 		$scope.comments = comments;
 	});
 
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
-		Modal.reportManagementDetailModal($scope.requestIndex);
+		console.log($scope.requestIndex);
+		$mdDialog.show({
+			templateUrl: 'app/components/reportManagementDetail/view.html',
+			controller: 'reportManagementDetailModalController',
+			bindToController: true,
+			bindToController: true,
+		    clickOutsideToClose: true,
+		    preserveScope: true,
+		    scope: this
+		})
+		
 	}
 
 	$scope.deleteIssue = function(id) {
@@ -28,8 +38,22 @@ app.controller('reportManagementController', function($rootScope, $scope, Modal,
 			   closeOnCancel: true
 			},
 			function(isConfirm){
-				if (isConfirm)
-			   		console.log(id);
-			});
+				if (isConfirm) {
+			   		$scope.requests[id-1].statusId = "DA_XOA";
+			   		console.log($scope.requests[id-1]);
+			        requestManager.updateRequest($scope.requests[id-1].serviceRequestId,$scope.requests[id-1]).then(
+			        	function success() {
+			        		requestManager.loadAllRequests().then(function(requests){
+								$rootScope.requests = requests;
+							});
+			        		SweetAlert.swal("OK!", "Bạn đã xóa phản ánh thành công!", "success");
+			        	},
+			        	function error(err) {
+			        		SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+			        	}
+			        );
+				}
+			}
+		);
 	}
 });

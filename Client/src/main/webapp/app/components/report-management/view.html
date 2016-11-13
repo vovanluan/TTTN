@@ -10,12 +10,6 @@
         <span class="icon-bar"></span>
 	    </div>
 	    <div class="list-group">
-	        <!-- <span href="#" class="list-group-item active">
-	            Submenu
-	            <span class="pull-right" id="slide-submenu">
-	                <i class="fa fa-times"></i>
-	            </span>
-	        </span> -->
 	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
 	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
 	        </a>
@@ -77,5 +71,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>
