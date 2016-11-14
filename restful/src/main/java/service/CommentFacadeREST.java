@@ -4,6 +4,7 @@ import entity.Comment;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.MediaType;
  * @author Admin
  */
 @Path("entity.comment")
+@Transactional
 public class CommentFacadeREST extends AbstractFacade<Comment> {
 
     @PersistenceContext(unitName = "open311")

@@ -11,7 +11,7 @@
 	<md-content class="md-padding">
 		<div class="parent">
 			<p class="issue-content">{{requestIndex.description}}</p>
-			<span class="info float-right border-btm">{{requestIndex.happenDatetime}}
+			<span class="info float-right border-btm">{{requestIndex.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}
 				<span class="sep">•</span>
 				<span>Đăng bởi </span>
 				<a href="" class="user">{{requestIndex.user.name}}</a>

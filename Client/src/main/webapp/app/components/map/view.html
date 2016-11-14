@@ -28,14 +28,13 @@
 			<div id="issue-list">
 				<ul id="issue-list-ul">
 					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
-						<div class="issue-panel">
+						<div>
 							<h5 class="issue-title">
 								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
 							</h5>
 							<h5 class="issue-address">{{request.address}}</h5>
 							<p class="issue-content">{{request.description}}</p>
-							<span class="info">{{request.happenDatetime| date : format : timezone}}
+							<span class="info">{{request.happenDatetime| date:'dd/MM/yyyy'}}
 								<span class="sep">•</span>
 								<a href="" class="user">{{request.user.name}}</a>
 							</span>

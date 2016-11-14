@@ -1,5 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage',
-	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -38,9 +37,11 @@ app.constant('ADMIN_ACCESS', ['admin']);
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
 });
+
 app.factory('Services', function ($http) {
     return $http.get('assets/data/services.json');
 });
+
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -160,7 +161,6 @@ app.factory('officeManager', function(officeUrl, $http, $q){
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
-                    console.error(msg, code);
 
                 });
             return deferred.promise;
@@ -279,30 +279,11 @@ app.filter('dateTime', function(){
     return date.getFullYear()
         + '-' + pad(date.getMonth()+1)
         + '-' + pad(date.getDate())
-        + 'T' + pad(date.getHours())
+        + ' ' + pad(date.getHours())
         + ':' + pad(date.getMinutes())
         + ':' + pad(date.getSeconds())
         + dif + pad(tzo / 60)
         + ':' + pad(tzo % 60);
-	};
-});
-
-app.filter('convertServiceCode', function(){
-	return function(input){
-		var result;
-		switch(input){
-	        case "Điện":
-	            result = 0;
-	            break;
-	        case "Nước":
-	            result = 1;
-	            break;
-	        case "Tiếng ồn":
-	            result = 2;
-	            break;
-		}
-
-		return result;
 	};
 });
 

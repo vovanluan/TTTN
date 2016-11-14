@@ -1,6 +1,5 @@
 app.controller('reportTabController',
-    function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
-        dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+    function($rootScope, $scope, $http, $uibModal, Upload, requestManager, dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert) {
     $scope.active = 0;
     this.services = null;
     this.districts = null;
