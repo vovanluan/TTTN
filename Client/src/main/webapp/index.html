@@ -59,8 +59,8 @@
 			      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
 			      	</li>
 			      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
-	            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
-	            	<li ng-if="isAdmin()"><a href="#/office-management">Quản lý cơ quan</a></li>
+	            	<li ng-if="isManager()"><a href="#/report-management">Quản lý phản ánh</a></li>
+	            	<li ng-if="isManager()"><a href="#/office-management">Quản lý cơ quan</a></li>
 
 			    </ul>
 	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >

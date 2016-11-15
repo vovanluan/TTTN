@@ -80,6 +80,15 @@ public class AuthenticationEndpoint {
             case "admin":
                 statement = "AdminUser.findByEmailAndPassword";
                 break;
+            case "official":
+                statement = "OfficialUser.findByEmailAndPassword";
+                break;
+            case "division":
+                statement = "DivisionUser.findByEmailAndPassword";
+                break;
+            case "vice_president":
+                statement = "VicePresidentUser.findByEmailAndPassword";
+                break;
         }
 
         //Check if password is correct in specific user type table

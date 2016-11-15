@@ -21,18 +21,21 @@ app.constant('AUTH_EVENTS', {
   notAuthorized: 'auth-not-authorized'
 });
 
-app.constant('USER_ROLES', {
-  admin: 'admin',
-  editor: 'editor',
-  user : 'normal',
-  guest: 'guest'
-});
+// app.constant('USER_ROLES', {
+//   admin: 'admin',
+//   user : 'normal',
+//   guest: 'guest',
+//   official: 'official',
 
-app.constant('USER_ACCESS', ['admin', 'editor', 'normal']);
+// });
 
-app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal', 'guest']);
+app.constant('USER_ACCESS', ['admin', 'normal', 'official', 'division', 'vice_president']);
+
+app.constant('GUEST_ACCESS', ['admin', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
+
+app.constant('MANAGEMENT_ACCESS', ['official', 'division', 'vice_president']);
 
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
@@ -287,7 +290,7 @@ app.filter('dateTime', function(){
 	};
 });
 
-app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
 	    if($localStorage.token) {
@@ -439,7 +442,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   			case 'division':
   				childUrl = "/entity.divisionuser/getInfo?email=" + email;
   				break;
-  			case 'vicepresident':
+  			case 'vice_president':
   				childUrl = "/entity.vicepresidentuser/getInfo?email=" +email;
   				break;
   		}
@@ -570,7 +573,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
@@ -580,6 +583,10 @@ app.controller('mainTabController',
     // Waiting implement from server
     $scope.isAdmin = function () {
         return AuthService.isAuthorized(ADMIN_ACCESS);
+    }
+
+    $scope.isManager = function () {
+    	return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
 	// Watch userRole change
 	$scope.$watch(function (){

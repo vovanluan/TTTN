@@ -3,6 +3,8 @@ package entity;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,8 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "division_user")
 @DiscriminatorValue("division")
-
-@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "DivisionUser.findByEmail", query = "SELECT u FROM DivisionUser u WHERE u.email=:email"),
+    @NamedQuery(name = "DivisionUser.findByEmailAndPassword", query = "SELECT u FROM DivisionUser u WHERE u.email=:email AND u.passWord=:password"),
+    @NamedQuery(name = "DivisionUser.findByToken", query = "SELECT u FROM DivisionUser u WHERE u.token=:token"),
+})
 public class DivisionUser extends User {
     
     @Size(min = 1, max = 40)
