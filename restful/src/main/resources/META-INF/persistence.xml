@@ -12,7 +12,7 @@
     <class>entity.VicePresidentUser</class>
     <class>entity.Comment</class>
     <class>entity.AdminUser</class>
-    <class>entity.Office</class>
+    <class>entity.Division</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.logging.level.sql" value="FINE"/>

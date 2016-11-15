@@ -113,9 +113,9 @@ public class Request implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
-    @JoinColumn(name = "office_id", referencedColumnName = "id")
+    @JoinColumn(name = "division_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Office office;    
+    private Division division;    
     
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();    
@@ -268,14 +268,15 @@ public class Request implements Serializable {
         this.user = user;
     }
 
-    public Office getOffice() {
-        return office;
+    public Division getDivision() {
+        return division;
     }
 
-    public void setOffice(Office office) {
-        this.office = office;
+    public void setDivision(Division division) {
+        this.division = division;
     }
 
+    @XmlTransient
     public List<Comment> getComments() {
         return comments;
     }

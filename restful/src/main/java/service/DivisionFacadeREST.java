@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
-import entity.Office;
+import entity.Division;
 import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -29,27 +23,28 @@ import javax.ws.rs.core.MediaType;
  */
 @Transactional
 @PermitAll
-@Path("entity.office")
-public class OfficeFacadeREST extends AbstractFacade<Office> {
+@Path("entity.division")
+public class DivisionFacadeREST extends AbstractFacade<Division> {
 
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
 
-    public OfficeFacadeREST() {
-        super(Office.class);
+    public DivisionFacadeREST() {
+        super(Division.class);
     }
 
     @POST
+    @RolesAllowed("admin")
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Office entity) {
+    public void create(Division entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Office entity) {
+    public void edit(@PathParam("id") Long id, Division entity) {
         super.edit(entity);
     }
 
@@ -62,22 +57,21 @@ public class OfficeFacadeREST extends AbstractFacade<Office> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Office find(@PathParam("id") Long id) {
+    public Division find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
-    @RolesAllowed("admin")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Office> findAll() {
+    public List<Division> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Office> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Division> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

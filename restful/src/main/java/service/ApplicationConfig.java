@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import java.util.Set;
@@ -37,10 +32,10 @@ public class ApplicationConfig extends Application {
         resources.add(service.AuthenticationEndpoint.class);
         resources.add(service.AuthenticationFilter.class);
         resources.add(service.CommentFacadeREST.class);
+        resources.add(service.DivisionFacadeREST.class);
         resources.add(service.DivisionUserFacadeREST.class);
         resources.add(service.GuestUserFacadeREST.class);
         resources.add(service.NormalUserFacadeREST.class);
-        resources.add(service.OfficeFacadeREST.class);
         resources.add(service.OfficialUserFacadeREST.class);
         resources.add(service.RequestFacadeREST.class);
         resources.add(service.UserFacadeREST.class);

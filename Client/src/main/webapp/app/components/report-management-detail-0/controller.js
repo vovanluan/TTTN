@@ -1,10 +1,11 @@
 app.controller('reportManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager, dateTimeFilter, commentManager) {
+
 	$scope.cancel = function() {
 		$mdDialog.cancel();
 	};
 
 	$scope.moveIssue = function() {
-        $scope.requestIndex.office = $scope.office;
+        $scope.requestIndex.division = $scope.division;
         $scope.requestIndex.statusId = 'DA_CHUYEN'; 
         console.log($scope.requestIndex);
         requestManager.updateRequest($scope.requestIndex.serviceRequestId,$scope.requestIndex).then(
@@ -29,7 +30,8 @@ app.controller('reportManagementDetail0ModalController', function($rootScope, $s
             },
             function error(){
                 console.log("Error");
-            });  		
+            }
+        );  		
 	};
 
 

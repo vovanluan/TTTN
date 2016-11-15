@@ -59,9 +59,8 @@
 			      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
 			      	</li>
 			      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
+			      	<li ng-if="isAdmin()"><a href="#/division-management">Quản lý cơ quan</a></li>
 	            	<li ng-if="isManager()"><a href="#/report-management">Quản lý phản ánh</a></li>
-	            	<li ng-if="isManager()"><a href="#/office-management">Quản lý cơ quan</a></li>
-
 			    </ul>
 	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
 	 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
@@ -100,7 +99,6 @@
  -->
 
 	<!-- Angular Material requires Angular.js Libraries -->
-
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -120,7 +118,7 @@
 	<script type="text/javascript" src="app/components/report-management/controller.js"></script>
 	<script type="text/javascript" src="app/components/report-management-detail-0/controller.js"></script>	
 	<script type="text/javascript" src="app/components/report-management-detail-1/controller.js"></script>
-	<script type="text/javascript" src="app/components/office-management/controller.js"></script>
-	<script type="text/javascript" src="app/components/post-office/controller.js"></script>
+	<script type="text/javascript" src="app/components/division-management/controller.js"></script>
+	<script type="text/javascript" src="app/components/post-division/controller.js"></script>
 </body>
 </html>

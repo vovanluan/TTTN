@@ -3,6 +3,9 @@ package entity;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,6 +31,18 @@ public class DivisionUser extends User {
     @Column(name = "password", nullable = false)
     private String passWord;
 
+    @JoinColumn(name = "division_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Division division;
+
+    public Division getDivision() {
+        return division;
+    }
+
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+    
     public String getPassWord() {
         return passWord;
     }
