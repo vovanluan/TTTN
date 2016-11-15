@@ -100,6 +100,7 @@ app.controller('reportTabController',
         $scope.showSpinner = true;
         var request = new Object();
         request.serviceRequestId = 1;
+        request.serviceSubject = this.serviceSubject.name;
         request.serviceCode = this.serviceCode;
         request.serviceName = this.serviceName;
         request.happenDatetime = dateTimeFilter(this.happenDateTime);

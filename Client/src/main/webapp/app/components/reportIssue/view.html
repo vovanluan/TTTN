@@ -12,7 +12,7 @@
                         <tr>
                             <td class="col-md-4">Chủ đề:</td>
                             <td>
-                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.service"
+                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.serviceSubject"
                                 ng-options="service as service.name for service in reportTab.services">
                                 </select>
                             </td>
@@ -21,7 +21,7 @@
                             <td class="col-md-4">Chi tiết:</td>
                             <td>
                                 <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
-                                ng-options="specific for specific in reportTab.service.specificlist">
+                                ng-options="specific for specific in reportTab.serviceSubject.specificlist">
                                 </select>
 
                             </td>

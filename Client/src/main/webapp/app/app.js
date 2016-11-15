@@ -279,7 +279,7 @@ app.filter('dateTime', function(){
     return date.getFullYear()
         + '-' + pad(date.getMonth()+1)
         + '-' + pad(date.getDate())
-        + ' ' + pad(date.getHours())
+        + 'T' + pad(date.getHours())
         + ':' + pad(date.getMinutes())
         + ':' + pad(date.getSeconds())
         + dif + pad(tzo / 60)
@@ -432,6 +432,15 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   				break;
   			case 'admin':
   				childUrl = "/entity.adminuser/getInfo?email=" + email;
+  				break;
+  			case 'official':
+  				childUrl = "/entity.officialuser/getInfo?email=" + email;
+  				break;
+  			case 'division':
+  				childUrl = "/entity.divisionuser/getInfo?email=" + email;
+  				break;
+  			case 'vicepresident':
+  				childUrl = "/entity.vicepresidentuser/getInfo?email=" +email;
   				break;
   		}
   		$http({
