@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "vice_president_user")
 @DiscriminatorValue("vice_president")
-
-@XmlRootElement
 public class VicePresidentUser extends User {
     
     @Size(min = 1, max = 40)

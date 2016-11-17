@@ -64,8 +64,6 @@ clear: both;
 
 .issue-panel {
     margin-left: 110px;
-    margin-right:10px;
-    margin-bottom: 10px;
 }
 
 .issue-title{
@@ -82,12 +80,14 @@ clear: both;
 .issue-address {
     color:#999999;
     font-style: italic;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    font-size: 90%;
 }
 
 #issue-list ul {
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 12px;
+    padding-right:10px;
 }
 
 #issue-list ul li {

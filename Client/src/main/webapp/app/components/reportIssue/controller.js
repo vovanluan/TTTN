@@ -1,10 +1,10 @@
 app.controller('reportTabController',
-    function($rootScope, $scope, $http, $uibModal, Upload, requestManager, convertServiceCodeFilter,
+    function($rootScope, $scope, $http, $uibModal, Upload, requestManager,
         dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
         //Initializa $scope variable
     $scope.report = {
         serviceRequestId:1,
-        serviceCode: 0,
+        serviceSubject:"",
         serviceName:"",
         happenDatetime:"",
         requestedDatetime:"",
@@ -19,6 +19,7 @@ app.controller('reportTabController',
 
     $scope.active = 0;
     $scope.report.services = $rootScope.services;
+    console.log($rootScope.services);
     $scope.report.districts = $rootScope.districts;
     $scope.showSpinner = false
     $scope.tabActivity=[true, false, false, false];
@@ -117,8 +118,8 @@ app.controller('reportTabController',
         $scope.showSpinner = true;
         var request = new Object();
         request.serviceRequestId = 1;
-        request.serviceCode = $scope.report.service.code;
-        request.serviceName = $scope.report.service.name;
+        request.serviceSubject = $scope.report.service.subject;
+        request.serviceName = $scope.report.serviceName;
         request.happenDatetime = dateTimeFilter($scope.report.happenDateTime);
         request.requestedDatetime = dateTimeFilter(new Date());
         request.description = $scope.report.description;

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByToken", query = "SELECT u FROM User u WHERE u.token=:token"),
 })
 
+@XmlRootElement
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -74,6 +75,7 @@ public class User implements Serializable {
         this.token = token;
     }
 
+    @XmlTransient
     public List<Comment> getComments() {
         return this.comments;
     }
@@ -88,6 +90,7 @@ public class User implements Serializable {
         this.comments.remove(comment);
     }
 
+    @XmlTransient
     public List<Request> getRequests() {
         return requests;
     }

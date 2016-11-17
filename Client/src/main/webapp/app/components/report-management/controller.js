@@ -9,10 +9,6 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 		}
 	});
 
-	commentManager.loadAllComments().then(function(comments) {
-		$scope.comments = comments;
-	});
-
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
 

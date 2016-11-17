@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.annotation.security.PermitAll;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,8 +39,8 @@ public class Annoucement implements Serializable {
     
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "title", nullable = false)
+    private String title;
     
     @NotNull
     @Size(min = 1, max = 50000)
@@ -51,6 +52,12 @@ public class Annoucement implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date time;
 
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "type", nullable = false)
+    private String type;
+    
+    
     public long getId() {
         return id;
     }
@@ -59,12 +66,12 @@ public class Annoucement implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -82,6 +89,12 @@ public class Annoucement implements Serializable {
     public void setTime(Date time) {
         this.time = time;
     }
-   
-   
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5">
+                    <div class="tab-pane fade in">
+                        <strong>Cho biết các thông tin về chủ đề phản ánh, cung cấp các hình ảnh liên quan (nếu có)</strong>
+                        <hr style="margin:10px 0px 30px 0px;">
+                        <table class="stepTable" style="border:none">
+                            <tr>
+                                <td class="col-md-4">Chuyên mục</td>
+                                <td>
+                                    <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="type"
+                                    ng-options="type for type in types">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Tiêu đề</td>
+                                <td>
+                                    <textarea class="form-control" ng-model="title" required cols="40" rows="1" ng-change="change()"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">Nội dung:</td>
+                                <td>
+                                    <textarea class="form-control" ng-model="description" required cols="40" rows="5" ng-change="change()"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="col-md-12">
+                            <tr>
+                                <td style="direction:rtl">
+                                    <button type="submit" form="step4Form" class="btn btn-success" ng-click="submitAnnoucement()">Gửi</button>
+                                    <button class="btn btn-danger">Hủy bỏ</button>
+                                </td>
+                            </tr>
+                            <span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>
+                        </table>
+                        <hr>
+                    </div>
+
+    <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+

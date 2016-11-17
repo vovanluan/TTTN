@@ -1,5 +1,4 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage',
-	'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -9,7 +8,8 @@ app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/enti
 app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
-app.constant("officeUrl", "http://localhost:8080/restful/webresources/entity.office");
+app.constant("divisionUrl", "http://localhost:8080/restful/webresources/entity.division");
+app.constant("annoucementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
 
 app.constant('clientId', "254c1d5f74f2518");
 
@@ -22,25 +22,34 @@ app.constant('AUTH_EVENTS', {
   notAuthorized: 'auth-not-authorized'
 });
 
-app.constant('USER_ROLES', {
-  admin: 'admin',
-  editor: 'editor',
-  user : 'normal',
-  guest: 'guest'
-});
+// app.constant('USER_ROLES', {
+//   admin: 'admin',
+//   user : 'normal',
+//   guest: 'guest',
+//   official: 'official',
 
-app.constant('USER_ACCESS', ['admin', 'editor', 'normal']);
+// });
 
-app.constant('GUEST_ACCESS', ['admin', 'editor', 'normal', 'guest']);
+app.constant('USER_ACCESS', ['admin', 'normal', 'official', 'division', 'vice_president']);
+
+app.constant('GUEST_ACCESS', ['admin', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
+
+app.constant('MANAGEMENT_ACCESS', ['official', 'division', 'vice_president']);
 
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
 });
+
 app.factory('Services', function ($http) {
     return $http.get('assets/data/services.json');
 });
+
+app.factory('Annoucements', function ($http) {
+    return $http.get('assets/data/annoucements.json');
+});
+
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -85,7 +94,6 @@ app.factory('requestManager', function(requestUrl, $http, $q){
 	return requestManager;
 });
 
-
 app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl, $http, $q){
 	var commentManager = {
 		loadAllComments: function(){
@@ -118,7 +126,6 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 	return commentManager;
 }]);
 
-
 app.factory('userManager', function(userUrl, $http, $q){
     var userManager = {
         loadAllUsers: function() {
@@ -150,25 +157,24 @@ app.factory('userManager', function(userUrl, $http, $q){
     return userManager;
 });
 
-app.factory('officeManager', function(officeUrl, $http, $q){
-    var officeManager = {
-        loadAllOffices: function() {
+app.factory('divisionManager', function(divisionUrl, $http, $q){
+    var divisionManager = {
+        loadAllDivisions: function() {
             var deferred = $q.defer();
-            $http.get(officeUrl)
-                .success(function(offices) {
-                    deferred.resolve(offices);
+            $http.get(divisionUrl)
+                .success(function(divisions) {
+                    deferred.resolve(divisions);
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
-                    console.error(msg, code);
 
                 });
             return deferred.promise;
         },
-        postOffice: function(office){
+        postDivision: function(division){
             var deferred = $q.defer();
-            console.log(office);
-            $http.post(officeUrl, JSON.stringify(office))
+            console.log(division);
+            $http.post(divisionUrl, JSON.stringify(division))
                 .success(function() {
                     deferred.resolve();
                 })
@@ -180,7 +186,39 @@ app.factory('officeManager', function(officeUrl, $http, $q){
             return deferred.promise;
         }
     };
-    return officeManager;
+    return divisionManager;
+});
+
+app.factory('annoucementManager', function(annoucementUrl, $http, $q){
+  var annoucementManager = {
+        loadAllAnnoucements: function() {
+            var deferred = $q.defer();
+            $http.get(annoucementUrl)
+                .success(function(annoucements) {
+                    deferred.resolve(annoucements);
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
+        postAnnoucement: function(annoucement){
+          var deferred = $q.defer();
+          $http.post(annoucementUrl, JSON.stringify(annoucement))
+              .success(function() {
+                    deferred.resolve();
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        }
+  };
+  return annoucementManager;
 });
 
 app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
@@ -237,10 +275,10 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
   				console.log("Modal dismiss");
   			});
   		},
-        postOfficeModal: function() {
+        postDivisionModal: function() {
             var modalInstance = $uibModal.open({
-                templateUrl: 'app/components/post-office/view.html',
-                controller: 'postOfficeController',
+                templateUrl: 'app/components/post-division/view.html',
+                controller: 'postDivisionController',
                 resolve: {
                 }
             });
@@ -265,8 +303,8 @@ app.factory('RouteClean', function(){
 	    	    return route.startsWith(noAuthRoute);
 	    });
     };
-
 });
+
 app.filter('dateTime', function(){
 	return function (input) {
 	var date = new Date(input);
@@ -287,26 +325,7 @@ app.filter('dateTime', function(){
 	};
 });
 
-app.filter('convertServiceCode', function(){
-	return function(input){
-		var result;
-		switch(input){
-	        case "Điện":
-	            result = 0;
-	            break;
-	        case "Nước":
-	            result = 1;
-	            break;
-	        case "Tiếng ồn":
-	            result = 2;
-	            break;
-		}
-
-		return result;
-	};
-});
-
-app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
+app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
 	    if($localStorage.token) {
@@ -347,11 +366,10 @@ app.service('AuthService', function(RouteClean, USER_ROLES, $rootScope, $http, $
         if(!RouteClean($location.url()))
         	$location.path('/list');
     };
-
 });
+
 // First run in the app, we can use provider in config()
-app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider,
-    $localStorageProvider, jwtOptionsProvider){
+app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtInterceptorProvider, $localStorageProvider, jwtOptionsProvider){
 
 	usSpinnerConfigProvider.setTheme('bigBlue', {color: 'blue', radius: 20});
 
@@ -392,9 +410,13 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/report-management/view.html',
 		controller: 'reportManagementController'
 	})
-  .when('/office-management', {
-      templateUrl: 'app/components/office-management/view.html',
-      controller: 'officeManagementController'
+  .when('/division-management', {
+      templateUrl: 'app/components/division-management/view.html',
+      controller: 'divisionManagementController'
+  })
+  .when('/annoucement', {
+      templateUrl: 'app/components/annoucement/view.html',
+      controller: 'annoucementController'
   })
   .otherwise({
       redirectTo: '/list'
@@ -415,7 +437,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, officeManager, Districts, Services){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, Districts, Services){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -425,18 +447,21 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
-  	// Get all requests from server
-	requestManager.loadAllRequests().then(function(requests){
-		$rootScope.requests = requests;
-    console.log(requests);
-	});
+    	// Get all requests from server
+  	requestManager.loadAllRequests().then(function(requests){
+  		$rootScope.requests = requests;
+  	});
 
-	commentManager.loadAllComments().then(function(comments){
-		$rootScope.comments = comments;
-	});
+  	commentManager.loadAllComments().then(function(comments){
+  		$rootScope.comments = comments;
+  	});
 
-    officeManager.loadAllOffices().then(function(offices){
-        $rootScope.offices = offices;
+    divisionManager.loadAllDivisions().then(function(divisions){
+        $rootScope.divisions = divisions;
+    });
+
+    annoucementManager.loadAllAnnoucements().then(function(annoucements){
+        $rootScope.annoucements = annoucements;
     });
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
@@ -451,6 +476,15 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   				break;
   			case 'admin':
   				childUrl = "/entity.adminuser/getInfo?email=" + email;
+  				break;
+  			case 'official':
+  				childUrl = "/entity.officialuser/getInfo?email=" + email;
+  				break;
+  			case 'division':
+  				childUrl = "/entity.divisionuser/getInfo?email=" + email;
+  				break;
+  			case 'vice_president':
+  				childUrl = "/entity.vicepresidentuser/getInfo?email=" +email;
   				break;
   		}
   		$http({
@@ -477,6 +511,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     });
     Services.success(function (services) {
         $rootScope.services = services.services;
+        console.log(services.services);
     }).error(function (message) {
         console.log("Error in services: " + message);
     })
@@ -579,7 +614,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
@@ -589,6 +624,10 @@ app.controller('mainTabController',
     // Waiting implement from server
     $scope.isAdmin = function () {
         return AuthService.isAuthorized(ADMIN_ACCESS);
+    }
+
+    $scope.isManager = function () {
+    	return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
 	// Watch userRole change
 	$scope.$watch(function (){

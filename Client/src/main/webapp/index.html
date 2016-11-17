@@ -11,8 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/DateTimePicker.css" />
 	<link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css"/>
 	<link rel="shortcut icon" href="">
-<!-- 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"> -->
-	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -60,9 +59,9 @@
 			      		<a href="#/report-issue" ng-click="mainTab.selectTab(2)">Đăng phản ánh</a>
 			      	</li>
 			      	<li ng-if="isAdmin()"><a href="#/authorization-management">Phân quyền</a></li>
-	            	<li ng-if="isAdmin()"><a href="#/report-management">Quản lý phản ánh</a></li>
-	            	<li ng-if="isAdmin()"><a href="#/office-management">Quản lý cơ quan</a></li>
-
+			      	<li ng-if="isAdmin()"><a href="#/division-management">Quản lý cơ quan</a></li>
+	            	<li ng-if="isManager()"><a href="#/report-management">Quản lý phản ánh</a></li>
+	            	<li><a href="#/annoucement">Thông báo</a></li>
 			    </ul>
 	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
 	 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
@@ -101,7 +100,6 @@
  -->
 
 	<!-- Angular Material requires Angular.js Libraries -->
-
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -119,9 +117,10 @@
 	<script type="text/javascript" src="app/components/changePassword/controller.js"></script>
 	<script type="text/javascript" src="app/components/profile/controller.js"></script>
 	<script type="text/javascript" src="app/components/report-management/controller.js"></script>
-	<script type="text/javascript" src="app/components/report-management-detail-0/controller.js"></script>	
+	<script type="text/javascript" src="app/components/report-management-detail-0/controller.js"></script>
 	<script type="text/javascript" src="app/components/report-management-detail-1/controller.js"></script>
-	<script type="text/javascript" src="app/components/office-management/controller.js"></script>
-	<script type="text/javascript" src="app/components/post-office/controller.js"></script>
+	<script type="text/javascript" src="app/components/division-management/controller.js"></script>
+	<script type="text/javascript" src="app/components/post-division/controller.js"></script>
+	<script type="text/javascript" src="app/components/annoucement/controller.js"></script>
 </body>
 </html>

@@ -48,8 +48,9 @@ public class Request implements Serializable {
     private long serviceRequestId;
     
     @NotNull
-    @Column(name = "service_code", nullable = false)
-    private int serviceCode;
+    @Size(min = 1, max = 100)
+    @Column(name = "service_subject", nullable = false)
+    private String serviceSubject;
     
     @NotNull
     @Size(min = 1, max = 100)
@@ -57,8 +58,7 @@ public class Request implements Serializable {
     private String serviceName;
     
     @NotNull
-    @Size(min = 1, max = 50000)
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
     
     @NotNull
@@ -109,9 +109,9 @@ public class Request implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     
-    @JoinColumn(name = "office_id", referencedColumnName = "id")
+    @JoinColumn(name = "division_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Office office;    
+    private Division division;    
     
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();    
@@ -128,14 +128,6 @@ public class Request implements Serializable {
     @Column(name = "group_name", nullable = true)
     private String groupName;
 
-    public Office getOffice() {
-        return office;
-    }
-
-    public void setOffice(Office office) {
-        this.office = office;
-    }
-    
     public long getServiceRequestId() {
         return serviceRequestId;
     }
@@ -144,12 +136,12 @@ public class Request implements Serializable {
         this.serviceRequestId = serviceRequestId;
     }
 
-    public int getServiceCode() {
-        return serviceCode;
+    public String getServiceSubject() {
+        return serviceSubject;
     }
 
-    public void setServiceCode(int serviceCode) {
-        this.serviceCode = serviceCode;
+    public void setServiceSubject(String serviceSubject) {
+        this.serviceSubject = serviceSubject;
     }
 
     public String getServiceName() {
@@ -264,21 +256,22 @@ public class Request implements Serializable {
         this.user = user;
     }
 
+    public Division getDivision() {
+        return division;
+    }
+
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+
     @XmlTransient
     public List<Comment> getComments() {
         return comments;
     }
 
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
-        comment.setRequest(this);
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
-    
-    public void removeComment(Comment comment) {
-        comment.setRequest(null);
-        this.comments.remove(comment);
-    }
-    
 
     public String getMediaUrl() {
         return mediaUrl;

@@ -1,0 +1,36 @@
+<div class="container">
+    <section class="col-lg-8 col-md-12">
+        <div class="main bordered">
+            <div class="search">
+                <form>
+                    <!-- Search input -->
+                </form>
+            </div>
+            <div class="content-title">
+                DANH SÁCH CÁC THÔNG BÁO
+            </div>
+            <div ng-hide="annoucements.length">
+                <label>
+                    Chưa có phản hồi nào
+                </label>
+            </div>
+            <div id="issue-list">
+                <ul id="issue-list-ul" >
+                    <li ng-repeat="annoucement in annoucements" ng-attr-id="{{'issue_id_' + annoucement.id}}">
+                        <img ng-src="{{annoucement.mediaUrl}}" class="thumbnail-image float-left">
+                        <div class="issue-panel">
+                            <h5 class="issue-title">
+                                <a href="#/issue/{{annoucement.id}}" class="issue-link">Thông báo {{annoucement.id}}  - {{annoucement.name}} - {{annoucement.type}}</a>
+                            </h5>
+                            <p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{annoucement.time | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+                            <p class="issue-content">{{annoucement.description}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="col-lg-4 col-md-12">
+        <div class="bordered main" id="mainMap" style="height:380px"></div>
+    </section>
+</div>

@@ -5,7 +5,7 @@ app.controller('reportManagementDetail1ModalController', function($rootScope, $s
 	};
 
 	$scope.moveIssue = function() {
-        $scope.requestIndex.office = $scope.office;
+        $scope.requestIndex.division = $scope.division;
         $scope.requestIndex.statusId = 'DA_CHUYEN'; 
         console.log($scope.requestIndex);
         requestManager.updateRequest($scope.requestIndex.serviceRequestId,$scope.requestIndex).then(
@@ -19,6 +19,4 @@ app.controller('reportManagementDetail1ModalController', function($rootScope, $s
         );
 		
 	};
-
-
 });

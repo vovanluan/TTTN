@@ -1,32 +1,32 @@
 {
     "services" : [
         {
-            "name": "Môi trường sống",
+            "subject": "Môi trường sống",
             "code": "0",
             "specificlist": ["Tiếng ồn", "Rác thải, nước thải", "Ô nhiễm không khí"]
         },
         {
-            "name": "An ninh trật tự",
+            "subject": "An ninh trật tự",
             "code": "1",
             "specificlist": ["Trộm cắp, cướp giật", "Ma túy, mại dâm, Cờ bạc", "Lang thang, ăn xin", "Đánh nhau, tụ tập gây mất trật tự"]
         },
         {
-            "name": "Hạ tầng giao thông",
+            "subject": "Hạ tầng giao thông",
             "code": "2",
             "specificlist": ["Đường hư, vỉa hè hư", "Điện, nước sinh hoạt", "Đèn đường, đường giao thông, biển báo", "Cây xanh, công viên", "Cấp thoát nước, ngập lụt"]
         },
         {
-            "name": "Trật tự đô thị",
+            "subject": "Trật tự đô thị",
             "code": "3",
             "specificlist": ["Lấn chiếm lòng lề đường", "Đậu xe trái phép", "Xây dựng trái phép"]
         },
         {
-            "name": "Vệ sinh an toàn thực phẩm",
+            "subject": "Vệ sinh an toàn thực phẩm",
             "code": "4",
             "specificlist": ["Sản xuất, kinh doanh thực phẩm bẩn", "Nhà hàng mất vệ sinh"]
         },
         {
-            "name": "Hành chính công",
+            "subject": "Hành chính công",
             "code": "5",
             "specificlist": ["Hồ sơ, thủ tục hành chính", "Bất cập thủ tục hành chính", "Than phiền cán bộ công chức"]
         }

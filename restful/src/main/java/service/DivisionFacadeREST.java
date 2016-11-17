@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package service.service;
+package service;
 
-import entity.Annoucement;
+import entity.Division;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,28 +21,30 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Admin
  */
-@Stateless
-@Path("entity.annoucement")
-public class AnnoucementFacadeREST extends AbstractFacade<Annoucement> {
+@Transactional
+@PermitAll
+@Path("entity.division")
+public class DivisionFacadeREST extends AbstractFacade<Division> {
 
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
 
-    public AnnoucementFacadeREST() {
-        super(Annoucement.class);
+    public DivisionFacadeREST() {
+        super(Division.class);
     }
 
     @POST
+    @RolesAllowed("admin")
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Annoucement entity) {
+    public void create(Division entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Annoucement entity) {
+    public void edit(@PathParam("id") Long id, Division entity) {
         super.edit(entity);
     }
 
@@ -58,21 +57,21 @@ public class AnnoucementFacadeREST extends AbstractFacade<Annoucement> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Annoucement find(@PathParam("id") Long id) {
+    public Division find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Annoucement> findAll() {
+    public List<Division> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Annoucement> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Division> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
