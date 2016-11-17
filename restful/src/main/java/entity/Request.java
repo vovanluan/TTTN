@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -115,7 +114,11 @@ public class Request implements Serializable {
     
     @JoinColumn(name = "division_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Division division;    
+    private Division division;  
+    
+//    @JoinColumn(name = "vice_president_user_id", referencedColumnName = "id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private VicePresidentUser vicePresident;  
     
     @OneToMany(mappedBy = "request", fetch=FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();    
@@ -276,6 +279,14 @@ public class Request implements Serializable {
         this.division = division;
     }
 
+//    public VicePresidentUser getVicePresident() {
+//        return vicePresident;
+//    }
+//
+//    public void setVicePresident(VicePresidentUser vicePresident) {
+//        this.vicePresident = vicePresident;
+//    }
+    
     @XmlTransient
     public List<Comment> getComments() {
         return comments;

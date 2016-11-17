@@ -64,6 +64,7 @@ public class DivisionFacadeREST extends AbstractFacade<Division> {
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @PermitAll
     public List<Division> findAll() {
         return super.findAll();
     }

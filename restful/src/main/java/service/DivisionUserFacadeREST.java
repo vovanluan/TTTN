@@ -5,6 +5,7 @@
  */
 package service;
 
+import entity.Division;
 import entity.DivisionUser;
 import entity.OfficialUser;
 import java.util.List;
@@ -43,6 +44,8 @@ public class DivisionUserFacadeREST extends AbstractFacade<DivisionUser> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(DivisionUser entity) {
         super.create(entity);
+        Division division = em.find(Division.class, entity.getDivision().getId());
+        division.addDivisionUser(entity);
     }
     
     @POST
