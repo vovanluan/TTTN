@@ -5,6 +5,7 @@ app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user"
 app.constant("normalUserUrl", "http://localhost:8080/restful/webresources/entity.normaluser");
 app.constant("adminUserUrl", "http://localhost:8080/restful/webresources/entity.adminuser");
 app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/entity.officialuser");
+app.constant("divisionUserUrl", "http://localhost:8080/restful/webresources/entity.divisionuser");
 app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
@@ -437,7 +438,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, Districts, Services, Annoucements){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, userManager, Districts, Services, Annoucements){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -463,6 +464,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     annoucementManager.loadAllAnnoucements().then(function(annoucements){
         $rootScope.annoucements = annoucements;
     });
+
   	//$rootScope.comments = [];
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
@@ -511,13 +513,11 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     });
     Services.success(function (services) {
         $rootScope.services = services.services;
-        console.log(services.services);
     }).error(function (message) {
         console.log("Error in services: " + message);
     })
     Annoucements.success(function (annoucements) {
         $rootScope.annoucementTypes = annoucements.annoucements;
-        console.log($rootScope.annoucementTypes);
     }).error(function (message) {
         console.log("Error in annoucements: " + message);
     })

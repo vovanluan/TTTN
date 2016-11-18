@@ -40,6 +40,9 @@ public class Division {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.LAZY)
     private List<Request> receivedRequests = new ArrayList<>();    
     
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.LAZY)
+    private List<DivisionUser> users = new ArrayList<>();
+    
     public long getId() {
         return id;
     }
@@ -70,4 +73,19 @@ public class Division {
         req.setDivision(null);
         this.receivedRequests.remove(req);
     }      
+    
+    @XmlTransient
+    public List<DivisionUser> getDivisionUsers() {
+        return users;
+    }
+
+    public void addDivisionUser(DivisionUser req) {
+        this.users.add(req);
+        req.setDivision(this);
+    }
+    
+    public void removeDivisionUser(DivisionUser req) {
+        req.setDivision(null);
+        this.users.remove(req);
+    }       
 }

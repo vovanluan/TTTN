@@ -1,5 +1,5 @@
-.nav, .pagination, .carousel, .panel-title a { 
-    cursor: pointer; 
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
 }
 
 ul {
@@ -377,13 +377,13 @@ clear: both;
 }
 
 .inputdemoErrors .inputErrorsApp {
-    min-height: 48px; 
+    min-height: 48px;
 }
 
 .inputdemoErrors md-input-container > p {
     font-size: 0.8em;
     text-align: left;
-    width: 100%; 
+    width: 100%;
 }
 
 .modal-header {
@@ -398,7 +398,7 @@ clear: both;
 
 .hint {
     font-size: 13px;
-    color: grey; 
+    color: grey;
 }
 .md-select-menu-container {z-index: 9999;}
 
