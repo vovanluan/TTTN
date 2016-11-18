@@ -10,11 +10,11 @@
         <span class="icon-bar"></span>
 	    </div>
 	    <div class="list-group">
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}" ng-hide="isDivision()">
 	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
 	        </a>
 	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_CHUYEN'}">
-	        	<span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp; Đã chuyển đến cơ quan <span class="badge">{{(requests | filter: {statusId: 'DA_CHUYEN'}).length}}</span>
+	        	<span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp;{{isDivision() ? ' Chờ xử lý' : ' Đã chuyển đến cơ quan'}}<span class="badge">{{(requests | filter: {statusId: 'DA_CHUYEN'}).length}}</span>
 	        </a>
 	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XU_LY'}">
 	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {statusId: 'DA_XU_LY'}).length}}</span>
@@ -22,7 +22,7 @@
 	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_DUYET'}">
 	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {statusId: 'DA_DUYET'}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XOA'}">
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XOA'}" ng-hide="isDivision()">
 	            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp; Đã xóa <span class="badge">{{(requests | filter: {statusId: 'DA_XOA'}).length}}</span>
 	        </a>
 	    </div>        
@@ -45,7 +45,7 @@
 						<div class="issue-panel">
 							<h5 class="issue-title">
 								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
-								<button class="btn btn-danger float-right" ng-click="deleteIssue(request.serviceRequestId)">
+								<button class="btn btn-danger float-right" ng-if="request.statusId == 'DA_TIEP_NHAN'" ng-click="deleteIssue(request.serviceRequestId)">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								</button> 
 							</h5>

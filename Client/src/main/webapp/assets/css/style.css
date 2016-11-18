@@ -86,6 +86,7 @@ clear: both;
 
 #issue-list ul {
     padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 12px;
     padding-right:10px;
 }

@@ -1,6 +1,12 @@
-app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog) {
+app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog, AuthService, DIVISION_ACCESS, $filter) {
 	$scope.url = '';
 	$scope.controller = '';
+	console.log($rootScope.user);
+
+    $scope.isDivision = function () {
+    	return AuthService.isAuthorized(DIVISION_ACCESS);
+    }
+
 	requestManager.loadAllRequests().then(function(requests) {
 		$scope.requests = requests;
 		console.log(requests);
@@ -8,6 +14,16 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 			console.log(requests[i].statusId);
 		}
 	});
+
+	$scope.movedIssues = function() {
+		if($scope.isDivision()) {
+			console.log('vo division ' + $rootScope.user.division.id);
+			$scope.myFilter = {division: {id:  $rootScope.user.division.id}};
+			return;
+		} else {
+			myFilter={statusId: 'DA_XU_LY'};
+		}
+	}
 
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
