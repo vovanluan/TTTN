@@ -20,7 +20,7 @@
 	<!-- Add libs -->
 	<script src="assets/libs/jquery-1.12.1.js"></script>
   	<script src="assets/libs/bootstrap.min.js"></script>
-  	<script type="text/javascript" src="assets/libs/DateTimePicker.js"></script> 	
+  	<script type="text/javascript" src="assets/libs/DateTimePicker.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
   	<script type="text/javascript" src="assets/libs/ui-bootstrap-tpls-1.3.2.min.js"></script>
@@ -62,6 +62,7 @@
 			      	<li ng-if="isAdmin()"><a href="#/division-management">Quản lý cơ quan</a></li>
 	            	<li ng-if="isManager()"><a href="#/report-management">Quản lý phản ánh</a></li>
 	            	<li ng-if="isDivision()"><a href="#/report-management-division">Quản lý phản ánh</a></li>
+	            	<li><a href="#/annoucement">Thông báo</a></li>
 			    </ul>
 	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
 	 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
@@ -122,5 +123,7 @@
 	<script type="text/javascript" src="app/components/report-management-detail-1/controller.js"></script>
 	<script type="text/javascript" src="app/components/division-management/controller.js"></script>
 	<script type="text/javascript" src="app/components/post-division/controller.js"></script>
+	<script type="text/javascript" src="app/components/annoucement/controller.js"></script>
+	<script type="text/javascript" src="app/components/post-annoucement/controller.js"></script>
 </body>
 </html>

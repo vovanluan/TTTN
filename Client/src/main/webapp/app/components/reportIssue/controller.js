@@ -1,12 +1,25 @@
 app.controller('reportTabController',
-    function($rootScope, $scope, $http, $uibModal, Upload, requestManager, dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert) {
+    function($rootScope, $scope, $http, $uibModal, Upload, requestManager,
+        dateTimeFilter, Districts, Services, clientId, Modal, AuthService, USER_ACCESS, $location, SweetAlert){
+        //Initializa $scope variable
+    $scope.report = {
+        serviceRequestId:1,
+        serviceSubject:"",
+        serviceName:"",
+        happenDatetime:"",
+        requestedDatetime:"",
+        description:"",
+        address:"",
+        latitude: 0,
+        longitude: 0,
+        statusId:0,
+        user: null,
+        mediaUrl:"",
+    };
+
     $scope.active = 0;
-    this.services = null;
-    this.districts = null;
-    this.services = $rootScope.services;
-    this.districts = $rootScope.districts;
-    this.latitude = 10.78;
-    this.longitude = 106.65;
+    $scope.report.services = $rootScope.services;
+    $scope.report.districts = $rootScope.districts;
     $scope.showSpinner = false
     $scope.tabActivity=[true, false, false, false];
     // Handle show date time
@@ -17,7 +30,7 @@ app.controller('reportTabController',
     $scope.initMap = function(){
         var myLatLng = {lat: 10.78, lng: 106.65};
         $scope.map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
+            zoom: 11,
             center: myLatLng
         });
         if (navigator.geolocation) {
@@ -25,6 +38,8 @@ app.controller('reportTabController',
                 $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
                 $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
                 var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+                $scope.report.latitude = pos.coords.latitude;
+                $scope.report.longitude = pos.coords.longitude;
                 var marker = new google.maps.Marker({
                     position: latlng,
                     map: $scope.map,
@@ -37,6 +52,8 @@ app.controller('reportTabController',
                 google.maps.event.addListener(marker, "dragend", function (event) {
                     $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
                     $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
+                    $scope.report.latitude = event.latLng.lat();
+                    $scope.report.longitude = event.latLng.lng();
                     $scope.map.setCenter(event.latLng);
                 });
             }
@@ -100,20 +117,19 @@ app.controller('reportTabController',
         $scope.showSpinner = true;
         var request = new Object();
         request.serviceRequestId = 1;
-        request.serviceSubject = this.serviceSubject.name;
-        request.serviceCode = this.serviceCode;
-        request.serviceName = this.serviceName;
-        request.happenDatetime = dateTimeFilter(this.happenDateTime);
+        request.serviceSubject = $scope.report.service.subject;
+        request.serviceName = $scope.report.serviceName;
+        request.happenDatetime = dateTimeFilter($scope.report.happenDateTime);
         request.requestedDatetime = dateTimeFilter(new Date());
-        request.description = this.description;
-        request.address = this.street + ", Phường " + this.ward + ", Quận " + this.district;
-        request.latitude = this.latitude;
-        request.longitude = this.longitude;
+        request.description = $scope.report.description;
+        request.address = $scope.report.street + ", Phường " + $scope.report.ward + ", Quận " + $scope.report.district;
+        request.latitude = $scope.report.latitude;
+        request.longitude = $scope.report.longitude;
         request.statusId = 0;
         request.user = $rootScope.user;
-        if(this.picFile) {
+        if($scope.report.picFile) {
             console.log("Here");
-            Upload.base64DataUrl(this.picFile).then(
+            Upload.base64DataUrl($scope.report.picFile).then(
                 function (url){
                     var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
                     $http({

@@ -9,6 +9,7 @@ app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 app.constant("divisionUrl", "http://localhost:8080/restful/webresources/entity.division");
+app.constant("annoucementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
 
 app.constant('clientId', "254c1d5f74f2518");
 
@@ -45,6 +46,10 @@ app.factory('Districts', function ($http) {
 
 app.factory('Services', function ($http) {
     return $http.get('assets/data/services.json');
+});
+
+app.factory('Annoucements', function ($http) {
+    return $http.get('assets/data/annoucements.json');
 });
 
 app.factory('requestManager', function(requestUrl, $http, $q){
@@ -184,6 +189,38 @@ app.factory('divisionManager', function(divisionUrl, $http, $q){
         }
     };
     return divisionManager;
+});
+
+app.factory('annoucementManager', function(annoucementUrl, $http, $q){
+  var annoucementManager = {
+        loadAllAnnoucements: function() {
+            var deferred = $q.defer();
+            $http.get(annoucementUrl)
+                .success(function(annoucements) {
+                    deferred.resolve(annoucements);
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
+        postAnnoucement: function(annoucement){
+          var deferred = $q.defer();
+          $http.post(annoucementUrl, JSON.stringify(annoucement))
+              .success(function() {
+                    deferred.resolve();
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        }
+  };
+  return annoucementManager;
 });
 
 app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
@@ -397,6 +434,10 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
         templateUrl: 'app/components/division-management/view.html',
         controller: 'divisionManagementController'
     })
+    .when('/annoucement', {
+        templateUrl: 'app/components/annoucement/view.html',
+        controller: 'annoucementController'
+    })
     .otherwise({
         redirectTo: '/list'
     });
@@ -416,7 +457,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, Districts, Services){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, Districts, Services, Annoucements){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -426,6 +467,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
+<<<<<<< HEAD
   	
   	commentManager.loadAllComments().then(function(comments){
 		$rootScope.comments = comments;
@@ -437,10 +479,23 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 	});
 
 
+=======
+    	// Get all requests from server
+  	requestManager.loadAllRequests().then(function(requests){
+  		$rootScope.requests = requests;
+  	});
+
+  	commentManager.loadAllComments().then(function(comments){
+  		$rootScope.comments = comments;
+  	});
+>>>>>>> dc18b7007fba4468b4ce3820bc98caf904b4e07b
 
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
-        console.log(divisions);
+    });
+
+    annoucementManager.loadAllAnnoucements().then(function(annoucements){
+        $rootScope.annoucements = annoucements;
     });
   	// $rootScope.comments = [];
   	// Check if token exists, then get user information and user role
@@ -490,9 +545,17 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     });
     Services.success(function (services) {
         $rootScope.services = services.services;
+        console.log(services.services);
     }).error(function (message) {
         console.log("Error in services: " + message);
     })
+    Annoucements.success(function (annoucements) {
+        $rootScope.annoucementTypes = annoucements.annoucements;
+        console.log($rootScope.annoucementTypes);
+    }).error(function (message) {
+        console.log("Error in annoucements: " + message);
+    })
+
 });
 
 // Run after .run()
@@ -529,7 +592,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
 	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-	    zoom: 11,
+	    zoom: 10,
 	    center: myLatLng
 	});
 	$scope.markers = [];
@@ -575,7 +638,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 		marker.addListener('mouseout', function() {
 		   	infowindow.close($scope.map, marker);
 		});
-		$scope.markers.push(marker);
 	});
 /*    $scope.filteredRequests = [];
     $scope.currentPage = 1;
@@ -684,55 +746,3 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	 	}
 	}
 });
-
-
-/*angular.module('directives', []).directive('map', function() {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<div style="width:480px;height:380px;margin-bottom:10px;"></div>',
-        link: function($scope, element, attrs) {
-            var myLatLng = {lat: 10.78, lng: 106.65};
-            $scope.map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: myLatLng
-            });
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function success(pos) {
-                    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
-                    $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
-                    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: $scope.map,
-                        draggable: true,
-                        animation: google.maps.Animation.DROP,
-                        title: "Di chuyển để xác định đúng vị trí"
-                    });
-                    $scope.map.setCenter(latlng);
-                    $scope.map.setZoom(15);
-                    google.maps.event.addListener(marker, "dragend", function (event) {
-                        $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
-                        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
-                        $scope.map.setCenter(event.latLng);
-                    });
-                }
-                    , function (errMsg) {
-                    console.log(errMsg);
-                }, {
-                    enableHighAccuracy: false,
-                    timeout: 6 * 1000,
-                    maximumAge: 1000 * 60 * 10
-                });
-            } else {
-                alert("Do not support Geolocation");
-            }
-
-            $scope.$watch('active', function () {
-                window.setTimeout(function(){
-                google.maps.event.trigger(map, 'resize');
-                                                 },100);
-          });
-        }
-    }
-});*/
