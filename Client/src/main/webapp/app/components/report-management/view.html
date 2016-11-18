@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
 	    </div>
 	    <div class="list-group">
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}" ng-hide="isDivision()">
+	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
 	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
 	        </a>
 	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_CHUYEN'}">
@@ -33,13 +33,9 @@
 			<div class="content-title">
 				Danh sách các phản hồi
 			</div>
-			<div ng-hide="requests.length">
-				<label>
-					Chưa có phản hồi nào
-				</label>
-			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
+					<h4 ng-hide="(requests | filter: myFilter).length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">

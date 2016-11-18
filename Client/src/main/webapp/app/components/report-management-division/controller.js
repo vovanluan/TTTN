@@ -1,7 +1,6 @@
 app.controller('reportManagementDivisionController', function($rootScope, $scope, userManager, SweetAlert, $mdDialog) {
 	$scope.url = '';
 	$scope.controller = '';
-
 	$scope.myFilter = {division: {id:  $rootScope.user.division.id}, statusId: 'DA_CHUYEN'};
 
 	$scope.movedIssuesFilter = function() {

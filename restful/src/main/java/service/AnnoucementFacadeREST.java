@@ -7,7 +7,6 @@ package service;
 
 import entity.Annoucement;
 import java.util.List;
-import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,7 +26,6 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("entity.annoucement")
 @Stateless
-
 public class AnnoucementFacadeREST extends AbstractFacade<Annoucement> {
 
     @PersistenceContext(unitName = "open311")

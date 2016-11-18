@@ -27,18 +27,14 @@
 			<div class="content-title">
 				Danh sách các phản hồi
 			</div>
-			<div ng-hide="{{(requests | filter: myFilter).length}}">
-				<label>
-					Chưa có phản hồi nào
-				</label>
-			</div>
 			<div id="issue-list">
-				<ul id="issue-list-ul" >
+				<ul id="issue-list-ul">
+					<h4 ng-hide="(requests | filter: myFilter).length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">
 							<h5 class="issue-title">
-								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}} - {{request.statusId}}</a>
+								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
 							</h5>
 							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i> {{request.address}}</p>
 							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
