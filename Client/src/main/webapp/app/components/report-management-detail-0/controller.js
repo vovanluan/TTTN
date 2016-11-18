@@ -1,4 +1,5 @@
-app.controller('reportManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager, dateTimeFilter, commentManager) {
+app.controller('reportManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager, dateTimeFilter,
+    commentManager, SweetAlert) {
 
 	$scope.cancel = function() {
 		$mdDialog.cancel();
@@ -6,7 +7,7 @@ app.controller('reportManagementDetail0ModalController', function($rootScope, $s
 
 	$scope.moveIssue = function() {
         $scope.requestIndex.division = $scope.division;
-        $scope.requestIndex.statusId = 'DA_CHUYEN'; 
+        $scope.requestIndex.statusId = 'DA_CHUYEN';
         console.log($scope.requestIndex);
         requestManager.updateRequest($scope.requestIndex.serviceRequestId,$scope.requestIndex).then(
         	function success() {
@@ -31,7 +32,7 @@ app.controller('reportManagementDetail0ModalController', function($rootScope, $s
             function error(){
                 console.log("Error");
             }
-        );  		
+        );
 	};
 
 

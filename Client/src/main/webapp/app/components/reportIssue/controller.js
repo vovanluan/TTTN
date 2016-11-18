@@ -19,7 +19,6 @@ app.controller('reportTabController',
 
     $scope.active = 0;
     $scope.report.services = $rootScope.services;
-    console.log($rootScope.services);
     $scope.report.districts = $rootScope.districts;
     $scope.showSpinner = false
     $scope.tabActivity=[true, false, false, false];

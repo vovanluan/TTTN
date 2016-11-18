@@ -43,8 +43,7 @@ public class Annoucement implements Serializable {
     private String title;
     
     @NotNull
-    @Size(min = 1, max = 50000)
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
     
     @NotNull
