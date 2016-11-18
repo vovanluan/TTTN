@@ -69,7 +69,6 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("admin")
     public List<User> getAllUser() {
 
         return super.findAll();

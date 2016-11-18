@@ -8,7 +8,7 @@
         	</md-button>
         </div>
     </md-toolbar>
-	<md-content class="md-padding">
+	<md-content class="md-padding" my-enter="moveIssue()">
 		<div class="parent">
 			<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
 			<p class="issue-content">{{requestIndex.description}}</p>

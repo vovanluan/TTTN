@@ -6,7 +6,7 @@
 	<div id="signin" class="tab-pane active fade in">
 		<label class="error-label" ng-model="error" ng-show="error">{{error}}</label>
 
-		<form name="signinForm">
+		<form name="signinForm" my-enter="logIn()">
 			<md-input-container class="md-block" flex-gt-sm>
 		        <label>Email</label>
 		        <input required="" name="email" ng-model="email">

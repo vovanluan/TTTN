@@ -35,7 +35,9 @@ app.constant('GUEST_ACCESS', ['admin', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
 
-app.constant('MANAGEMENT_ACCESS', ['official', 'division', 'vice_president']);
+app.constant('MANAGEMENT_ACCESS', ['official', 'vice_president']);
+
+app.constant('DIVISION_ACCESS', ['division']);
 
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
@@ -288,6 +290,20 @@ app.filter('dateTime', function(){
 	};
 });
 
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
@@ -373,6 +389,10 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/report-management/view.html',
 		controller: 'reportManagementController'
 	})
+	.when('/report-management-division', {
+		templateUrl: 'app/components/report-management-division/view.html',
+		controller: 'reportManagementDivisionController'
+	})
     .when('/division-management', {
         templateUrl: 'app/components/division-management/view.html',
         controller: 'divisionManagementController'
@@ -406,20 +426,23 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
-  	// Get all requests from server
+  	
+  	commentManager.loadAllComments().then(function(comments){
+		$rootScope.comments = comments;
+		console.log($rootScope.comments);
+	});
+
 	requestManager.loadAllRequests().then(function(requests){
 		$rootScope.requests = requests;
 	});
 
-	commentManager.loadAllComments().then(function(comments){
-		$rootScope.comments = comments;
-	});
+
 
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
         console.log(divisions);
     });
-  	//$rootScope.comments = [];
+  	// $rootScope.comments = [];
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
@@ -570,14 +593,12 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
 	};
 
-    // Need to use ADMIN_ACCESS
-    // Waiting implement from server
     $scope.isAdmin = function () {
         return AuthService.isAuthorized(ADMIN_ACCESS);
     }
@@ -585,6 +606,11 @@ app.controller('mainTabController',
     $scope.isManager = function () {
     	return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
+
+    $scope.isDivision = function () {
+    	return AuthService.isAuthorized(DIVISION_ACCESS);
+    }
+    
 	// Watch userRole change
 	$scope.$watch(function (){
 		return $localStorage;

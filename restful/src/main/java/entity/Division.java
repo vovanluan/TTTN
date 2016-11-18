@@ -67,7 +67,6 @@ public class Division {
     }
     
     public void removeReceivedRequest(Request req) {
-        req.setDivision(null);
         this.receivedRequests.remove(req);
     }      
 }
