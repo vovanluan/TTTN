@@ -54,7 +54,7 @@
 								<a href="" class="user">{{request.user.name}}</a>
 							</span>
 							<ul class="issue-comments">
-								<li ng-repeat="comment in comments" ng-show="comment.request.serviceRequestId == request.serviceRequestId">
+								<li ng-repeat="comment in comments track by $index" ng-show="comment.request.serviceRequestId == request.serviceRequestId">
 									<h5 class="user-name">
 										<a href="" class="user-link">{{comment.user.name}}</a>
 									</h5>

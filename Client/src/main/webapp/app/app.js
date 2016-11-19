@@ -477,6 +477,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
   	requestManager.loadAllRequests().then(function(requests){
   		$rootScope.requests = requests;
+      console.log(requests);
   	});
 
     divisionManager.loadAllDivisions().then(function(divisions){
