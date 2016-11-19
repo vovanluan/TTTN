@@ -84,18 +84,6 @@ app.factory('requestManager', function(requestUrl, $http, $q){
 
                 });
             return deferred.promise;
-        },
-        updateRequestStatus: function(id, req) {
-            var deferred = $q.defer();
-            $http.put(requestUrl + "/edit-status/" + id, JSON.stringify(req))
-                .success(function() {
-                })
-                .error(function(msg, code) {
-                    deferred.reject(msg);
-                    $log.error(msg, code);
-
-                });
-            return deferred.promise;
         }
 	};
 	return requestManager;
@@ -462,6 +450,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		})
   		.success(function (data){
   			$rootScope.user = data;
+
   		})
   		.error(function(error){
   			console.log(error);

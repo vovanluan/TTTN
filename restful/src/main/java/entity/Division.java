@@ -38,10 +38,7 @@ public class Division {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.LAZY)
-    private List<Request> receivedRequests = new ArrayList<>();  
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "division", fetch = FetchType.LAZY)
-    private List<DivisionUser> divisionUsers = new ArrayList<>();
+    private List<Request> receivedRequests = new ArrayList<>();    
     
     public long getId() {
         return id;
@@ -70,24 +67,7 @@ public class Division {
     }
     
     public void removeReceivedRequest(Request req) {
+        req.setDivision(null);
         this.receivedRequests.remove(req);
-    }     
-
-    public List<DivisionUser> getDivisionUsers() {
-        return divisionUsers;
-    }
-
-    public void setDivisionUsers(List<DivisionUser> divisionUsers) {
-        this.divisionUsers = divisionUsers;
-    }
-
-    public void addDivisionUser(DivisionUser user) {
-        this.divisionUsers.add(user);
-        user.setDivision(this);
-    }
-    
-    public void removeReceivedRequest(DivisionUser user) {
-        this.divisionUsers.remove(user);
-    }  
-    
+    }      
 }

@@ -1,9 +1,7 @@
 package service;
 
-import entity.Division;
 import entity.Request;
 import entity.User;
-import entity.VicePresidentUser;
 
 import java.util.List;
 import javax.ejb.Stateless;
@@ -40,13 +38,9 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Request entity) {
-        System.out.println("=============Vo create====================");
-        System.out.println("------User = " + entity.getAddress() + entity.getUser().getId());
-        User user = em.find(User.class, entity.getUser().getId());
-        System.out.println("------User = " + user.getUserType());
         entity.setStatusId(Status.DA_TIEP_NHAN);
         super.create(entity);
-        
+        User user = em.find(User.class, entity.getUser().getId());
         user.addRequest(entity);
     }
 
@@ -55,30 +49,6 @@ public class RequestFacadeREST extends AbstractFacade<Request> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void edit(@PathParam("id") Integer id, Request entity) {
         super.edit(entity);
-    }
-    
-    @PUT
-    @Path("/edit-status/{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void editStatusId(@PathParam("id") Integer id, Request entity) {
-        super.edit(entity);
-        int statusId = entity.getStatusId().getValue();
-        if(statusId == 1) {
-            Division division = em.find(Division.class, entity.getDivision().getId());
-            division.addReceivedRequest(entity);
-            return;
-        }
-        if(statusId == 2) {
-            Division division = em.find(Division.class, entity.getDivision().getId());
-            division.removeReceivedRequest(entity);
-//            VicePresidentUser vicePresident = em.find(VicePresidentUser.class, entity.getVicePresident().getId());
-//            vicePresident.addReceivedRequest(entity);
-            return;
-        }
-//        if(statusId == 3) {
-//            VicePresidentUser vicePresident = em.find(VicePresidentUser.class, entity.getVicePresident().getId());
-//            vicePresident.removeReceivedRequest(entity);
-//        }
     }
 
     @DELETE
