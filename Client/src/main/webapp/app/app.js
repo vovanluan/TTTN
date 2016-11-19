@@ -1,4 +1,5 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
+  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -468,18 +469,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
-<<<<<<< HEAD
-
-  	commentManager.loadAllComments().then(function(comments){
-		$rootScope.comments = comments;
-		console.log($rootScope.comments);
-	});
-
-	requestManager.loadAllRequests().then(function(requests){
-		$rootScope.requests = requests;
-	});
-
-=======
 
   	commentManager.loadAllComments().then(function(comments){
   		$rootScope.comments = comments;
@@ -490,9 +479,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		$rootScope.requests = requests;
   	});
 
-
-
->>>>>>> origin/master
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
     });
@@ -588,7 +574,7 @@ app.controller('mainController',
 	  	}
 });
 
-app.controller('viewController', function($rootScope, $scope, requestManager, commentManager){
+/*app.controller('viewController', function($rootScope, $scope, requestManager, commentManager){
 	// Init map and request
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
@@ -651,9 +637,173 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
         , end = begin + $scope.numPerPage;
 
         $scope.filteredRequests = $scope.requests.slice(begin, end);
-    });*/
+    });
 
 });
+*/
+
+
+
+app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager){
+
+    $scope.comments = [];
+    $scope.comments = $rootScope.comments;
+
+    $scope.checkId = function(commentRequestId,serviceRequestId){
+      return (commentRequestId==serviceRequestId);
+    }
+
+    $scope.createMap = function (){
+        var myLatLng = {lat: 10.78, lng: 106.65};
+        var iconBase = "assets/resources/markerIcon/";
+        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+            zoom: 10,
+            center: myLatLng
+        });
+        $scope.markers = [];
+        $.each($rootScope.requests, function(index, request) {
+          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+          var icon = "";
+          switch(request.statusId) {
+            case 0:
+            // blue circle
+              icon = 'http://i.imgur.com/UvpFBxi.png';
+              break;
+            case 1:
+            // green circle
+              icon = 'http://i.imgur.com/nqFCc3z.png';
+              break;
+            case 2:
+            // red circle
+              icon = 'http://i.imgur.com/xPYbdLB.png';
+              break;
+          }
+          var marker = new google.maps.Marker({
+                position: latlng,
+                map: $scope.map,
+                draggable: false,
+                animation: google.maps.Animation.DROP,
+                //icon : iconBase + icon
+                icon: icon
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: request.serviceName
+            });
+          marker.addListener('mouseover', function() {
+              infowindow.open($scope.map, marker);
+          });
+          marker.addListener('mouseout', function() {
+              infowindow.close($scope.map, marker);
+          });
+        });
+    }
+
+    //Pagination
+    $scope.sortingOrder = 'name';
+    $scope.reverse = false;
+    $scope.filteredItems = [];
+    $scope.groupedItems = [];
+    $scope.itemsPerPage = 2;
+    $scope.pagedItems = [];
+    $scope.currentPage = 0;
+
+    var searchMatch = function (haystack, needle) {
+        if (!needle) {
+            return true;
+        }
+        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+    };
+
+    // init the filtered items
+    $scope.search = function () {
+        $scope.filteredItems = $filter('filter')($rootScope.requests, function (item) {
+            for(var attr in item) {
+                if (searchMatch(item[attr], $scope.query))
+                    return true;
+            }
+            return false;
+        });
+        // take care of the sorting order
+        if ($scope.sortingOrder !== '') {
+            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
+        }
+        $scope.currentPage = 0;
+        // now group by pages
+        $scope.groupToPages();
+    };
+
+    // calculate page in place
+    $scope.groupToPages = function () {
+        $scope.pagedItems = [];
+
+        for (var i = 0; i < $scope.filteredItems.length; i++) {
+            if (i % $scope.itemsPerPage === 0) {
+                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [ $scope.filteredItems[i] ];
+            } else {
+                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
+            }
+        }
+    };
+
+    $scope.range = function (start, end) {
+        var ret = [];
+        if (!end) {
+            end = start;
+            start = 0;
+        }
+        for (var i = start; i < end; i++) {
+            ret.push(i);
+        }
+        return ret;
+    };
+
+    $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+    };
+
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+            $scope.currentPage++;
+        }
+    };
+
+    $scope.setPage = function () {
+        $scope.currentPage = this.n;
+    };
+
+    // change sorting order
+    $scope.sort_by = function(newSortingOrder) {
+        if ($scope.sortingOrder == newSortingOrder)
+            $scope.reverse = !$scope.reverse;
+
+        $scope.sortingOrder = newSortingOrder;
+
+        // icon setup
+        $('th i').each(function(){
+            // icon reset
+            $(this).removeClass().addClass('icon-sort');
+        });
+        if ($scope.reverse)
+            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-up');
+        else
+            $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
+    };
+
+    // functions have been describe process the data for display
+    $scope.search();
+    // init map
+    $scope.createMap();
+
+    $scope.$watch('requests', function (newVal, oldVal) {
+        $scope.search();
+        $scope.createMap();
+        console.log("requests updated");
+    });
+});
+
+
 
 app.controller('mainTabController',
 	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){
