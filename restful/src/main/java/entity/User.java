@@ -38,7 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 public class User implements Serializable {
-
+    @Transient
+    public String getDiscriminatorValue(){
+        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
+        return val == null ? null : val.value();
+    }
+    
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -63,9 +68,18 @@ public class User implements Serializable {
     @Size(min = 1, max = 1000)
     @Column(name = "token")
     private String token;
+    
+    @Size(min = 1, max = 1000)
+    @Column(name = "type")
+    private String type = getDiscriminatorValue();
 
-    @Column(name = "user_type", insertable = false, updatable = false)
-    private String userType;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getToken() {
         return token;
@@ -129,18 +143,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getUserType() {
-        return userType;
-    }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    @Transient
-    public String getDiscriminatorValue(){
-        DiscriminatorValue val = this.getClass().getAnnotation( DiscriminatorValue.class );
-        return val == null ? null : val.value();
-    }
 
 }

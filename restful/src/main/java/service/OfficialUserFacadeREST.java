@@ -7,7 +7,11 @@ package service;
 
 import entity.NormalUser;
 import entity.OfficialUser;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +26,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import support.General;
 
 /**
  *
@@ -39,10 +45,26 @@ public class OfficialUserFacadeREST extends AbstractFacade<OfficialUser> {
     }
 
     @POST
-    @Override
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(OfficialUser entity) {
-        super.create(entity);
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response signUp(OfficialUser user) throws Exception {
+        // Check email already exist
+        Query queryByEmail = em.createNamedQuery("OfficialUser.findByEmail");
+        queryByEmail.setParameter("email", user.getEmail());
+        List<OfficialUser> emailResult = queryByEmail.getResultList();
+        if (!emailResult.isEmpty()) {
+            return Response.status(Response.Status.CONFLICT).type("text/plain").entity("email").build();
+        }
+
+        // Hash password
+        try {
+            user.setPassWord(General.hashPassword(user.getPassWord()));
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(NormalUserFacadeREST.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.create(user);      
+        em.flush();
+        return Response.ok(user).build();
     }
     
     @POST

@@ -70,7 +70,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUser() {
-
+        System.out.println("List User: " + super.findAll());
         return super.findAll();
     }
 

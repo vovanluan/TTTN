@@ -32,11 +32,11 @@ public class NormalUser extends User {
     private String passWord;
     
     @Size(min = 1, max = 20)
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
     
     @Size(min = 1, max = 40)
-    @Column(name = "identify_card", nullable = false)
+    @Column(name = "identify_card")
     private String identifyCard;
 
     public String getPassWord() {
