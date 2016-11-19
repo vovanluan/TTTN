@@ -468,18 +468,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
-<<<<<<< HEAD
-
-  	commentManager.loadAllComments().then(function(comments){
-		$rootScope.comments = comments;
-		console.log($rootScope.comments);
-	});
-
-	requestManager.loadAllRequests().then(function(requests){
-		$rootScope.requests = requests;
-	});
-
-=======
 
   	commentManager.loadAllComments().then(function(comments){
   		$rootScope.comments = comments;
@@ -488,11 +476,9 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
   	requestManager.loadAllRequests().then(function(requests){
   		$rootScope.requests = requests;
+      console.log(requests);
   	});
 
-
-
->>>>>>> origin/master
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
     });
