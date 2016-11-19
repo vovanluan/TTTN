@@ -5,14 +5,11 @@
  */
 package service;
 
-import entity.User;
+import entity.Annoucement;
 import java.util.List;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -27,57 +24,55 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Admin
  */
-
-@Path("entity.user")
-@PermitAll
-@Transactional
-public class UserFacadeREST extends AbstractFacade<User> {
+@Path("entity.annoucement")
+@Stateless
+public class AnnoucementFacadeREST extends AbstractFacade<Annoucement> {
 
     @PersistenceContext(unitName = "open311")
     private EntityManager em;
 
-    public UserFacadeREST() {
-        super(User.class);
+    public AnnoucementFacadeREST() {
+        super(Annoucement.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(User entity) {
+    public void create(Annoucement entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, User entity) {
+    public void edit(@PathParam("id") Long id, Annoucement entity) {
         super.edit(entity);
     }
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
+    public void remove(@PathParam("id") Long id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public User find(@PathParam("id") Integer id) {
+    public Annoucement find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getAllUser() {
-        System.out.println("List User: " + super.findAll());
+    @Override
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Annoucement> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Annoucement> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(service.AdminUserFacadeREST.class);
+        resources.add(service.AnnoucementFacadeREST.class);
         resources.add(service.AuthenticationEndpoint.class);
         resources.add(service.AuthenticationFilter.class);
         resources.add(service.CommentFacadeREST.class);

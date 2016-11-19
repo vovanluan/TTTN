@@ -5,10 +5,12 @@ app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user"
 app.constant("normalUserUrl", "http://localhost:8080/restful/webresources/entity.normaluser");
 app.constant("adminUserUrl", "http://localhost:8080/restful/webresources/entity.adminuser");
 app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/entity.officialuser");
+app.constant("divisionUserUrl", "http://localhost:8080/restful/webresources/entity.divisionuser");
 app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 app.constant("divisionUrl", "http://localhost:8080/restful/webresources/entity.division");
+app.constant("annoucementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
 
 app.constant('clientId', "254c1d5f74f2518");
 
@@ -35,7 +37,9 @@ app.constant('GUEST_ACCESS', ['admin', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);
 
-app.constant('MANAGEMENT_ACCESS', ['official', 'division', 'vice_president']);
+app.constant('MANAGEMENT_ACCESS', ['official', 'vice_president']);
+
+app.constant('DIVISION_ACCESS', ['division']);
 
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
@@ -43,6 +47,10 @@ app.factory('Districts', function ($http) {
 
 app.factory('Services', function ($http) {
     return $http.get('assets/data/services.json');
+});
+
+app.factory('Annoucements', function ($http) {
+    return $http.get('assets/data/annoucements.json');
 });
 
 app.factory('requestManager', function(requestUrl, $http, $q){
@@ -184,6 +192,38 @@ app.factory('divisionManager', function(divisionUrl, $http, $q){
     return divisionManager;
 });
 
+app.factory('annoucementManager', function(annoucementUrl, $http, $q){
+  var annoucementManager = {
+        loadAllAnnoucements: function() {
+            var deferred = $q.defer();
+            $http.get(annoucementUrl)
+                .success(function(annoucements) {
+                    deferred.resolve(annoucements);
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        },
+        postAnnoucement: function(annoucement){
+          var deferred = $q.defer();
+          $http.post(annoucementUrl, JSON.stringify(annoucement))
+              .success(function() {
+                    deferred.resolve();
+                })
+                .error(function(msg, code) {
+                    deferred.reject(msg);
+                    $log.error(msg, code);
+
+                });
+            return deferred.promise;
+        }
+  };
+  return annoucementManager;
+});
+
 app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
 	return {
 		logInModal: function(){
@@ -288,6 +328,20 @@ app.filter('dateTime', function(){
 	};
 });
 
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
@@ -373,9 +427,17 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 		templateUrl: 'app/components/report-management/view.html',
 		controller: 'reportManagementController'
 	})
+	.when('/report-management-division', {
+		templateUrl: 'app/components/report-management-division/view.html',
+		controller: 'reportManagementDivisionController'
+	})
     .when('/division-management', {
         templateUrl: 'app/components/division-management/view.html',
         controller: 'divisionManagementController'
+    })
+    .when('/annoucement', {
+        templateUrl: 'app/components/annoucement/view.html',
+        controller: 'annoucementController'
     })
     .otherwise({
         redirectTo: '/list'
@@ -396,7 +458,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, Districts, Services){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, userManager, Districts, Services, Annoucements){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -406,20 +468,39 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   	});
 
   	$rootScope.user = {};
-  	// Get all requests from server
+<<<<<<< HEAD
+
+  	commentManager.loadAllComments().then(function(comments){
+		$rootScope.comments = comments;
+		console.log($rootScope.comments);
+	});
+
 	requestManager.loadAllRequests().then(function(requests){
 		$rootScope.requests = requests;
 	});
 
-	commentManager.loadAllComments().then(function(comments){
-		$rootScope.comments = comments;
-	});
+=======
 
+  	commentManager.loadAllComments().then(function(comments){
+  		$rootScope.comments = comments;
+  		console.log($rootScope.comments);
+  	});
+
+  	requestManager.loadAllRequests().then(function(requests){
+  		$rootScope.requests = requests;
+  	});
+
+
+
+>>>>>>> origin/master
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
-        console.log(divisions);
     });
-  	//$rootScope.comments = [];
+
+    annoucementManager.loadAllAnnoucements().then(function(annoucements){
+        $rootScope.annoucements = annoucements;
+    });
+
   	// Check if token exists, then get user information and user role
   	if (AuthService.isAuthenticated()) {
   		var tokenPayload = jwtHelper.decodeToken($localStorage.token);
@@ -470,6 +551,12 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     }).error(function (message) {
         console.log("Error in services: " + message);
     })
+    Annoucements.success(function (annoucements) {
+        $rootScope.annoucementTypes = annoucements.annoucements;
+    }).error(function (message) {
+        console.log("Error in annoucements: " + message);
+    })
+
 });
 
 // Run after .run()
@@ -506,7 +593,7 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
     var myLatLng = {lat: 10.78, lng: 106.65};
     var iconBase = "assets/resources/markerIcon/";
 	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-	    zoom: 11,
+	    zoom: 10,
 	    center: myLatLng
 	});
 	$scope.markers = [];
@@ -552,7 +639,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 		marker.addListener('mouseout', function() {
 		   	infowindow.close($scope.map, marker);
 		});
-		$scope.markers.push(marker);
 	});
 /*    $scope.filteredRequests = [];
     $scope.currentPage = 1;
@@ -570,14 +656,12 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 });
 
 app.controller('mainTabController',
-	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS){
+	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){
 
 	$scope.isAuthorizedUser = function () {
 	 	return AuthService.isAuthorized(USER_ACCESS);
 	};
 
-    // Need to use ADMIN_ACCESS
-    // Waiting implement from server
     $scope.isAdmin = function () {
         return AuthService.isAuthorized(ADMIN_ACCESS);
     }
@@ -585,6 +669,11 @@ app.controller('mainTabController',
     $scope.isManager = function () {
     	return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
+
+    $scope.isDivision = function () {
+    	return AuthService.isAuthorized(DIVISION_ACCESS);
+    }
+
 	// Watch userRole change
 	$scope.$watch(function (){
 		return $localStorage;
@@ -658,55 +747,3 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	 	}
 	}
 });
-
-
-/*angular.module('directives', []).directive('map', function() {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<div style="width:480px;height:380px;margin-bottom:10px;"></div>',
-        link: function($scope, element, attrs) {
-            var myLatLng = {lat: 10.78, lng: 106.65};
-            $scope.map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: myLatLng
-            });
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function success(pos) {
-                    $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
-                    $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
-                    var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        map: $scope.map,
-                        draggable: true,
-                        animation: google.maps.Animation.DROP,
-                        title: "Di chuyển để xác định đúng vị trí"
-                    });
-                    $scope.map.setCenter(latlng);
-                    $scope.map.setZoom(15);
-                    google.maps.event.addListener(marker, "dragend", function (event) {
-                        $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
-                        $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
-                        $scope.map.setCenter(event.latLng);
-                    });
-                }
-                    , function (errMsg) {
-                    console.log(errMsg);
-                }, {
-                    enableHighAccuracy: false,
-                    timeout: 6 * 1000,
-                    maximumAge: 1000 * 60 * 10
-                });
-            } else {
-                alert("Do not support Geolocation");
-            }
-
-            $scope.$watch('active', function () {
-                window.setTimeout(function(){
-                google.maps.event.trigger(map, 'resize');
-                                                 },100);
-          });
-        }
-    }
-});*/

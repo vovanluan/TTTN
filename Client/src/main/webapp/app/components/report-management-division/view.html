@@ -10,20 +10,14 @@
         <span class="icon-bar"></span>
 	    </div>
 	    <div class="list-group">
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
-	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
+	        <a href="" class="list-group-item" ng-click="myFilter = {division: {id:  user.division.id}, statusId: 'DA_CHUYEN'}">
+	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Chờ xử lý <span class="badge">{{(requests | filter: {division: {id:  user.division.id}, statusId: 'DA_CHUYEN'}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_CHUYEN'}">
-	        	<span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp;{{isDivision() ? ' Chờ xử lý' : ' Đã chuyển đến cơ quan'}}<span class="badge">{{(requests | filter: {statusId: 'DA_CHUYEN'}).length}}</span>
+	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  $rootScope.user.division.id}, statusId: 'DA_XU_LY'}">
+	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {division: {id:  $rootScope.user.division.id}, statusId: 'DA_XU_LY'}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XU_LY'}">
-	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {statusId: 'DA_XU_LY'}).length}}</span>
-	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_DUYET'}">
-	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {statusId: 'DA_DUYET'}).length}}</span>
-	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XOA'}" ng-hide="isDivision()">
-	            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp; Đã xóa <span class="badge">{{(requests | filter: {statusId: 'DA_XOA'}).length}}</span>
+	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  $rootScope.user.division.id}, statusId: 'DA_DUYET'}">
+	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {division: {id:  $rootScope.user.division.id}, statusId: 'DA_DUYET'}).length}}</span>
 	        </a>
 	    </div>        
 	</div>
@@ -34,16 +28,13 @@
 				Danh sách các phản hồi
 			</div>
 			<div id="issue-list">
-				<ul id="issue-list-ul" >
+				<ul id="issue-list-ul">
 					<h4 ng-hide="(requests | filter: myFilter).length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">
 							<h5 class="issue-title">
 								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
-								<button class="btn btn-danger float-right" ng-if="request.statusId == 'DA_TIEP_NHAN'" ng-click="deleteIssue(request.serviceRequestId)">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								</button> 
 							</h5>
 							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i> {{request.address}}</p>
 							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>

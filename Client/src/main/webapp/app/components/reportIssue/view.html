@@ -12,42 +12,42 @@
                         <tr>
                             <td class="col-md-4">Chủ đề:</td>
                             <td>
-                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.serviceSubject"
-                                ng-options="service as service.name for service in reportTab.services">
+                                <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="report.service"
+                                ng-options="service as service.subject for service in report.services">
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Chi tiết:</td>
                             <td>
-                                <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
-                                ng-options="specific for specific in reportTab.serviceSubject.specificlist">
+                                <select class="form-control" style="display:inline;width:100%" ng-model="report.serviceName"
+                                ng-options="specific for specific in report.service.specificlist">
                                 </select>
 
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Thời gian:</td>
-                            <td><input type="text" data-field="datetime" ng-model="reportTab.happenDateTime" class="form-control">
+                            <td><input type="text" data-field="datetime" ng-model="report.happenDateTime" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Hình ảnh:</td>
                             <td>
-                                <button class="btn btn-primary" ngf-select ng-model="reportTab.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
+                                <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
                             </td>
                         </tr>
                         <tr>
                             <td class ="col-md-4"></td>
                             <td>
-                                <button class="btn btn-primary" ng-click="reportTab.picFile = null" ng-show="reportTab.picFile">Xoá ảnh</button>
-                                <img ng-show="reportTab.picFile" ngf-thumbnail="reportTab.picFile" class="thumb" />
+                                <button class="btn btn-primary" ng-click="report.picFile = null" ng-show="report.picFile">Xoá ảnh</button>
+                                <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="thumb" />
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">Mô tả:</td>
                             <td>
-                                <textarea class="form-control" ng-model="reportTab.description" required cols="40" rows="3" ng-change="change()"></textarea>
+                                <textarea class="form-control" ng-model="report.description" required cols="40" rows="3" ng-change="change()"></textarea>
                             </td>
                         </tr>
                     </table>
@@ -71,7 +71,7 @@
                                 <td class="col-md-4">Quận/Huyện:</td>
                                 <td>
                                     <select class="form-control" style="width:100%"
-                                    ng-model="reportTab.district" ng-options="name as name for (name, value) in reportTab.districts">
+                                    ng-model="report.district" ng-options="name as name for (name, value) in report.districts">
                                     </select>
                                 </td>
                             </tr>
@@ -79,7 +79,7 @@
                                 <td class="col-md-4">Phường/Thị trấn/Xã:</td>
                                 <td>
                                     <select class="form-control" style="display:inline;width:100%"
-                                    ng-model="reportTab.ward" ng-options="ward for ward in reportTab.districts[reportTab.district]">
+                                    ng-model="report.ward" ng-options="ward for ward in report.districts[report.district]">
                                     </select>
                                 </td>
                             </tr>
@@ -87,7 +87,7 @@
                                 <td class="col-md-4">Địa chỉ:</td>
                                 <td>
                                     <input class="form-control" type="text" style="width:300px"
-                                    ng-model="reportTab.street">
+                                    ng-model="report.street">
                                 </td>
                             </tr>
                         </table>
@@ -96,12 +96,12 @@
                             <tr>
                                 <td class="col-md-2"> Kinh độ </td>
                                 <td class="col-md-4">
-                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="reportTab.longitude">
+                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="report.longitude">
                                 </td>
                                 <td class="col-md-2"> Vĩ độ </td>
                                 <td class="col-md-4">
                                     <input class="form-control" readonly="readonly" id="latitude"
-                                    ng-model="reportTab.latitude">
+                                    ng-model="report.latitude">
                                 </td>
                             </tr>
                         </table>
@@ -161,7 +161,7 @@
                                 <tr>
                                     <td style="direction:rtl">
                                         <a class="btn btn-primary btnNext" ng-click="checkAuthorization()">Đi tới</a>
-                                        <a class="btn btn-primary btnPrev" ng-click="reportTab.selectTab(1)">Trở về</a>
+                                        <a class="btn btn-primary btnPrev" ng-click="report.selectTab(1)">Trở về</a>
                                         <button class="btn btn-danger">Hủy bỏ</button>
                                     </td>
                                 </tr>
@@ -179,42 +179,42 @@
                             <tr>
                                 <td class="col-md-4">Chủ đề:</td>
                                 <td>
-                                    <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="reportTab.service"
-                                    ng-options="service as service.name for service in reportTab.services">
+                                    <select class="form-control col-md-8" name="chude" id="subject"  style="width:100%" ng-model="report.service"
+                                    ng-options="service as service.subject for service in report.services">
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Chi tiết:</td>
                                 <td>
-                                    <select class="form-control" style="display:inline;width:100%" ng-model="reportTab.serviceName"
-                                    ng-options="specific for specific in reportTab.service.specificlist">
+                                    <select class="form-control" style="display:inline;width:100%" ng-model="report.serviceName"
+                                    ng-options="specific for specific in report.service.specificlist">
                                     </select>
 
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Thời gian:</td>
-                                <td><input type="text" data-field="datetime" ng-model="reportTab.happenDateTime" class="form-control">
+                                <td><input type="text" data-field="datetime" ng-model="report.happenDateTime" class="form-control">
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Hình ảnh:</td>
                                 <td>
-                                    <button class="btn btn-primary" ngf-select ng-model="reportTab.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
+                                    <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB" >Chọn ảnh</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td class ="col-md-4"></td>
                                 <td>
-                                    <button class="btn btn-primary" ng-click="reportTab.picFile = null" ng-show="reportTab.picFile">Xoá ảnh</button>
-                                    <img ng-show="reportTab.picFile" ngf-thumbnail="reportTab.picFile" class="thumb" />
+                                    <button class="btn btn-primary" ng-click="report.picFile = null" ng-show="report.picFile">Xoá ảnh</button>
+                                    <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="thumb" />
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col-md-4">Mô tả:</td>
                                 <td>
-                                    <textarea class="form-control" ng-model="reportTab.description" required cols="40" rows="3" ng-change="change()"></textarea>
+                                    <textarea class="form-control" ng-model="report.description" required cols="40" rows="3" ng-change="change()"></textarea>
                                 </td>
                             </tr>
                         </table>
@@ -225,7 +225,7 @@
                                 <td class="col-md-4">Quận/Huyện:</td>
                                 <td>
                                     <select class="form-control" style="width:100%"
-                                    ng-model="reportTab.district" ng-options="name as name for (name, value) in reportTab.districts">
+                                    ng-model="report.district" ng-options="name as name for (name, value) in report.districts">
                                     </select>
                                 </td>
                             </tr>
@@ -233,7 +233,7 @@
                                 <td class="col-md-4">Phường/Thị trấn/Xã:</td>
                                 <td>
                                     <select class="form-control" style="display:inline;width:100%"
-                                    ng-model="reportTab.ward" ng-options="ward for ward in reportTab.districts[reportTab.district]">
+                                    ng-model="report.ward" ng-options="ward for ward in report.districts[report.district]">
                                     </select>
                                 </td>
                             </tr>
@@ -241,7 +241,7 @@
                                 <td class="col-md-4">Địa chỉ:</td>
                                 <td>
                                     <input class="form-control" type="text" style="width:300px"
-                                    ng-model="reportTab.street">
+                                    ng-model="report.street">
                                 </td>
                             </tr>
                         </table>

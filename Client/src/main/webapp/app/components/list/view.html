@@ -17,13 +17,14 @@
 				</div>
 				DANH SÁCH CÁC PHẢN HỒI
 			</div>
-			<div ng-hide="requests.length">
+			<!-- <div ng-hide="requests.length">
 				<label>
 					Chưa có phản hồi nào
 				</label>
-			</div>
+			</div> -->
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
+					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">

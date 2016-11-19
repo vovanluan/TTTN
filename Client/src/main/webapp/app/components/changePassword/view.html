@@ -2,7 +2,7 @@
 	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
 	<h4 style="margin:0 0 0 0">Đổi mật khẩu</h4>
 </div>
-<div class="modal-body">
+<div class="modal-body" my-enter="changePassword()">
 	<label id="errorLabel" style="color:Red" ng-model="error">{{error}}</label>
 	<span class="text-error" style="color:Red" ng-show="$error">Confirm password does not match!</span>
 	<input type="password" id="oldPassword" class="form-control" placeholder="Mật khẩu cũ" required ng-model="oldPassword">

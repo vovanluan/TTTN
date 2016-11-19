@@ -1,0 +1,51 @@
+<md-dialog flex="60">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h4>Tạo nhân viên</h4>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+        <md-input-container class="md-block" flex>
+            <label>Chức vụ</label>
+            <md-select ng-model="officer">
+                <md-option ng-repeat="officer in officers" ng-value="officer">
+                    {{officer.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" flex ng-hide="officer.userType != 'division'">
+            <label>Loại cơ quan</label>
+            <md-select ng-model="division">
+                <md-option ng-repeat="division in divisions" ng-value="{{division}}">
+                    {{division.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Tên hiển thị</label>
+            <textarea ng-model="name" md-maxlength="50" rows="1" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input type="email" ng-model="email" md-maxlength="50" rows="1" md-select-on-focus>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Mật khẩu</label>
+            <input type="password" ng-model="passWord" md-maxlength="50" rows="1" md-select-on-focus>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Nhập lại mật khẩu</label>
+            <input type="password" id ="password" ng-model="rePassWord" md-maxlength="50" rows="1" md-select-on-focus>
+        </md-input-container>
+    </md-content>
+    <label class="error-label" ng-model="error" ng-show="error" style="margin-left: 20px;"> {{error}} </label>
+    <md-dialog-actions layout="row">
+        <a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;
+        <button class="btn btn-primary" type="button" ng-click="postOfficer()">Gửi đăng ký</button>
+    </md-dialog-actions>
+</md-dialog>

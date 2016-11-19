@@ -5,7 +5,7 @@
 <div class="modal-body">
 	<label class="error-label" ng-model="error" ng-show="error">{{error}}</label>
 
-	<form name="signupForm">
+	<form name="signupForm" my-enter="signUp()">
 		<md-input-container class="md-block" flex-gt-sm>
 		    <label>Tên hiển thị</label>
 		    <input ng-model="name">

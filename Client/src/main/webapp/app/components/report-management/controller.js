@@ -1,14 +1,8 @@
 app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog) {
 	$scope.url = '';
 	$scope.controller = '';
-	requestManager.loadAllRequests().then(function(requests) {
-		$scope.requests = requests;
-		console.log(requests);
-		for(var i=0;i<requests.length;i++){
-			console.log(requests[i].statusId);
-		}
-	});
-
+	$scope.myFilter = {statusId: 'DA_TIEP_NHAN'};
+	
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
 

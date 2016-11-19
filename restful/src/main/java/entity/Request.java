@@ -48,10 +48,6 @@ public class Request implements Serializable {
     private long serviceRequestId;
     
     @NotNull
-    @Column(name = "service_code", nullable = false)
-    private int serviceCode;
-    
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "service_subject", nullable = false)
     private String serviceSubject;
@@ -138,14 +134,6 @@ public class Request implements Serializable {
 
     public void setServiceRequestId(long serviceRequestId) {
         this.serviceRequestId = serviceRequestId;
-    }
-
-    public int getServiceCode() {
-        return serviceCode;
-    }
-
-    public void setServiceCode(int serviceCode) {
-        this.serviceCode = serviceCode;
     }
 
     public String getServiceSubject() {

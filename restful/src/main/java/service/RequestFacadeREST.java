@@ -1,5 +1,6 @@
 package service;
 
+import entity.Division;
 import entity.Request;
 import entity.User;
 
