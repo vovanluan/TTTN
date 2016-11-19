@@ -575,76 +575,6 @@ app.controller('mainController',
 	  	}
 });
 
-/*app.controller('viewController', function($rootScope, $scope, requestManager, commentManager){
-	// Init map and request
-    var myLatLng = {lat: 10.78, lng: 106.65};
-    var iconBase = "assets/resources/markerIcon/";
-	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-	    zoom: 10,
-	    center: myLatLng
-	});
-	$scope.markers = [];
-	$scope.comments = [];
-	$scope.comments = $rootScope.comments;
-
-	$scope.checkId = function(commentRequestId,serviceRequestId){
-		return (commentRequestId==serviceRequestId);
-	}
-
-	//create map
-	$.each($rootScope.requests, function(index, request) {
-		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-		var icon = "";
-		switch(request.statusId) {
-			case 0:
-			// blue circle
-				icon = 'http://i.imgur.com/UvpFBxi.png';
-				break;
-			case 1:
-			// green circle
-				icon = 'http://i.imgur.com/nqFCc3z.png';
-				break;
-			case 2:
-			// red circle
-				icon = 'http://i.imgur.com/xPYbdLB.png';
-				break;
-		}
-		var marker = new google.maps.Marker({
-	        position: latlng,
-	        map: $scope.map,
-	        draggable: false,
-	        animation: google.maps.Animation.DROP,
-	        //icon : iconBase + icon
-	        icon: icon
-	    });
-	  	var infowindow = new google.maps.InfoWindow({
-	    	content: request.serviceName
-	  	});
-		marker.addListener('mouseover', function() {
-		   	infowindow.open($scope.map, marker);
-		});
-		marker.addListener('mouseout', function() {
-		   	infowindow.close($scope.map, marker);
-		});
-	});
-/*    $scope.filteredRequests = [];
-    $scope.currentPage = 1;
-    $scope.numPerPage = 2;
-    $scope.maxSize = 5;
-    $scope.requests = $rootScope.requests;
-    console.log($rootScope.requests);
-    $scope.$watch("currentPage + numPerPage", function() {
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-        , end = begin + $scope.numPerPage;
-
-        $scope.filteredRequests = $scope.requests.slice(begin, end);
-    });
-
-});
-*/
-
-
-
 app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager){
 
     $scope.comments = [];
@@ -700,7 +630,7 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
 
     //Pagination
-    $scope.sortingOrder = 'name';
+    $scope.sortingOrder = 'name'; // property for sorting
     $scope.reverse = false;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
