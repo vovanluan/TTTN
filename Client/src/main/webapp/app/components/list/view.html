@@ -1,11 +1,6 @@
 <div class="container">
 	<section class="col-lg-8 col-md-12">
 		<div class="main bordered">
-			<div class="search">
-				<form>
-					<!-- Search input -->
-				</form>
-			</div>
 			<div class="content-title">
 				<div class="change-view float-right">
 					<a href="#/gallery">
@@ -17,15 +12,10 @@
 				</div>
 				DANH SÁCH CÁC PHẢN HỒI
 			</div>
-			<!-- <div ng-hide="requests.length">
-				<label>
-					Chưa có phản hồi nào
-				</label>
-			</div> -->
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
-					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">
 							<h5 class="issue-title">
@@ -52,8 +42,27 @@
 					</li>
 				</ul>
 			</div>
-		</div>	
+		</div>
+		<ul ng-if="pager.pages.length" class="pagination">
+
+		    <li ng-class="{disabled:pager.currentPage === 1}">
+		        <a ng-click="setPage(1)">Trang đầu</a>
+		    </li>
+		    <li ng-class="{disabled:pager.currentPage === 1}">
+		        <a ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
+		    </li>
+		    <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+		        <a ng-click="setPage(page)">{{page}}</a>
+		    </li>
+		    <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+		        <a ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
+		    </li>
+		    <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+		        <a ng-click="setPage(pager.totalPages)">Trang cuối</a>
+		    </li>
+		</ul>
 	</section>
+	
 	<section class="col-lg-4 col-md-12">
 		<div class="bordered main" id="mainMap" style="height:380px"></div>
 	</section>

@@ -1,4 +1,5 @@
-var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt', 'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
+  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -342,6 +343,66 @@ app.directive('myEnter', function () {
     };
 });
 
+
+app.factory('PagerService', function PagerService() {
+        // service definition
+    var service = {};
+
+        service.GetPager = GetPager;
+
+        return service;
+
+        // service implementation
+        function GetPager(totalItems, currentPage, pageSize) {
+            // default to first page
+            currentPage = currentPage || 1;
+
+            // default page size is 10
+            pageSize = pageSize || 5;
+
+            // calculate total pages
+            var totalPages = Math.ceil(totalItems / pageSize);
+
+            var startPage, endPage;
+            if (totalPages <= 10) {
+                // less than 10 total pages so show all
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                // more than 10 total pages so calculate start and end pages
+                if (currentPage <= 6) {
+                    startPage = 1;
+                    endPage = 10;
+                } else if (currentPage + 4 >= totalPages) {
+                    startPage = totalPages - 9;
+                    endPage = totalPages;
+                } else {
+                    startPage = currentPage - 5;
+                    endPage = currentPage + 4;
+                }
+            }
+
+            // calculate start and end item indexes
+            var startIndex = (currentPage - 1) * pageSize;
+            var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
+            // create an array of pages to ng-repeat in the pager control
+            var pages = _.range(startPage, endPage + 1);
+
+            // return object with all pager properties required by the view
+            return {
+                totalItems: totalItems,
+                currentPage: currentPage,
+                pageSize: pageSize,
+                totalPages: totalPages,
+                startPage: startPage,
+                endPage: endPage,
+                startIndex: startIndex,
+                endIndex: endIndex,
+                pages: pages
+            };
+        }
+});
 app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
@@ -474,11 +535,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		console.log($rootScope.comments);
   	});
 
-  	requestManager.loadAllRequests().then(function(requests){
-  		$rootScope.requests = requests;
-      console.log(requests);
-  	});
-
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
     });
@@ -574,70 +630,94 @@ app.controller('mainController',
 	  	}
 });
 
-app.controller('viewController', function($rootScope, $scope, requestManager, commentManager){
-	// Init map and request
-    var myLatLng = {lat: 10.78, lng: 106.65};
-    var iconBase = "assets/resources/markerIcon/";
-	$scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-	    zoom: 10,
-	    center: myLatLng
-	});
-	$scope.markers = [];
 
-	$scope.checkId = function(commentRequestId,serviceRequestId){
-		return (commentRequestId==serviceRequestId);
-	}
+app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
 
-	//create map
-	$.each($rootScope.requests, function(index, request) {
-		var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-		var icon = "";
-		switch(request.statusId) {
-			case 0:
-			// blue circle
-				icon = 'http://i.imgur.com/UvpFBxi.png';
-				break;
-			case 1:
-			// green circle
-				icon = 'http://i.imgur.com/nqFCc3z.png';
-				break;
-			case 2:
-			// red circle
-				icon = 'http://i.imgur.com/xPYbdLB.png';
-				break;
-		}
-		var marker = new google.maps.Marker({
-	        position: latlng,
-	        map: $scope.map,
-	        draggable: false,
-	        animation: google.maps.Animation.DROP,
-	        //icon : iconBase + icon
-	        icon: icon
-	    });
-	  	var infowindow = new google.maps.InfoWindow({
-	    	content: request.serviceName
-	  	});
-		marker.addListener('mouseover', function() {
-		   	infowindow.open($scope.map, marker);
-		});
-		marker.addListener('mouseout', function() {
-		   	infowindow.close($scope.map, marker);
-		});
-	});
-/*    $scope.filteredRequests = [];
-    $scope.currentPage = 1;
-    $scope.numPerPage = 2;
-    $scope.maxSize = 5;
-    $scope.requests = $rootScope.requests;
-    console.log($rootScope.requests);
-    $scope.$watch("currentPage + numPerPage", function() {
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-        , end = begin + $scope.numPerPage;
+    $scope.comments = [];
+    $scope.comments = $rootScope.comments;
 
-        $scope.filteredRequests = $scope.requests.slice(begin, end);
-    });*/
+    $scope.checkId = function(commentRequestId,serviceRequestId){
+      return (commentRequestId==serviceRequestId);
+    }
 
+    $scope.createMap = function (){
+        var myLatLng = {lat: 10.78, lng: 106.65};
+        var iconBase = "assets/resources/markerIcon/";
+        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+            zoom: 12,
+            center: myLatLng
+        });
+        $scope.markers = [];
+        $.each($rootScope.requests, function(index, request) {
+          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+          var icon = "";
+          switch(request.statusId) {
+            case 0:
+            // blue circle
+              icon = 'http://i.imgur.com/UvpFBxi.png';
+              break;
+            case 1:
+            // green circle
+              icon = 'http://i.imgur.com/nqFCc3z.png';
+              break;
+            case 2:
+            // red circle
+              icon = 'http://i.imgur.com/xPYbdLB.png';
+              break;
+          }
+          var marker = new google.maps.Marker({
+                position: latlng,
+                map: $scope.map,
+                draggable: false,
+                animation: google.maps.Animation.DROP,
+                //icon : iconBase + icon
+                icon: icon
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: request.serviceName
+            });
+          marker.addListener('mouseover', function() {
+              infowindow.open($scope.map, marker);
+          });
+          marker.addListener('mouseout', function() {
+              infowindow.close($scope.map, marker);
+          });
+        });
+    }
+
+    $scope.pager = {};
+    $scope.setPage = setPage;
+
+    initController();
+
+    function initController() {
+        requestManager.loadAllRequests().then(function (requests){
+            $rootScope.requests = requests;
+              // functions have been describe process the data for display
+            $scope.setPage(1);
+            $scope.createMap();
+            $scope.$watch('requests', function (newVal, oldVal) {
+                $scope.setPage(1);
+                $scope.createMap();
+            });
+        });
+        // initialize to page 1
+
+    }
+
+    function setPage(page) {
+        if (page < 1 || page > $scope.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        $scope.pager = PagerService.GetPager($rootScope.requests.length, page);
+        // get current page of items
+        $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
 });
+
+
 
 app.controller('mainTabController',
 	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){

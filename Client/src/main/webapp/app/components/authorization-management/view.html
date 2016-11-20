@@ -4,33 +4,51 @@
         <h2 class="content-title">Danh sách người dùng</h2>
         <hr>
         <div id="userList">
-          <table class="table-responsive">
-          <thead>
-            <tr>
-              <th class="col-xs-1"></th>
-              <th class="col-xs-2">Tên tài khoản</th>
-              <th class="col-xs-2">Email</th>
-              <th class="col-xs-3">Quyền hạn</th>
+            <div class="input-append" style="margin: 10px;">
+                    <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+                <span class="add-on"><i class="glyphicon glyphicon-search"></i></span>
+            </div>
+            <table class="table table-striped table-condensed table-hover">
+                  <thead>
+                      <tr>
+                        <th class="col-xs-1"></th>
+                        <th class="col-xs-2">Tên tài khoản</th>
+                        <th class="col-xs-2">Email</th>
+                        <th class="col-xs-3">Quyền hạn</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                      <td colspan="6">
+                          <button class="btn btn-primary" type="button" ng-click="postNewOfficer()">Thêm nhân viên</button>
+                          <div class="pagination pull-right">
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="u in users" ng-click="showDetail(u.user)" ng-class-odd="'alt'">
-              <td class="col-xs-1"></td>
-              <td class="col-xs-2 cap">{{u.name}}</td>
-              <td class="col-xs-2 cap">{{u.email}}</td>
-              <td class="col-xs-2">
-                  <select ng-model="u.type" ng-options="x for x in roles">
-                  </select>
-              </td>
-              <td class="col-xs-2">
-                <button class="btn btn-primary" type="button" ng-click="update(u)">Cập nhật</button>
-              </td>
-              <td class="col-xs-1" ng-model="updateStatus"></td>
-            </tr>
-          </tbody>
-          </table>
+                              <ul>
+                                  <li ng-class="{disabled: currentPage == 0}">
+                                      <a href ng-click="prevPage()">« Trước</a>
+                                  </li>
+                                  <li ng-repeat="n in range(pagedItems.length)"
+                                      ng-class="{active: n == currentPage}"
+                                  ng-click="setPage()">
+                                      <a href ng-bind="n + 1">1</a>
+                                  </li>
+                                  <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                      <a href ng-click="nextPage()">Sau »</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </td>
+                  </tfoot>
+                  <tbody>
+                      <tr ng-repeat="u in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+                          <td class="col-xs-1"></td>
+                          <td class="col-xs-2 cap">{{u.name}}</td>
+                          <td class="col-xs-2 cap">{{u.email}}</td>
+                          <td class="col-xs-2 cap">{{u.type}}</td>
+                          <td class="col-xs-1"></td>
+                      </tr>
+                  </tbody>
+              </table>
         </div>
     </div>
-    <button class="btn btn-primary" type="button" ng-click="postNewOfficer()">Thêm nhân viên</button>
+
 </div>
