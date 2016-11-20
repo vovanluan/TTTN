@@ -343,6 +343,66 @@ app.directive('myEnter', function () {
     };
 });
 
+
+app.factory('PagerService', function PagerService() {
+        // service definition
+    var service = {};
+
+        service.GetPager = GetPager;
+
+        return service;
+
+        // service implementation
+        function GetPager(totalItems, currentPage, pageSize) {
+            // default to first page
+            currentPage = currentPage || 1;
+
+            // default page size is 10
+            pageSize = pageSize || 5;
+
+            // calculate total pages
+            var totalPages = Math.ceil(totalItems / pageSize);
+
+            var startPage, endPage;
+            if (totalPages <= 10) {
+                // less than 10 total pages so show all
+                startPage = 1;
+                endPage = totalPages;
+            } else {
+                // more than 10 total pages so calculate start and end pages
+                if (currentPage <= 6) {
+                    startPage = 1;
+                    endPage = 10;
+                } else if (currentPage + 4 >= totalPages) {
+                    startPage = totalPages - 9;
+                    endPage = totalPages;
+                } else {
+                    startPage = currentPage - 5;
+                    endPage = currentPage + 4;
+                }
+            }
+
+            // calculate start and end item indexes
+            var startIndex = (currentPage - 1) * pageSize;
+            var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
+            // create an array of pages to ng-repeat in the pager control
+            var pages = _.range(startPage, endPage + 1);
+
+            // return object with all pager properties required by the view
+            return {
+                totalItems: totalItems,
+                currentPage: currentPage,
+                pageSize: pageSize,
+                totalPages: totalPages,
+                startPage: startPage,
+                endPage: endPage,
+                startIndex: startIndex,
+                endIndex: endIndex,
+                pages: pages
+            };
+        }
+});
 app.service('AuthService', function(RouteClean, $rootScope, $http, $localStorage, baseUrl, jwtHelper, $location){
     var self = this;
     self.isAuthenticated = function () {
@@ -475,11 +535,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		console.log($rootScope.comments);
   	});
 
-  	requestManager.loadAllRequests().then(function(requests){
-  		$rootScope.requests = requests;
-      console.log(requests);
-  	});
-
     divisionManager.loadAllDivisions().then(function(divisions){
         $rootScope.divisions = divisions;
     });
@@ -575,7 +630,7 @@ app.controller('mainController',
 	  	}
 });
 
-app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager){
+app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
 
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
@@ -630,7 +685,7 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
 
     //Pagination
-    $scope.sortingOrder = 'name'; // property for sorting
+/*    $scope.sortingOrder = 'serviceRequestId'; // property for sorting
     $scope.reverse = false;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
@@ -722,16 +777,52 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
             $('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
     };
 
-    // functions have been describe process the data for display
-    $scope.search();
-    // init map
-    $scope.createMap();
+    requestManager.loadAllRequests().then(function(requests){
+      $rootScope.requests = requests;
+        // functions have been describe process the data for display
+      $scope.search();
+      // init map
+      $scope.createMap();
+    });
+
 
     $scope.$watch('requests', function (newVal, oldVal) {
         $scope.search();
         $scope.createMap();
         console.log("requests updated");
-    });
+    });*/
+
+
+    $scope.pager = {};
+    $scope.setPage = setPage;
+
+    initController();
+
+    function initController() {
+        requestManager.loadAllRequests().then(function (requests){
+            $rootScope.requests = requests;
+              // functions have been describe process the data for display
+            $scope.setPage(1);
+            $scope.createMap();
+            $scope.$watch('requests', function (newVal, oldVal) {
+                $scope.setPage(1);
+                $scope.createMap();
+            });
+        });
+        // initialize to page 1
+
+    }
+
+    function setPage(page) {
+        if (page < 1 || page > $scope.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        $scope.pager = PagerService.GetPager($rootScope.requests.length, page);
+        // get current page of items
+        $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
 });
 
 
