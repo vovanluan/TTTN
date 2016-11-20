@@ -20,16 +20,20 @@
 		</div>
 		<hr>
 		<p>Phản ánh đã được chuyển đến <strong>{{requestIndex.division.name}}</strong></p>
-		<div layout="row" ng-if="isDivision()">
+		<div layout="row" ng-show="isDivision()">
 			<md-input-container class="md-block" flex>
 			    <label>Trình phó chủ tịch</label>
 			    <md-select ng-model="vicePresident">
-				    <md-option ng-repeat="vicePresident in vicePresidents" ng-value="{{vicePresident}}">
+				    <md-option ng-repeat="vicePresident in vicePresidents" ng-value="vicePresident">
 				        {{vicePresident.name}}
 				    </md-option>
 				</md-select>
 		    </md-input-container>
 		</div>
+		<md-input-container class="md-block" ng-show="isDivision()">
+	        <label>Bình luận</label>
+	        <textarea ng-model="comment" md-maxlength="500" rows="4" md-select-on-focus></textarea>
+	    </md-input-container>	
 	</md-content>
 	<md-dialog-actions layout="row">
 		<a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;

@@ -5,9 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -15,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @Entity
-@Table(name = "vice_president_user")
 @DiscriminatorValue("vice_president")
 @NamedQueries({
     @NamedQuery(name = "VicePresidentUser.findByEmail", query = "SELECT u FROM VicePresidentUser u WHERE u.email=:email"),
@@ -35,5 +32,5 @@ public class VicePresidentUser extends User {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-    
+
 }

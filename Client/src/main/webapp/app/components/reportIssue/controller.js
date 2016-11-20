@@ -116,6 +116,8 @@ app.controller('reportTabController',
     this.submitReport = function() {
         $scope.showSpinner = true;
         var request = new Object();
+        var vicePresidentReceived = new Object();
+        var vicePresidentApproved = new Object();
         request.serviceRequestId = 1;
         request.serviceSubject = $scope.report.service.subject;
         request.serviceName = $scope.report.serviceName;
@@ -127,6 +129,8 @@ app.controller('reportTabController',
         request.longitude = $scope.report.longitude;
         request.statusId = 0;
         request.user = $rootScope.user;
+        // request.vicePresidentReceived = vicePresidentReceived;
+        // request.vicePresidentApproved = vicePresidentApproved;
         if($scope.report.picFile) {
             console.log("Here");
             Upload.base64DataUrl($scope.report.picFile).then(

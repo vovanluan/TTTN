@@ -41,6 +41,10 @@ app.constant('MANAGEMENT_ACCESS', ['official', 'vice_president']);
 
 app.constant('DIVISION_ACCESS', ['division']);
 
+app.constant('OFFICIAL_ACCESS', ['official']);
+
+app.constant('VICE_PRESIDENT_ACCESS', ['vice_president']);
+
 app.factory('Districts', function ($http) {
     return $http.get('assets/data/districts.json');
 });
@@ -63,8 +67,6 @@ app.factory('requestManager', function(requestUrl, $http, $q){
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
-                    $log.error(msg, code);
-
                 });
             return deferred.promise;
         },
@@ -107,8 +109,6 @@ app.factory('commentManager', ['commentUrl', '$http', '$q', function(commentUrl,
 				})
                 .error(function(msg, code) {
                     deferred.reject(msg);
-                    $log.error(msg, code);
-
                 });
 			return deferred.promise;
 		},
@@ -583,8 +583,6 @@ app.controller('viewController', function($rootScope, $scope, requestManager, co
 	    center: myLatLng
 	});
 	$scope.markers = [];
-	$scope.comments = [];
-	$scope.comments = $rootScope.comments;
 
 	$scope.checkId = function(commentRequestId,serviceRequestId){
 		return (commentRequestId==serviceRequestId);

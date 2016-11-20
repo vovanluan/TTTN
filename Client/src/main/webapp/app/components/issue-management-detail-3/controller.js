@@ -1,4 +1,4 @@
-app.controller('reportManagementDetail1ModalController', function($rootScope, $scope, $mdDialog, userManager, $filter, DIVISION_ACCESS, AuthService) {
+app.controller('issueManagementDetail3ModalController', function($rootScope, $scope, $mdDialog, userManager, $filter, DIVISION_ACCESS, AuthService) {
 
 	$scope.cancel = function(){
 		$mdDialog.cancel();

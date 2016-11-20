@@ -16,6 +16,14 @@ app.controller('reportManagementDivisionController', function($rootScope, $scope
 				$scope.url = 'app/components/report-management-detail-1/view.html';
 				$scope.controller = 'reportManagementDetail1ModalController';
 				break;
+			case 'DA_XU_LY':
+				$scope.url = 'app/components/issue-management-detail-2/view.html';
+				$scope.controller = 'reportManagementDetail1ModalController';
+				break;
+			case 'DA_DUYET':
+				$scope.url = 'app/components/issue-management-detail-3/view.html';
+				$scope.controller = 'reportManagementDetail1ModalController';
+				break;
 		}
 
 		$mdDialog.show({

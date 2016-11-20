@@ -13,11 +13,11 @@
 	        <a href="" class="list-group-item" ng-click="myFilter = {division: {id:  user.division.id}, statusId: 'DA_CHUYEN'}">
 	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Chờ xử lý <span class="badge">{{(requests | filter: {division: {id:  user.division.id}, statusId: 'DA_CHUYEN'}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  $rootScope.user.division.id}, statusId: 'DA_XU_LY'}">
-	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {division: {id:  $rootScope.user.division.id}, statusId: 'DA_XU_LY'}).length}}</span>
+	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  user.division.id}, statusId: 'DA_XU_LY'}">
+	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {division: {id:  user.division.id}, statusId: 'DA_XU_LY'}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  $rootScope.user.division.id}, statusId: 'DA_DUYET'}">
-	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {division: {id:  $rootScope.user.division.id}, statusId: 'DA_DUYET'}).length}}</span>
+	        <a href="" class="list-group-item" ng-click="myFilter={division: {id:  user.division.id}, statusId: 'DA_DUYET'}">
+	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {division: {id:  user.division.id}, statusId: 'DA_DUYET'}).length}}</span>
 	        </a>
 	    </div>        
 	</div>

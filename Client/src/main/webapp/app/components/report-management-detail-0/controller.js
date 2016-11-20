@@ -1,9 +1,12 @@
-app.controller('reportManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager, dateTimeFilter,
-    commentManager, SweetAlert) {
+app.controller('reportManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager, dateTimeFilter, commentManager, SweetAlert, AuthService, OFFICIAL_ACCESS) {
 
 	$scope.cancel = function() {
 		$mdDialog.cancel();
 	};
+
+    $scope.isOfficial = function () {
+        return AuthService.isAuthorized(OFFICIAL_ACCESS);
+    };
 
 	$scope.moveIssue = function() {
         $scope.requestIndex.division = $scope.division;
@@ -26,7 +29,6 @@ app.controller('reportManagementDetail0ModalController', function($rootScope, $s
         comment.postDatetime = dateTimeFilter(new Date());
         commentManager.postComment(comment).then(
             function success(){
-                $scope.comments.push(comment);
                 $rootScope.comments.push(comment);
             },
             function error(){
