@@ -1,4 +1,4 @@
-app.controller('postAnnoucementModalController', function($rootScope, $scope, $mdDialog, Annoucements, dateTimeFilter, annoucementManager) {
+app.controller('postAnnoucementModalController', function($rootScope, $scope, $mdDialog, Annoucements, dateTimeFilter, annoucementManager, SweetAlert) {
     $scope.cancel = function() {
         $mdDialog.cancel();
     };
@@ -16,7 +16,7 @@ app.controller('postAnnoucementModalController', function($rootScope, $scope, $m
                 annoucementManager.loadAllAnnoucements().then(function(annoucements){
                     $rootScope.annoucements = annoucements;
                 });
-                $location.path('/annoucement');
+                $mdDialog.cancel();
             },
             function error(err){
                 $scope.showSpinner = false;

@@ -220,6 +220,19 @@ app.factory('annoucementManager', function(annoucementUrl, $http, $q){
 
                 });
             return deferred.promise;
+        },
+        deleteAnnoucement: function(id) {
+              var deferred = $q.defer();
+              $http.delete(annoucementUrl + "/" + id)
+                  .success(function() {
+                        deferred.resolve();
+                    })
+                    .error(function(msg, code) {
+                        deferred.reject(msg);
+                        $log.error(msg, code);
+
+                    });
+                return deferred.promise;
         }
   };
   return annoucementManager;
