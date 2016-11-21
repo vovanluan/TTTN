@@ -298,7 +298,7 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
 // Check if a route requires authentication or not
 app.factory('RouteClean', function(){
 	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue'];
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue', '/annoucement'];
 
 	// check if current location matches route
     return function(route) {
