@@ -32,8 +32,8 @@
                     <li ng-repeat="annoucement in annoucements | filter: myFilter" ng-attr-id="{{'issue_id_' + annoucement.id}}">
                         <div class="issue-panel">
                             <h5 class="issue-title">
-                                <a href="" class="issue-link" ng-click="openModal(annoucement.id)">Issue {{annoucement.serviceannoucementId}}  - {{annoucement.serviceName}}</a>
-                                <button class="btn btn-danger float-right" ng-click="deleteIssue(annoucement.id)">
+                                <a href="" class="issue-link">{{annoucement.title}}</a>
+                                <button class="btn btn-danger float-right" ng-click="deleteReport(annoucement.id)" ng-if="isManager()">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </button>
                             </h5>

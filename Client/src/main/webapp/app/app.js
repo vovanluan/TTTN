@@ -220,6 +220,19 @@ app.factory('annoucementManager', function(annoucementUrl, $http, $q){
 
                 });
             return deferred.promise;
+        },
+        deleteAnnoucement: function(id) {
+              var deferred = $q.defer();
+              $http.delete(annoucementUrl + "/" + id)
+                  .success(function() {
+                        deferred.resolve();
+                    })
+                    .error(function(msg, code) {
+                        deferred.reject(msg);
+                        $log.error(msg, code);
+
+                    });
+                return deferred.promise;
         }
   };
   return annoucementManager;
@@ -298,7 +311,7 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
 // Check if a route requires authentication or not
 app.factory('RouteClean', function(){
 	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue'];
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue', '/annoucement'];
 
 	// check if current location matches route
     return function(route) {
