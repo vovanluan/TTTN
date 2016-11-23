@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
-  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages', 'hm.readmore']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");

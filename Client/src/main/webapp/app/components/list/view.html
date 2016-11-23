@@ -26,7 +26,14 @@
 							</div>
 							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i> {{request.address}}</p>
 							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
-							<p class="issue-content">{{request.description}}</p>
+							<p class="issue-content" hm-read-more
+								hm-text="{{ request.description }}"
+								hm-limit="150"
+								hm-more-text="Đọc thêm"
+								hm-less-text="Thu nhỏ"
+								hm-dots-class="dots"
+								hm-link-class="links">
+							</p>
 							<span class="info" >{{request.requestedDatetime | date:'dd/MM/yyyy HH:mm:ss'}}
 								<span class="sep">•</span>
 								<span>Đăng bởi </span>

@@ -38,7 +38,14 @@
                                 </button>
                             </h5>
                             <p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{annoucement.time | date:'dd/MM/yyyy HH:mm:ss'}}</p>
-                            <p class="issue-content">{{annoucement.description}}</p>
+                            <p class="issue-content" hm-read-more
+                                hm-text="{{ annoucement.description }}"
+                                hm-limit="150"
+                                hm-more-text="Đọc thêm"
+                                hm-less-text="Thu nhỏ"
+                                hm-dots-class="dots"
+                                hm-link-class="links">
+                            </p>
                         </div>
                     </li>
                 </ul>
