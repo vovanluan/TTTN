@@ -677,15 +677,15 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
           var latlng = new google.maps.LatLng(request.latitude, request.longitude);
           var icon = "";
           switch(request.statusId) {
-            case 0:
+            case 'DA_TIEP_NHAN':
             // blue circle
               icon = 'http://i.imgur.com/UvpFBxi.png';
               break;
-            case 1:
+            case 'DA_CHUYEN' :
             // green circle
               icon = 'http://i.imgur.com/nqFCc3z.png';
               break;
-            case 2:
+            case 'DA_XU_LY':
             // red circle
               icon = 'http://i.imgur.com/xPYbdLB.png';
               break;
