@@ -24,7 +24,7 @@ app.controller('reportTabController',
     $scope.tabActivity=[true, false, false, false];
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
-        dateTimeFormat: "yyyy-MM-dd HH:mm:ss"
+        dateTimeFormat: "YYYY-MM-dd HH:mm:ss"
     });
     var count = 0;
     $scope.initMap = function(){
@@ -78,36 +78,14 @@ app.controller('reportTabController',
             $scope.initMap();
         }
     });
-    // Implement upload multiple images
-
-
-    // $scope.upload = function() {
-    //  if($scope.picFile) {
-    //      console.log("upload");
-    //      Upload.base64DataUrl($scope.picFile).then(
- //            function (url){
- //                 var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
-    //          $http({
-    //              headers: {'Authorization': 'Client-ID ' + clientId},
-    //              url: '  https://api.imgur.com/3/upload',
-    //              method: 'POST',
-    //              data: {
-    //                  image: uploadImageBase64,
-    //                  'type':'base64'
-    //              }
-    //          }).then(function successCallback(response) {
-    //              request.mediaUrl = response.data.data.link;
-    //          }, function errorCallback(err) {
-    //              console.log(err);
-    //          });
- //            });
-    //  }
-    //  console.log("not upload");
-
-    // }
 
     this.selectTab = function(setTab){
-        $scope.active = setTab;
+        console.log(setTab)
+        $scope.activeTab = setTab;
+        if (setTab == 1) {
+            console.log("vo 2");
+            $scope.initMap();
+        }
     };
     this.isSelectedTab = function(checkTab){
         return $scope.tab === checkTab;
@@ -116,8 +94,6 @@ app.controller('reportTabController',
     this.submitReport = function() {
         $scope.showSpinner = true;
         var request = new Object();
-        var vicePresidentReceived = new Object();
-        var vicePresidentApproved = new Object();
         request.serviceRequestId = 1;
         request.serviceSubject = $scope.report.service.subject;
         request.serviceName = $scope.report.serviceName;
@@ -129,8 +105,6 @@ app.controller('reportTabController',
         request.longitude = $scope.report.longitude;
         request.statusId = 0;
         request.user = $rootScope.user;
-        // request.vicePresidentReceived = vicePresidentReceived;
-        // request.vicePresidentApproved = vicePresidentApproved;
         if($scope.report.picFile) {
             console.log("Here");
             Upload.base64DataUrl($scope.report.picFile).then(

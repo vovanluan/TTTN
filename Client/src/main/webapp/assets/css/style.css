@@ -15,7 +15,33 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #efefef;
+    background-color: #fcfcfc;
+}
+
+.banner {
+    background-image: url("../img/place-header.png");
+    background-position: center center;
+    padding: 2rem 3rem 0;
+    color: white;
+    height: 110px;
+}
+
+.bannerTPHCM {
+    font-family: 'Lato', sans-serif;
+}
+
+.bannerTPHCM h2 {
+    float: left;
+}
+
+.bannerTPHCM .btn {
+    float: right;
+    position: relative;
+    top: 20px;
+    background-color: transparent;
+    border-color: #fff;
+    border-width: 2px;
+    color: #fff;
 }
 
 .wrapper {
@@ -26,8 +52,13 @@ html, body {
 }
 
 .clearfooter {
-height: 30px;
-clear: both;
+    height: 30px;
+    clear: both;
+}
+
+.main-footer {
+    background: #002b60 url('../img/slide_a1.jpg') no-repeat center;
+    min-height: 18.3vw;
 }
 
 .footer-bottom {
@@ -63,6 +94,16 @@ clear: both;
 
 .issue-panel {
     margin-left: 110px;
+}
+
+.row-issue-title {
+    display: inline-block;
+    width: 100%;
+}
+
+.row-issue-title .badge {
+    background-color: #5bc0de;
+    margin-top: 10px;
 }
 
 .issue-title{
@@ -128,6 +169,7 @@ clear: both;
 }
 
 .thumbnail-image {
+    margin-top: 10px;
     width: 100px;
     height: 100px;
 }
@@ -401,6 +443,36 @@ clear: both;
     color: grey;
 }
 .md-select-menu-container {z-index: 9999;}
+
+.report-issue-panel {
+    padding: 15px;
+}
+
+.report-issue-panel > md-content.md-default-theme, md-content {
+    background-color: #fff;
+}
+
+
+
+
+/*.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}*/
+
+
 
 /*
 .pagination{height:40px;margin:20px 0;}

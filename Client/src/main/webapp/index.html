@@ -16,6 +16,7 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:700" rel="stylesheet">
 <!--     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
 <link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet"> -->
 	<!-- Add libs -->
@@ -40,8 +41,14 @@
 </head>
 
 <body ng-controller="mainController">
+	<div class="banner">
+		<span class="bannerTPHCM">
+			<h2>EGov, Ho Chi Minh City</h2>
+			<button class="btn btn-ghost btn-default">Tải ứng dụng</button>
+		</span>
+	</div>
 	<div id="wrapper">
-		<nav class="navbar navbar-inverse navbar-embossed" role="navigation" ng-controller ="mainTabController as mainTab">
+		<nav class="navbar navbar-default" role="navigation" ng-controller ="mainTabController as mainTab">
 			<div class="container">
 			  <div class="navbar-header">
 			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -51,7 +58,7 @@
 			      <span class="icon-bar"></span>
 			    </button>
 
-			    <a class="navbar-brand" href="#/list">Ho Chi Minh city</a>
+			    <a class="navbar-brand" href="#/list">TRANG CHỦ</a>
 
 			  </div>
 			  <div class="collapse navbar-collapse" id="navbar-collapse-01">
@@ -83,7 +90,11 @@
 		</div>
 	</div>
 
-<!-- 	<div class="footer-bottom">
+	<div class="main-footer">
+		
+	</div>
+
+	<div class="footer-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -99,7 +110,7 @@
 			</div>
 		</div>
 	</div>
- -->
+
 
 	<!-- Angular Material requires Angular.js Libraries -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>

@@ -41,6 +41,7 @@
 						<div class="issue-panel">
 							<h5 class="issue-title">
 								<a href="" class="issue-link" ng-click="openModal(request.serviceRequestId)">Issue {{request.serviceRequestId}}  - {{request.serviceName}}</a>
+
 								<button class="btn btn-danger float-right" ng-if="request.statusId == 'DA_TIEP_NHAN'" ng-click="deleteIssue(request.serviceRequestId)">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								</button> 

@@ -636,6 +636,18 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
 
+    $scope.convertStatusId = function(text) {
+        switch(text) {
+            case 'DA_TIEP_NHAN':
+                return 'ĐÃ TIẾP NHẬN';
+            case 'DA_CHUYEN':
+                return 'ĐANG XỬ LÝ';
+            case 'DA_XU_LY':
+                return 'ĐÃ XỬ LÝ';
+            case 'DA_DUYET':
+                return 'ĐÃ DUYỆT';
+        }
+    }
     $scope.checkId = function(commentRequestId,serviceRequestId){
       return (commentRequestId==serviceRequestId);
     }
@@ -715,6 +727,8 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
         // get current page of items
         $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
+
+
 });
 
 
