@@ -1,5 +1,5 @@
 app.controller('listViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-
+    $scope.requestPerPage = 10;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     var myLatLng = {lat: 10.78, lng: 106.65};
@@ -98,7 +98,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         }
 
         // get pager object from service
-        $scope.pager = PagerService.GetPager($rootScope.requests.length, page);
+        $scope.pager = PagerService.GetPager($rootScope.requests.length, page, $scope.requestPerPage);
         // get current page of items
         $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }

@@ -470,3 +470,26 @@ div.desc{
 .desc_content {
     text-align: center;
 }
+
+.pagination a {
+    font-size: 13px;
+}
+
+.float-right, .fr {
+    float: right !important;
+    font-size: 13px;
+}
+
+.float-left, .fl {
+    float: left !important;
+}
+
+.module-block {
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    position: relative;
+    word-wrap: break-word;
+}
