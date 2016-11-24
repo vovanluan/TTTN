@@ -21,13 +21,13 @@
 				</label>
 			</div>
 		<div class="col-sm-4 wrapper" ng-repeat="request in requests">
-			<a href="#">
-			<div class="fix">
-				<img ng-src="{{request.mediaUrl}}" class="img-responsive" alt="" />
-				<div class="desc">
+			<a href="#/issue/{{request.serviceRequestId}}">
+				<div class="fix">
+					<img ng-src="{{request.mediaUrl}}" class="img-responsive" alt="" />
+					<div class="desc">
 					<p class="desc_content">{{request.serviceName}}</p>
+					</div>
 				</div>
-			</div>
 			</a>
 		</div>
 
