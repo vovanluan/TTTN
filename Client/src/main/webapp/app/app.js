@@ -829,11 +829,14 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
 	$scope.countComment = {};
+
 	angular.forEach($rootScope.comments, function(comment,index){
 		if(comment.request.serviceRequestId==$scope.issue_id)
 			$scope.comments.push(comment);
 	});
+
 	//$scope.requestIndex = requests[$scope.issue_id];
+
 	for(var i = 0; i < $rootScope.requests.length; i++){
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
 			$scope.requestIndex = $rootScope.requests[i];
@@ -841,6 +844,20 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 		}
 	}
 
+    $scope.convertStatusId = function(text) {
+        switch(text) {
+            case 'DA_TIEP_NHAN':
+                return 'ĐÃ TIẾP NHẬN';
+            case 'DA_CHUYEN':
+                return 'ĐANG XỬ LÝ';
+            case 'DA_XU_LY':
+                return 'ĐÃ XỬ LÝ';
+            case 'DA_DUYET':
+                return 'ĐÃ DUYỆT';
+            case 'DA_XOA':
+                return 'ĐÃ XÓA';
+        }
+    }
 
 	$scope.submitComment = function(requestObj){
 		if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')

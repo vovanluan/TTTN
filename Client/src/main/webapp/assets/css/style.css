@@ -211,26 +211,15 @@ html, body {
     padding: 10px;
     margin-bottom: 10px;
     display: block;
-    zoom:1;
+    min-height: 280px;
 }
 
-.issue-detail-image{
-    padding-right: 10px;
-    float: left;
-    margin-bottom: 10px;
-    position: relative;
-    display: block;
-}
-.issue-detail-image img{
-    width: 200px;
-    height: auto;
+.issue-detail-image img {
     padding: 3px;
     border: 1px solid #ddd;
-    position: relative;
-    display: block;
-    overflow: hidden;
 }
 .issue-detail-panel{
+    padding: 8px 0px 0px 8px;
    overflow: hidden;
    vertical-align: top;
 }
@@ -308,6 +297,14 @@ html, body {
 
 .border-top {
     border-top: 1px solid #ddd;
+}
+
+.border-left {
+    border-left: 1px solid #ddd;
+}
+
+.border-right {
+    border-right: 1px solid #ddd;
 }
 
 .bordered {
