@@ -3,6 +3,9 @@
 		<div class="main bordered">
 			<div class="content-title">
 				<div class="change-view float-right">
+					<a href="#/">
+						<i class="glyphicon glyphicon-list"></i>
+					</a>
 					<a href="#/gallery">
 						<i class="glyphicon glyphicon-picture"></i>
 					</a>
@@ -16,11 +19,15 @@
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
+						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
+							ng-mouseover="mouseOver(request.latitude, request.longitude)"
+							ng-mouseleave="mouseLeave()">
 						<div class="issue-panel">
 							<div class="row-issue-title">
 								<h5 class="issue-title float-left">
-									<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
+									<a href="#/issue/{{request.serviceRequestId}}" class="issue-link"
+									ng-mouseover="mouseOver(request.latitude, request.longitude)"
+									ng-mouseleave="mouseLeave()">{{request.serviceName}}</a>
 								</h5>
 								<span class="badge float-right">{{convertStatusId(request.statusId)}}</span>
 							</div>

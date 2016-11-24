@@ -1,37 +1,37 @@
-<div id="content_container" class="container">	
+<div id="content_container" class="container">
 	<section class="col-lg-8 col-md-12">
 		<div class="main bordered">
-			<div class="search">
-				<form>
-					<!-- Search input -->
-				</form>
-			</div>
 			<div class="content-title">
-				<div class="change-view float-right">					
+				<div class="change-view float-right">
+					<a href="#/">
+						<i class="glyphicon glyphicon-list"></i>
+					</a>
+					<a href="#/gallery">
+						<i class="glyphicon glyphicon-picture"></i>
+					</a>
 					<a href="#/map">
 						<i class="glyphicon glyphicon-map-marker"></i>
 					</a>
-					<a href="#/">
-						<i class="glyphicon glyphicon-list"></i>
-					</a>					
 				</div>
 				DANH SÁCH CÁC PHẢN HỒI
 			</div>
-			<div ng-hide="requests.length"> 
+			<div ng-hide="requests.length">
 				<label>
 					Chưa có phản hồi nào
 				</label>
-			</div>	
-			<div class="photo-issue-list">
-				<ul>
-					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<a href="#/issue/{{request.serviceRequestId}}">
-							<img ng-src="{{request.mediaUrl}}" class="gallery-image">
-						</a>
-					</li>
-				</ul>
-			</div>			
-		</div>	
+			</div>
+		<div class="col-sm-4 wrapper" ng-repeat="request in requests">
+			<a href="#">
+			<div class="fix">
+				<img ng-src="{{request.mediaUrl}}" class="img-responsive" alt="" />
+				<div class="desc">
+					<p class="desc_content">{{request.serviceName}}</p>
+				</div>
+			</div>
+			</a>
+		</div>
+
+		</div>
 	</section>
 	<section class="col-md-4">
 		<div class="main bordered" id="mainMap" style="height:380px"></div>

@@ -648,7 +648,7 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
 
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
-
+    var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.convertStatusId = function(text) {
         switch(text) {
             case 'DA_TIEP_NHAN':
@@ -666,10 +666,9 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
 
     $scope.createMap = function (){
-        var myLatLng = {lat: 10.78, lng: 106.65};
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 12,
+            zoom: 11,
             center: myLatLng
         });
         $scope.markers = [];
@@ -678,16 +677,16 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
           var icon = "";
           switch(request.statusId) {
             case 'DA_TIEP_NHAN':
-            // blue circle
-              icon = 'http://i.imgur.com/UvpFBxi.png';
+            // red circle
+              icon = 'http://i.imgur.com/xPYbdLB.png';
               break;
             case 'DA_CHUYEN' :
             // green circle
               icon = 'http://i.imgur.com/nqFCc3z.png';
               break;
             case 'DA_XU_LY':
-            // red circle
-              icon = 'http://i.imgur.com/xPYbdLB.png';
+                // blue circle
+              icon = 'http://i.imgur.com/UvpFBxi.png';
               break;
           }
           var marker = new google.maps.Marker({
@@ -710,6 +709,14 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
         });
     }
 
+    $scope.mouseOver = function (latitude, longtitude) {
+        $scope.map.setCenter(new google.maps.LatLng(latitude, longtitude));
+        $scope.map.setZoom(14);
+    }
+    $scope.mouseLeave = function () {
+        $scope.map.setCenter(myLatLng);
+        $scope.map.setZoom(11);
+    }
     $scope.pager = {};
     $scope.setPage = setPage;
 
