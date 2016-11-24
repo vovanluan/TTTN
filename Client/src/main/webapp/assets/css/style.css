@@ -448,6 +448,24 @@ html, body {
 .parent > md-card {
 
 }
+
 md-card>img, md-card>md-card-header img {
     height: 200px !important;
 }
+
+.pagination a {
+    font-size: 15px;
+    padding: 0 4px 0 4px;
+}
+
+.module-block {
+    border: 1px solid #ddd;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    position: relative;
+    word-wrap: break-word;
+}
+
+

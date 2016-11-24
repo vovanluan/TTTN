@@ -467,15 +467,15 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 	$routeProvider
 	.when('/list', {
 		templateUrl: 'app/components/list/view.html',
-		controller: 'viewController'
+		controller: 'listViewController'
 	})
 	.when('/map', {
 		templateUrl: 'app/components/map/view.html',
-		controller: 'viewController'
+		controller: 'mapViewController'
 	})
 	.when('/gallery', {
 		templateUrl: 'app/components/gallery/view.html',
-		controller: 'viewController'
+		controller: 'galleryViewController'
 	})
 	.when('/profile', {
 		templateUrl: 'app/components/profile/view.html',
@@ -646,7 +646,6 @@ app.controller('mainController',
 	  	}
 });
 
-
 app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
     var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.convertStatusId = function(text) {
@@ -768,14 +767,12 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
         });
     }
 
-
+    console.log(photos);
     $scope.issueImages = {
         photos: photos,
         photos3p: partition(photos, photos.length/3)
     };
 });
-
-
 
 app.controller('mainTabController',
 	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){

@@ -30,7 +30,7 @@
 			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul">
-					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<div>
 							<h5 class="issue-title">
 								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
@@ -51,6 +51,17 @@
 						</div>
 					</li>
 				</ul>
+			</div>
+		</div>
+		<div class="pagination module-block" ng-if="pager.pages.length">
+			<div class="float-left">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)"><i class="glyphicon glyphicon-fast-backward"></i></a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
+					{{page}}
+				</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)"><i class="glyphicon glyphicon-fast-forward"></i></a>
 			</div>
 		</div>
 	</section>
