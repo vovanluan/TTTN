@@ -1,4 +1,9 @@
 <div class="container">
+	<ol class="breadcrumb">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Library</a></li>
+	  <li class="active">Data</li>
+	</ol>
 	<section class="col-lg-8 col-md-12">
 		<div class="main bordered">
 			<div class="content-title">
@@ -46,7 +51,7 @@
 								<span>Đăng bởi </span>
 								<a href="" class="user">{{request.user.name}}</a>
 							</span>
-							<ul class="issue-comments border-top">
+							<ul class="issue-comments">
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 									<h5 class="user-name">
 										<a href="" class="user-link">{{comment.user.name}}</a>
@@ -79,6 +84,8 @@
 		</ul>
 	</section>
 	<section class="col-lg-4 col-md-12">
-		<div class="bordered main" id="mainMap" style="height:380px"></div>
+		<div class="map bordered">
+			<div id="mainMap" style="height:380px"></div>
+		</div>
 	</section>
 </div>

@@ -69,11 +69,12 @@ html, body {
     width: 100%;
 }
 
-.btn-upload {
+/*.btn-upload {
     position: relative;
     overflow: hidden;
     display: inline-block;
 }
+
 .btn-upload input[type=file] {
     position: absolute;
     opacity: 0;
@@ -85,11 +86,12 @@ html, body {
 .stepTable tr td {
     vertical-align: top;
     padding-bottom: 10px;
-}
+}*/
 
 .main {
     padding: 0px;
     background-color: #fff;
+    margin-bottom: 10px;
 }
 
 .issue-panel {
@@ -174,49 +176,6 @@ html, body {
     height: 100px;
 }
 
-.gallery-image {
-    width: 200px;
-    height: 200px;
-    padding: 3px;
-    border: 1px solid #ddd;
-}
-
-.hoverbox {
-    cursor: default;
-    list-style: none;
-}
-
-.hoverbox img {
-    background: #fff;
-    border-color: #aaa #ccc #ddd #bbb;
-    border-style: solid;
-    border-width: 1px;
-    color: inherit;
-    padding: 2px;
-    vertical-align: top;
-    width: 200px;
-    height: 200px;
-}
-
-.hoverbox li {
-    background: #eee;
-    border-color: #ddd #bbb #aaa #ccc;
-    border-style: solid;
-    border-width: 1px;
-    color: inherit;
-    display: inline;
-    float: left;
-    margin: 10px;
-    padding: 5px;
-    position: relative;
-}
-
-.hoverbox .preview {
-    border-color: #000;
-    width: 300px;
-    height: 300px;
-}
-
 .issue-comments > li {
     background-color: #f7f7f7;
     border-bottom: 2px solid #fff !important;
@@ -291,15 +250,18 @@ html, body {
     padding:12px;
     padding-bottom: 45px;
 }
+
 #comment-textarea{
     padding: 5px;
     width: 100%;
 }
+
 .btn-send-comment{
     margin-top:5px;
     display: inline-block;
     float: right;
 }
+
 #profile {
     width: 500px;
     height: 200px;
@@ -330,40 +292,46 @@ html, body {
     font-size: 1.4em;
     padding: 10px;
 }
-#profile-content{
+
+#profile-content {
     padding:10px 20px;
     background-color: #fff;
 }
-.info-row{
+
+.info-row {
     padding: 13px 0px;
 }
 
-.border-btm{
+.border-btm {
     border-bottom: 1px solid #ddd;
 }
 
-.border-top{
+.border-top {
     border-top: 1px solid #ddd;
 }
 
-.bordered{
+.bordered {
     border: 1px solid #ddd;
 }
 
-.info-row label{
+.info-row label {
     float: left;
 }
-.info-text{
+
+.info-text {
     margin-left: 130px;
 }
-.edit-info{
+
+.edit-info {
     margin: 10px 0px 10px 0px;
     float: right;
 }
-.form-control{
+/*
+.form-control {
     margin-bottom: 10px;
-}
-.tabsdemoStaticTabs md-tab-content {
+}*/
+
+/*.tabsdemoStaticTabs md-tab-content {
   padding: 25px; }
   .tabsdemoStaticTabs md-tab-content:nth-child(1) {
     background-color: #42A5F5; }
@@ -381,16 +349,16 @@ html, body {
 
 .tabsdemoStaticTabs .after-tabs-area > md-checkbox {
   margin-top: 26px;
-  margin-left: 0; }
+  margin-left: 0; }*/
 
 .error-label {
     color: red;
 }
 
-.input-group-addon {
+/*.input-group-addon {
     color: #fff;
     background: #3276B1;
-}
+}*/
 
 .float-left {
     float: left;
@@ -407,6 +375,7 @@ html, body {
     min-height: 30px;
     padding: 7px 0;
 }
+
 .design {
     color: #fff;
     line-height: 30px;
@@ -414,6 +383,7 @@ html, body {
     padding: 7px 0;
     text-align: right;
 }
+
 .design a {
     color: #fff;
 }
@@ -442,7 +412,10 @@ html, body {
     font-size: 13px;
     color: grey;
 }
-.md-select-menu-container {z-index: 9999;}
+
+.md-select-menu-container {
+    z-index: 9999;
+}
 
 .report-issue-panel {
     padding: 15px;
@@ -452,21 +425,32 @@ html, body {
     background-color: #fff;
 }
 
-div.desc{
+.desc {
     background-color: #000;
-    bottom: 0;
     color: #fff;
-    left: 0;
     opacity: 0.5;
-    position: absolute;
-    width: 100%;
 }
 
-.fix{
+.fix {
     width: 100%;
     padding: 0px;
 }
 
 .desc_content {
+    font-size: 85%;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.map {
+    padding: 3px;
+}
+
+.parent > md-card {
+
+}
+md-card>img, md-card>md-card-header img {
+    height: 200px !important;
 }

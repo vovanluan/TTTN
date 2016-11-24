@@ -543,9 +543,12 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
   	$rootScope.user = {};
 
+    requestManager.loadAllRequests().then(function(requests){
+        $rootScope.requests = requests;
+    });
+
   	commentManager.loadAllComments().then(function(comments){
   		$rootScope.comments = comments;
-  		console.log($rootScope.comments);
   	});
 
     divisionManager.loadAllDivisions().then(function(divisions){
@@ -645,8 +648,6 @@ app.controller('mainController',
 
 
 app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    
-    $scope.comments = $rootScope.comments;
     var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.convertStatusId = function(text) {
         switch(text) {
@@ -658,6 +659,8 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
                 return 'ĐÃ XỬ LÝ';
             case 'DA_DUYET':
                 return 'ĐÃ DUYỆT';
+            case 'DA_XOA':
+                return 'ĐÃ XÓA';
         }
     }
     $scope.checkId = function(commentRequestId,serviceRequestId){
@@ -667,7 +670,7 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     $scope.createMap = function (){
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 11,
+            zoom: 12,
             center: myLatLng
         });
         $scope.markers = [];
@@ -714,7 +717,7 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(myLatLng);
-        $scope.map.setZoom(11);
+        $scope.map.setZoom(12);
     }
     $scope.pager = {};
     $scope.setPage = setPage;
@@ -733,7 +736,6 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
             });
         });
         // initialize to page 1
-
     }
 
     function setPage(page) {
@@ -748,6 +750,29 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
 
 
+    var photos = [];
+
+    var partition = function (input, size) {
+        var newArr = [];
+        for (var i = 0; i < input.length; i += size) {
+            newArr.push(input.slice(i, i + size));
+        }
+        return newArr;
+    }
+
+    
+    for(var i = 0; i < $rootScope.requests.length; i++) {
+        photos.push({
+            name: $rootScope.requests[i].serviceName,
+            path: $rootScope.requests[i].mediaUrl
+        });
+    }
+
+
+    $scope.issueImages = {
+        photos: photos,
+        photos3p: partition(photos, photos.length/3)
+    };
 });
 
 
