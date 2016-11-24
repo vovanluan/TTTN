@@ -1,0 +1,14 @@
+<ul id="grid-view">
+    <li ng-repeat="request in requests">
+        <a href="#/issue/{{request.serviceRequestId}}">
+            <figure>
+                <img ng-src="{{request.mediaUrl}}" alt=""
+                ng-mouseover="mouseOver(request.latitude,request.longitude)"
+                ng-mouseleave="mouseLeave()">
+                <figcaption>
+                {{request.serviceName}}
+                </figcaption>
+            </figure>
+        </a>
+    </li>
+</ul>

@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
-  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages']);
+  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages', 'hm.readmore']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -647,7 +647,7 @@ app.controller('mainController',
 app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
     
     $scope.comments = $rootScope.comments;
-
+    var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.convertStatusId = function(text) {
         switch(text) {
             case 'DA_TIEP_NHAN':
@@ -665,10 +665,9 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
     }
 
     $scope.createMap = function (){
-        var myLatLng = {lat: 10.78, lng: 106.65};
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 12,
+            zoom: 11,
             center: myLatLng
         });
         $scope.markers = [];
@@ -676,17 +675,17 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
           var latlng = new google.maps.LatLng(request.latitude, request.longitude);
           var icon = "";
           switch(request.statusId) {
-            case 0:
-            // blue circle
-              icon = 'http://i.imgur.com/UvpFBxi.png';
+            case 'DA_TIEP_NHAN':
+            // red circle
+              icon = 'http://i.imgur.com/xPYbdLB.png';
               break;
-            case 1:
+            case 'DA_CHUYEN' :
             // green circle
               icon = 'http://i.imgur.com/nqFCc3z.png';
               break;
-            case 2:
-            // red circle
-              icon = 'http://i.imgur.com/xPYbdLB.png';
+            case 'DA_XU_LY':
+                // blue circle
+              icon = 'http://i.imgur.com/UvpFBxi.png';
               break;
           }
           var marker = new google.maps.Marker({
@@ -709,6 +708,14 @@ app.controller('viewController', function ($rootScope, $scope, $filter, requestM
         });
     }
 
+    $scope.mouseOver = function (latitude, longtitude) {
+        $scope.map.setCenter(new google.maps.LatLng(latitude, longtitude));
+        $scope.map.setZoom(14);
+    }
+    $scope.mouseLeave = function () {
+        $scope.map.setCenter(myLatLng);
+        $scope.map.setZoom(11);
+    }
     $scope.pager = {};
     $scope.setPage = setPage;
 
