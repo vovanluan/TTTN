@@ -1,5 +1,31 @@
 <div class="container">
 	<section class="col-lg-8 col-md-12">
+		<!-- Search -->
+		<div class="module-search">
+			<div class="search-input">
+				<input ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			</div>
+			<div class="advanced-search">
+				<div class="row first">
+					<label for="" class="mrm">Trạng thái:</label>
+					<div class="right">
+						<label class="mrm">
+							<input type="checkbox" ng-model="isReceived" ng-init="isReceived = true">
+							Đã tiếp nhận
+						</label>
+						<label class="mrm">
+							<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
+							Đang xử lý
+						</label>
+						<label class="mrm">
+							<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
+							Đã giải quyết
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Danh sách request -->
 		<div class="main bordered">
 			<div class="content-title">
 				<div class="change-view float-right">
@@ -13,7 +39,7 @@
 						<i class="glyphicon glyphicon-map-marker"></i>
 					</a>
 				</div>
-				DANH SÁCH CÁC PHẢN HỒI
+				DANH SÁCH CÁC PHẢN ÁNH
 			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
@@ -60,6 +86,7 @@
 				</ul>
 			</div>
 		</div>
+		<!-- Pagination -->
 		<div class="pagination module-block" ng-if="pager.pages.length">
 			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requests.length ? requests.length : pager.currentPage * requestPerPage;}} của {{requests.length}}</div>
 			<div class="float-left">
