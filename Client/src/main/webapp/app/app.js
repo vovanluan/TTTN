@@ -645,8 +645,7 @@ app.controller('mainController',
 
 
 app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-
-    $scope.comments = [];
+    
     $scope.comments = $rootScope.comments;
 
     $scope.convertStatusId = function(text) {
