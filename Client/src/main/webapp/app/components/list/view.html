@@ -5,6 +5,47 @@
 	  <li class="active">Data</li>
 	</ol>
 	<section class="col-lg-8 col-md-12">
+		<!-- Search -->
+		<div class="module-search">
+			<div class="search-input">
+				<input ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			</div>
+			<div class="advanced-search">
+				<div class="row first">
+					<label for="" class="mrm">Trạng thái:</label>
+					<div class="right">
+						<label class="mrm">
+							<input type="checkbox" ng-model="isReceived" ng-init="isReceived = true">
+							Đã tiếp nhận
+						</label>
+						<label class="mrm">
+							<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
+							Đang xử lý
+						</label>
+						<label class="mrm">
+							<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
+							Đã giải quyết
+						</label>
+					</div>
+				</div>
+<!-- 				<div class="row first">
+	<label for="" class="mrm">Sắp xếp theo:</label>
+	<div class="right">
+		<label class="mrm">
+			<select ng-model="firstOrderBy">
+				<option ng-repeat="fOrder in firstOrder">{{fOrder.name}}</option>
+			</select>
+		</label>
+		<label class="mrm">
+			<select name="secondOrder" id="" ng-model="secondOrderBy">
+				<option ng-repeat="sOrder in secondOrder">{{sOrder}}</option>
+			</select>
+		</label>
+	</div>
+</div> -->
+			</div>
+		</div>
+		<!-- Danh sách request -->
 		<div class="main bordered">
 			<div class="content-title">
 				<div class="change-view float-right">
@@ -18,12 +59,12 @@
 						<i class="glyphicon glyphicon-map-marker"></i>
 					</a>
 				</div>
-				DANH SÁCH CÁC PHẢN HỒI
+				DANH SÁCH CÁC PHẢN ÁNH
 			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
-					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<li ng-repeat="request in filteredRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
 							ng-mouseover="mouseOver(request.latitude, request.longitude)"
 							ng-mouseleave="mouseLeave()">
@@ -65,8 +106,9 @@
 				</ul>
 			</div>
 		</div>
+		<!-- Pagination -->
 		<div class="pagination module-block" ng-if="pager.pages.length">
-			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requests.length ? requests.length : pager.currentPage * requestPerPage;}} của {{requests.length}}</div>
+			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
 			<div class="float-left pagination-achor">
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>

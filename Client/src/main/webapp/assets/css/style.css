@@ -394,7 +394,7 @@ html, body {
     text-align: center;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .map {
@@ -462,5 +462,33 @@ md-card-footer {
 
 .announcement-panel {
     padding-left: 0px;
+}
+
+.module-search {
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.search-input {
+    margin: 3px;
+    border-top: 1px;
+}
+
+.search-input input {
+    width: 100%;
+}
+
+.advanced-search .row {
+    padding 0;
+    margin: 3px;
+    margin-top: 5px;
+}
+
+.row.first *{
+    display: inline;
+}
+
+.mrm {
+    margin-right: 10px;
 }
 
