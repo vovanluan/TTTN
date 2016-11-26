@@ -543,9 +543,12 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
   	$rootScope.user = {};
 
+    requestManager.loadAllRequests().then(function(requests){
+        $rootScope.requests = requests;
+    });
+
   	commentManager.loadAllComments().then(function(comments){
   		$rootScope.comments = comments;
-  		console.log($rootScope.comments);
   	});
 
     divisionManager.loadAllDivisions().then(function(divisions){
@@ -643,6 +646,134 @@ app.controller('mainController',
 	  	}
 });
 
+app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
+    var myLatLng = {lat: 10.78, lng: 106.65};
+    $scope.convertStatusId = function(text) {
+        switch(text) {
+            case 'DA_TIEP_NHAN':
+                return 'ĐÃ TIẾP NHẬN';
+            case 'DA_CHUYEN':
+                return 'ĐANG XỬ LÝ';
+            case 'DA_XU_LY':
+                return 'ĐÃ XỬ LÝ';
+            case 'DA_DUYET':
+                return 'ĐÃ DUYỆT';
+            case 'DA_XOA':
+                return 'ĐÃ XÓA';
+        }
+    }
+    $scope.checkId = function(commentRequestId,serviceRequestId){
+      return (commentRequestId==serviceRequestId);
+    }
+
+    $scope.createMap = function (){
+        var iconBase = "assets/resources/markerIcon/";
+        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+            zoom: 12,
+            center: myLatLng
+        });
+        $scope.markers = [];
+        $.each($rootScope.requests, function(index, request) {
+          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+          var icon = "";
+          switch(request.statusId) {
+            case 'DA_TIEP_NHAN':
+            // red circle
+              icon = 'http://i.imgur.com/xPYbdLB.png';
+              break;
+            case 'DA_CHUYEN' :
+            // green circle
+              icon = 'http://i.imgur.com/nqFCc3z.png';
+              break;
+            case 'DA_XU_LY':
+                // blue circle
+              icon = 'http://i.imgur.com/UvpFBxi.png';
+              break;
+          }
+          var marker = new google.maps.Marker({
+                position: latlng,
+                map: $scope.map,
+                draggable: false,
+                animation: google.maps.Animation.DROP,
+                //icon : iconBase + icon
+                icon: icon
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: request.serviceName
+            });
+          marker.addListener('mouseover', function() {
+              infowindow.open($scope.map, marker);
+          });
+          marker.addListener('mouseout', function() {
+              infowindow.close($scope.map, marker);
+          });
+        });
+    }
+
+    $scope.mouseOver = function (latitude, longtitude) {
+        $scope.map.setCenter(new google.maps.LatLng(latitude, longtitude));
+        $scope.map.setZoom(14);
+    }
+    $scope.mouseLeave = function () {
+        $scope.map.setCenter(myLatLng);
+        $scope.map.setZoom(12);
+    }
+    $scope.pager = {};
+    $scope.setPage = setPage;
+
+    initController();
+
+    function initController() {
+        requestManager.loadAllRequests().then(function (requests){
+            $rootScope.requests = requests;
+              // functions have been describe process the data for display
+            $scope.setPage(1);
+            $scope.createMap();
+            $scope.$watch('requests', function (newVal, oldVal) {
+                $scope.setPage(1);
+                $scope.createMap();
+            });
+        });
+        // initialize to page 1
+    }
+
+    function setPage(page) {
+        if (page < 1 || page > $scope.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        $scope.pager = PagerService.GetPager($rootScope.requests.length, page);
+        // get current page of items
+        $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
+
+
+    var photos = [];
+
+    var partition = function (input, size) {
+        var newArr = [];
+        for (var i = 0; i < input.length; i += size) {
+            newArr.push(input.slice(i, i + size));
+        }
+        return newArr;
+    }
+
+    
+    for(var i = 0; i < $rootScope.requests.length; i++) {
+        photos.push({
+            name: $rootScope.requests[i].serviceName,
+            path: $rootScope.requests[i].mediaUrl
+        });
+    }
+
+    console.log(photos);
+    $scope.issueImages = {
+        photos: photos,
+        photos3p: partition(photos, photos.length/3)
+    };
+});
+
 app.controller('mainTabController',
 	function($rootScope, $localStorage, $scope, AuthService, USER_ACCESS, ADMIN_ACCESS, MANAGEMENT_ACCESS, DIVISION_ACCESS){
 
@@ -695,11 +826,14 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
 	$scope.countComment = {};
+
 	angular.forEach($rootScope.comments, function(comment,index){
 		if(comment.request.serviceRequestId==$scope.issue_id)
 			$scope.comments.push(comment);
 	});
+
 	//$scope.requestIndex = requests[$scope.issue_id];
+
 	for(var i = 0; i < $rootScope.requests.length; i++){
 		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
 			$scope.requestIndex = $rootScope.requests[i];
@@ -707,6 +841,20 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 		}
 	}
 
+    $scope.convertStatusId = function(text) {
+        switch(text) {
+            case 'DA_TIEP_NHAN':
+                return 'ĐÃ TIẾP NHẬN';
+            case 'DA_CHUYEN':
+                return 'ĐANG XỬ LÝ';
+            case 'DA_XU_LY':
+                return 'ĐÃ XỬ LÝ';
+            case 'DA_DUYET':
+                return 'ĐÃ DUYỆT';
+            case 'DA_XOA':
+                return 'ĐÃ XÓA';
+        }
+    }
 
 	$scope.submitComment = function(requestObj){
 		if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')

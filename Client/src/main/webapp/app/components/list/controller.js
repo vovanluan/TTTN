@@ -1,8 +1,13 @@
 app.controller('listViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
+    $scope.firstOrder = [
+        {type: 'requestedDatetime', name: 'Thời gian'},
+        {type: 'vote', name: 'Cảm ơn'}
+    ];
+    $scope.secondOrder = ['A-Z', 'Z-A'];
     $scope.requestPerPage = 10;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
-    var myLatLng = {lat: 10.78, lng: 106.65};
+    var averageLatLong;
     $scope.convertStatusId = function(text) {
         switch(text) {
             case 'DA_TIEP_NHAN':
@@ -20,10 +25,25 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
 
     $scope.createMap = function (requests){
+        var averageLat = 0;
+        var averageLong = 0;
+        $.each(requests, function(index, request) {
+            averageLat += request.latitude;
+            averageLong += request.longitude;
+        });
+        averageLat /= requests.length;
+        averageLong /= requests.length;
+        console.log(averageLat);
+        console.log(averageLong);
+        averageLatLong = {lat: averageLat, lng: averageLong}
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
             zoom: 10,
-            center: myLatLng
+            center: averageLatLong,
+            scrollwheel: false,
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
         });
         $scope.markers = [];
         $.each(requests, function(index, request) {
@@ -69,7 +89,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         $scope.map.setZoom(14);
     }
     $scope.mouseLeave = function () {
-        $scope.map.setCenter(myLatLng);
+        $scope.map.setCenter(averageLatLong);
         $scope.map.setZoom(11);
     }
     $scope.pager = {};
@@ -78,33 +98,32 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     initController();
 
     // init the filtered items
-    $scope.search = function () {
-        $scope.filteredRequests = $filter('filter')($rootScope.requests, function (req) {
-            for(var attr in req) {
-                if (searchMatch(req[attr], $scope.searchInput))
-                    return true;
+    $scope.updateAfterSearch = function () {
+        var tempRequests = $scope.filteredRequests;
+        $scope.firstFilter = $filter('filter')($rootScope.requests, $scope.searchInput);
+        $scope.filteredRequests = $filter('filter')($scope.firstFilter, function (req) {
+            if (($scope.isReceived && req.statusId == 'DA_TIEP_NHAN')
+              || ($scope.isInProgress && req.statusId == 'DA_CHUYEN')
+              || ($scope.isResolved && (req.statusId == 'DA_XU_LY' || req.statusId == 'DA_DUYET'))) {
+              return true;
             }
             return false;
         });
-        $scope.setPage(1, $scope.filteredRequests);
-    };
-
-    var searchMatch = function (haystack, needle) {
-        if (!needle) {
-            return true;
+        if (!_.isEqual(tempRequests, $scope.filteredRequests)) {
+            $scope.setPage(1, $scope.filteredRequests);
+            $scope.createMap($scope.filteredRequests);
         }
-        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+
     };
 
     function initController() {
         requestManager.loadAllRequests().then(function (requests){
             $rootScope.requests = requests;
               // functions have been describe process the data for display
-            $scope.search();
-            $scope.createMap($scope.showRequests);
-            $scope.$watch('requests + searchInput', function (newVal, oldVal) {
-                $scope.search();
-                $scope.createMap($scope.showRequests);
+            $scope.updateAfterSearch();
+
+            $scope.$watch('requests + searchInput + isReceived + isInProgress + isResolved', function (newVal, oldVal) {
+                $scope.updateAfterSearch();
             });
         });
         // initialize to page 1
@@ -121,15 +140,4 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         // get current page of items
         $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
-
-
-    $scope.filterByStatus = function (req) {
-        if (($scope.isReceived && req.statusId == 'DA_TIEP_NHAN')
-          || ($scope.isInProgress && req.statusId == 'DA_CHUYEN')
-          || ($scope.isResolved && (req.statusId == 'DA_XU_LY' || req.statusId == 'DA_DUYET'))) {
-          return true;
-        }
-        return false;
-    }
-
 });

@@ -1,5 +1,5 @@
 app.controller('mapViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    $scope.requestPerPage = 10;
+    $scope.requestPerPage = 5;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     var myLatLng = {lat: 10.78, lng: 106.65};
@@ -22,7 +22,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     $scope.createMap = function (){
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 9,
+            zoom: 13,
             center: myLatLng
         });
         $scope.markers = [];

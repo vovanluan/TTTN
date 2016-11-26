@@ -1,4 +1,9 @@
 <div class="container">
+	<ol class="breadcrumb">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Library</a></li>
+	  <li class="active">Data</li>
+	</ol>
 	<section class="col-lg-8 col-md-12">
 		<!-- Search -->
 		<div class="module-search">
@@ -23,6 +28,21 @@
 						</label>
 					</div>
 				</div>
+<!-- 				<div class="row first">
+	<label for="" class="mrm">Sắp xếp theo:</label>
+	<div class="right">
+		<label class="mrm">
+			<select ng-model="firstOrderBy">
+				<option ng-repeat="fOrder in firstOrder">{{fOrder.name}}</option>
+			</select>
+		</label>
+		<label class="mrm">
+			<select name="secondOrder" id="" ng-model="secondOrderBy">
+				<option ng-repeat="sOrder in secondOrder">{{sOrder}}</option>
+			</select>
+		</label>
+	</div>
+</div> -->
 			</div>
 		</div>
 		<!-- Danh sách request -->
@@ -44,7 +64,7 @@
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
-					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<li ng-repeat="request in filteredRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
 							ng-mouseover="mouseOver(request.latitude, request.longitude)"
 							ng-mouseleave="mouseLeave()">
@@ -72,7 +92,7 @@
 								<span>Đăng bởi </span>
 								<a href="" class="user">{{request.user.name}}</a>
 							</span>
-							<ul class="issue-comments border-top">
+							<ul class="issue-comments">
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 									<h5 class="user-name">
 										<a href="" class="user-link">{{comment.user.name}}</a>
@@ -88,8 +108,8 @@
 		</div>
 		<!-- Pagination -->
 		<div class="pagination module-block" ng-if="pager.pages.length">
-			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requests.length ? requests.length : pager.currentPage * requestPerPage;}} của {{requests.length}}</div>
-			<div class="float-left">
+			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+			<div class="float-left pagination-achor">
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
 				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
@@ -101,6 +121,8 @@
 		</div>
 	</section>
 	<section class="col-lg-4 col-md-12">
-		<div class="bordered main" id="mainMap" style="height:380px"></div>
+		<div class="map bordered">
+			<div id="mainMap" style="height:380px"></div>
+		</div>
 	</section>
 </div>

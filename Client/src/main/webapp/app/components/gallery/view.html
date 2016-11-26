@@ -1,4 +1,4 @@
-<div id="content_container" class="container">
+<div class="container">
 	<section class="col-lg-8 col-md-12">
 		<div class="main bordered ">
 			<div class="content-title">
@@ -15,6 +15,40 @@
 				</div>
 				DANH SÁCH CÁC PHẢN HỒI
 			</div>
+
+			<div layout='column'>
+		      <div class='md-padding' layout="row" flex>
+		        <div layout="row" flex>
+		            <div class="parent" layout="column" ng-repeat="photoColumn in issueImages.photos3p" flex>
+		                <md-card class="card" data-ng-repeat="photo in photoColumn">
+		                    <img ng-src="{{photo.path}}">
+		                    <md-card-footer class="desc">
+							   <div class="desc_content">
+							   		{{photo.name}}
+							   </div>
+							</md-card-footer>
+		                </md-card>
+		            </div>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+
+		<div class="pagination module-block" ng-if="pager.pages.length">
+			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requests.length ? requests.length : pager.currentPage * requestPerPage;}} của {{requests.length}}</div>
+			<div class="float-left">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
+					{{page}}
+				</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
+			</div>
+		</div>
+
+
+<!-- =======
 			<div ng-hide="requests.length">
 				<label>
 					Chưa có phản hồi nào
@@ -42,10 +76,13 @@
 				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
 				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
 			</div>
-		</div>
+>>>>>>> 69220c7c065209b97bf59d2f5873ca5a1e3d7eff -->
+		
 
 	</section>
 	<section class="col-md-4">
-		<div class="main bordered" id="mainMap" style="height:380px"></div>
+		<div class="map bordered">
+			<div id="mainMap" style="height:380px"></div>
+		</div>
 	</section>
 </div>

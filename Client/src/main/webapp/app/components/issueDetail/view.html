@@ -6,15 +6,20 @@
 				<h4>{{requestIndex.address}}</h4>
 			</div>	
 			<div class="issue-main">
-				<div class="issue-detail-image">
-					<img ng-src="{{requestIndex.mediaUrl}}">
-				</div>
+				<md-card flex="30" class="issue-detail-image float-left">
+ 					<img ng-src="{{requestIndex.mediaUrl}}" class="md-card-image bordered" alt="image caption">
+ 					<md-card-footer>
+				        <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong>
+				    </md-card-footer>
+
+ 				</md-card>
+
 				<div class="issue-detail-panel">
-					<strong>Id phản ánh: </strong>{{requestIndex.serviceRequestId}}<br>
 					<strong>Ngày đăng bài: </strong>{{requestIndex.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}<br>
-					<strong>Người đăng bài: </strong><a href="" class="user">{{requestIndex.user.name}}</a><br>
+					<strong>Trạng thái phản ánh: </strong>{{convertStatusId(requestIndex.statusId)}}<br>
+					<strong>Người đăng bài: </strong><a href="" class="user">{{requestIndex.user.name}}</a>
+					<hr>
 					<strong>Chi tiết phản ánh: </strong>{{requestIndex.description}}<br>
-					<strong>Trạng thái phản ánh: </strong>{{requestIndex.statusId}}	
 				</div>
 			</div>
 		</div>
@@ -38,11 +43,12 @@
 			<div class="content-title">
 				Đăng bình luận
 			</div>	
-			<!-- <div class="post-comment">
-				<textarea id="comment-textarea" placeholder="Viết bình luận..." ng-model="textContent"></textarea>
+			<div class="post-comment">
+				<textarea id="comment-textarea" placeholder="Viết bình luận..." ng-model="textContent" rows="3"></textarea>
 				<button type="submit" class="btn btn-success btn-send-comment" data-error="Hãy viết 1 bình luận vào" ng-click="submitComment(requestIndex)">Gửi bình luận</button>
-			</div> -->
-			<md-input-container class="md-block">
+			</div>
+			</div>
+			<!-- <md-input-container class="md-block">
 	        <label>Bình luận</label>
 	        <textarea ng-model="comment" md-maxlength="500" rows="4" md-select-on-focus></textarea>
 	    </md-input-container>
@@ -50,7 +56,7 @@
 		<md-input-container class="md-block">
 	        <label>Bình luận</label>
 	        <textarea ng-model="comment" md-maxlength="500" rows="4" md-select-on-focus></textarea>
-	    </md-input-container>
+	    </md-input-container> -->
 	</section>		
 
 	<section class="col-lg-4 col-md-12">
@@ -71,7 +77,14 @@
 								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
 							</h5>
 							<h5 class="issue-address">{{request.address}}</h5>
-							<p class="issue-content">{{request.description}}</p>
+							<p class="issue-content" hm-read-more
+								hm-text="{{ request.description }}"
+								hm-limit="120"
+								hm-more-text="Đọc thêm"
+								hm-less-text="Thu nhỏ"
+								hm-dots-class="dots"
+								hm-link-class="links">
+							</p>
 							<span class="info">{{request.happenDatetime| date:'dd/MM/yyyy'}}
 								<span class="sep">•</span>
 								<a href="" class="user">{{request.user.name}}</a>

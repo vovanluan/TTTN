@@ -1,8 +1,10 @@
 app.controller('galleryViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    $scope.requestPerPage = 20;
+    $scope.requestPerPage = 6;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
+
     var myLatLng = {lat: 10.78, lng: 106.65};
+
     $scope.convertStatusId = function(text) {
         switch(text) {
             case 'DA_TIEP_NHAN':
@@ -15,6 +17,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
                 return 'ĐÃ DUYỆT';
         }
     }
+
     $scope.checkId = function(commentRequestId,serviceRequestId){
       return (commentRequestId==serviceRequestId);
     }
@@ -22,29 +25,29 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
     $scope.createMap = function (){
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 9,
+            zoom: 12,
             center: myLatLng
         });
         $scope.markers = [];
         $.each($rootScope.requests, function(index, request) {
-          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-          var icon = "";
-          switch(request.statusId) {
-            case 'DA_TIEP_NHAN':
-            // red circle
-              icon = 'http://i.imgur.com/xPYbdLB.png';
-              break;
-            case 'DA_CHUYEN' :
-            // green circle
-              icon = 'http://i.imgur.com/nqFCc3z.png';
-              break;
-            case 'DA_XU_LY':
-            case 'DA_DUYET':
-                // blue circle
-              icon = 'http://i.imgur.com/UvpFBxi.png';
-              break;
-          }
-          var marker = new google.maps.Marker({
+            var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+            var icon = "";
+            switch(request.statusId) {
+                case 'DA_TIEP_NHAN':
+                    // red circle
+                    icon = 'http://i.imgur.com/xPYbdLB.png';
+                    break;
+                case 'DA_CHUYEN' :
+                    // green circle
+                    icon = 'http://i.imgur.com/nqFCc3z.png';
+                    break;
+                case 'DA_XU_LY':
+                case 'DA_DUYET':
+                    // blue circle
+                    icon = 'http://i.imgur.com/UvpFBxi.png';
+                    break;
+            }
+            var marker = new google.maps.Marker({
                 position: latlng,
                 map: $scope.map,
                 draggable: false,
@@ -53,14 +56,14 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
                 icon: icon
             });
             var infowindow = new google.maps.InfoWindow({
-              content: request.serviceName
+                content: request.serviceName
             });
-          marker.addListener('mouseover', function() {
-              infowindow.open($scope.map, marker);
-          });
-          marker.addListener('mouseout', function() {
-              infowindow.close($scope.map, marker);
-          });
+            marker.addListener('mouseover', function() {
+                infowindow.open($scope.map, marker);
+            });
+            marker.addListener('mouseout', function() {
+                infowindow.close($scope.map, marker);
+            });
         });
     }
 
@@ -72,6 +75,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
         $scope.map.setCenter(myLatLng);
         $scope.map.setZoom(11);
     }
+
     $scope.pager = {};
     $scope.setPage = setPage;
 
@@ -89,19 +93,38 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
             });
         });
         // initialize to page 1
+    }
 
+    var partition = function (input, size) {
+        var newArr = [];
+        for (var i = 0; i < input.length; i += size) {
+            newArr.push(input.slice(i, i + size));
+        }
+        return newArr;
     }
 
     function setPage(page) {
         if (page < 1 || page > $scope.pager.totalPages) {
             return;
         }
-
         // get pager object from service
         $scope.pager = PagerService.GetPager($rootScope.requests.length, page, $scope.requestPerPage);
         // get current page of items
         $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
-    }
 
+        var photos = [];
+    
+        for(var i = 0; i < $scope.showRequests.length; i++) {
+            photos.push({
+                name: $scope.showRequests[i].serviceName,
+                path: $scope.showRequests[i].mediaUrl
+            });
+        }
+
+        $scope.issueImages = {
+            photos: photos,
+            photos3p: partition(photos, photos.length/3)
+        };
+    }
 
 });
