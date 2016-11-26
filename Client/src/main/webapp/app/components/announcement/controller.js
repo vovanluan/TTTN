@@ -1,10 +1,11 @@
-app.controller('annoucementController', function($rootScope, $scope, $mdDialog, MANAGEMENT_ACCESS, AuthService,
-    annoucementManager, SweetAlert) {
-    $scope.annoucementTypes = $rootScope.annoucementTypes;
-    $scope.postAnnoucement = function() {
+app.controller('announcementController', function($rootScope, $scope, $mdDialog, MANAGEMENT_ACCESS, AuthService,
+    announcementManager, SweetAlert) {
+    $scope.type = 'Chính trị - Xã hội';
+    $scope.myFilter = {type: 'Chính trị - Xã hội'};
+    $scope.postAnnouncement = function() {
         $mdDialog.show({
-            templateUrl: 'app/components/post-annoucement/view.html',
-            controller: 'postAnnoucementModalController',
+            templateUrl: 'app/components/post-announcement/view.html',
+            controller: 'postAnnouncementModalController',
             bindToController: true,
             bindToController: true,
             clickOutsideToClose: true,
@@ -16,7 +17,7 @@ app.controller('annoucementController', function($rootScope, $scope, $mdDialog, 
         return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
 
-    $scope.deleteReport = function (id) {
+    $scope.deleteAnnouncement = function (id) {
         SweetAlert.swal({
                title: "Bạn có chắc muốn xóa thông báo này?",
                type: "warning",
@@ -29,10 +30,10 @@ app.controller('annoucementController', function($rootScope, $scope, $mdDialog, 
             },
             function (isConfirm){
                 if (isConfirm) {
-                    annoucementManager.deleteAnnoucement(id).then(
+                    announcementManager.deleteAnnouncement(id).then(
                         function success() {
-                            annoucementManager.loadAllAnnoucements().then(function(annoucements){
-                                $rootScope.annoucements = annoucements;
+                            announcementManager.loadAllAnnouncements().then(function(announcements){
+                                $rootScope.announcements = announcements;
                             });
                             SweetAlert.swal("OK!", "Bạn đã xóa thông báo thành công!", "success");
                         },

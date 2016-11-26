@@ -116,6 +116,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
     
         for(var i = 0; i < $scope.showRequests.length; i++) {
             photos.push({
+                id: $scope.showRequests[i].serviceRequestId,
                 name: $scope.showRequests[i].serviceName,
                 path: $scope.showRequests[i].mediaUrl
             });

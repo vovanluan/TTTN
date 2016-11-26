@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="col-lg-3 col-md-12">
+        <div class="content-title">
+            Phân loại
+        </div>
+
+        <div class="mini-submenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </div>
+        <div class="list-group">
+            <a href="" class="list-group-item" ng-repeat="announcementType in announcementTypes" ng-click="$parent.type = announcementType">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" ></span>&nbsp;&nbsp; {{announcementType}}
+            </a>
+        </div>
+        <button type="submit" class="btn btn-success btn-block" ng-click="postAnnouncement()" ng-if="isManager()">Tạo thông báo</button>
+    </div>
+
+    <div class="col-lg-9 col-md-12">    
+        <h3 class="announcement-type">{{type}}</h3>
+        <ul class="announcement-panel">
+            <h4 ng-hide="(announcements | filter: {type: type}).length">Chưa có thông báo nào</h4>
+            <li ng-repeat="announcement in announcements | filter: {type: type}" ng-attr-id="{{'issue_id_' + announcement.id}}">
+                <h5 class="issue-title">
+                    <span><a href="" class="issue-link">{{announcement.title}}</a>&nbsp;&nbsp;({{announcement.time | date:'HH:mm - dd/MM/yyyy'}})</span>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-if="isManager()" ng-click="deleteAnnouncement(announcement.id)"></span>
+                </h5>
+                
+                <p class="issue-content" hm-read-more
+                    hm-text="{{announcement.description}}"
+                    hm-limit="230"
+                    hm-more-text="Đọc thêm"
+                    hm-less-text="Thu nhỏ"
+                    hm-dots-class="dots"
+                    hm-link-class="links">
+                </p>
+            </li>
+        </ul>
+
+    </div>
+</div>

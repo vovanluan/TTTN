@@ -1,5 +1,5 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
-  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages', 'hm.readmore']);
+  'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages', 'hm.readmore', 'angularMoment']);
 
 app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
 app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
@@ -11,7 +11,7 @@ app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources
 app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
 app.constant("baseUrl", "http://localhost:8080/restful/webresources");
 app.constant("divisionUrl", "http://localhost:8080/restful/webresources/entity.division");
-app.constant("annoucementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
+app.constant("announcementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
 
 app.constant('clientId', "254c1d5f74f2518");
 
@@ -23,14 +23,6 @@ app.constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated',
   notAuthorized: 'auth-not-authorized'
 });
-
-// app.constant('USER_ROLES', {
-//   admin: 'admin',
-//   user : 'normal',
-//   guest: 'guest',
-//   official: 'official',
-
-// });
 
 app.constant('USER_ACCESS', ['admin', 'normal', 'official', 'division', 'vice_president']);
 
@@ -54,8 +46,8 @@ app.factory('Services', function ($http) {
     return $http.get('assets/data/services.json');
 });
 
-app.factory('Annoucements', function ($http) {
-    return $http.get('assets/data/annoucements.json');
+app.factory('Announcements', function ($http) {
+    return $http.get('assets/data/announcements.json');
 });
 
 app.factory('requestManager', function(requestUrl, $http, $q){
@@ -193,13 +185,13 @@ app.factory('divisionManager', function(divisionUrl, $http, $q){
     return divisionManager;
 });
 
-app.factory('annoucementManager', function(annoucementUrl, $http, $q){
-  var annoucementManager = {
-        loadAllAnnoucements: function() {
+app.factory('announcementManager', function(announcementUrl, $http, $q){
+  var announcementManager = {
+        loadAllAnnouncements: function() {
             var deferred = $q.defer();
-            $http.get(annoucementUrl)
-                .success(function(annoucements) {
-                    deferred.resolve(annoucements);
+            $http.get(announcementUrl)
+                .success(function(announcements) {
+                    deferred.resolve(announcements);
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
@@ -208,9 +200,9 @@ app.factory('annoucementManager', function(annoucementUrl, $http, $q){
                 });
             return deferred.promise;
         },
-        postAnnoucement: function(annoucement){
+        postAnnouncement: function(announcement){
           var deferred = $q.defer();
-          $http.post(annoucementUrl, JSON.stringify(annoucement))
+          $http.post(announcementUrl, JSON.stringify(announcement))
               .success(function() {
                     deferred.resolve();
                 })
@@ -221,9 +213,9 @@ app.factory('annoucementManager', function(annoucementUrl, $http, $q){
                 });
             return deferred.promise;
         },
-        deleteAnnoucement: function(id) {
+        deleteAnnouncement: function(id) {
               var deferred = $q.defer();
-              $http.delete(annoucementUrl + "/" + id)
+              $http.delete(announcementUrl + "/" + id)
                   .success(function() {
                         deferred.resolve();
                     })
@@ -235,7 +227,7 @@ app.factory('annoucementManager', function(annoucementUrl, $http, $q){
                 return deferred.promise;
         }
   };
-  return annoucementManager;
+  return announcementManager;
 });
 
 app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
@@ -311,7 +303,7 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
 // Check if a route requires authentication or not
 app.factory('RouteClean', function(){
 	// enumerate routes that don't need authentication
-	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue', '/annoucement'];
+	var routesThatDontRequireAuth = ['/list', '/map', '/gallery', '/issue', '/report-issue', '/announcement'];
 
 	// check if current location matches route
     return function(route) {
@@ -509,9 +501,9 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
         templateUrl: 'app/components/division-management/view.html',
         controller: 'divisionManagementController'
     })
-    .when('/annoucement', {
-        templateUrl: 'app/components/annoucement/view.html',
-        controller: 'annoucementController'
+    .when('/announcement', {
+        templateUrl: 'app/components/announcement/view.html',
+        controller: 'announcementController'
     })
     .otherwise({
         redirectTo: '/list'
@@ -532,7 +524,7 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, annoucementManager, userManager, Districts, Services, Annoucements){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, announcementManager, userManager, Districts, Services, Announcements){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -555,8 +547,9 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
         $rootScope.divisions = divisions;
     });
 
-    annoucementManager.loadAllAnnoucements().then(function(annoucements){
-        $rootScope.annoucements = annoucements;
+    announcementManager.loadAllAnnouncements().then(function(announcements){
+        $rootScope.announcements = announcements;
+        console.log(announcements);
     });
 
   	// Check if token exists, then get user information and user role
@@ -609,10 +602,10 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     }).error(function (message) {
         console.log("Error in services: " + message);
     })
-    Annoucements.success(function (annoucements) {
-        $rootScope.annoucementTypes = annoucements.annoucements;
+    Announcements.success(function (announcements) {
+        $rootScope.announcementTypes = announcements.announcements;
     }).error(function (message) {
-        console.log("Error in annoucements: " + message);
+        console.log("Error in announcements: " + message);
     })
 
 });
@@ -644,134 +637,6 @@ app.controller('mainController',
 			   		AuthService.logout();
 			});
 	  	}
-});
-
-app.controller('viewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    var myLatLng = {lat: 10.78, lng: 106.65};
-    $scope.convertStatusId = function(text) {
-        switch(text) {
-            case 'DA_TIEP_NHAN':
-                return 'ĐÃ TIẾP NHẬN';
-            case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
-            case 'DA_XU_LY':
-                return 'ĐÃ XỬ LÝ';
-            case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
-            case 'DA_XOA':
-                return 'ĐÃ XÓA';
-        }
-    }
-    $scope.checkId = function(commentRequestId,serviceRequestId){
-      return (commentRequestId==serviceRequestId);
-    }
-
-    $scope.createMap = function (){
-        var iconBase = "assets/resources/markerIcon/";
-        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 12,
-            center: myLatLng
-        });
-        $scope.markers = [];
-        $.each($rootScope.requests, function(index, request) {
-          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-          var icon = "";
-          switch(request.statusId) {
-            case 'DA_TIEP_NHAN':
-            // red circle
-              icon = 'http://i.imgur.com/xPYbdLB.png';
-              break;
-            case 'DA_CHUYEN' :
-            // green circle
-              icon = 'http://i.imgur.com/nqFCc3z.png';
-              break;
-            case 'DA_XU_LY':
-                // blue circle
-              icon = 'http://i.imgur.com/UvpFBxi.png';
-              break;
-          }
-          var marker = new google.maps.Marker({
-                position: latlng,
-                map: $scope.map,
-                draggable: false,
-                animation: google.maps.Animation.DROP,
-                //icon : iconBase + icon
-                icon: icon
-            });
-            var infowindow = new google.maps.InfoWindow({
-              content: request.serviceName
-            });
-          marker.addListener('mouseover', function() {
-              infowindow.open($scope.map, marker);
-          });
-          marker.addListener('mouseout', function() {
-              infowindow.close($scope.map, marker);
-          });
-        });
-    }
-
-    $scope.mouseOver = function (latitude, longtitude) {
-        $scope.map.setCenter(new google.maps.LatLng(latitude, longtitude));
-        $scope.map.setZoom(14);
-    }
-    $scope.mouseLeave = function () {
-        $scope.map.setCenter(myLatLng);
-        $scope.map.setZoom(12);
-    }
-    $scope.pager = {};
-    $scope.setPage = setPage;
-
-    initController();
-
-    function initController() {
-        requestManager.loadAllRequests().then(function (requests){
-            $rootScope.requests = requests;
-              // functions have been describe process the data for display
-            $scope.setPage(1);
-            $scope.createMap();
-            $scope.$watch('requests', function (newVal, oldVal) {
-                $scope.setPage(1);
-                $scope.createMap();
-            });
-        });
-        // initialize to page 1
-    }
-
-    function setPage(page) {
-        if (page < 1 || page > $scope.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-        $scope.pager = PagerService.GetPager($rootScope.requests.length, page);
-        // get current page of items
-        $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
-    }
-
-
-    var photos = [];
-
-    var partition = function (input, size) {
-        var newArr = [];
-        for (var i = 0; i < input.length; i += size) {
-            newArr.push(input.slice(i, i + size));
-        }
-        return newArr;
-    }
-
-    
-    for(var i = 0; i < $rootScope.requests.length; i++) {
-        photos.push({
-            name: $rootScope.requests[i].serviceName,
-            path: $rootScope.requests[i].mediaUrl
-        });
-    }
-
-    console.log(photos);
-    $scope.issueImages = {
-        photos: photos,
-        photos3p: partition(photos, photos.length/3)
-    };
 });
 
 app.controller('mainTabController',
@@ -821,7 +686,7 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, $rootScope, $scope, requestManager, commentManager, $routeParams,dateTimeFilter){
+app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, $rootScope, $scope, requestManager, commentManager, $routeParams, dateTimeFilter, USER_ACCESS, $localStorage, Modal){
 	$scope.requestIndex = {};
 	$scope.comments = [];
 	$scope.issue_id = $routeParams.issueId;
@@ -840,6 +705,15 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			break;
 		}
 	}
+
+    // Watch userRole change
+    $scope.$watch(function (){
+        return $localStorage;
+    }, function() {
+        $scope.isAuthorizedUser = function () {
+            return AuthService.isAuthorized(USER_ACCESS);
+        };
+    });
 
     $scope.convertStatusId = function(text) {
         switch(text) {
@@ -882,4 +756,8 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 	 		Modal.logInModal();
 	 	}
 	}
+
+    $scope.logInModal = function(){
+        Modal.logInModal();
+    }
 });

@@ -40,6 +40,12 @@
 	<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 	<script src="bower_components/angular-read-more/dist/readmore.min.js"></script>
 	<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
+
+	<!-- load momentJS (required for angular-moment) -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
+	<!-- load angular-moment -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
 </head>
 
 <body ng-controller="mainController">
@@ -72,7 +78,7 @@
 			      	<li class="border-right" ng-if="isAdmin()"><a href="#/division-management">Quản lý cơ quan</a></li>
 	            	<li class="border-right" ng-if="isManager()"><a href="#/report-management">Quản lý phản ánh</a></li>
 	            	<li class="border-right" ng-if="isDivision()"><a href="#/report-management-division">Quản lý phản ánh</a></li>
-	            	<li class="border-right"><a href="#/annoucement">Thông báo</a></li>
+	            	<li class="border-right"><a href="#/announcement">Thông báo</a></li>
 			    </ul>
 	            <ul class="nav navbar-nav navbar-right" ng-if="!isAuthorizedUser()" >
 	 			 	<li><a href="" ng-click="logInModal()">Đăng nhập</a></li>
@@ -139,8 +145,8 @@
 	<script type="text/javascript" src="app/components/issue-management-detail-3/controller.js"></script>
 	<script type="text/javascript" src="app/components/division-management/controller.js"></script>
 	<script type="text/javascript" src="app/components/post-division/controller.js"></script>
-	<script type="text/javascript" src="app/components/annoucement/controller.js"></script>
-	<script type="text/javascript" src="app/components/post-annoucement/controller.js"></script>
+	<script type="text/javascript" src="app/components/announcement/controller.js"></script>
+	<script type="text/javascript" src="app/components/post-announcement/controller.js"></script>
 	<script type="text/javascript" src="app/components/post-officer/controller.js"></script>
 	<script type="text/javascript" src="app/components/list/controller.js"></script>
 	<script type="text/javascript" src="app/components/map/controller.js"></script>

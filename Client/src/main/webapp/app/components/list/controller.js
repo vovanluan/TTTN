@@ -2,6 +2,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     $scope.requestPerPage = 10;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
+    $scope.date = new Date();
     var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.convertStatusId = function(text) {
         switch(text) {
@@ -70,7 +71,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(myLatLng);
-        $scope.map.setZoom(11);
+        $scope.map.setZoom(14);
     }
     $scope.pager = {};
     $scope.setPage = setPage;

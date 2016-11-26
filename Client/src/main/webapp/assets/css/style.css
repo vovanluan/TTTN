@@ -69,25 +69,6 @@ html, body {
     width: 100%;
 }
 
-/*.btn-upload {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-}
-
-.btn-upload input[type=file] {
-    position: absolute;
-    opacity: 0;
-    z-index: 0;
-    max-width: 100%;
-    height: 100%;
-    display: block;
-}
-.stepTable tr td {
-    vertical-align: top;
-    padding-bottom: 10px;
-}*/
-
 .main {
     padding: 0px;
     background-color: #fff;
@@ -237,7 +218,7 @@ html, body {
 }
 .post-comment{
     padding:12px;
-    padding-bottom: 45px;
+    overflow: hidden;
 }
 
 #comment-textarea{
@@ -246,8 +227,7 @@ html, body {
 }
 
 .btn-send-comment{
-    margin-top:5px;
-    display: inline-block;
+    margin-top: 10px;
     float: right;
 }
 
@@ -323,30 +303,6 @@ html, body {
     margin: 10px 0px 10px 0px;
     float: right;
 }
-/*
-.form-control {
-    margin-bottom: 10px;
-}*/
-
-/*.tabsdemoStaticTabs md-tab-content {
-  padding: 25px; }
-  .tabsdemoStaticTabs md-tab-content:nth-child(1) {
-    background-color: #42A5F5; }
-  .tabsdemoStaticTabs md-tab-content:nth-child(2) {
-    background-color: #689F38; }
-  .tabsdemoStaticTabs md-tab-content:nth-child(3) {
-    background-color: #26C6DA; }
-
-.tabsdemoStaticTabs .after-tabs-area > span {
-  margin-top: 25px;
-  padding-right: 15px;
-  vertical-align: middle;
-  line-height: 30px;
-  height: 35px; }
-
-.tabsdemoStaticTabs .after-tabs-area > md-checkbox {
-  margin-top: 26px;
-  margin-left: 0; }*/
 
 .error-label {
     color: red;
@@ -442,6 +398,7 @@ html, body {
 }
 
 .map {
+    margin-bottom: 20px;
     padding: 3px;
 }
 
@@ -449,8 +406,13 @@ html, body {
 
 }
 
-md-card>img, md-card>md-card-header img {
+md-card img, md-card>md-card-header img {
     height: 200px !important;
+    width: 100%;
+}
+
+md-card-footer {
+    text-align: center;
 }
 
 .pagination a {
@@ -468,4 +430,37 @@ md-card>img, md-card>md-card-header img {
     word-wrap: break-word;
 }
 
+.icon-status {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+
+.acknowledged {
+    background: url("http://i.imgur.com/xPYbdLB.png");
+}
+
+.moved {    
+    background: url("http://i.imgur.com/nqFCc3z.png");
+}
+
+.solved {
+    background: url("http://i.imgur.com/UvpFBxi.png");
+}
+
+.announcement-type {
+    color: #003366;
+    border-bottom: 1px solid #003366;
+    margin-bottom: 0px;
+}
+
+.announcement-panel > li {
+    border-bottom: 1px dotted #b0b0b0;
+    padding-bottom: 10px;
+    padding-top: 6px
+}
+
+.announcement-panel {
+    padding-left: 0px;
+}
 
