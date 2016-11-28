@@ -9,6 +9,14 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
     var myLatLng = {lat: 10.78, lng: 106.65};
+    $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+        zoom: 12,
+        center: myLatLng,
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+    });
     var averageLatLong;
 
     $scope.convertStatusId = function(text) {
@@ -38,8 +46,8 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         averageLong /= requests.length;
         averageLatLong = {lat: averageLat, lng: averageLong};
         $scope.map.setCenter(averageLatLong);
-        var iconBase = "assets/resources/markerIcon/";
 
+        var iconBase = "assets/resources/markerIcon/";
         $scope.markers = [];
         $.each(requests, function(index, request) {
           var latlng = new google.maps.LatLng(request.latitude, request.longitude);
@@ -85,7 +93,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(averageLatLong);
-        $scope.map.setZoom(14);
+        $scope.map.setZoom(12);
     }
 
     $scope.pager = {};

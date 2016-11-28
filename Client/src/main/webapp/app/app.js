@@ -741,6 +741,7 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, 
 			comment.request = requestObj;
 			comment.content = $scope.textContent;
 			comment.postDatetime = dateTimeFilter(new Date());
+            console.log(comment);
 			commentManager.postComment(comment).then(
 				function success(){
 					$scope.comments.push(comment);

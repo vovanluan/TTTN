@@ -57,14 +57,15 @@ html, body {
 }
 
 .main-footer {
-    background: #002b60 url('../img/slide_a1.jpg') no-repeat center;
+    background: #002b60 url('../img/footer_bg.png') no-repeat center;
     min-height: 18.3vw;
+    background-size: 100% 100%;
 }
 
 .footer-bottom {
     position: relative;
     bottom: 0;
-    background-color: #314a93;
+    background-color: #002b60;
     min-height: 30px;
     width: 100%;
 }
@@ -151,10 +152,13 @@ html, body {
     outline: none;
 }
 
+.thumbnail-image-card {
+    margin: 10px 0px 0px 0px;
+}
+
 .thumbnail-image {
-    margin-top: 10px;
     width: 100px;
-    height: 100px;
+    height: 100px !important;
 }
 
 .issue-comments > li {
@@ -195,10 +199,6 @@ html, body {
     min-height: 280px;
 }
 
-.issue-detail-image img {
-    padding: 3px;
-    border: 1px solid #ddd;
-}
 .issue-detail-panel{
     padding: 8px 0px 0px 8px;
    overflow: hidden;
@@ -211,7 +211,7 @@ html, body {
 .issue-detail-comments li{
     padding-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px dotted #b0b0b0;
 }
 .issue-detail-comments li:last-child{
     border-bottom: none;
@@ -406,7 +406,14 @@ html, body {
 
 }
 
-md-card img, md-card>md-card-header img {
+.issue-detail-image > img {
+    height: 200px !important;
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ddd;
+}
+
+.card img {
     height: 200px !important;
     width: 100%;
 }
@@ -490,5 +497,71 @@ md-card-footer {
 
 .mrm {
     margin-right: 10px;
+}
+
+.avatar-image-card {
+    margin: 0px 10px 0px 0px;
+}
+
+.avatar-image-card > img {
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.user-comment {
+    padding-left: 45px;
+}
+
+.main-footer {
+    color: #fff;
+    font-weight: bold;
+}
+
+.main-footer-container {
+    padding: 20px 30px 0px 30px;
+}
+
+.hotline {
+    margin-top: 60px;
+    border-left: 1px solid #9697a0;
+    border-right: 1px solid #9697a0;
+}
+
+.social {
+    margin-top: 30px;
+}
+
+.social-icon > ul {
+    padding-left: 20px;
+}
+.social-icon li {
+    display: inline-block;
+    margin-right: 10px;
+    height: 64px;
+    width: 64px;
+}
+
+.facebook {
+    background: url("../img/1480291852_facebook_circle.png") no-repeat;
+    height: 64px;
+    display: block;
+}
+
+.twitter {
+    background: url("../img/1480291855_twitter_circle.png") no-repeat;
+    height: 64px;
+    display: block;
+}
+
+.google {
+    background: url("../img/1480291858_google_circle.png") no-repeat;
+    height: 64px;
+    display: block;
+}
+
+.instagram {
+    background: url("../img/1480291863_instagram_circle.png") no-repeat;
+    height: 64px;
+    display: block;
 }
 

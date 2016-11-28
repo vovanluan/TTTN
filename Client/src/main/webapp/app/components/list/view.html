@@ -8,7 +8,7 @@
 		<!-- Search -->
 		<div class="module-search">
 			<div class="search-input">
-				<input ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+				<input class="form-control" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
 			</div>
 			<div class="advanced-search">
 				<div class="row first">
@@ -65,9 +65,15 @@
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in filteredRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
+						<!-- <img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
 							ng-mouseover="mouseOver(request.latitude, request.longitude)"
-							ng-mouseleave="mouseLeave()">
+							ng-mouseleave="mouseLeave()"> -->
+						<md-card class="thumbnail-image-card float-left">
+		 					<img ng-src="{{request.mediaUrl}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="md-card-image thumbnail-image bordered" alt="image caption">
+		 					<md-card-footer>
+						        <!-- <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong> -->
+						    </md-card-footer>
+		 				</md-card>
 						<div class="issue-panel">
 							<div class="row-issue-title">
 								<h5 class="issue-title float-left">
@@ -94,11 +100,18 @@
 							</span>
 							<ul class="issue-comments">
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
-									<h5 class="user-name">
-										<a href="" class="user-link">{{comment.user.name}}</a>
-									</h5>
-									<div class="commentText">{{comment.content}}</div>
-									<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+									<div class="user-avatar">
+										<md-card class="avatar-image-card float-left">
+						 					<img ng-src="{{request.mediaUrl}}">
+						 				</md-card>
+									</div>
+									<div class="user-comment">
+										<h5 class="user-name">
+											<a href="" class="user-link">{{comment.user.name}}</a>
+										</h5>
+										<div class="commentText">{{comment.content}}</div>
+										<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+									</div>
 								</li>
 							</ul>
 						</div>
