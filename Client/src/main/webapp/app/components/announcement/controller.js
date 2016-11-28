@@ -1,7 +1,10 @@
 app.controller('announcementController', function($rootScope, $scope, $mdDialog, MANAGEMENT_ACCESS, AuthService,
-    announcementManager, SweetAlert) {
+    announcementManager, SweetAlert, PagerService) {
     $scope.type = 'Chính trị - Xã hội';
-    $scope.myFilter = {type: 'Chính trị - Xã hội'};
+    $scope.announcementPerPage = 10;
+    $scope.pager = {};
+    $scope.setPage = setPage;
+
     $scope.postAnnouncement = function() {
         $mdDialog.show({
             templateUrl: 'app/components/post-announcement/view.html',
@@ -13,6 +16,7 @@ app.controller('announcementController', function($rootScope, $scope, $mdDialog,
             scope: this
         })
     }
+
     $scope.isManager = function () {
         return AuthService.isAuthorized(MANAGEMENT_ACCESS);
     }
@@ -44,5 +48,16 @@ app.controller('announcementController', function($rootScope, $scope, $mdDialog,
                 }
             }
         );
+    }
+
+    function setPage(page, filterItems) {
+        if (page < 1 || page > $scope.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.announcementPerPage);
+        // get current page of items
+        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
 });

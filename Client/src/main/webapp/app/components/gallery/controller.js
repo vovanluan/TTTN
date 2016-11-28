@@ -73,7 +73,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(myLatLng);
-        $scope.map.setZoom(11);
+        $scope.map.setZoom(12);
     }
 
     $scope.pager = {};

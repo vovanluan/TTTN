@@ -46,39 +46,6 @@
 				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
 			</div>
 		</div>
-
-
-<!-- =======
-			<div ng-hide="requests.length">
-				<label>
-					Chưa có phản hồi nào
-				</label>
-			</div>
-			<div class="col-sm-4 wrapper" ng-repeat="request in showRequests">
-				<a href="#/issue/{{request.serviceRequestId}}">
-					<div class="fix">
-						<img ng-src="{{request.mediaUrl}}" class="img-responsive" alt="" />
-						<div class="desc">
-						<p class="desc_content">{{request.serviceName}}</p>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="pagination module-block" ng-if="pager.pages.length">
-			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requests.length ? requests.length : pager.currentPage * requestPerPage;}} của {{requests.length}}</div>
-			<div class="float-left">
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
-				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
-					{{page}}
-				</a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
-			</div>
->>>>>>> 69220c7c065209b97bf59d2f5873ca5a1e3d7eff -->
-		
-
 	</section>
 	<section class="col-md-4">
 		<div class="map bordered">

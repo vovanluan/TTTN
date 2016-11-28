@@ -65,13 +65,10 @@
 				<ul id="issue-list-ul" >
 					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
 					<li ng-repeat="request in filteredRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<!-- <img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left"
-							ng-mouseover="mouseOver(request.latitude, request.longitude)"
-							ng-mouseleave="mouseLeave()"> -->
 						<md-card class="thumbnail-image-card float-left">
 		 					<img ng-src="{{request.mediaUrl}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="md-card-image thumbnail-image bordered" alt="image caption">
 		 					<md-card-footer>
-						        <!-- <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong> -->
+						        <strong>ID - {{request.serviceRequestId}}</strong>
 						    </md-card-footer>
 		 				</md-card>
 						<div class="issue-panel">
@@ -102,7 +99,7 @@
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 									<div class="user-avatar">
 										<md-card class="avatar-image-card float-left">
-						 					<img ng-src="{{request.mediaUrl}}">
+						 					<img ng-src="http://en.seeclickfix.com/assets/no-avatar-32x32-82ce5a13a978e3589d1fdedabcd28685498d119aa94008759130d8495c10b5fe.png">
 						 				</md-card>
 									</div>
 									<div class="user-comment">

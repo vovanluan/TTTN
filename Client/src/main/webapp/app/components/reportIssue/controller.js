@@ -73,6 +73,7 @@ app.controller('reportTabController',
                                              },100);
         });
     };
+
     $scope.$watch('active', function(newValue){
         if (newValue == 1) {
             $scope.initMap();
@@ -80,10 +81,8 @@ app.controller('reportTabController',
     });
 
     this.selectTab = function(setTab){
-        console.log(setTab)
         $scope.activeTab = setTab;
         if (setTab == 1) {
-            console.log("vo 2");
             $scope.initMap();
         }
     };
@@ -92,6 +91,11 @@ app.controller('reportTabController',
     };
 
     this.submitReport = function() {
+        // if($scope.report.service.subject == 'undefined' || request.serviceName == '' || request.happenDatetime == '' || request.description == '' || $scope.report.street == '' || $scope.report.ward == '' || $scope.request.district == '') {
+        //     SweetAlert.swal("Error!", "Vui lòng điền đầy đủ thông tin!", "error");
+        //     return;
+        // }
+
         $scope.showSpinner = true;
         var request = new Object();
         request.serviceRequestId = 1;
@@ -105,6 +109,8 @@ app.controller('reportTabController',
         request.longitude = $scope.report.longitude;
         request.statusId = 0;
         request.user = $rootScope.user;
+
+        
         if($scope.report.picFile) {
             console.log("Here");
             Upload.base64DataUrl($scope.report.picFile).then(
@@ -166,12 +172,8 @@ app.controller('reportTabController',
     }
 
     $scope.checkAuthorization = function () {
-        if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
-            $scope.active = 3;
-        else {
-            console.log("HERE");
-            Modal.logInModal();
-        }
+        return AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest';
+           
     };
 
     $scope.isAuthorizedGuest = function () {

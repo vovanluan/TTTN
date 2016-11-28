@@ -17,7 +17,7 @@
         <button type="submit" class="btn btn-success btn-block" ng-click="postAnnouncement()" ng-if="isManager()">Tạo thông báo</button>
     </div>
 
-    <div class="col-lg-9 col-md-12">    
+    <div class="col-lg-9 col-md-12 announcement-content">    
         <h3 class="announcement-type">{{type}}</h3>
         <ul class="announcement-panel">
             <h4 ng-hide="(announcements | filter: {type: type}).length">Chưa có thông báo nào</h4>
@@ -37,6 +37,18 @@
                 </p>
             </li>
         </ul>
-
+        <!-- Pagination -->
+        <div class="pagination module-block" ng-if="pager.pages.length">
+            <div class="float-right"> Hiển thị {{(pager.currentPage - 1) * announcemnetPerPage + 1}} - {{pager.currentPage * announcemnetPerPage >= announcements.length ? announcements.length : pager.currentPage * announcemnetPerPage;}} của {{announcements.length}}</div>
+            <div class="float-left pagination-achor">
+                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
+                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
+                <a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
+                    {{page}}
+                </a>
+                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
+                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
+            </div>
+        </div>
     </div>
 </div>

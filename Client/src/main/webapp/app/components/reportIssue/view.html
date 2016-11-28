@@ -6,11 +6,11 @@
                     <hr>
                     <h4><strong>Cho biết các thông tin về chủ đề phản ánh</strong></h4>
                     <hr>
-                    <div class="col-sm-12 col-md-8">
+                    <div class="col-sm-12 col-md-8 overflow">
                         <md-content class="md-no-momentum">
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Chọn một chủ đề</label>
-                                <md-select ng-model="report.service">
+                                <md-select ng-model="report.service" required>
                                     <md-option ng-repeat="service in report.services" ng-value="service">
                                         {{service.subject}}
                                     </md-option>
@@ -36,7 +36,7 @@
                             <textarea ng-model="report.description" md-maxlength="1500" rows="5" md-select-on-focus></textarea>
                         </md-input-container>
                         <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
-                        <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="300" />
+                        <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="300"/>
                         <hr>
                         <div class="float-right">
                             <a class="btn btn-primary" ng-click="reportTab.selectTab(1)">Đi tới</a>
@@ -49,7 +49,7 @@
                     <hr>
                     <h4><strong>Cung cấp địa điểm sự việc</strong></h4>
                     <hr>
-                    <div class="col-sm-12 col-md-8">
+                    <div class="col-sm-12 col-md-8 overflow">
                         <div layout="row">
                             <md-input-container class="md-block" flex="50">
                                 <label>Chọn Quận/Huyện</label>
@@ -103,7 +103,7 @@
                         <strong><a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
                     </div>
                     <hr>
-                    <div class="col-sm-12 col-md-8">
+                    <div class="col-sm-12 col-md-8 overflow">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Tên hiển thị</label>
                             <input ng-model="user.name" readonly="true">
@@ -120,15 +120,14 @@
                             <label>CMND</label>
                             <input ng-model="user.identifyCard" readonly="true">
                         </md-input-container>
-                        <hr>
                         <div class="float-right">
                             <a class="btn btn-primary" ng-click="reportTab.selectTab(1)">Trở về</a>
-                            <a class="btn btn-primary" ng-click="reportTab.selectTab(3)">Đi tới</a>
+                            <a class="btn btn-primary" ng-if="checkAuthorization()" ng-click="reportTab.selectTab(3)">Đi tới</a>
                         </div>
                     </div>
                 </uib-tab> <!-- end tab 3 -->
 
-                <uib-tab index="3" heading="BƯỚC 4">
+                <uib-tab index="3" heading="BƯỚC 4" disable="true">
                     <hr>
                     <h4><strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong></h4>
                     <hr>
@@ -162,8 +161,8 @@
                         </md-input-container>
                         <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
                         <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="200" />
+                        <hr>
                     </div>
-
                     <div class="col-md-6 col-sm-12">
                         <h4 class="text-primary"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;&nbsp;ĐỊA ĐIỂM</h4>
                         <div layout="row">
