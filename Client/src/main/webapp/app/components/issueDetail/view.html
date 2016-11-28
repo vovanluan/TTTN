@@ -11,7 +11,6 @@
  					<md-card-footer>
 				        <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong>
 				    </md-card-footer>
-
  				</md-card>
 
 				<div class="issue-detail-panel">
@@ -25,16 +24,23 @@
 		</div>
 		<div class="comment-box bordered main" ng-show="{{countComment}}">
 			<div class="content-title">
-				<div ng-show="{{comments.length}}">Có {{comments.length}} bình luận</div>
+				<div ng-show="{{comments.length}}">{{comments.length}} bình luận</div>
 				<div ng-hide="{{comments.length}}">Chưa có bình luận nào</div>
 			</div>	
 			<ul class="issue-detail-comments">
 				<li ng-repeat="comment in comments">
-					<h5 class="user-name">
-						<a href="" class="user-link">{{comment.user.name}}</a>
-					</h5>
-					<div class="commentText">{{comment.content}}</div>
-					<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+					<div class="user-avatar">
+						<md-card class="avatar-image-card float-left">
+		 					<img ng-src="{{requestIndex.mediaUrl}}">
+		 				</md-card>
+					</div>
+					<div class="user-comment">
+						<h5 class="user-name">
+							<a href="" class="user-link">{{comment.user.name}}</a>
+						</h5>
+						<div class="commentText">{{comment.content}}</div>
+						<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -45,7 +51,7 @@
 			</div>	
 			<div class="post-comment">
 				<div ng-if="!isAuthorizedUser()"><h4 >Vui lòng <a ng-click="logInModal()">Đăng nhập</a> để đăng bình luận</h4></div>
-				<div ng-if="isAuthorizedUser()">
+				<div ng-show="isAuthorizedUser()">
 					<textarea id="comment-textarea" placeholder="Viết bình luận..." ng-model="textContent" rows="3"></textarea>
 					<button type="submit" class="btn btn-success btn-send-comment" data-error="Hãy viết 1 bình luận vào" ng-click="submitComment(requestIndex)">Gửi bình luận</button>
 				</div>

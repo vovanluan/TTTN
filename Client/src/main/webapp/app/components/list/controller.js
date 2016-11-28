@@ -41,7 +41,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         averageLatLong = {lat: averageLat, lng: averageLong}
         var iconBase = "assets/resources/markerIcon/";
         $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 10,
+            zoom: 12,
             center: averageLatLong,
             scrollwheel: false,
             navigationControl: false,
@@ -93,7 +93,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(averageLatLong);
-        $scope.map.setZoom(14);
+        $scope.map.setZoom(12);
     }
 
     $scope.pager = {};
