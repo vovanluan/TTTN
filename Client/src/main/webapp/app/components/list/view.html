@@ -107,7 +107,7 @@
 			</div>
 		</div>
 		<!-- Pagination -->
-		<div class="pagination module-block" ng-if="pager.pages.length">
+		<div class="pagination module-block" ng-if="filteredRequests.length">
 			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
 			<div class="float-left pagination-achor">
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
