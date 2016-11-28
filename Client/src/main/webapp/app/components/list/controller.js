@@ -9,6 +9,14 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
     var myLatLng = {lat: 10.78, lng: 106.65};
+    $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+        zoom: 12,
+        center: myLatLng,
+        scrollwheel: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+    });
     var averageLatLong;
 
     $scope.convertStatusId = function(text) {
@@ -27,7 +35,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
       return (commentRequestId==serviceRequestId);
     }
 
-    $scope.createMap = function (requests){
+    $scope.createMarkers = function (requests){
         var averageLat = 0;
         var averageLong = 0;
         $.each(requests, function(index, request) {
@@ -36,18 +44,10 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         });
         averageLat /= requests.length;
         averageLong /= requests.length;
-        console.log(averageLat);
-        console.log(averageLong);
-        averageLatLong = {lat: averageLat, lng: averageLong}
+        averageLatLong = {lat: averageLat, lng: averageLong};
+        $scope.map.setCenter(averageLatLong);
+
         var iconBase = "assets/resources/markerIcon/";
-        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-            zoom: 12,
-            center: averageLatLong,
-            scrollwheel: false,
-            navigationControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-        });
         $scope.markers = [];
         $.each(requests, function(index, request) {
           var latlng = new google.maps.LatLng(request.latitude, request.longitude);
@@ -115,12 +115,20 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         });
         if (!_.isEqual(tempRequests, $scope.filteredRequests)) {
             $scope.setPage(1, $scope.filteredRequests);
-            $scope.createMap($scope.filteredRequests);
+            $scope.createMarkers($scope.filteredRequests);
         }
 
     };
 
     function initController() {
+        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+            zoom: 10,
+            center: myLatLng,
+            scrollwheel: false,
+            navigationControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+        });
         requestManager.loadAllRequests().then(function (requests){
             $rootScope.requests = requests;
               // functions have been describe process the data for display
