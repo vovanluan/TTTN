@@ -58,6 +58,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "email", nullable = false)
     private String email;
+    
+    @Size(max = 200)
+    @Column(name = "avatar", nullable = true)
+    private String avatar;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
@@ -141,6 +145,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
     
 }

@@ -9,19 +9,11 @@
         </div>
     </md-toolbar>
     <md-content class="md-padding">
-<!--         <md-input-container class="md-block" flex>
-    <label>Chuyên mục</label>
-    <md-select ng-model="subject">
-        <md-option ng-repeat="type in types" ng-value="{{type}}">
-            {{type}}
-        </md-option>
-    </md-select>
-</md-input-container> -->
         <div layout="row">
             <md-input-container class="md-block" flex>
                 <label>Chuyên mục</label>
-                <md-select ng-model="type">
-                    <md-option ng-repeat="type in annoucementTypes" ng-value="type">
+                <md-select ng-model="announcementType">
+                    <md-option ng-repeat="type in announcementTypes" ng-value="type">
                         {{type}}
                     </md-option>
                 </md-select>
@@ -29,15 +21,15 @@
         </div>
         <md-input-container class="md-block">
             <label>Tiêu đề</label>
-            <textarea ng-model="title" md-maxlength="200" rows="1" md-select-on-focus></textarea>
+            <textarea ng-model="announcementTitle" md-maxlength="200" rows="1" md-select-on-focus></textarea>
         </md-input-container>
         <md-input-container class="md-block">
             <label>Nội dung</label>
-            <textarea ng-model="description" md-maxlength="2000" rows="5" md-select-on-focus></textarea>
+            <textarea ng-model="announcementDescription" md-maxlength="2000" rows="5" md-select-on-focus></textarea>
         </md-input-container>
     </md-content>
     <md-dialog-actions layout="row">
         <a href="" ng-click="cancel()">Hủy</a>&nbsp;&nbsp;
-        <button class="btn btn-primary" type="button" ng-click="submitAnnoucement()">Gửi thông báo</button>
+        <button class="btn btn-primary" type="button" ng-click="submitAnnouncement()">Gửi thông báo</button>
     </md-dialog-actions>
 </md-dialog>
