@@ -1,9 +1,26 @@
 app.controller('announcementController', function($rootScope, $scope, $mdDialog, MANAGEMENT_ACCESS, AuthService,
-    announcementManager, SweetAlert, PagerService) {
+    announcementManager, SweetAlert, PagerService, $filter) {
     $scope.type = 'Chính trị - Xã hội';
     $scope.announcementPerPage = 10;
     $scope.pager = {};
-    $scope.setPage = setPage;
+
+    $scope.setPage = function(page, filterItems) {
+        if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
+            return;
+        }
+        // get pager object from service
+        $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.announcementPerPage);
+        // get current page of items
+        $scope.showAnnouncements = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
+
+    $scope.filteredAnnouncements = $filter('filter')($rootScope.announcements,{'type':$scope.type});
+    $scope.setPage(1,$scope.filteredAnnouncements);
+
+    $scope.$watch('type', function (newVal, oldVal) {
+        $scope.filteredAnnouncements = $filter('filter')($rootScope.announcements,{'type':newVal});
+        $scope.setPage(1,$scope.filteredAnnouncements);
+    });
 
     $scope.postAnnouncement = function() {
         $mdDialog.show({
@@ -48,16 +65,5 @@ app.controller('announcementController', function($rootScope, $scope, $mdDialog,
                 }
             }
         );
-    }
-
-    function setPage(page, filterItems) {
-        if (page < 1 || page > $scope.pager.totalPages) {
-            return;
-        }
-
-        // get pager object from service
-        $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.announcementPerPage);
-        // get current page of items
-        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
 });

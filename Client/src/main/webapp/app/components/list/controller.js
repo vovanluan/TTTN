@@ -8,6 +8,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
+    var markersArray = [];
     var myLatLng = {lat: 10.78, lng: 106.65};
     $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
         zoom: 12,
@@ -18,6 +19,13 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         scaleControl: false,
     });
     var averageLatLong;
+
+    function clearOverlays() {
+        for (var i = 0; i < markersArray.length; i++ ) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
 
     $scope.convertStatusId = function(text) {
         switch(text) {
@@ -36,6 +44,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
 
     $scope.createMarkers = function (requests){
+        clearOverlays();
         var averageLat = 0;
         var averageLong = 0;
         $.each(requests, function(index, request) {
@@ -50,24 +59,24 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         var iconBase = "assets/resources/markerIcon/";
         $scope.markers = [];
         $.each(requests, function(index, request) {
-          var latlng = new google.maps.LatLng(request.latitude, request.longitude);
-          var icon = "";
-          switch(request.statusId) {
-            case 'DA_TIEP_NHAN':
-            // red circle
-              icon = 'http://i.imgur.com/xPYbdLB.png';
-              break;
-            case 'DA_CHUYEN' :
-            // green circle
-              icon = 'http://i.imgur.com/nqFCc3z.png';
-              break;
-            case 'DA_XU_LY':
-            case 'DA_DUYET':
+            var latlng = new google.maps.LatLng(request.latitude, request.longitude);
+            var icon = "";
+            switch(request.statusId) {
+                case 'DA_TIEP_NHAN':
+                // red circle
+                    icon = 'http://i.imgur.com/xPYbdLB.png';
+                    break;
+                case 'DA_CHUYEN' :
+                // green circle
+                    icon = 'http://i.imgur.com/nqFCc3z.png';
+                    break;
+                case 'DA_XU_LY':
+                case 'DA_DUYET':
                 // blue circle
-              icon = 'http://i.imgur.com/UvpFBxi.png';
-              break;
-          }
-          var marker = new google.maps.Marker({
+                    icon = 'http://i.imgur.com/UvpFBxi.png';
+                    break;
+            }
+            var marker = new google.maps.Marker({
                 position: latlng,
                 map: $scope.map,
                 draggable: false,
@@ -76,14 +85,17 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
                 icon: icon
             });
             var infowindow = new google.maps.InfoWindow({
-              content: request.serviceName
+                content: request.serviceName
             });
-          marker.addListener('mouseover', function() {
-              infowindow.open($scope.map, marker);
-          });
-          marker.addListener('mouseout', function() {
-              infowindow.close($scope.map, marker);
-          });
+
+            markersArray.push(marker);
+
+            marker.addListener('mouseover', function() {
+                infowindow.open($scope.map, marker);
+            });
+            marker.addListener('mouseout', function() {
+                infowindow.close($scope.map, marker);
+            });
         });
     }
 
@@ -113,9 +125,9 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
             }
             return false;
         });
+        console.log(_.isEqual(tempRequests, $scope.filteredRequests));
         if (!_.isEqual(tempRequests, $scope.filteredRequests)) {
             $scope.setPage(1, $scope.filteredRequests);
-            $scope.createMarkers($scope.filteredRequests);
         }
 
     };
@@ -143,13 +155,13 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     }
 
     function setPage(page, filterItems) {
-        if (page < 1 || page > $scope.pager.totalPages) {
+        if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
             return;
         }
-
         // get pager object from service
         $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.requestPerPage);
         // get current page of items
         $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+        $scope.createMarkers($scope.showRequests);
     }
 });

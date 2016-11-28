@@ -21,7 +21,7 @@
         <h3 class="announcement-type">{{type}}</h3>
         <ul class="announcement-panel">
             <h4 ng-hide="(announcements | filter: {type: type}).length">Chưa có thông báo nào</h4>
-            <li ng-repeat="announcement in announcements | filter: {type: type}" ng-attr-id="{{'issue_id_' + announcement.id}}">
+            <li ng-repeat="announcement in showAnnouncements" ng-attr-id="{{'issue_id_' + announcement.id}}">
                 <h5 class="issue-title">
                     <span><a href="" class="issue-link">{{announcement.title}}</a>&nbsp;&nbsp;({{announcement.time | date:'HH:mm - dd/MM/yyyy'}})</span>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-if="isManager()" ng-click="deleteAnnouncement(announcement.id)"></span>
@@ -39,15 +39,15 @@
         </ul>
         <!-- Pagination -->
         <div class="pagination module-block" ng-if="pager.pages.length">
-            <div class="float-right"> Hiển thị {{(pager.currentPage - 1) * announcemnetPerPage + 1}} - {{pager.currentPage * announcemnetPerPage >= announcements.length ? announcements.length : pager.currentPage * announcemnetPerPage;}} của {{announcements.length}}</div>
+            <div class="float-right"> Hiển thị {{(pager.currentPage - 1) * announcementPerPage + 1}} - {{pager.currentPage * announcementPerPage >= filteredAnnouncements.length ? filteredAnnouncements.length : pager.currentPage * announcementPerPage;}} của {{filteredAnnouncements.length}}</div>
             <div class="float-left pagination-achor">
-                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)">Trang đầu</a>
-                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
-                <a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
+                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredAnnouncements)">Trang đầu</a>
+                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredAnnouncements)"><i class="glyphicon glyphicon-menu-left"></i></a>
+                <a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredAnnouncements)">
                     {{page}}
                 </a>
-                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
-                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)">Trang cuối</a>
+                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredAnnouncements)"><i class="glyphicon glyphicon-menu-right"></i></a>
+                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredAnnouncements)">Trang cuối</a>
             </div>
         </div>
     </div>
