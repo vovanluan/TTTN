@@ -1,6 +1,6 @@
 app.controller('postDivisionController',
     function($rootScope, $scope, $http, $uibModalInstance, divisionManager, SweetAlert) {
-        
+
     $scope.showSpinner = false;
 
     $scope.postDivision = function(){
@@ -14,6 +14,7 @@ app.controller('postDivisionController',
                     divisionManager.loadAllDivisions().then(function(divisions){
                         $rootScope.divisions = divisions;
                     });
+                     $uibModalInstance.dismiss('cancel');
                 },
                 function error(err){
                     $scope.showSpinner = false;
