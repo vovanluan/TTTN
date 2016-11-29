@@ -52,6 +52,13 @@ app.factory('Announcements', function ($http) {
     return $http.get('assets/data/announcements.json');
 });
 
+app.factory('Requests', function ($http) {
+    return $http.get('assets/data/requests.json');
+});
+
+app.factory('DivisionRequests', function ($http) {
+    return $http.get('assets/data/division-requests.json');
+});
 app.factory('requestManager', function(requestUrl, $http, $q){
 	var requestManager = {
         loadAllRequests: function() {
@@ -526,7 +533,8 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
 
 // Run after .config(, this function is closest thing to main method in Angular, used to kickstart the application
 app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
-	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, announcementManager, userManager, Districts, Services, Announcements){
+	baseUrl, AuthService, RouteClean, requestManager, commentManager, divisionManager, announcementManager,
+    userManager, Districts, Services, Announcements, Requests, DivisionRequests){
   	$rootScope.$on('$routeChangeStart', function (next, current) {
 	    // if route requires authentication and user is not logged in
 	    if (!RouteClean($location.url()) && !AuthService.isAuthenticated()) {
@@ -609,6 +617,17 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
     }).error(function (message) {
         console.log("Error in announcements: " + message);
     })
+    Requests.success(function (requests) {
+        $rootScope.statusIds = requests.requests;
+    }).error(function (message) {
+        console.log("Error in get statusId list: " + message);
+    })
+    DivisionRequests.success(function (requests) {
+        $rootScope.divisionRequests = requests.division_requests;
+    }).error(function (message) {
+        console.log("Error in get statusId list: " + message);
+    })
+
 
 });
 

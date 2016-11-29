@@ -1,8 +1,28 @@
-app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager, commentManager, SweetAlert, $mdDialog) {
+app.controller('reportManagementController', function($rootScope, $scope, userManager, SweetAlert, requestManager,
+	commentManager, SweetAlert, $mdDialog, $filter, PagerService) {
 	$scope.url = '';
 	$scope.controller = '';
-	$scope.myFilter = {statusId: 'DA_TIEP_NHAN'};
-	
+	$scope.statusType = 'DA_TIEP_NHAN';
+    $scope.requestPerPage = 2;
+    $scope.pager = {};
+    $scope.setPage = function(page, filterItems) {
+        if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
+            return;
+        }
+        // get pager object from service
+        $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.requestPerPage);
+        // get current page of items
+        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
+
+
+	$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
+    $scope.setPage(1, $scope.filteredRequests);
+
+    $scope.$watch('statusType + $rootScope.requests', function (newVal, oldVal) {
+        $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
+        $scope.setPage(1, $scope.filteredRequests);
+    });
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
 

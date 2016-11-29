@@ -36,12 +36,13 @@
                             <textarea ng-model="report.description" md-maxlength="1500" rows="5" md-select-on-focus></textarea>
                         </md-input-container>
                         <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
+                        <button class="btn btn-primary" ng-click="report.picFile = null" >Xóa ảnh</button>
                         <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="300"/>
                         <hr>
                         <div class="float-right">
                             <a class="btn btn-primary" ng-click="reportTab.selectTab(1)">Đi tới</a>
-                        </div>       
-                    </div> 
+                        </div>
+                    </div>
 
                 </uib-tab> <!-- end tab 1 -->
 
@@ -73,7 +74,7 @@
                             <input ng-model="report.street">
                         </md-input-container>
                         <div id="map" class="bordered" style="height:380px"></div>
-                        
+
                         <table class="longlat stepTable" ng-hide="1">
                             <tr>
                                 <td class="col-md-2"> Kinh độ </td>
@@ -160,6 +161,7 @@
                             <textarea ng-model="report.description" md-maxlength="1500" rows="4"></textarea>
                         </md-input-container>
                         <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
+                        <button class="btn btn-primary" ng-click="report.picFile = null" >Xóa ảnh</button>
                         <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="200" />
                         <hr>
                     </div>
