@@ -123,9 +123,7 @@ public class NormalUserFacadeREST extends AbstractFacade<NormalUser> {
     public Response changePassword(@PathParam("id") Integer id, Password passwordObj) throws Exception {
         NormalUser user = em.find(NormalUser.class, id);
         String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
-        System.out.println("=========PASS==========" + passwordObj.getOldPassword() + passwordObj.getNewPassword());
         if (!user.getPassWord().equals(oldPasswordHash)) {
-            System.out.println("Khong trung oldPassword");
             return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
         }
 

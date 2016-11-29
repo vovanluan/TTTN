@@ -1,21 +1,25 @@
-app.controller('changePasswordModalController',  function($rootScope, $scope, $localStorage, $uibModalInstance, $http, userUrl, AuthService, jwtHelper, Modal, SweetAlert){
+app.controller('changePasswordModalController',  function($rootScope, $scope, $localStorage, $uibModalInstance, $http, userUrl, AuthService, jwtHelper, Modal, SweetAlert, AuthService){
 	$scope.cancel = function(){
 		$uibModalInstance.dismiss('cancel');
 
 	};
 
+	var url;
+
+	if($rootScope.user.type == 'vice_president') 
+		url = 'http://localhost:8080/restful/webresources/entity.vicepresidentuser/changePassword/' + $rootScope.user.id;
+	else 
+		url = 'http://localhost:8080/restful/webresources/entity.' + $rootScope.user.type + 'user/changePassword/' + $rootScope.user.id;
+
 	$scope.changePassword = function(){
-  		console.log('sdfsdfds');
   		var data = {
    			oldPassword: $scope.oldPassword,
    			newPassword: $scope.newPassword
   		}
-  		console.log(data);
-  		
   				
   		var req = {
 		    method: 'POST',
-		    url: 'http://localhost:8080/restful/webresources/entity.normaluser/changePassword/' + $rootScope.user.id,
+		    url: url,
 		    data: data
 		}
 
@@ -28,11 +32,12 @@ app.controller('changePasswordModalController',  function($rootScope, $scope, $l
 		        	timer: 1000,
 		        	showConfirmButton: false
 		        });
+		        AuthService.logout();
 		        $uibModalInstance.dismiss('cancel');
 			},
 			function error(err){
 				$scope.showSpinner = false;
-				SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");
+				SweetAlert.swal("Error!", "Mật khẩu cũ không đúng!", "error");
 			});
 	};
 

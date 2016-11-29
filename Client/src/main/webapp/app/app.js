@@ -26,6 +26,8 @@ app.constant('AUTH_EVENTS', {
 
 app.constant('USER_ACCESS', ['admin', 'normal', 'official', 'division', 'vice_president']);
 
+app.constant('NORMALUSER_ACCESS', ['normal']);
+
 app.constant('GUEST_ACCESS', ['admin', 'normal', 'guest']);
 
 app.constant('ADMIN_ACCESS', ['admin']);

@@ -299,6 +299,10 @@ html, body {
     margin-left: 130px;
 }
 
+.info-text img {
+    margin: 0px;
+}
+
 .edit-info {
     margin: 10px 0px 10px 0px;
     float: right;
@@ -522,17 +526,17 @@ md-card-footer {
 }
 
 .contact {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .hotline {
-    margin-top: 55px;
+    margin-top: 35px;
     border-left: 1px solid #9697a0;
     border-right: 1px solid #9697a0;
 }
 
 .social {
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .social-icon > ul {
@@ -590,5 +594,11 @@ md-card-footer {
 
 .announcement-content {
     background-color: #fff;
+}
+
+.text-error {
+    color:Red;
+    font-weight: bold;
+    padding-bottom: 10px;
 }
 

@@ -112,7 +112,6 @@ app.controller('reportTabController',
 
         
         if($scope.report.picFile) {
-            console.log("Here");
             Upload.base64DataUrl($scope.report.picFile).then(
                 function (url){
                     var uploadImageBase64 = url.replace(/data:image\/(png|jpg|jpeg);base64,/, "");
@@ -125,9 +124,7 @@ app.controller('reportTabController',
                             'type':'base64'
                         }
                     }).then(function successCallback(response) {
-                        console.log("data link : " + response.data.data.link);
                         request.mediaUrl = response.data.data.link;
-                        console.log(request.mediaUrl);
                         console.log(JSON.stringify(request));
                         requestManager.postRequest(request).then(
                             function success(){

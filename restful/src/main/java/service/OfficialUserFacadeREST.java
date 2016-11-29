@@ -5,7 +5,7 @@
  */
 package service;
 
-import entity.NormalUser;
+import dto.Password;
 import entity.OfficialUser;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -121,6 +121,22 @@ public class OfficialUserFacadeREST extends AbstractFacade<OfficialUser> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @POST
+    @Path("changePassword/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response changePassword(@PathParam("id") Integer id, Password passwordObj) throws Exception {
+        OfficialUser user = em.find(OfficialUser.class, id);
+        String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
+        if (!user.getPassWord().equals(oldPasswordHash)) {
+            return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
+        }
+
+        user.setPassWord(General.hashPassword(passwordObj.getNewPassword()));
+        super.edit(user);
+        return Response.ok().build();
     }
     
 }

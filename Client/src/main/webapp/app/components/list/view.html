@@ -99,7 +99,7 @@
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 									<div class="user-avatar">
 										<md-card class="avatar-image-card float-left">
-						 					<img ng-src="http://en.seeclickfix.com/assets/no-avatar-32x32-82ce5a13a978e3589d1fdedabcd28685498d119aa94008759130d8495c10b5fe.png">
+						 					<img ng-src="{{comment.user.avatar? comment.user.avatar : 'assets/img/no-avatar.png'}}">
 						 				</md-card>
 									</div>
 									<div class="user-comment">
