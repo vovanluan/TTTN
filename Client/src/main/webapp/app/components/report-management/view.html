@@ -10,22 +10,11 @@
         <span class="icon-bar"></span>
 	    </div>
 	    <div class="list-group">
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_TIEP_NHAN'}">
-	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; Đã tiếp nhận <span class="badge">{{(requests | filter: {statusId: 'DA_TIEP_NHAN'}).length}}</span>
+	        <a href="" class="list-group-item" ng-repeat="statusId in statusIds" ng-click="$parent.statusType = statusId.statusId">
+	            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>&nbsp;&nbsp; {{statusId.name}} <span class="badge">{{(requests | filter: {statusId: statusId.statusId}).length}}</span>
 	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_CHUYEN'}">
-	        	<span class="glyphicon glyphicon-share" aria-hidden="true"></span>&nbsp;&nbsp;{{isDivision() ? ' Chờ xử lý' : ' Đã chuyển đến cơ quan'}}<span class="badge">{{(requests | filter: {statusId: 'DA_CHUYEN'}).length}}</span>
-	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XU_LY'}">
-	            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;&nbsp; Đã xử lý - Chờ duyệt <span class="badge">{{(requests | filter: {statusId: 'DA_XU_LY'}).length}}</span>
-	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_DUYET'}">
-	            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>&nbsp;&nbsp; Đã duyệt trả lời <span class="badge">{{(requests | filter: {statusId: 'DA_DUYET'}).length}}</span>
-	        </a>
-	        <a href="" class="list-group-item" ng-click="myFilter={statusId: 'DA_XOA'}" ng-hide="isDivision()">
-	            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp; Đã xóa <span class="badge">{{(requests | filter: {statusId: 'DA_XOA'}).length}}</span>
-	        </a>
-	    </div>        
+
+	    </div>
 	</div>
 
 	<div class="col-lg-9 col-md-12">
@@ -35,8 +24,8 @@
 			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
-					<h4 ng-hide="(requests | filter: myFilter).length">Chưa có phản hồi nào</h4>
-					<li ng-repeat="request in requests | filter: myFilter" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<h4 ng-hide="filteredRequests.length">Chưa có phản hồi nào</h4>
+					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<img ng-src="{{request.mediaUrl}}" class="thumbnail-image float-left">
 						<div class="issue-panel">
 							<h5 class="issue-title">
@@ -44,7 +33,7 @@
 
 								<button class="btn btn-danger float-right" ng-if="request.statusId == 'DA_TIEP_NHAN'" ng-click="deleteIssue(request.serviceRequestId)">
 									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								</button> 
+								</button>
 							</h5>
 							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i> {{request.address}}</p>
 							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
@@ -67,6 +56,19 @@
 					</li>
 				</ul>
 			</div>
+	        <!-- Pagination -->
+	        <div class="pagination module-block" ng-if="pager.pages.length">
+	            <div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+	            <div class="float-left pagination-achor">
+	                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
+	                <a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
+	                <a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
+	                    {{page}}
+	                </a>
+	                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
+	                <a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+	            </div>
+	        </div>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,28 @@
+{
+    "requests": [
+        {
+            "statusId" : "DA_TIEP_NHAN",
+            "name" :  "Đã tiếp nhận"
+        },
+        {
+            "statusId" : "DA_CHUYEN",
+            "name" :  "Đã chuyển đến cơ quan"
+        },
+        {
+            "statusId" : "DA_XU_LY",
+            "name" :  "Đã xử lý - Chờ duyệt"
+        },
+        {
+            "statusId" : "DA_DUYET",
+            "name" :  "Đã duyệt trả lời"
+        },
+        {
+            "statusId" : "DA_DUYET",
+            "name" :  "Đã duyệt trả lời"
+        },
+        {
+            "statusId" : "DA_XOA",
+            "name" :  "Đã xóa"
+        }
+    ]
+}
