@@ -1,12 +1,8 @@
 {
-    "requests": [
-        {
-            "statusId" : "DA_TIEP_NHAN",
-            "name" :  "Đã tiếp nhận"
-        },
+    "division_requests": [
         {
             "statusId" : "DA_CHUYEN",
-            "name" :  "Đã chuyển đến cơ quan"
+            "name" :  "Chờ xử lý"
         },
         {
             "statusId" : "DA_XU_LY",
@@ -15,10 +11,6 @@
         {
             "statusId" : "DA_DUYET",
             "name" :  "Đã duyệt trả lời"
-        },
-        {
-            "statusId" : "DA_XOA",
-            "name" :  "Đã xóa"
         }
     ]
 }

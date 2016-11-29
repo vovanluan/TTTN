@@ -2,7 +2,6 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	commentManager, SweetAlert, $mdDialog, $filter, PagerService) {
 	$scope.url = '';
 	$scope.controller = '';
-	$scope.myFilter = {statusId: 'DA_TIEP_NHAN'};
 	$scope.statusType = 'DA_TIEP_NHAN';
     $scope.requestPerPage = 2;
     $scope.pager = {};
@@ -20,7 +19,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
     $scope.setPage(1, $scope.filteredRequests);
 
-    $scope.$watch('statusType', function (newVal, oldVal) {
+    $scope.$watch('statusType + $rootScope.requests', function (newVal, oldVal) {
         $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
         $scope.setPage(1, $scope.filteredRequests);
     });
