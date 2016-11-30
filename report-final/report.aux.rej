@@ -1,0 +1,9 @@
+diff a/Report/report.aux b/Report/report.aux	(rejected hunks)
+@@ -95,6 +95,7 @@
+ \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces M\IeC {\^o} h\IeC {\`\i }nh Entity - Relationship c\IeC {\h u}a \IeC {\dj }\IeC {\`\ecircumflex } \IeC {\'a}n\relax }}{25}{figure.17}}
+ \newlabel{refhinh1}{{17}{25}{Mô hình Entity - Relationship của đề án\relax }{figure.17}{}}
+ \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Web Service}{25}{subsection.4.2}}
++<<<<<<< HEAD
+ \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Client}{26}{subsection.4.3}}
+ \@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Trang list-issue\relax }}{27}{figure.18}}
+ \newlabel{refhinh1}{{18}{27}{Trang list-issue\relax }{figure.18}{}}

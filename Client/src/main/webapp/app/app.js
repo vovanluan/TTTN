@@ -178,7 +178,6 @@ app.factory('divisionManager', function(divisionUrl, $http, $q){
         },
         postDivision: function(division){
             var deferred = $q.defer();
-            console.log(division);
             $http.post(divisionUrl, JSON.stringify(division))
                 .success(function() {
                     deferred.resolve();
@@ -282,7 +281,7 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
   		},
   		changePasswordModal: function(){
   			var modalInstance = $uibModal.open({
-  				templateUrl: 'app/components/changePassword/view.html',
+  				templateUrl: 'app/components/change-password/view.html',
   				controller: 'changePasswordModalController',
   				resolve: {
   				}
@@ -292,20 +291,7 @@ app.factory('Modal', function($rootScope, $uibModal, $mdDialog){
   			}, function dismiss(){
   				console.log("Modal dismiss");
   			});
-  		},
-        postDivisionModal: function() {
-            var modalInstance = $uibModal.open({
-                templateUrl: 'app/components/post-division/view.html',
-                controller: 'postDivisionController',
-                resolve: {
-                }
-            });
-
-            modalInstance.result.then(function close(){
-            }, function dismiss(){
-                console.log("Modal dismiss");
-            });
-        }
+  		}
 	}
 });
 
@@ -487,11 +473,11 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
         controller: 'authorizationManagementController'
     })
 	.when('/issue/:issueId', {
-		templateUrl: 'app/components/issueDetail/view.html',
+		templateUrl: 'app/components/issue-detail/view.html',
 		controller: 'issueDetailController'
 	})
 	.when('/report-issue', {
-		templateUrl: 'app/components/reportIssue/view.html',
+		templateUrl: 'app/components/report-issue/view.html',
 		controller: 'reportTabController',
 		controllerAs: 'reportTab'
 	})
@@ -559,7 +545,6 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
 
     announcementManager.loadAllAnnouncements().then(function(announcements){
         $rootScope.announcements = announcements;
-        console.log(announcements);
     });
 
   	// Check if token exists, then get user information and user role
@@ -707,79 +692,4 @@ app.controller('dropDownViewController', function(){
 	};
 });
 
-app.controller('issueDetailController',function(AuthService, USER_ACCESS,Modal, $rootScope, $scope, requestManager, commentManager, $routeParams, dateTimeFilter, USER_ACCESS, $localStorage, Modal){
-	$scope.requestIndex = {};
-	$scope.comments = [];
-	$scope.issue_id = $routeParams.issueId;
-	$scope.countComment = {};
 
-	angular.forEach($rootScope.comments, function(comment,index){
-		if(comment.request.serviceRequestId==$scope.issue_id)
-			$scope.comments.push(comment);
-	});
-
-	//$scope.requestIndex = requests[$scope.issue_id];
-
-	for(var i = 0; i < $rootScope.requests.length; i++){
-		if($scope.issue_id == $rootScope.requests[i].serviceRequestId) {
-			$scope.requestIndex = $rootScope.requests[i];
-			break;
-		}
-	}
-
-    // Watch userRole change
-    $scope.$watch(function (){
-        return $localStorage;
-    }, function() {
-        $scope.isAuthorizedUser = function () {
-            return AuthService.isAuthorized(USER_ACCESS);
-        };
-    });
-
-    $scope.convertStatusId = function(text) {
-        switch(text) {
-            case 'DA_TIEP_NHAN':
-                return 'ĐÃ TIẾP NHẬN';
-            case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
-            case 'DA_XU_LY':
-                return 'ĐÃ XỬ LÝ';
-            case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
-            case 'DA_XOA':
-                return 'ĐÃ XÓA';
-        }
-    }
-
-	$scope.submitComment = function(requestObj){
-		if(AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest')
-		{
-			var comment = new Object();
-			var guest = new Object();
-
-			comment.user = $rootScope.user;
-			console.log(JSON.stringify(comment.user));
-			comment.request = requestObj;
-			comment.content = $scope.textContent;
-			comment.postDatetime = dateTimeFilter(new Date());
-            console.log(comment);
-			commentManager.postComment(comment).then(
-				function success(){
-					$scope.comments.push(comment);
-					$rootScope.comments.push(comment);
-				},
-				function error(){
-					console.log("Error");
-				});
-
-			$scope.textContent = '';
-		}
-	 	else {
-	 		Modal.logInModal();
-	 	}
-	}
-
-    $scope.logInModal = function(){
-        Modal.logInModal();
-    }
-});

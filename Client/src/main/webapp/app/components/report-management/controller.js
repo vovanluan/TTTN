@@ -28,12 +28,12 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 
 		switch($scope.requestIndex.statusId) {
 			case 'DA_TIEP_NHAN':
-				$scope.url = 'app/components/report-management-detail-0/view.html';
-				$scope.controller = 'reportManagementDetail0ModalController';
+				$scope.url = 'app/components/issue-management-detail-0/view.html';
+				$scope.controller = 'issueManagementDetail0ModalController';
 				break;
 			case 'DA_CHUYEN':
-				$scope.url = 'app/components/report-management-detail-1/view.html';
-				$scope.controller = 'reportManagementDetail1ModalController';
+				$scope.url = 'app/components/issue-management-detail-1/view.html';
+				$scope.controller = 'issueManagementDetail1ModalController';
 				break;
 			case 'DA_XU_LY':
 				$scope.url = 'app/components/issue-management-detail-2/view.html';

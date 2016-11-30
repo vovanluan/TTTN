@@ -17,7 +17,7 @@
         <button type="submit" class="btn btn-success btn-block" ng-click="postAnnouncement()" ng-if="isManager()">Tạo thông báo</button>
     </div>
 
-    <div class="col-lg-9 col-md-12 announcement-content">    
+    <div class="col-lg-9 col-md-12 announcement-content bordered-radius">    
         <h3 class="announcement-type">{{type}}</h3>
         <ul class="announcement-panel">
             <h4 ng-hide="(announcements | filter: {type: type}).length">Chưa có thông báo nào</h4>

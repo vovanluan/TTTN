@@ -28,21 +28,6 @@
 						</label>
 					</div>
 				</div>
-<!-- 				<div class="row first">
-	<label for="" class="mrm">Sắp xếp theo:</label>
-	<div class="right">
-		<label class="mrm">
-			<select ng-model="firstOrderBy">
-				<option ng-repeat="fOrder in firstOrder">{{fOrder.name}}</option>
-			</select>
-		</label>
-		<label class="mrm">
-			<select name="secondOrder" id="" ng-model="secondOrderBy">
-				<option ng-repeat="sOrder in secondOrder">{{sOrder}}</option>
-			</select>
-		</label>
-	</div>
-</div> -->
 			</div>
 		</div>
 		<!-- Danh sách request -->
@@ -107,7 +92,7 @@
 											<a href="" class="user-link">{{comment.user.name}}</a>
 										</h5>
 										<div class="commentText">{{comment.content}}</div>
-										<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+										<div class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></div>
 									</div>
 								</li>
 							</ul>

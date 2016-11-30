@@ -38,16 +38,16 @@ app.controller('reportManagementDivisionController', function($rootScope, $scope
 
 		switch($scope.requestIndex.statusId) {
 			case 'DA_CHUYEN':
-				$scope.url = 'app/components/report-management-detail-1/view.html';
-				$scope.controller = 'reportManagementDetail1ModalController';
+				$scope.url = 'app/components/issue-management-detail-1/view.html';
+				$scope.controller = 'issueManagementDetail1ModalController';
 				break;
 			case 'DA_XU_LY':
 				$scope.url = 'app/components/issue-management-detail-2/view.html';
-				$scope.controller = 'reportManagementDetail1ModalController';
+				$scope.controller = 'issueManagementDetail2ModalController';
 				break;
 			case 'DA_DUYET':
 				$scope.url = 'app/components/issue-management-detail-3/view.html';
-				$scope.controller = 'reportManagementDetail1ModalController';
+				$scope.controller = 'issueManagementDetail3ModalController';
 				break;
 		}
 
