@@ -1,9 +1,12 @@
-app.controller('issueDetailController',function(AuthService, USER_ACCESS, $rootScope, $scope, $routeParams, dateTimeFilter, $localStorage, Modal, commentManager){
-	$scope.requestIndex = {};
-	$scope.comments = [];
-	$scope.issue_id = $routeParams.issueId;
-	$scope.countComment = {};
+app.controller('issueDetailController',function(AuthService, USER_ACCESS, $rootScope, $scope, $routeParams,
+    dateTimeFilter, $localStorage, Modal, commentManager, PagerService){
+    $scope.requestPerPage = 5;
+    $scope.requestIndex = {};
+    $scope.comments = [];
+    $scope.issue_id = $routeParams.issueId;
+    $scope.countComment = {};
 
+    initController();
 	angular.forEach($rootScope.comments, function(comment,index){
 		if(comment.request.serviceRequestId==$scope.issue_id)
 			$scope.comments.push(comment);
@@ -69,4 +72,29 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS, $rootS
     $scope.logInModal = function(){
         Modal.logInModal();
     }
+
+    function initController() {
+        $scope.pager = {};
+        $scope.setPage = setPage;
+        $scope.filteredRequests = [];
+        $.each($rootScope.requests, function (index, req) {
+            if (req.statusId != "DA_XOA") {
+                $scope.filteredRequests.push(req);
+            }
+        })
+        setPage(1, $scope.filteredRequests);
+        // initialize to page 1
+
+    }
+    function setPage(page, filterItems) {
+        if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
+            return;
+        }
+        // get pager object from service
+        $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.requestPerPage);
+        // get current page of items
+        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+        console.log($scope.showRequests);
+    }
+
 });

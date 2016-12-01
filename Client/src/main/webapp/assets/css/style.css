@@ -98,7 +98,7 @@ html, body {
     background-color: #314a93;
     color: #fff;
     font-size: 20px;
-    padding: 12px;
+    padding: 8px;
 }
 
 .issue-address {
@@ -607,4 +607,14 @@ md-card-footer {
 
 .no-margin-btm {
     margin-bottom: 0px;
+}
+
+.content-title .address {
+    color: #999999;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.small {
+    font-size: 12px;
 }
