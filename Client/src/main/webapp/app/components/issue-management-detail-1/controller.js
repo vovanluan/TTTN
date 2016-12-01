@@ -13,32 +13,37 @@ app.controller('issueManagementDetail1ModalController', function($rootScope, $sc
     });
 
 	$scope.vicePresidentApproval = function() {
-        console.log($scope.vicePresident);
         $scope.requestIndex.vicePresidentReceived = $scope.vicePresident;
         $scope.requestIndex.statusId = 'DA_XU_LY'; 
-        console.log($scope.requestIndex);
         requestManager.updateRequest($scope.requestIndex.serviceRequestId,$scope.requestIndex).then(
         	function success() {
+                $mdDialog.cancel();
         		requestManager.loadAllRequests().then(function(requests){
 					$rootScope.requests = requests;
 				});
+
+                $scope.filteredRequests = $filter('filter')($rootScope.requests,$scope.myFilter);
+                $scope.setPageAfterMoving($scope.filteredRequests); 
+
+                var comment = new Object();
+                comment.user = $rootScope.user;
+                comment.request = $scope.requestIndex;
+                comment.content = $scope.comment;
+                comment.postDatetime = dateTimeFilter(new Date());
+                commentManager.postComment(comment).then(
+                    function success(){
+                        $rootScope.comments.push(comment);
+                    },
+                    function error(){
+                        console.log("Error");
+                    }
+                );
         	},
         	function error(err) {
+                console.log("error");
         	}
         );
 
-        var comment = new Object();
-        comment.user = $rootScope.user;
-        comment.request = $scope.requestIndex;
-        comment.content = $scope.comment;
-        comment.postDatetime = dateTimeFilter(new Date());
-        commentManager.postComment(comment).then(
-            function success(){
-                $rootScope.comments.push(comment);
-            },
-            function error(){
-                console.log("Error");
-            }
-        );
+        
 	};
 });

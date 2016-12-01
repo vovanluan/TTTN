@@ -1,5 +1,5 @@
 app.controller('issueManagementDetail0ModalController', function($rootScope, $scope, $mdDialog, requestManager,
-    dateTimeFilter, commentManager, SweetAlert, AuthService, OFFICIAL_ACCESS) {
+    dateTimeFilter, commentManager, SweetAlert, AuthService, OFFICIAL_ACCESS, $filter) {
 
 	$scope.cancel = function() {
 		$mdDialog.cancel();
@@ -19,6 +19,10 @@ app.controller('issueManagementDetail0ModalController', function($rootScope, $sc
         		requestManager.loadAllRequests().then(function(requests){
 					$rootScope.requests = requests;
 				});
+
+                $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_TIEP_NHAN'});
+                $scope.setPageAfterMoving($scope.filteredRequests); 
+                
                 var comment = new Object();
                 comment.user = $rootScope.user;
                 comment.request = $scope.updatedRequest;
@@ -32,21 +36,10 @@ app.controller('issueManagementDetail0ModalController', function($rootScope, $sc
                         console.log("Error");
                     }
                 );
-                SweetAlert.swal({
-                    title: "OK",
-                    text: "Chuyển phản ánh thành công!",
-                    type: "success",
-                    timer: 1000,
-                    showConfirmButton: false
-                });
         	},
         	function error(err) {
-                    SweetAlert.swal("Error!", "Xảy ra lỗi khi chuyển phản ánh!", "error");
+                SweetAlert.swal("Error!", "Xảy ra lỗi khi chuyển phản ánh!", "error");
         	}
         );
-
-
 	};
-
-
 });

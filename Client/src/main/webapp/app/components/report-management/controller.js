@@ -5,12 +5,21 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	$scope.statusType = 'DA_TIEP_NHAN';
     $scope.requestPerPage = 2;
     $scope.pager = {};
+
     $scope.setPage = function(page, filterItems) {
         if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
             return;
         }
         // get pager object from service
         $scope.pager = PagerService.GetPager(filterItems.length, page, $scope.requestPerPage);
+        // get current page of items
+        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+    }
+
+    $scope.setPageAfterMoving = function(filterItems) {
+    	console.log(filterItems);
+    	// get pager object from service
+        $scope.pager = PagerService.GetPager(filterItems.length, 1, $scope.requestPerPage);
         // get current page of items
         $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
@@ -23,6 +32,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
         $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
         $scope.setPage(1, $scope.filteredRequests);
     });
+
 	$scope.openModal = function(id) {
 		$scope.requestIndex = $scope.requests[id-1];
 
@@ -43,6 +53,8 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 				$scope.url = 'app/components/issue-management-detail-3/view.html';
 				$scope.controller = 'issueManagementDetail3ModalController';
 				break;
+			case 'DA_XOA':
+				return;
 		}
 
 		$mdDialog.show({
@@ -69,14 +81,25 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 			},
 			function(isConfirm){
 				if (isConfirm) {
-			   		$scope.requests[id-1].statusId = "DA_XOA";
-			   		console.log($scope.requests[id-1]);
-			        requestManager.updateRequest($scope.requests[id-1].serviceRequestId,$scope.requests[id-1]).then(
+					var obj = new Object();
+					obj = $rootScope.requests[id-1];
+					obj.statusId = "DA_XOA";
+			        requestManager.updateRequest(obj.serviceRequestId,obj).then(
 			        	function success() {
 			        		requestManager.loadAllRequests().then(function(requests){
 								$rootScope.requests = requests;
 							});
-			        		SweetAlert.swal("OK!", "Bạn đã xóa phản ánh thành công!", "success");
+
+							$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_TIEP_NHAN'});
+    						$scope.setPageAfterMoving($scope.filteredRequests);	
+
+			        		SweetAlert.swal({
+					        	title: "OK",
+					        	text: "Xóa phản ánh thành công!",
+					        	type: "success",
+					        	timer: 1000,
+					        	showConfirmButton: false
+					        });        
 			        	},
 			        	function error(err) {
 			        		SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");

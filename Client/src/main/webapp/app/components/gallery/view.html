@@ -13,7 +13,7 @@
 						<i class="glyphicon glyphicon-map-marker"></i>
 					</a>
 				</div>
-				DANH SÁCH CÁC PHẢN HỒI
+				DANH SÁCH PHẢN ÁNH
 			</div>
 
 			<div layout='column'>
@@ -21,7 +21,7 @@
 		        <div layout="row" flex>
 		            <div class="parent" layout="column" ng-repeat="photoColumn in issueImages.photos3p" flex>
 		                <md-card class="card" data-ng-repeat="photo in photoColumn">
-		                	<a ng-href="#/issue/{{photo.id}}"><img ng-src="{{photo.path}}"></a>
+		                	<a ng-mouseover="mouseOver(photo.latitude, photo.longitude)" ng-mouseleave="mouseLeave()" ng-href="#/issue/{{photo.id}}"><img ng-src="{{photo.path? photo.path : 'assets/img/no-image-issue.jpg'}}"></a>
 	                    	<md-card-footer class="desc">
 						   		<div class="desc_content">
 						   			{{photo.name}}

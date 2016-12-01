@@ -89,6 +89,7 @@ app.factory('requestManager', function(requestUrl, $http, $q){
             var deferred = $q.defer();
             $http.put(requestUrl + "/" + id, JSON.stringify(req))
                 .success(function() {
+                    deferred.resolve();
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);
@@ -150,6 +151,7 @@ app.factory('userManager', function(userUrl, $http, $q){
             var deferred = $q.defer();
             $http.put(url + "/" + id, JSON.stringify(user))
                 .success(function() {
+                    deferred.resolve();
                 })
                 .error(function(msg, code) {
                     deferred.reject(msg);

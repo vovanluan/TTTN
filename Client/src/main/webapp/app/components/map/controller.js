@@ -1,23 +1,10 @@
-app.controller('mapViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
+app.controller('mapViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService, $filter){
     $scope.requestPerPage = 5;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     var myLatLng = {lat: 10.78, lng: 106.65};
-    $scope.convertStatusId = function(text) {
-        switch(text) {
-            case 'DA_TIEP_NHAN':
-                return 'ĐÃ TIẾP NHẬN';
-            case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
-            case 'DA_XU_LY':
-                return 'ĐÃ XỬ LÝ';
-            case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
-        }
-    }
-    $scope.checkId = function(commentRequestId,serviceRequestId){
-      return (commentRequestId==serviceRequestId);
-    }
+
+    $scope.filterRequests = $filter('filter')($rootScope.requests, {'statusId':'!DA_XOA'});
 
     $scope.createMap = function (){
         var iconBase = "assets/resources/markerIcon/";
@@ -26,7 +13,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
             center: myLatLng
         });
         $scope.markers = [];
-        $.each($rootScope.requests, function(index, request) {
+        $.each($scope.filterRequests, function(index, request) {
           var latlng = new google.maps.LatLng(request.latitude, request.longitude);
           var icon = "";
           switch(request.statusId) {
@@ -66,11 +53,11 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
 
     $scope.mouseOver = function (latitude, longtitude) {
         $scope.map.setCenter(new google.maps.LatLng(latitude, longtitude));
-        $scope.map.setZoom(14);
+        $scope.map.setZoom(15);
     }
     $scope.mouseLeave = function () {
         $scope.map.setCenter(myLatLng);
-        $scope.map.setZoom(11);
+        $scope.map.setZoom(13);
     }
     $scope.pager = {};
     $scope.setPage = setPage;
@@ -78,18 +65,8 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     initController();
 
     function initController() {
-        requestManager.loadAllRequests().then(function (requests){
-            $rootScope.requests = requests;
-              // functions have been describe process the data for display
-            $scope.setPage(1);
-            $scope.createMap();
-            $scope.$watch('requests', function (newVal, oldVal) {
-                $scope.setPage(1);
-                $scope.createMap();
-            });
-        });
-        // initialize to page 1
-
+        $scope.setPage(1);
+        $scope.createMap();
     }
 
     function setPage(page) {
@@ -98,9 +75,9 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
         }
 
         // get pager object from service
-        $scope.pager = PagerService.GetPager($rootScope.requests.length, page, $scope.requestPerPage);
+        $scope.pager = PagerService.GetPager($scope.filterRequests.length, page, $scope.requestPerPage);
         // get current page of items
-        $scope.showRequests = $rootScope.requests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
+        $scope.showRequests = $scope.filterRequests.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
 
 

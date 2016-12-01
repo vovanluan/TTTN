@@ -21,7 +21,7 @@
 	<section class="col-lg-4 col-md-12">
 		<div class="main bordered">
 			<div class="content-title">
-			DANH SÁCH CÁC PHẢN ÁNH
+			DANH SÁCH PHẢN ÁNH
 			</div>
 			<div ng-show="request.length">
 				<label>
@@ -34,7 +34,7 @@
 						<div>
 							<h5 class="issue-title">
 								<div class="icon-status" ng-class="{acknowledged: request.statusId == 'DA_TIEP_NHAN',moved: request.statusId == 'DA_CHUYEN', solved: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY')}"></div>
-								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
+								<a href="#/issue/{{request.serviceRequestId}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="issue-link">{{request.serviceName}}</a>
 							</h5>
 							<h5 class="issue-address">{{request.address}}</h5>
 							<p class="issue-content" hm-read-more
