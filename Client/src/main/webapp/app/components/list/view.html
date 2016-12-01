@@ -48,7 +48,7 @@
 			</div>
 			<div id="issue-list">
 				<ul id="issue-list-ul" >
-					<h4 ng-hide="requests.length">Chưa có phản hồi nào</h4>
+					<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
 					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<md-card class="thumbnail-image-card float-left">
 		 					<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="md-card-image thumbnail-image bordered" alt="image caption">
@@ -117,7 +117,7 @@
 	</section>
 	<section class="col-lg-4 col-md-12">
 		<div class="map bordered">
-			<div id="mainMap" style="height:380px"></div>
+			<div id="map-in-list-view" style="height:380px"></div>
 		</div>
 
 		<h3 class="announcement-type">Thông báo</h3>

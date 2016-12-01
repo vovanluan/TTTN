@@ -10,10 +10,6 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     $scope.date = new Date();
     var markersArray = [];
     var myLatLng = {lat: 10.78, lng: 106.65};
-    $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-        zoom: 12,
-        center: myLatLng
-    });
     var averageLatLong;
 
     function clearOverlays() {
@@ -40,7 +36,13 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     }
 
     $scope.createMarkers = function (requests){
+        // Clear old markers
         clearOverlays();
+
+        if (requests.length == 0) {
+            $scope.map.setCenter(myLatLng);
+            return;
+        }
         var averageLat = 0;
         var averageLong = 0;
         $.each(requests, function(index, request) {
@@ -128,13 +130,14 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     };
 
     function initController() {
-        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+        console.log("Controller Constructor");
+        $scope.map = new google.maps.Map(document.getElementById('map-in-map-view'), {
             zoom: 10,
             center: myLatLng,
-            scrollwheel: false,
+/*            scrollwheel: false,
             navigationControl: false,
             mapTypeControl: false,
-            scaleControl: false,
+            scaleControl: false,*/
         });
         requestManager.loadAllRequests().then(function (requests){
             $rootScope.requests = requests;

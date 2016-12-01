@@ -15,7 +15,7 @@
 				</div>
 				VỊ TRÍ CÁC PHẢN ÁNH
 			</div>
-			<div id="mainMap" style="height:550px"></div>
+			<div id="map-in-map-view" style="height:550px"></div>
 		</div>
 	</section>
 	<section class="col-lg-4 col-md-12">
@@ -54,6 +54,7 @@
 				</label>
 			</div>
 			<div id="issue-list">
+				<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
 				<ul id="issue-list-ul">
 					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<div>

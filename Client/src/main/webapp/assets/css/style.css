@@ -108,7 +108,7 @@ html, body {
     font-size: 90%;
 }
 
-#issue-list ul {
+#issue-list ul,h4 {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 12px;
@@ -457,7 +457,7 @@ md-card-footer {
     background: url("http://i.imgur.com/xPYbdLB.png");
 }
 
-.moved {    
+.moved {
     background: url("http://i.imgur.com/nqFCc3z.png");
 }
 
