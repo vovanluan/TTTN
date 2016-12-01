@@ -1,7 +1,6 @@
 app.controller('profileController', function($rootScope, $scope, $http, Modal, userManager, SweetAlert, normalUserUrl, officialUserUrl, vicePresidentUserUrl, divisionUserUrl, adminUserUrl, AuthService, NORMALUSER_ACCESS, Upload, clientId) {
 	$scope.isEditAccountInfo = false;
 	var editedUser = $rootScope.user;
-	console.log($rootScope.user);
 
 	$scope.isNormalUser = function () {
         return AuthService.isAuthorized(NORMALUSER_ACCESS);
@@ -11,7 +10,7 @@ app.controller('profileController', function($rootScope, $scope, $http, Modal, u
 		Modal.changePasswordModal();
 	}
 
-	$scope.editAccountInfo = function() {		
+	$scope.editAccountInfo = function() {
 		$scope.isEditAccountInfo = !$scope.isEditAccountInfo;
 	}
 
@@ -56,7 +55,7 @@ app.controller('profileController', function($rootScope, $scope, $http, Modal, u
                     }).then(function successCallback(response) {
                         console.log("data link : " + response.data.data.link);
                         $rootScope.user.avatar = response.data.data.link;
-                        
+
                         userManager.updateUser($rootScope.user.id,$rootScope.user,userUrl).then(
                         	function success() {
                         		$scope.showSpinner = false;

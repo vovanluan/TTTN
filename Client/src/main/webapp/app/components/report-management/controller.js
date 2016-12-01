@@ -3,7 +3,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	$scope.url = '';
 	$scope.controller = '';
 	$scope.statusType = 'DA_TIEP_NHAN';
-    $scope.requestPerPage = 2;
+    $scope.requestPerPage = 1;
     $scope.pager = {};
 
     $scope.setPage = function(page, filterItems) {
@@ -17,19 +17,16 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
         $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
 
-    $scope.setPageAfterMoving = function(filterItems) {
-    	console.log(filterItems);
-    	// get pager object from service
-        $scope.pager = PagerService.GetPager(filterItems.length, 1, $scope.requestPerPage);
-        // get current page of items
-        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
-    }
-
-
 	$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
     $scope.setPage(1, $scope.filteredRequests);
 
     $scope.$watch('statusType', function (newVal, oldVal) {
+        $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
+        $scope.setPage(1, $scope.filteredRequests);
+    });
+
+    $scope.$watch('requests', function (newVal, oldVal) {
+        console.log("Update requests");
         $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
         $scope.setPage(1, $scope.filteredRequests);
     });
@@ -61,7 +58,6 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 		$mdDialog.show({
 			templateUrl: $scope.url,
 			controller: $scope.controller,
-			bindToController: true,
 			bindToController: true,
 		    clickOutsideToClose: true,
 		    preserveScope: true,
@@ -95,7 +91,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 							});
 
 							$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_TIEP_NHAN'});
-    						$scope.setPageAfterMoving($scope.filteredRequests);	
+    						$scope.setPage(1, $scope.filteredRequests);
 
 			        		SweetAlert.swal({
 					        	title: "OK",
@@ -103,7 +99,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 					        	type: "success",
 					        	timer: 1000,
 					        	showConfirmButton: false
-					        });        
+					        });
 			        	},
 			        	function error(err) {
 			        		SweetAlert.swal("Error!", "Xảy ra lỗi khi gửi yêu cầu!", "error");

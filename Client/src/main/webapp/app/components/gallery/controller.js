@@ -49,7 +49,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
 
         var iconBase = "assets/resources/markerIcon/";
         $scope.markers = [];
-        $.each($scope.filterRequests, function(index, request) {
+        $.each($scope.showRequests, function(index, request) {
             var latlng = new google.maps.LatLng(request.latitude, request.longitude);
             var icon = "";
             switch(request.statusId) {
@@ -102,7 +102,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
     // init the filtered items
     $scope.updateAfterSearch = function () {
         var tempRequests = $scope.filteredRequests;
-        $scope.firstFilter = $filter('filter')($rootScope.requests, $scope.searchInput);
+        $scope.firstFilter = $filter('filter')($scope.filterRequests, $scope.searchInput);
         $scope.filteredRequests = $filter('filter')($scope.firstFilter, function (req) {
             if (($scope.isReceived && req.statusId == 'DA_TIEP_NHAN')
               || ($scope.isInProgress && req.statusId == 'DA_CHUYEN')

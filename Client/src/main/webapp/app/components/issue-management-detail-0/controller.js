@@ -20,9 +20,6 @@ app.controller('issueManagementDetail0ModalController', function($rootScope, $sc
 					$rootScope.requests = requests;
 				});
 
-                $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_TIEP_NHAN'});
-                $scope.setPageAfterMoving($scope.filteredRequests); 
-                
                 var comment = new Object();
                 comment.user = $rootScope.user;
                 comment.request = $scope.updatedRequest;

@@ -4,7 +4,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
         {type: 'vote', name: 'Cảm ơn'}
     ];
     $scope.secondOrder = ['A-Z', 'Z-A'];
-    $scope.requestPerPage = 5;
+    $scope.requestPerPage = 2;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
@@ -59,7 +59,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
 
         var iconBase = "assets/resources/markerIcon/";
         $scope.markers = [];
-        $.each($scope.filterRequests, function(index, request) {
+        $.each($scope.showRequests, function(index, request) {
             var latlng = new google.maps.LatLng(request.latitude, request.longitude);
             var icon = "";
             switch(request.statusId) {
@@ -117,7 +117,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     // init the filtered items
     $scope.updateAfterSearch = function () {
         var tempRequests = $scope.filteredRequests;
-        $scope.firstFilter = $filter('filter')($rootScope.requests, $scope.searchInput);
+        $scope.firstFilter = $filter('filter')($scope.filterRequests, $scope.searchInput);
         $scope.filteredRequests = $filter('filter')($scope.firstFilter, function (req) {
             if (($scope.isReceived && req.statusId == 'DA_TIEP_NHAN')
               || ($scope.isInProgress && req.statusId == 'DA_CHUYEN')
@@ -135,7 +135,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     function initController() {
         console.log("Controller Constructor");
         $scope.map = new google.maps.Map(document.getElementById('map-in-map-view'), {
-            zoom: 10,
+            zoom: 11,
             center: myLatLng,
 /*            scrollwheel: false,
             navigationControl: false,
