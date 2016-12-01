@@ -10,22 +10,11 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
     $scope.date = new Date();
     var markersArray = [];
     var myLatLng = {lat: 10.78, lng: 106.65};
-    $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
-        zoom: 12,
-        center: myLatLng,
-        scrollwheel: false,
-        navigationControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-    });
     var averageLatLong;
+    $scope.pager = {};
+    $scope.setPage = setPage;
 
-    function clearOverlays() {
-        for (var i = 0; i < markersArray.length; i++ ) {
-            markersArray[i].setMap(null);
-        }
-        markersArray.length = 0;
-    }
+    initController();
 
     $scope.convertStatusId = function(text) {
         switch(text) {
@@ -45,6 +34,10 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
 
     $scope.createMarkers = function (requests){
         clearOverlays();
+        if (requests.length == 0) {
+            $scope.map.setCenter(myLatLng);
+            return;
+        }
         var averageLat = 0;
         var averageLong = 0;
         $.each(requests, function(index, request) {
@@ -108,11 +101,6 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         $scope.map.setZoom(12);
     }
 
-    $scope.pager = {};
-    $scope.setPage = setPage;
-
-    initController();
-
     // init the filtered items
     $scope.updateAfterSearch = function () {
         var tempRequests = $scope.filteredRequests;
@@ -131,8 +119,15 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
 
     };
 
+    function clearOverlays() {
+        for (var i = 0; i < markersArray.length; i++ ) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
+
     function initController() {
-        $scope.map = new google.maps.Map(document.getElementById('mainMap'), {
+        $scope.map = new google.maps.Map(document.getElementById('map-in-list-view'), {
             zoom: 10,
             center: myLatLng,
             scrollwheel: false,

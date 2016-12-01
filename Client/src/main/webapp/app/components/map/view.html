@@ -15,11 +15,36 @@
 				</div>
 				VỊ TRÍ CÁC PHẢN ÁNH
 			</div>
-			<div id="mainMap" style="height:550px"></div>
+			<div id="map-in-map-view" style="height:550px"></div>
 		</div>
 	</section>
 	<section class="col-lg-4 col-md-12">
 		<div class="main bordered">
+			<!-- Search -->
+			<div class="module-search">
+				<div class="search-input">
+					<input class="form-control" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+				</div>
+				<div class="advanced-search">
+					<div class="row first">
+						<label for="" class="mrm">Trạng thái:</label>
+						<div class="right">
+							<label class="mrm">
+								<input type="checkbox" ng-model="isReceived" ng-init="isReceived = true">
+								Đã tiếp nhận
+							</label>
+							<label class="mrm">
+								<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
+								Đang xử lý
+							</label>
+							<label class="mrm">
+								<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
+								Đã giải quyết
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="content-title">
 			DANH SÁCH PHẢN ÁNH
 			</div>
@@ -29,6 +54,7 @@
 				</label>
 			</div>
 			<div id="issue-list">
+				<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
 				<ul id="issue-list-ul">
 					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
 						<div>
@@ -54,15 +80,17 @@
 				</ul>
 			</div>
 		</div>
-		<div class="pagination module-block" ng-if="pager.pages.length">
-			<div class="float-left">
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1)"><i class="glyphicon glyphicon-fast-backward"></i></a>
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1)"><i class="glyphicon glyphicon-menu-left"></i></a>
-				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page)">
+		<!-- Pagination -->
+		<div class="pagination module-block" ng-if="filteredRequests.length">
+			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+			<div class="float-left pagination-achor">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
 					{{page}}
 				</a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1)"><i class="glyphicon glyphicon-menu-right"></i></a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages)"><i class="glyphicon glyphicon-fast-forward"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
 			</div>
 		</div>
 	</section>

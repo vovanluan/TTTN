@@ -7,6 +7,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
     $scope.pager = {};
 
     $scope.setPage = function(page, filterItems) {
+        console.log(filterItems);
         if (page < 1 || (page > $scope.pager.totalPages && $scope.pager.totalPages != 0)) {
             return;
         }
@@ -28,7 +29,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
     $scope.setPage(1, $scope.filteredRequests);
 
-    $scope.$watch('statusType + $rootScope.requests', function (newVal, oldVal) {
+    $scope.$watch('statusType', function (newVal, oldVal) {
         $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
         $scope.setPage(1, $scope.filteredRequests);
     });
@@ -88,6 +89,9 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 			        	function success() {
 			        		requestManager.loadAllRequests().then(function(requests){
 								$rootScope.requests = requests;
+								console.log($rootScope.requests);
+								$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':$scope.statusType});
+							    $scope.setPage(1, $scope.filteredRequests);
 							});
 
 							$scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_TIEP_NHAN'});
