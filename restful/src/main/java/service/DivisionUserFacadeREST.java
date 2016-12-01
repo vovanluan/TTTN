@@ -5,9 +5,9 @@
  */
 package service;
 
+import dto.Password;
 import entity.Division;
 import entity.DivisionUser;
-import entity.OfficialUser;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.List;
@@ -124,6 +124,22 @@ public class DivisionUserFacadeREST extends AbstractFacade<DivisionUser> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @POST
+    @Path("changePassword/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response changePassword(@PathParam("id") Integer id, Password passwordObj) throws Exception {
+        DivisionUser user = em.find(DivisionUser.class, id);
+        String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
+        if (!user.getPassWord().equals(oldPasswordHash)) {
+            return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
+        }
+
+        user.setPassWord(General.hashPassword(passwordObj.getNewPassword()));
+        super.edit(user);
+        return Response.ok().build();
     }
     
 }

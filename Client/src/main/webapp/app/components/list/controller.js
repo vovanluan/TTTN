@@ -125,7 +125,6 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
             }
             return false;
         });
-        console.log(_.isEqual(tempRequests, $scope.filteredRequests));
         if (!_.isEqual(tempRequests, $scope.filteredRequests)) {
             $scope.setPage(1, $scope.filteredRequests);
         }

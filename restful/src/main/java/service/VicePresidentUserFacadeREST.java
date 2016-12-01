@@ -5,7 +5,7 @@
  */
 package service;
 
-import entity.OfficialUser;
+import dto.Password;
 import entity.VicePresidentUser;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -121,6 +121,22 @@ public class VicePresidentUserFacadeREST extends AbstractFacade<VicePresidentUse
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @POST
+    @Path("changePassword/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response changePassword(@PathParam("id") Integer id, Password passwordObj) throws Exception {
+        VicePresidentUser user = em.find(VicePresidentUser.class, id);
+        String oldPasswordHash = General.hashPassword(passwordObj.getOldPassword());
+        if (!user.getPassWord().equals(oldPasswordHash)) {
+            return Response.status(Response.Status.UNAUTHORIZED).type("text/plain").build();
+        }
+
+        user.setPassWord(General.hashPassword(passwordObj.getNewPassword()));
+        super.edit(user);
+        return Response.ok().build();
     }
     
 }

@@ -30,7 +30,7 @@ html, body {
     font-family: 'Lato', sans-serif;
 }
 
-.bannerTPHCM h2 {
+.bannerTPHCM h3 {
     float: left;
 }
 
@@ -299,6 +299,10 @@ html, body {
     margin-left: 130px;
 }
 
+.info-text img {
+    margin: 0px;
+}
+
 .edit-info {
     margin: 10px 0px 10px 0px;
     float: right;
@@ -327,6 +331,12 @@ html, body {
     line-height: 30px;
     min-height: 30px;
     padding: 7px 0;
+}
+
+@media (max-width: 767px) {
+    .copyright {
+        text-align: center;
+    }
 }
 
 .design {
@@ -521,18 +531,10 @@ md-card-footer {
     padding: 20px 30px 0px 30px;
 }
 
-.contact {
-    margin-top: 25px;
-}
-
 .hotline {
-    margin-top: 55px;
+    margin-top: 30px;
     border-left: 1px solid #9697a0;
     border-right: 1px solid #9697a0;
-}
-
-.social {
-    margin-top: 25px;
 }
 
 .social-icon > ul {
@@ -592,3 +594,17 @@ md-card-footer {
     background-color: #fff;
 }
 
+.bordered-radius {
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.text-error {
+    color:Red;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.no-margin-btm {
+    margin-bottom: 0px;
+}

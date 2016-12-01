@@ -84,7 +84,7 @@
 								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
 									<div class="user-avatar">
 										<md-card class="avatar-image-card float-left">
-						 					<img ng-src="assets/img/no-avatar.png">
+						 					<img ng-src="{{comment.user.avatar? comment.user.avatar : 'assets/img/no-avatar.png'}}">
 						 				</md-card>
 									</div>
 									<div class="user-comment">
@@ -92,7 +92,7 @@
 											<a href="" class="user-link">{{comment.user.name}}</a>
 										</h5>
 										<div class="commentText">{{comment.content}}</div>
-										<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+										<div class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></div>
 									</div>
 								</li>
 							</ul>

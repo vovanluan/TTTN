@@ -1,0 +1,99 @@
+<div class="container" id="content_container">
+	<section class="col-lg-8 col-md-12" >
+		<div class="main bordered">
+			<div class="content-title">
+				{{requestIndex.serviceName}}
+				<h4>{{requestIndex.address}}</h4>
+			</div>	
+			<div class="issue-main">
+				<md-card flex="30" class="issue-detail-image float-left">
+ 					<img ng-src="{{requestIndex.mediaUrl}}" class="md-card-image bordered" alt="image caption">
+ 					<md-card-footer>
+				        <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong>
+				    </md-card-footer>
+ 				</md-card>
+
+				<div class="issue-detail-panel">
+					<strong>Ngày đăng bài: </strong>{{requestIndex.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}<br>
+					<strong>Trạng thái phản ánh: </strong>{{convertStatusId(requestIndex.statusId)}}<br>
+					<strong>Người đăng bài: </strong><a href="" class="user">{{requestIndex.user.name}}</a>
+					<hr>
+					<strong>Chi tiết phản ánh: </strong>{{requestIndex.description}}<br>
+				</div>
+			</div>
+		</div>
+		<div class="comment-box bordered main" ng-show="{{countComment}}">
+			<div class="content-title">
+				<div ng-show="{{comments.length}}">{{comments.length}} bình luận</div>
+				<div ng-hide="{{comments.length}}">Chưa có bình luận nào</div>
+			</div>	
+			<ul class="issue-detail-comments">
+				<li ng-repeat="comment in comments">
+					<div class="user-avatar">
+						<md-card class="avatar-image-card float-left">
+		 					<img ng-src="{{comment.user.avatar? comment.user.avatar : 'assets/img/no-avatar.png'}}">
+		 				</md-card>
+					</div>
+					<div class="user-comment">
+						<h5 class="user-name">
+							<a href="" class="user-link">{{comment.user.name}}</a>
+						</h5>
+						<div class="commentText">{{comment.content}}</div>
+						<span class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="post-comment-box bordered main">
+			<div class="content-title">
+				Đăng bình luận
+			</div>	
+			<div class="post-comment">
+				<div ng-if="!isAuthorizedUser()"><h4 >Vui lòng <a ng-click="logInModal()">Đăng nhập</a> để đăng bình luận</h4></div>
+				<div ng-show="isAuthorizedUser()">
+					<textarea id="comment-textarea" placeholder="Viết bình luận..." ng-model="textContent" rows="3"></textarea>
+					<button type="submit" class="btn btn-success btn-send-comment" data-error="Hãy viết 1 bình luận vào" ng-click="submitComment(requestIndex)">Gửi bình luận</button>
+				</div>
+				
+			</div>
+		</div>
+	</section>		
+
+	<section class="col-lg-4 col-md-12">
+		<div class="main bordered">
+			<div class="content-title">
+			DANH SÁCH CÁC PHẢN ÁNH
+			</div>
+			<div ng-show="request.length">
+				<label>
+					Chưa có phản ánh nào
+				</label>
+			</div>
+			<div id="issue-list">
+				<ul id="issue-list-ul">
+					<li ng-repeat="request in requests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+						<div>
+							<h5 class="issue-title">
+								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link">{{request.serviceName}}</a>
+							</h5>
+							<h5 class="issue-address">{{request.address}}</h5>
+							<p class="issue-content" hm-read-more
+								hm-text="{{ request.description }}"
+								hm-limit="120"
+								hm-more-text="Đọc thêm"
+								hm-less-text="Thu nhỏ"
+								hm-dots-class="dots"
+								hm-link-class="links">
+							</p>
+							<span class="info"><time am-time-ago="'{{request.requestedDatetime}}'"></time>
+								<span class="sep">•</span>
+								<a href="" class="user">{{request.user.name}}</a>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>	
+	</section>
+</div>

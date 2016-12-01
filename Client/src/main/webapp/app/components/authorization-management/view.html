@@ -1,6 +1,6 @@
 <!-- <i class="fa fa-spin fa-refresh fa-5x" id="loader"></i> -->
 <div class="container">
-    <div class="pad col-xs-12 col-md-8">
+    <div class="pad col-xs-12 col-md-8 bordered-radius">
         <h3 class="announcement-type">Danh sách người dùng</h3>
         <div style="padding: 8px;">
             <button class="btn btn-success" type="button" ng-click="postNewOfficer()">Thêm nhân viên</button>
@@ -10,17 +10,17 @@
                   <thead>
                       <tr>
                         <th class="col-xs-1"></th>
-                        <th class="col-xs-2">Tên tài khoản</th>
-                        <th class="col-xs-2">Email</th>
+                        <th class="col-xs-3">Tên tài khoản</th>
+                        <th class="col-xs-3">Email</th>
                         <th class="col-xs-3">Quyền hạn</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr ng-repeat="u in showUsers">
                           <td class="col-xs-1"></td>
-                          <td class="col-xs-2 cap">{{u.name}}</td>
-                          <td class="col-xs-2 cap">{{u.email}}</td>
-                          <td class="col-xs-2 cap">{{getRoleName(u.type)}}</td>
+                          <td class="col-xs-3 cap">{{u.name}}</td>
+                          <td class="col-xs-3 cap">{{u.email}}</td>
+                          <td class="col-xs-3 cap">{{getRoleName(u.type)}}</td>
                           <td class="col-xs-1"></td>
                       </tr>
                   </tbody>

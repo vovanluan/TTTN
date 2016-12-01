@@ -5,8 +5,7 @@
 				<!-- Search input -->
 			</form>
 		</div>
-		<div>{{editedUser}}</div>
-		<div class="main">
+		<div class="main bordered">
 			<div class="content-title">
 				THÔNG TIN TÀI KHOẢN	
 			</div>
@@ -23,11 +22,16 @@
 					</div>
 					<hr>
 					<div class="info-row">
+						<label>Hình đại diện: </label>
+						<div class="info-text"><img ng-src="{{user.avatar? user.avatar : 'assets/img/no-avatar.png'}}" class="img-responsive img-thumbnail center-block"  width="200"/></div>
+					</div>
+					<hr ng-if="isNormalUser()">
+					<div class="info-row" ng-if="isNormalUser()">
 						<label>CMND: </label>
 						<div class="info-text">{{user.identifyCard}}</div>
 					</div>
-					<hr>
-					<div class="info-row">
+					<hr ng-if="isNormalUser()">
+					<div class="info-row" ng-if="isNormalUser()">
 						<label>Số điện thoại: </label>
 						<div class="info-text">{{user.phoneNumber}}</div>
 					</div>
@@ -45,18 +49,20 @@
 							<input class="form-control" ng-model="user.email" disabled="true">
 						</div>
 					</div>
-					<div class="info-row">
+					<div class="info-row" ng-if="isNormalUser()">
 						<label>CMND: </label>
 						<div class="info-text">
 							<input class="form-control" ng-model="user.identifyCard" >
 						</div>
 					</div>
-					<div class="info-row">
+					<div class="info-row" ng-if="isNormalUser()">
 						<label>Số điện thoại: </label>
 						<div class="info-text">
 							<input class="form-control" ng-model="user.phoneNumber" >
 						</div>
 					</div>
+					<button class="btn btn-primary" ngf-select ng-model="avatar" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh đại diện</button>
+                    <img ng-show="avatar" ngf-thumbnail="avatar" class="img-responsive img-thumbnail center-block"  width="200"/>
 				</div>
 			</div>
 		</div>
