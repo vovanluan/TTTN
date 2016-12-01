@@ -35,9 +35,8 @@ app.controller('issueDetailController',function(AuthService, USER_ACCESS, $rootS
             case 'DA_CHUYEN':
                 return 'ĐANG XỬ LÝ';
             case 'DA_XU_LY':
-                return 'ĐÃ XỬ LÝ';
             case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
+                return 'ĐÃ XỬ LÝ';
             case 'DA_XOA':
                 return 'ĐÃ XÓA';
         }

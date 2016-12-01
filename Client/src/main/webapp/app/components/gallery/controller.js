@@ -1,5 +1,5 @@
 app.controller('galleryViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    $scope.requestPerPage = 2;
+    $scope.requestPerPage = 3;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     var markersArray = [];
@@ -10,19 +10,6 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
     $scope.setPage = setPage;
 
     initController();
-
-    $scope.convertStatusId = function(text) {
-        switch(text) {
-            case 'DA_TIEP_NHAN':
-                return 'ĐÃ TIẾP NHẬN';
-            case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
-            case 'DA_XU_LY':
-                return 'ĐÃ XỬ LÝ';
-            case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
-        }
-    }
 
     $scope.checkId = function(commentRequestId,serviceRequestId){
       return (commentRequestId==serviceRequestId);
@@ -134,7 +121,7 @@ app.controller('galleryViewController', function ($rootScope, $scope, $filter, r
             scaleControl: false,
         });
         requestManager.loadAllRequests().then(function (requests){
-            $rootScope.requests = requests;
+            $rootScope.requests = requests.reverse();
               // functions have been describe process the data for display
             $scope.updateAfterSearch();
 

@@ -15,7 +15,7 @@
 						</label>
 						<label class="mrm">
 							<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
-							Đang xử lý
+							Chờ xử lý
 						</label>
 						<label class="mrm">
 							<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
@@ -58,7 +58,7 @@
 									ng-mouseover="mouseOver(request.latitude, request.longitude)"
 									ng-mouseleave="mouseLeave()">{{request.serviceName}}</a>
 								</h5>
-								<span class="badge float-right">{{convertStatusId(request.statusId)}}</span>
+								<span ng-class="{red: request.statusId == 'DA_TIEP_NHAN', green: request.statusId == 'DA_CHUYEN', blue: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY')}"class="badge float-right">{{convertStatusId(request.statusId)}}</span>
 							</div>
 							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i>{{request.address}}</p>
 							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>

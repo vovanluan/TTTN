@@ -17,14 +17,6 @@ app.controller('reportManagementDivisionController', function($rootScope, $scope
         $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
     }
 
-    $scope.setPageAfterMoving = function(filterItems) {
-    	// get pager object from service
-        $scope.pager = PagerService.GetPager(filterItems.length, 1, $scope.requestPerPage);
-        // get current page of items
-        $scope.showRequests = filterItems.slice($scope.pager.startIndex, $scope.pager.endIndex + 1);
-    }
-
-
 	$scope.filteredRequests = $filter('filter')($rootScope.requests,{division: {id:  $rootScope.user.division.id},
 		statusId: $scope.statusType});
     $scope.setPage(1, $scope.filteredRequests);
@@ -34,6 +26,13 @@ app.controller('reportManagementDivisionController', function($rootScope, $scope
 			statusId: $scope.statusType});
         $scope.setPage(1, $scope.filteredRequests);
     });
+
+    $scope.$watch('requests', function (newVal, oldVal) {
+        $scope.filteredRequests = $filter('filter')($rootScope.requests,{division: {id:  $rootScope.user.division.id},
+            statusId: $scope.statusType});
+        $scope.setPage(1, $scope.filteredRequests);
+    });
+
 
 
 	$scope.movedIssuesFilter = function() {

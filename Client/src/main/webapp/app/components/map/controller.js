@@ -4,7 +4,7 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
         {type: 'vote', name: 'Cảm ơn'}
     ];
     $scope.secondOrder = ['A-Z', 'Z-A'];
-    $scope.requestPerPage = 2;
+    $scope.requestPerPage = 3;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
@@ -22,18 +22,6 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
         markersArray.length = 0;
     }
 
-    $scope.convertStatusId = function(text) {
-        switch(text) {
-            case 'DA_TIEP_NHAN':
-                return 'ĐÃ TIẾP NHẬN';
-            case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
-            case 'DA_XU_LY':
-                return 'ĐÃ GIẢI QUYẾT';
-            case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
-        }
-    }
     $scope.checkId = function(commentRequestId,serviceRequestId){
       return (commentRequestId==serviceRequestId);
     }
@@ -133,17 +121,12 @@ app.controller('mapViewController', function ($rootScope, $scope, $filter, reque
     };
 
     function initController() {
-        console.log("Controller Constructor");
         $scope.map = new google.maps.Map(document.getElementById('map-in-map-view'), {
             zoom: 11,
-            center: myLatLng,
-/*            scrollwheel: false,
-            navigationControl: false,
-            mapTypeControl: false,
-            scaleControl: false,*/
+            center: myLatLng
         });
         requestManager.loadAllRequests().then(function (requests){
-            $rootScope.requests = requests;
+            $rootScope.requests = requests.reverse();
               // functions have been describe process the data for display
             $scope.updateAfterSearch();
 

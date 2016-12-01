@@ -86,7 +86,6 @@ html, body {
 }
 
 .row-issue-title .badge {
-    background-color: #5bc0de;
     margin-top: 10px;
 }
 
@@ -117,6 +116,7 @@ html, body {
 
 #issue-list ul li {
     border-bottom: 1px solid #DBDBDB;
+    min-height: 110px;
 }
 
 #issue-list-ul li:last-child {
@@ -581,7 +581,7 @@ md-card-footer {
 }
 
 .thumbnail-image-card md-card-footer {
-    padding: 8px;
+    padding: 3px;
     background-color: #f7f7f7;
 }
 
@@ -617,4 +617,19 @@ md-card-footer {
 
 .small {
     font-size: 12px;
+}
+
+.red {
+    background-color: #cc0000;
+    color: #e5e5e5;
+}
+
+.blue {
+    background-color: #0080ff;
+    color: #e5e5e5;
+}
+
+.green {
+    background-color: green;
+    color: #e5e5e5;
 }

@@ -10,7 +10,7 @@ app.controller('issueManagementDetail2ModalController', function($rootScope, $sc
 
 	$scope.approve = function() {
         $scope.requestIndex.vicePresidentApproved = $rootScope.user;
-        $scope.requestIndex.statusId = 'DA_DUYET'; 
+        $scope.requestIndex.statusId = 'DA_DUYET';
         console.log($scope.requestIndex);
         requestManager.updateRequest($scope.requestIndex.serviceRequestId,$scope.requestIndex).then(
         	function success() {
@@ -18,9 +18,6 @@ app.controller('issueManagementDetail2ModalController', function($rootScope, $sc
         		requestManager.loadAllRequests().then(function(requests){
 					$rootScope.requests = requests;
 				});
-
-                $scope.filteredRequests = $filter('filter')($rootScope.requests,{'statusId':'DA_XU_LY'});
-                $scope.setPageAfterMoving($scope.filteredRequests); 
 
                 var comment = new Object();
                 comment.user = $rootScope.user;
@@ -40,6 +37,6 @@ app.controller('issueManagementDetail2ModalController', function($rootScope, $sc
         	}
         );
 
-        
+
 	};
 });

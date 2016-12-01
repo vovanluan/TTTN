@@ -4,7 +4,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
         {type: 'vote', name: 'Cảm ơn'}
     ];
     $scope.secondOrder = ['A-Z', 'Z-A'];
-    $scope.requestPerPage = 10;
+    $scope.requestPerPage = 5;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     $scope.date = new Date();
@@ -21,11 +21,10 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
             case 'DA_TIEP_NHAN':
                 return 'ĐÃ TIẾP NHẬN';
             case 'DA_CHUYEN':
-                return 'ĐANG XỬ LÝ';
+                return 'CHỜ XỬ LÝ';
             case 'DA_XU_LY':
-                return 'ĐÃ GIẢI QUYẾT';
             case 'DA_DUYET':
-                return 'ĐÃ DUYỆT';
+                return 'ĐÃ GIẢI QUYẾT';
         }
     }
     $scope.checkId = function(commentRequestId,serviceRequestId){
@@ -136,7 +135,7 @@ app.controller('listViewController', function ($rootScope, $scope, $filter, requ
             scaleControl: false,
         });
         requestManager.loadAllRequests().then(function (requests){
-            $rootScope.requests = requests;
+            $rootScope.requests = requests.reverse();
               // functions have been describe process the data for display
             $scope.updateAfterSearch();
 
