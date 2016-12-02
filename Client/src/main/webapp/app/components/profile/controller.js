@@ -1,6 +1,22 @@
-app.controller('profileController', function($rootScope, $scope, $http, Modal, userManager, SweetAlert, normalUserUrl, officialUserUrl, vicePresidentUserUrl, divisionUserUrl, adminUserUrl, AuthService, NORMALUSER_ACCESS, Upload, clientId) {
+app.controller('profileController', function($rootScope, $scope, $http, Modal, userManager, SweetAlert, normalUserUrl, officialUserUrl, vicePresidentUserUrl, divisionUserUrl, adminUserUrl, AuthService, NORMALUSER_ACCESS, Upload, clientId, $filter) {
 	$scope.isEditAccountInfo = false;
 	var editedUser = $rootScope.user;
+
+    $scope.requestsByMe = $filter('filter')($rootScope.requests,{user: {id:  $rootScope.user.id}}).reverse();
+
+    $scope.convertStatusId = function(text) {
+        switch(text) {
+            case 'DA_TIEP_NHAN':
+                return 'ĐÃ TIẾP NHẬN';
+            case 'DA_CHUYEN':
+                return 'CHỜ XỬ LÝ';
+            case 'DA_XU_LY':
+            case 'DA_DUYET':
+                return 'ĐÃ GIẢI QUYẾT';
+            case 'DA_XOA':
+                return 'ĐÃ XÓA';
+        }
+    }
 
 	$scope.isNormalUser = function () {
         return AuthService.isAuthorized(NORMALUSER_ACCESS);

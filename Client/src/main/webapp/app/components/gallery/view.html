@@ -1,31 +1,22 @@
 <div class="container">
 	<section class="col-lg-8 col-md-12">
-		<div class="main bordered ">
-			<!-- Search -->
-			<div class="module-search">
-				<div class="search-input">
-					<input class="form-control" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
-				</div>
-				<div class="advanced-search">
-					<div class="row first">
-						<label for="" class="mrm">Trạng thái:</label>
-						<div class="right">
-							<label class="mrm">
-								<input type="checkbox" ng-model="isReceived" ng-init="isReceived = true">
-								Đã tiếp nhận
-							</label>
-							<label class="mrm">
-								<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
-								Chờ xử lý
-							</label>
-							<label class="mrm">
-								<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
-								Đã giải quyết
-							</label>
-						</div>
-					</div>
-				</div>
+		<!-- Search -->
+		<div class="main search-bar">
+			<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			<div class="advanced-search">
+				<label for="" class="mrm">Trạng thái:</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
+				</label>
 			</div>
+		</div>
+		<div class="main bordered ">
 			<div class="content-title">
 				<div class="change-view float-right">
 					<a href="#/">
@@ -61,7 +52,7 @@
 
 		<!-- Pagination -->
 		<div class="pagination module-block" ng-if="filteredRequests.length">
-			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+			<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
 			<div class="float-left pagination-achor">
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>

@@ -4,7 +4,7 @@ app.controller('reportManagementDivisionController', function($rootScope, $scope
 	$scope.controller = '';
 	$scope.myFilter = {division: {id:  $rootScope.user.division.id}, statusId: 'DA_CHUYEN'};
 	$scope.statusType = 'DA_CHUYEN';
-    $scope.requestPerPage = 2;
+    $scope.requestPerPage = 5;
     $scope.pager = {};
 
     $scope.setPage = function(page, filterItems) {

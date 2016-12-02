@@ -3,11 +3,11 @@
 		<div class="main bordered">
 			<div class="content-title">
 				<div class="title">{{requestIndex.serviceName}}</div>
-				<div class="address">{{requestIndex.address}}</div>
+				<small>{{requestIndex.address}}</small>
 			</div>
 			<div class="issue-main">
 				<md-card flex="30" class="issue-detail-image float-left">
- 					<img ng-src="{{requestIndex.mediaUrl}}" class="md-card-image bordered" alt="image caption">
+ 					<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" class="md-card-image bordered" alt="image caption">
  					<md-card-footer>
 				        <strong>Phản ánh số {{requestIndex.serviceRequestId}}</strong>
 				    </md-card-footer>
@@ -15,8 +15,8 @@
 
 				<div class="issue-detail-panel">
 					<strong>Ngày đăng bài: </strong>{{requestIndex.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}<br>
-					<strong>Trạng thái phản ánh: </strong>{{convertStatusId(requestIndex.statusId)}}<br>
-					<strong>Người đăng bài: </strong><a href="" class="user">{{requestIndex.user.name}}</a>
+					<strong>Trạng thái phản ánh: </strong><span ng-class="{text_red: requestIndex.statusId == 'DA_TIEP_NHAN', text_green: requestIndex.statusId == 'DA_CHUYEN', text_blue: (requestIndex.statusId == 'DA_DUYET' || requestIndex.statusId == 'DA_XU_LY'), text_grey: requestIndex.statusId == 'DA_XOA'}"><strong>{{convertStatusId(requestIndex.statusId)}}</strong></span><br>
+					<strong>Người đăng bài: </strong><a href="#/issue-by-me/{{requestIndex.user.id}}" class="user">{{requestIndex.user.name}}</a>
 					<hr>
 					<strong>Chi tiết phản ánh: </strong>{{requestIndex.description}}<br>
 				</div>
@@ -88,7 +88,7 @@
 							</p>
 							<span class="info"><time am-time-ago="'{{request.requestedDatetime}}'"></time>
 								<span class="sep">•</span>
-								<a href="" class="user">{{request.user.name}}</a>
+								<a href="#/issue-by-me/{{request.user.id}}" class="user">{{request.user.name}}</a>
 							</span>
 						</div>
 					</li>
@@ -97,15 +97,14 @@
 		</div>
 		<!-- Pagination -->
 		<div class="pagination module-block small" ng-if="filteredRequests.length">
-			<div class="float-right"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
 			<div class="float-left pagination-achor">
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)"><i class="glyphicon glyphicon-fast-backward"></i></a>
 				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
 				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
 					{{page}}
 				</a>
 				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)"><i class="glyphicon glyphicon-fast-forward"></i></a>
 			</div>
 		</div>
 	</section>

@@ -3,7 +3,7 @@ app.controller('reportManagementController', function($rootScope, $scope, userMa
 	$scope.url = '';
 	$scope.controller = '';
 	$scope.statusType = 'DA_TIEP_NHAN';
-    $scope.requestPerPage = 1;
+    $scope.requestPerPage = 5;
     $scope.pager = {};
 
     $scope.setPage = function(page, filterItems) {

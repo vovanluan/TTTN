@@ -1,7 +1,7 @@
 app.controller('announcementController', function($rootScope, $scope, $mdDialog, MANAGEMENT_ACCESS, AuthService,
     announcementManager, SweetAlert, PagerService, $filter) {
     $scope.type = 'Chính trị - Xã hội';
-    $scope.announcementPerPage = 10;
+    $scope.announcementPerPage = 7;
     $scope.pager = {};
 
     $scope.setPage = function(page, filterItems) {

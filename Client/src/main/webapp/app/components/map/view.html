@@ -19,31 +19,22 @@
 		</div>
 	</section>
 	<section class="col-lg-4 col-md-12">
-		<div class="main bordered">
-			<!-- Search -->
-			<div class="module-search">
-				<div class="search-input">
-					<input class="form-control" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
-				</div>
-				<div class="advanced-search">
-					<div class="row first">
-						<div class="right">
-							<label class="mrm">
-								<input type="checkbox" ng-model="isReceived" ng-init="isReceived = true">
-								Đã tiếp nhận
-							</label>
-							<label class="mrm">
-								<input type="checkbox" ng-model="isInProgress" ng-init="isInProgress = true">
-								Chờ xử lý
-							</label>
-							<label class="mrm">
-								<input type="checkbox" ng-model="isResolved" ng-init="isResolved = true">
-								Đã giải quyết
-							</label>
-						</div>
-					</div>
-				</div>
+		<!-- Search -->
+		<div class="main search-bar">
+			<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			<div class="advanced-search">
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
+				</label>
 			</div>
+		</div>
+		<div class="main bordered">
 			<div class="content-title">
 			DANH SÁCH PHẢN ÁNH
 			</div>

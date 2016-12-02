@@ -1,5 +1,5 @@
 app.controller('galleryViewController', function ($rootScope, $scope, $filter, requestManager, commentManager, PagerService){
-    $scope.requestPerPage = 3;
+    $scope.requestPerPage = 6;
     $scope.comments = [];
     $scope.comments = $rootScope.comments;
     var markersArray = [];
