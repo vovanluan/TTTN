@@ -502,6 +502,10 @@ app.config(function(usSpinnerConfigProvider, $routeProvider, $httpProvider, jwtI
         templateUrl: 'app/components/announcement/view.html',
         controller: 'announcementController'
     })
+    .when('/issue-by-me/:userId', {
+        templateUrl: 'app/components/issue-by-me/view.html',
+        controller: 'issueByMeController'
+    })
     .otherwise({
         redirectTo: '/list'
     });

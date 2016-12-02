@@ -1,5 +1,5 @@
 app.controller('issueDetailController',function(AuthService, USER_ACCESS, $rootScope, $scope, $routeParams,
-    dateTimeFilter, $localStorage, Modal, commentManager, PagerService){
+    dateTimeFilter, $localStorage, Modal, commentManager, PagerService) {
     $scope.requestPerPage = 5;
     $scope.requestIndex = {};
     $scope.comments = [];

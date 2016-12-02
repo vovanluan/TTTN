@@ -86,7 +86,12 @@ html, body {
 }
 
 .row-issue-title .badge {
-    margin-top: 10px;
+    margin-top: 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    padding: 0 0.75em;
+    text-shadow: rgba(0,0,0,0.5) 0 1px 1px;
+    line-height: 20px;
 }
 
 .issue-title{
@@ -116,7 +121,6 @@ html, body {
 
 #issue-list ul li {
     border-bottom: 1px solid #DBDBDB;
-    min-height: 110px;
 }
 
 #issue-list-ul li:last-child {
@@ -620,16 +624,43 @@ md-card-footer {
 }
 
 .red {
-    background-color: #cc0000;
-    color: #e5e5e5;
+    background-color: #cc181e;
 }
 
 .blue {
-    background-color: #0080ff;
-    color: #e5e5e5;
+    background-color: #4587D0;
 }
 
 .green {
-    background-color: green;
-    color: #e5e5e5;
+    background-color: #73B304;
+}
+
+.text_red {
+    color: #cc181e;
+}
+
+.text_blue {
+    color: #4587D0;
+}
+
+.text_green {
+    color: #73B304;
+}
+
+.text_grey {
+    color: grey;
+}
+
+md-list {
+    padding: 0px !important;
+}
+
+md-list-item {
+    border-bottom: 1px dotted #b0b0b0;
+}
+
+.issue-by-me-avatar {
+    height: 56px;
+    width: 56px;
+    margin: 0px 10px 0px 0px;
 }
