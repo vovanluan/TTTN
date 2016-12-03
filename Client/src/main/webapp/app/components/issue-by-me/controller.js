@@ -1,6 +1,7 @@
-app.controller('issueByMeController', function ($rootScope, $scope, $filter, requestManager, userManager, PagerService, $routeParams){
+app.controller('issueByMeController', function ($rootScope, $scope, $filter, requestManager, userManager,
+    PagerService, $routeParams){
     $scope.userId = $routeParams.userId;
-    $scope.requestPerPage = 5;
+    $scope.requestPerPage = 2;
     $scope.date = new Date();
 
     $scope.pager = {};
@@ -10,9 +11,9 @@ app.controller('issueByMeController', function ($rootScope, $scope, $filter, req
         $scope.user = $filter('filter')(users,{id:  $scope.userId})[0];
         console.log($scope.user.name);
     });
-    
-    $scope.requestsByMe = $filter('filter')($rootScope.requests,{user: {id:  $scope.userId}}).reverse();
 
+    $scope.requestsByMe = $filter('filter')($rootScope.requests,{user: {id:  $scope.userId}}).reverse();
+    setPage(1, $scope.requestsByMe);
     $scope.convertStatusId = function(text) {
         switch(text) {
             case 'DA_TIEP_NHAN':
