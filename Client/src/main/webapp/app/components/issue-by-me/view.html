@@ -14,7 +14,7 @@
 			<md-content>
 		      	<md-list class="bordered" flex>
 		      		<h4 ng-hide="requestsByMe.length">Không có phản ánh nào</h4>
-			        <md-list-item class="md-3-line" ng-repeat="request in requestsByMe" ng-href="#/issue/{{request.serviceRequestId}}">
+			        <md-list-item class="md-3-line" ng-repeat="request in showRequests" ng-href="#/issue/{{request.serviceRequestId}}">
 			          	<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" alt="image caption" class="md-avatar"/>
 			          	<div class="md-list-item-text" layout="column">
 				            <h3><strong><a>{{request.serviceName}}</a></strong>&nbsp;
@@ -29,16 +29,16 @@
 		    </md-content>
 		</div>
 		<!-- Pagination -->
-		<div class="pagination module-block" ng-if="filteredRequests.length">
-			<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+		<div class="pagination module-block" ng-if="requestsByMe.length">
+			<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= requestsByMe.length ? requestsByMe.length : pager.currentPage * requestPerPage;}} của {{requestsByMe.length}}</div>
 			<div class="float-left pagination-achor">
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
-				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,requestsByMe)">Trang đầu</a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,requestsByMe)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,requestsByMe)">
 					{{page}}
 				</a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,requestsByMe)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,requestsByMe)">Trang cuối</a>
 			</div>
 		</div>
 	</section>
