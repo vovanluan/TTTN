@@ -22,40 +22,43 @@ app.controller('reportTabController',
     $scope.report.districts = $rootScope.districts;
     $scope.showSpinner = false
     $scope.tabActivity=[true, false, false, false];
+    var initCount = 0;
     // Handle show date time
     var dtpicker = $("#dtBox").DateTimePicker({
         dateTimeFormat: "YYYY-MM-dd HH:mm:ss"
     });
     var count = 0;
+    var map;
     $scope.initMap = function(){
         var myLatLng = {lat: 10.78, lng: 106.65};
-        $scope.map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 11,
             center: myLatLng
         });
+        $scope.report.latitude = myLatLng.lat;
+        $scope.report.longitude = myLatLng.lng;
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: "Di chuyển để xác định đúng vị trí"
+        });
+        map.setCenter(myLatLng);
+        map.setZoom(13);
+        google.maps.event.addListener(marker, "dragend", function (event) {
+            $scope.report.latitude = event.latLng.lat();
+            $scope.report.longitude = event.latLng.lng();
+            map.setCenter(event.latLng);
+        });
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function success(pos) {
-                $("#latitude").val(Number((pos.coords.latitude).toFixed(3)));
-                $("#longitude").val(Number((pos.coords.longitude).toFixed(3)));
                 var latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                 $scope.report.latitude = pos.coords.latitude;
                 $scope.report.longitude = pos.coords.longitude;
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    map: $scope.map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    title: "Di chuyển để xác định đúng vị trí"
-                });
-                $scope.map.setCenter(latlng);
-                $scope.map.setZoom(15);
-                google.maps.event.addListener(marker, "dragend", function (event) {
-                    $("#latitude").val(Number((event.latLng.lat()).toFixed(3)));
-                    $("#longitude").val(Number((event.latLng.lng()).toFixed(3)));
-                    $scope.report.latitude = event.latLng.lat();
-                    $scope.report.longitude = event.latLng.lng();
-                    $scope.map.setCenter(event.latLng);
-                });
+                marker.setPosition(latlng);
+                map.setCenter(latlng);
+                map.setZoom(13);
             }
                 , function (errMsg) {
                 console.log(errMsg);
@@ -69,21 +72,20 @@ app.controller('reportTabController',
         }
         $scope.$watch('active', function(newValue){
             window.setTimeout(function(){
-            google.maps.event.trigger($scope.map, 'resize');
-                                             },100);
+                var center = map.getCenter();
+                google.maps.event.trigger(map, "resize");
+                map.setCenter(center);
+            },100);
         });
+
     };
 
-    $scope.$watch('active', function(newValue){
-        if (newValue == 1) {
-            $scope.initMap();
-        }
-    });
 
     this.selectTab = function(setTab){
         $scope.activeTab = setTab;
-        if (setTab == 1) {
+        if (setTab == 1 && initCount == 0) {
             $scope.initMap();
+            initCount++;
         }
     };
     this.isSelectedTab = function(checkTab){
@@ -110,7 +112,7 @@ app.controller('reportTabController',
         request.statusId = 0;
         request.user = $rootScope.user;
 
-        
+
         if($scope.report.picFile) {
             Upload.base64DataUrl($scope.report.picFile).then(
                 function (url){
@@ -170,7 +172,7 @@ app.controller('reportTabController',
 
     $scope.checkAuthorization = function () {
         return AuthService.isAuthorized(USER_ACCESS) || $rootScope.userRole == 'guest';
-           
+
     };
 
     $scope.isAuthorizedGuest = function () {
