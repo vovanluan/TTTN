@@ -1,121 +1,121 @@
-<div class="container">
-	<section class="col-lg-8 col-md-12">
-		<!-- Search -->
-		<div class="main search-bar">
-			<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
-			<div class="advanced-search">
-				<label for="" class="mrm">Trạng thái:</label>
-				<label class="mrm">
-					<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
-				</label>
-				<label class="mrm">
-					<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
-				</label>
-				<label class="mrm">
-					<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
-				</label>
-			</div>
+<section class="col-lg-8 col-md-12">
+	<!-- Search -->
+	<div class="main search-bar">
+		<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+		<div class="advanced-search">
+			<label for="" class="mrm hidden-xs">Trạng thái:</label>
+			<label class="mrm">
+				<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
+			</label>
+			<label class="mrm">
+				<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
+			</label>
+			<label class="mrm">
+				<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
+			</label>
 		</div>
-		<!-- Danh sách request -->
-		<div class="main bordered">
-			<div class="content-title">
-				<div class="change-view float-right">
-					<a href="#/">
-						<i class="glyphicon glyphicon-list"></i>
-					</a>
-					<a href="#/gallery">
-						<i class="glyphicon glyphicon-picture"></i>
-					</a>
-					<a href="#/map">
-						<i class="glyphicon glyphicon-map-marker"></i>
-					</a>
-				</div>
-				DANH SÁCH PHẢN ÁNH
-			</div>
-			<div id="issue-list">
-				<ul id="issue-list-ul" >
-					<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
-					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
-						<md-card class="thumbnail-image-card float-left">
-		 					<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="md-card-image thumbnail-image bordered" alt="image caption">
-		 					<md-card-footer>
-						        <strong>ID - {{request.serviceRequestId}}</strong>
-						    </md-card-footer>
-		 				</md-card>
-						<div class="issue-panel">
-							<div class="row-issue-title">
-								<h5 class="issue-title float-left">
-									<a href="#/issue/{{request.serviceRequestId}}" class="issue-link"
-									ng-mouseover="mouseOver(request.latitude, request.longitude)"
-									ng-mouseleave="mouseLeave()">{{request.serviceName}}</a>
-								</h5>
-								<span ng-class="{red: request.statusId == 'DA_TIEP_NHAN', green: request.statusId == 'DA_CHUYEN', blue: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY')}" class="badge float-right">{{convertStatusId(request.statusId)}}</span>
-							</div>
-							<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i>{{request.address}}</p>
-							<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
-							<p class="issue-content" hm-read-more
-								hm-text="{{ request.description }}"
-								hm-limit="250"
-								hm-more-text="Đọc thêm"
-								hm-less-text="Thu nhỏ"
-								hm-dots-class="dots"
-								hm-link-class="links">
-							</p>
-							<span class="info" ><time am-time-ago="'{{request.requestedDatetime}}'"></time>
-								<span class="sep">•</span>
-								<span>Đăng bởi </span>
-								<a href="#/issue-by-me/{{request.user.id}}" class="user">{{request.user.name}}</a>
-							</span>
-							<ul class="issue-comments">
-								<li ng-repeat="comment in comments" ng-show="checkId({{comment.request.serviceRequestId}}, {{request.serviceRequestId}})">
-									<div class="user-avatar">
-										<md-card class="avatar-image-card float-left">
-						 					<img ng-src="{{comment.user.avatar? comment.user.avatar : 'assets/img/no-avatar.png'}}">
-						 				</md-card>
-									</div>
-									<div class="user-comment">
-										<h5 class="user-name">
-											<a href="#/issue-by-me/{{comment.user.id}}" class="user-link">{{comment.user.name}}</a>
-										</h5>
-										<div class="commentText">{{comment.content}}</div>
-										<div class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></div>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<!-- Pagination -->
-		<div class="pagination module-block" ng-if="filteredRequests.length">
-			<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
-			<div class="float-left pagination-achor">
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
-				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
-				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
-					{{page}}
+	</div>
+	<!-- Danh sách request -->
+	<div class="main bordered">
+		<div class="content-title">
+			<div class="change-view float-right">
+				<a href="#/">
+					<i class="glyphicon glyphicon-list"></i>
 				</a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
-				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+				<a href="#/gallery">
+					<i class="glyphicon glyphicon-picture"></i>
+				</a>
+				<a href="#/map">
+					<i class="glyphicon glyphicon-map-marker"></i>
+				</a>
 			</div>
+			DANH SÁCH PHẢN ÁNH
 		</div>
-	</section>
-	<section class="col-lg-4 col-md-12">
-		<div class="map bordered">
-			<div id="map-in-list-view" style="height:380px"></div>
+		<div id="issue-list">
+			<ul id="issue-list-ul" >
+				<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
+				<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+					<md-card class="thumbnail-image-card float-left">
+	 					<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="md-card-image thumbnail-image bordered" alt="image caption">
+	 					<md-card-footer class="hidden-xs">
+					        <strong>ID - {{request.serviceRequestId}}</strong>
+					    </md-card-footer>
+	 				</md-card>
+					<div class="issue-panel">
+						<div class="row-issue-title">
+							<h5 class="issue-title float-left">
+								<a href="#/issue/{{request.serviceRequestId}}" class="issue-link"
+								ng-mouseover="mouseOver(request.latitude, request.longitude)"
+								ng-mouseleave="mouseLeave()">{{request.serviceName}}&nbsp;&nbsp;</a>
+							</h5>
+							<span ng-class="{red: request.statusId == 'DA_TIEP_NHAN', green: request.statusId == 'DA_CHUYEN', blue: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY')}" class="badge badge-float">{{convertStatusId(request.statusId)}}</span>
+						</div>
+						<p class="issue-address"><i class="glyphicon glyphicon-map-marker"></i>{{request.address}}</p>
+						<p class="issue-address"><i class="glyphicon glyphicon-time"></i> {{request.happenDatetime | date:'dd/MM/yyyy HH:mm:ss'}}</p>
+					</div>
+					<div class="comment-panel">
+						<p class="issue-content" hm-read-more
+							hm-text="{{ request.description }}"
+							hm-limit="250"
+							hm-more-text="Đọc thêm"
+							hm-less-text="Thu nhỏ"
+							hm-dots-class="dots"
+							hm-link-class="links">
+						</p>
+						<span class="info" ><time am-time-ago="'{{request.requestedDatetime}}'"></time>
+							<span class="sep">•</span>
+							<span class="hidden-xs">Đăng bởi </span>
+							<a href="#/issue-by-me/{{request.user.id}}" class="user">{{request.user.name}}</a>
+						</span>
+						<ul class="issue-comments">
+							<li ng-repeat="comment in comments" ng-if="comment.request.serviceRequestId == request.serviceRequestId">
+								<div class="user-avatar">
+									<md-card class="avatar-image-card float-left">
+					 					<img ng-src="{{comment.user.avatar? comment.user.avatar : 'assets/img/no-avatar.png'}}">
+					 				</md-card>
+								</div>
+								<div class="user-comment">
+									<h5 class="user-name">
+										<a href="#/issue-by-me/{{comment.user.id}}" class="user-link">{{comment.user.name}}</a>
+									</h5>
+									<div class="commentText">{{comment.content}}</div>
+									<div class="info"><time am-time-ago="'{{comment.postDatetime}}'"></time></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
 		</div>
+	</div>
+	<!-- Pagination -->
+	<div class="pagination module-block" ng-if="filteredRequests.length">
+		<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+		<div class="float-left pagination-achor">
+			<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
+			<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
+			<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
+				{{page}}
+			</a>
+			<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
+			<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+		</div>
+	</div>
+</section>
+<section class="col-lg-4 col-md-12">
+	<div class="map bordered">
+		<div id="map-in-list-view" style="height:380px"></div>
+	</div>
 
-		<div class="announcement-content bordered-radius">
-			<h3 class="announcement-type">Thông báo</h3>
-	        <ul class="announcement-panel">
-	            <li ng-repeat="announcement in announcements | limitTo: 7 | orderBy:'time':true" ng-attr-id="{{'issue_id_' + announcement.id}}">
-	                <span><h4><a href="">{{announcement.title}}</a><small> - {{announcement.time | date:'dd/MM/yyyy'}}</small></h4></span>
-	                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-if="isManager()" ng-click="deleteAnnouncement(announcement.id)"></span>
-	            </li>
-	        </ul>
-        	<a href="#/announcement" class="float-right">Xem thêm</a>
-		</div>
-		
-	</section>
-</div>
+	<div class="announcement-content bordered-radius">
+		<h3 class="announcement-type">Thông báo</h3>
+        <ul class="announcement-panel">
+            <li ng-repeat="announcement in announcements | limitTo: 7 | orderBy:'time':true" ng-attr-id="{{'issue_id_' + announcement.id}}">
+                <span><h4><a href="">{{announcement.title}}</a><small> - {{announcement.time | date:'dd/MM/yyyy'}}</small></h4></span>
+                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-if="isManager()" ng-click="deleteAnnouncement(announcement.id)"></span>
+            </li>
+        </ul>
+    	<a href="#/announcement" class="float-right">Xem thêm</a>
+	</div>
+	
+</section>

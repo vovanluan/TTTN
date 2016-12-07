@@ -22,6 +22,11 @@ app.controller('announcementController', function($rootScope, $scope, $mdDialog,
         $scope.setPage(1,$scope.filteredAnnouncements);
     });
 
+    $scope.$watch('announcements', function(newVal, oldVal) {
+        $scope.filteredAnnouncements = $filter('filter')($rootScope.announcements,{'type':$scope.type});
+        $scope.setPage(1,$scope.filteredAnnouncements);
+    });
+
     $scope.postAnnouncement = function() {
         $mdDialog.show({
             templateUrl: 'app/components/post-announcement/view.html',
