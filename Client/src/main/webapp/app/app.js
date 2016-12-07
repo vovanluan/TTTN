@@ -1,17 +1,17 @@
 var app = angular.module('mainApp', ['ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngStorage', 'angular-jwt',
   'oitozero.ngSweetAlert', 'angularSpinner', 'ngMaterial', 'ngMessages', 'hm.readmore', 'angularMoment']);
 
-app.constant("requestUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.request");
-app.constant("userUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.user");
-app.constant("normalUserUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.normaluser");
-app.constant("adminUserUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.adminuser");
-app.constant("officialUserUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.officialuser");
-app.constant("divisionUserUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.divisionuser");
-app.constant("vicePresidentUserUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.vicepresidentuser");
-app.constant("commentUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.comment");
-app.constant("baseUrl", "http://hcmegov.pagekite.me/restful/webresources");
-app.constant("divisionUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.division");
-app.constant("announcementUrl", "http://hcmegov.pagekite.me/restful/webresources/entity.annoucement");
+app.constant("requestUrl", "http://localhost:8080/restful/webresources/entity.request");
+app.constant("userUrl", "http://localhost:8080/restful/webresources/entity.user");
+app.constant("normalUserUrl", "http://localhost:8080/restful/webresources/entity.normaluser");
+app.constant("adminUserUrl", "http://localhost:8080/restful/webresources/entity.adminuser");
+app.constant("officialUserUrl", "http://localhost:8080/restful/webresources/entity.officialuser");
+app.constant("divisionUserUrl", "http://localhost:8080/restful/webresources/entity.divisionuser");
+app.constant("vicePresidentUserUrl", "http://localhost:8080/restful/webresources/entity.vicepresidentuser");
+app.constant("commentUrl", "http://localhost:8080/restful/webresources/entity.comment");
+app.constant("baseUrl", "http://localhost:8080/restful/webresources");
+app.constant("divisionUrl", "http://localhost:8080/restful/webresources/entity.division");
+app.constant("announcementUrl", "http://localhost:8080/restful/webresources/entity.annoucement");
 
 app.constant('clientId', "254c1d5f74f2518");
 
