@@ -41,7 +41,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         
         if(path.equals("/authentication/user") || path.equals("/entity.request") ||
                 path.equals("/entity.comment") || path.equals("/entity.normaluser") ||
-                path.equals("/entity.annoucement")){
+                path.equals("/entity.annoucement") || path.equals("/entity.guestuser")){
             return;
         }
         //Get HTTP header from the request
