@@ -1,0 +1,27 @@
+{
+  "1": ["Đa Kao", "Tân Định", "Bến Thành", "Bến Nghé", "Nguyễn Thái Bình", "Phạm Ngũ Lão", "Cầu Ông Lãnh", "Cô Giang", "Nguyễn Cư Trinh", "Cầu Kho"],
+  "12": ["Thạnh Xuân", "Thạnh Lộc", "Hiệp Thành", "Thới An", "Tân Chánh Hiệp", "An Phú Đông", "Tân Thới Hiệp", "Trung Mỹ Tây", "Tân Hưng Thuận", "Đông Hưng Thuận", "Tân Thới Nhất"],
+  "Thủ Đức": ["Linh Xuân", "Bình Chiểu", "Linh Trung", "Tam Bình", "Tam Phú", "Hiệp Bình Phước", "Hiệp Bình Chánh", "Linh Chiểu", "Linh Tây", "Linh Đông", "Binh Thọ", "Trường Thọ"],
+  "9": ["Long Bình", "Long Thạnh Mỹ", "Tân Phú", "Hiệp Phú", "Tăng Nhơn Phú A", "Tăng Nhơn Phú B", "Phước Long A", "Phước Long B", "Trường Thạnh", "Long Phước", "Long Trường", "Phước Bình", "Phú Hữu"],
+  "Gò Vấp": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+  "Bình Thạnh": ["1", "2", "3", "5", "6", "7", "9", "11", "12", "13", "14", "15", "17", "19", "21", "22", "24"],
+  "Tân Bình": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+  "Tân Phú": ["Tân Sơn Nhì", "Tây Thạnh", "Sơn Kỳ", "Tân Quý", "Tân Thành", "Phú Thọ Hòa", "Phú Thạnh", "Phú Trung", "Hòa Thạnh", "Hiệp Tân", "Tân Thới Hòa"],
+  "Phú Nhuận": ["1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12", "13", "14", "15", "17"],
+  "2": ["Thảo Điền", "An Phú", "Bình An", "Bình Trưng Đông", "Bình Trưng Tây", "Bình Khánh", "An Khánh", "Cát Lái", "Thạnh Mỹ Lợi", "An Lợi Đông", "Thủ Thiêm"],
+  "3": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
+  "10": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
+  "11": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"],
+  "4": ["1", "2", "3", "4", "5", "6", "8", "9", "10", "12", "13", "14", "15", "16", "18"],
+  "5": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
+  "6": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
+  "8": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
+  "Bình Tân": ["Bình Hưng Hòa", "Bình Hưng Hòa A", "Bình Hưng Hòa B", "Bình Trị Đông", "Bình Trị Đông A", "Bình Trị Đông B", "Tân Tạo", "Tân Tạo A", "An Lạc", "An Lạc A"],
+  "7": ["Tân Thuận Đông", "Tân Thuận Tây", "Tân Kiểng", "Tân Hưng", "Bình Thuận",  "Tân Quy", "Phú Thuận", "Tân Phú", "Tân Phong", "Phú Mỹ"],
+  "Củ Chi": ["Củ Chi", "Phú Mỹ Hưng", "An Phú", "Trung Lập Thượng", "An Nhơn Tây", "Nhuận Đức", "Phạm Văn Cội", "Phú Hòa Đông", "Trung Lập Hạ", "Trung An", "Phước Thạnh", "Phước Hiệp", "Tân An Hội", "Phước Vĩnh An", "Thái Mỹ", "Tân Thạnh Tây", "Bình Mỹ", "Tân Phú Trung", "Tân Thông Hội"],
+  "Hóc Môn": ["Hóc Môn", "Tân Hiệp", "Nhị Bình", "Đông Thạnh", "Tân Thới Nhì", "Thới Tam Thôn", "Xuân Thới Sơn", "Tân Xuân", "Xuân Thới Đông", "Trung Chánh", "Xuân Thới Thượng", "Bà Điểm"],
+  "Bình Chánh": ["Tân Túc", "Phạm Văn Hai", "Vĩnh Lộc A", "Vĩnh Lộc B", "Bình Lợi", "Lê Minh Xuân", "Tân Nhựt", "Tân Kiên", "Bình Hưng", "Phong Phú", "An Phú Tây", "Hưng Long", "Đa Phước", "Tân Quý Tây", "Bình Chánh", "Quy Đức"],
+  "Nhà Bè": ["Nhà Bè", "Phước Kiển", "Phước Lộc", "Nhơn Đức", "Phú Xuân", "Long Thới", "Hiệp Phước"],
+  "Cần Giờ": ["Cần Thạnh", "Bình Khánh", "Tam Thôn Hiệp", "An Thới Đông", "Thạnh An", "Long Hòa", "Lý Nhơn"]
+
+}

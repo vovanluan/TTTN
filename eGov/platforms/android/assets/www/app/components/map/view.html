@@ -1,0 +1,86 @@
+<div class="container" id="content_container">
+	<section class="col-lg-8 col-md-12">
+		<div class="main bordered">
+			<div class="content-title">
+				<div class="change-view float-right">
+					<a href="#/">
+						<i class="glyphicon glyphicon-list"></i>
+					</a>
+					<a href="#/gallery">
+						<i class="glyphicon glyphicon-picture"></i>
+					</a>
+					<a href="#/map">
+						<i class="glyphicon glyphicon-map-marker"></i>
+					</a>
+				</div>
+				VỊ TRÍ CÁC PHẢN ÁNH
+			</div>
+			<div id="map-in-map-view" style="height:550px"></div>
+		</div>
+	</section>
+	<section class="col-lg-4 col-md-12">
+		<!-- Search -->
+		<div class="main search-bar">
+			<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			<div class="advanced-search">
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
+				</label>
+			</div>
+		</div>
+		<div class="main bordered">
+			<div class="content-title">
+			DANH SÁCH PHẢN ÁNH
+			</div>
+			<div ng-show="request.length">
+				<label>
+					Chưa có phản ánh nào
+				</label>
+			</div>
+			<div id="issue-list">
+				<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
+				<ul id="issue-list-ul">
+					<li ng-repeat="request in showRequests" ng-attr-id="{{'issue_id_' + request.serviceRequestId}}">
+						<div>
+							<h5 class="issue-title">
+								<div class="icon-status" ng-class="{acknowledged: request.statusId == 'DA_TIEP_NHAN',moved: request.statusId == 'DA_CHUYEN', solved: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY')}"></div>
+								<a href="#/issue/{{request.serviceRequestId}}" ng-mouseover="mouseOver(request.latitude, request.longitude)" ng-mouseleave="mouseLeave()" class="issue-link">{{request.serviceName}}</a>
+							</h5>
+							<h5 class="issue-address">{{request.address}}</h5>
+							<p class="issue-content" hm-read-more
+								hm-text="{{ request.description }}"
+								hm-limit="120"
+								hm-more-text="Đọc thêm"
+								hm-less-text="Thu nhỏ"
+								hm-dots-class="dots"
+								hm-link-class="links">
+							</p>
+							<span class="info"><time am-time-ago="'{{request.requestedDatetime}}'"></time>
+								<span class="sep">•</span>
+								<a href="" class="user">{{request.user.name}}</a>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Pagination -->
+		<div class="pagination module-block small" ng-if="filteredRequests.length">
+			<div class="float-left pagination-achor">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)"><i class="glyphicon glyphicon-fast-backward"></i></a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
+					{{page}}
+				</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)"><i class="glyphicon glyphicon-fast-forward"></i></a>
+			</div>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,33 @@
+<div class="modal-header">
+	<button class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+	<h4 class="modal-title">Đăng nhập vào EGov</h4>
+</div>
+<div class="modal-body">
+	<div id="signin" class="tab-pane active fade in">
+		<label class="error-label" ng-model="error" ng-show="error">{{error}}</label>
+
+		<form name="signinForm" my-enter="logIn()">
+			<md-input-container class="md-block" flex-gt-sm>
+		        <label>Email</label>
+		        <input required="" name="email" ng-model="email">
+		        <div ng-messages="signinForm.email.$error">
+		          <div ng-message="required">Trường bắt buộc</div>
+		        </div>
+		    </md-input-container>
+
+		    <md-input-container class="md-block" flex-gt-sm>
+		        <label>Mật khẩu</label>
+		        <input required="" type="password" name="password" ng-model="password">
+		        <div ng-messages="signinForm.password.$error">
+		          <div ng-message="required">Trường bắt buộc</div>
+		        </div>
+		    </md-input-container>
+		</form>
+	</div>
+
+	<span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>	
+</div>
+<div class="modal-footer">
+    <a href="" ng-click="signUpModal()">Đăng ký</a>&nbsp;&nbsp;
+    <button class="btn btn-primary" type="button" ng-click="logIn()">Đăng nhập</button> 
+</div>

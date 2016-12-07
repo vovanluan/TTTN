@@ -1,0 +1,16 @@
+{
+    "division_requests": [
+        {
+            "statusId" : "DA_CHUYEN",
+            "name" :  "Chờ xử lý"
+        },
+        {
+            "statusId" : "DA_XU_LY",
+            "name" :  "Đã xử lý - Chờ duyệt"
+        },
+        {
+            "statusId" : "DA_DUYET",
+            "name" :  "Đã duyệt trả lời"
+        }
+    ]
+}

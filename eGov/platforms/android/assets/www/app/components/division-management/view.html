@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="pad col-xs-12 col-md-8 bordered-radius">
+        <h3 class="announcement-type">Danh sách cơ quan</h3>
+        <div style="padding: 8px;">
+            <md-input-container class="md-block no-margin-btm">
+                <label>Tên cơ quan</label>
+                <input ng-model="name">
+            </md-input-container>
+            <button class="btn btn-success" type="button" ng-click="postDivision()">Tạo cơ quan</button>
+        </div>
+        <div id="userList">
+            <div ng-hide="divisions.length">
+                <h4>
+                    Chưa có cơ quan trong cơ sở dữ liệu.
+                </h4>
+            </div>
+            <table class="table table-striped table-condensed table-hover" ng-show="divisions.length">
+                <thead>
+                  <tr>
+                    <th class="col-xs-1"></th>
+                    <th class="col-xs-2">Id</th>
+                    <th class="col-xs-6">Tên cơ quan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="division in divisions" ng-class-odd="'alt'">
+                    <td class="col-xs-1"></td>
+                    <td class="col-xs-2 cap">{{division.id}}</td>
+                    <td class="col-xs-6 cap">{{division.name}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!--/container-->

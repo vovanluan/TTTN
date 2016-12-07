@@ -1,0 +1,72 @@
+<div class="container">
+	<section class="col-lg-8 col-md-12">
+		<!-- Search -->
+		<div class="main search-bar">
+			<input class="search-input border-btm" ng-model="searchInput" type="text" placeholder="Tìm kiếm phản ánh...">
+			<div class="advanced-search">
+				<label for="" class="mrm">Trạng thái:</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isReceived" ng-init="isReceived = true">Đã tiếp nhận</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isInProgress" ng-init="isInProgress = true">Chờ xử lý</md-checkbox>
+				</label>
+				<label class="mrm">
+					<md-checkbox md-no-ink class="md-primary" ng-model="isResolved" ng-init="isResolved = true">Đã giải quyết</md-checkbox>
+				</label>
+			</div>
+		</div>
+		<div class="main bordered ">
+			<div class="content-title">
+				<div class="change-view float-right">
+					<a href="#/">
+						<i class="glyphicon glyphicon-list"></i>
+					</a>
+					<a href="#/gallery">
+						<i class="glyphicon glyphicon-picture"></i>
+					</a>
+					<a href="#/map">
+						<i class="glyphicon glyphicon-map-marker"></i>
+					</a>
+				</div>
+				DANH SÁCH PHẢN ÁNH
+			</div>
+			<h4 ng-hide="showRequests.length">Chưa có phản hồi nào hoặc không tìm thấy kết quả</h4>
+			<div layout='column'>
+		      <div class='md-padding' layout="row" flex>
+		        <div layout="row" flex>
+		            <div class="parent" layout="column" ng-repeat="photoColumn in issueImages.photos3p" flex>
+		                <md-card class="card" data-ng-repeat="photo in photoColumn">
+		                	<a ng-mouseover="mouseOver(photo.latitude, photo.longitude)" ng-mouseleave="mouseLeave()" ng-href="#/issue/{{photo.id}}"><img ng-src="{{photo.path? photo.path : 'assets/img/no-image-issue.jpg'}}"></a>
+	                    	<md-card-footer class="desc">
+						   		<div class="desc_content">
+						   			{{photo.name}}
+						   		</div>
+							</md-card-footer>
+		                </md-card>
+		            </div>
+		        </div>
+		      </div>
+		    </div>
+		</div>
+
+		<!-- Pagination -->
+		<div class="pagination module-block" ng-if="filteredRequests.length">
+			<div class="float-right hidden-xs"> Hiển thị {{(pager.currentPage - 1) * requestPerPage + 1}} - {{pager.currentPage * requestPerPage >= filteredRequests.length ? filteredRequests.length : pager.currentPage * requestPerPage;}} của {{filteredRequests.length}}</div>
+			<div class="float-left pagination-achor">
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(1,filteredRequests)">Trang đầu</a>
+				<a ng-class="{disabled:pager.currentPage === 1}" ng-click="setPage(pager.currentPage - 1,filteredRequests)"><i class="glyphicon glyphicon-menu-left"></i></a>
+				<a ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}" ng-click="setPage(page,filteredRequests)">
+					{{page}}
+				</a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.currentPage + 1,filteredRequests)"><i class="glyphicon glyphicon-menu-right"></i></a>
+				<a ng-class="{disabled:pager.currentPage === pager.totalPages}" ng-click="setPage(pager.totalPages,filteredRequests)">Trang cuối</a>
+			</div>
+		</div>
+	</section>
+	<section class="col-md-4">
+		<div class="map bordered">
+			<div id="map-in-gallery-view" style="height:380px"></div>
+		</div>
+	</section>
+</div>

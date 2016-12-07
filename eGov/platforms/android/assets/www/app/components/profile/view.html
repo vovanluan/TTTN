@@ -1,0 +1,99 @@
+<div class="container" id="content_container">
+	<section class="col-md-6">
+		<div class="content-title">
+			Các phản ánh đã đăng
+		</div>
+		<md-content>
+	      	<md-list class="bordered" flex>
+	      		<h4 ng-hide="requestsByMe.length">Không có phản ánh nào</h4>
+		        <md-list-item class="md-3-line" ng-repeat="request in requestsByMe" ng-href="#/issue/{{request.serviceRequestId}}">
+		          	<img ng-src="{{request.mediaUrl != null? request.mediaUrl : 'assets/img/no-image-issue.jpg';}}" alt="image caption" class="md-avatar"/>
+		          	<div class="md-list-item-text" layout="column">
+			            <h3><strong><a>{{request.serviceName}}</a></strong>&nbsp;
+			            <small><i class="glyphicon glyphicon-triangle-right"></i></small>&nbsp;
+			            <span ng-class="{text_red: request.statusId == 'DA_TIEP_NHAN', text_green: request.statusId == 'DA_CHUYEN', text_blue: (request.statusId == 'DA_DUYET' || request.statusId == 'DA_XU_LY'), text_grey: request.statusId == 'DA_XOA'}"><strong>{{convertStatusId(request.statusId)}}</strong></span>
+			            </h3>
+			            <p>{{request.address}}</p>
+						<p class="issue-address"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;<time am-time-ago="'{{request.requestedDatetime}}'"></time></p>
+		          	</div>
+		        </md-list-item>
+	      	</md-list>
+	    </md-content>
+	</section>
+	<section class="col-md-6">
+		<div class="search">
+			<form>
+				<!-- Search input -->
+			</form>
+		</div>
+		<div class="main bordered">
+			<div class="content-title">
+				Tài khoản
+			</div>
+			<div id="profile-content">
+				<div id="personal" ng-hide="isEditAccountInfo">
+					<div class="info-row">
+						<label>Tên hiển thị: </label>
+						<div class="info-text">{{user.name}}</div>
+					</div>
+					<hr>
+					<div class="info-row">
+						<label>Email: </label>
+						<div class="info-text">{{user.email}}</div>
+					</div>
+					<hr>
+					<div class="info-row">
+						<label>Hình đại diện: </label>
+						<div class="info-text"><img ng-src="{{user.avatar? user.avatar : 'assets/img/no-avatar.png'}}" class="img-responsive img-thumbnail center-block"  width="200"/></div>
+					</div>
+					<hr ng-if="isNormalUser()">
+					<div class="info-row" ng-if="isNormalUser()">
+						<label>CMND: </label>
+						<div class="info-text">{{user.identifyCard}}</div>
+					</div>
+					<hr ng-if="isNormalUser()">
+					<div class="info-row" ng-if="isNormalUser()">
+						<label>Số điện thoại: </label>
+						<div class="info-text">{{user.phoneNumber}}</div>
+					</div>
+				</div>
+				<div class="personal-edit" ng-show="isEditAccountInfo">
+					<div class="info-row">
+						<label>Tên hiển thị: </label>
+						<div class="info-text">
+							<input class="form-control" ng-model="user.name" >
+						</div>
+					</div>
+					<div class="info-row">
+						<label>Email: </label>
+						<div class="info-text">
+							<input class="form-control" ng-model="user.email" disabled="true">
+						</div>
+					</div>
+					<div class="info-row" ng-if="isNormalUser()">
+						<label>CMND: </label>
+						<div class="info-text">
+							<input class="form-control" ng-model="user.identifyCard" >
+						</div>
+					</div>
+					<div class="info-row" ng-if="isNormalUser()">
+						<label>Số điện thoại: </label>
+						<div class="info-text">
+							<input class="form-control" ng-model="user.phoneNumber" >
+						</div>
+					</div>
+					<button class="btn btn-primary" ngf-select ng-model="avatar" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh đại diện</button>
+                    <img ng-show="avatar" ngf-thumbnail="avatar" class="img-responsive img-thumbnail center-block"  width="200"/>
+				</div>
+			</div>
+		</div>
+		<div class="edit-info">
+			<button class="btn btn-success" ng-click="editAccountInfoSubmit()" ng-show="isEditAccountInfo">Submit</button>
+			<button class="btn btn-info" ng-click="editAccountInfo()">{{!isEditAccountInfo && 'Chỉnh sửa thông tin' || 'Cancel'}}</button>	 
+			<button class="btn btn-primary" ng-click="changePasswordModal()">Đổi mật khẩu</button>   
+		</div>
+	</section>
+	
+</div>
+
+

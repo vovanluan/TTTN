@@ -1,0 +1,221 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main report-issue-panel bordered">
+            <uib-tabset active="activeTab" type="pills">
+                <uib-tab index="0" heading="BƯỚC 1">
+                    <hr>
+                    <h4><strong>Cho biết các thông tin về chủ đề phản ánh</strong></h4>
+                    <hr>
+                    <div class="col-sm-12 col-md-8 overflow">
+                        <md-content class="md-no-momentum">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Chọn một chủ đề</label>
+                                <md-select ng-model="report.service" required>
+                                    <md-option ng-repeat="service in report.services" ng-value="service">
+                                        {{service.subject}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </md-content>
+                        <md-content class="md-no-momentum">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Chi tiết về vấn đề</label>
+                                <md-select ng-model="report.serviceName">
+                                    <md-option ng-repeat="specific in report.service.specificlist" ng-value="specific">
+                                        {{specific}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </md-content>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Thời gian</label>
+                            <input type="text" data-field="datetime" ng-model="report.happenDateTime">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Thông tin phản ánh</label>
+                            <textarea ng-model="report.description" md-maxlength="1500" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
+                        <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
+                        <button class="btn btn-primary" ng-click="report.picFile = null" >Xóa ảnh</button>
+                        <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="300"/>
+                        <hr>
+                        <div class="float-right">
+                            <a class="btn btn-primary" ng-click="reportTab.selectTab(1)">Đi tới</a>
+                        </div>
+                    </div>
+
+                </uib-tab> <!-- end tab 1 -->
+
+                <uib-tab index="1" heading="BƯỚC 2" ng-click="reportTab.selectTab(1)">
+                    <hr>
+                    <h4><strong>Cung cấp địa điểm sự việc</strong></h4>
+                    <hr>
+                    <div class="col-sm-12 col-md-8 overflow">
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Chọn Quận/Huyện</label>
+                                <md-select ng-model="report.district">
+                                    <md-option ng-repeat="(key, value) in report.districts" ng-value="key">
+                                        {{key}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>Chọn Phường</label>
+                                <md-select ng-model="report.ward">
+                                    <md-option ng-repeat="ward in report.districts[report.district]" ng-value="ward">
+                                        {{ward}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Địa chỉ</label>
+                            <input ng-model="report.street">
+                        </md-input-container>
+                        <div id="map" class="bordered" style="height:380px"></div>
+
+                        <table class="longlat stepTable" ng-hide="1">
+                            <tr>
+                                <td class="col-md-2"> Kinh độ </td>
+                                <td class="col-md-4">
+                                    <input class="form-control" readonly="readonly" id="longitude" style="width:100%" ng-model="report.longitude">
+                                </td>
+                                <td class="col-md-2"> Vĩ độ </td>
+                                <td class="col-md-4">
+                                    <input class="form-control" readonly="readonly" id="latitude"
+                                    ng-model="report.latitude">
+                                </td>
+                            </tr>
+                        </table>
+                        <hr>
+                        <div class="float-right">
+                            <a class="btn btn-primary" ng-click="reportTab.selectTab(0)">Trở về</a>
+                            <a class="btn btn-primary" ng-click="reportTab.selectTab(2)">Đi tới</a>
+                        </div>
+                    </div>
+                </uib-tab> <!-- end tab 2 -->
+
+                <uib-tab index="2" heading="BƯỚC 3">
+                    <hr>
+                    <h4><strong>Thông tin cá nhân</strong></h4>
+                    <div ng-hide="isAuthorizedGuest()">
+                        <strong><a href="" ng-click="signUpModal()">Đăng ký </a> hoặc <a href="" ng-click="logInModal()">Đăng nhập</a></strong><br>
+                        <strong><a href="" ng-click="logInAsGuestModal()">Đăng nhập dưới dạng khách</a></strong>
+                    </div>
+                    <hr>
+                    <div class="col-sm-12 col-md-8 overflow">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Tên hiển thị</label>
+                            <input ng-model="user.name" readonly="true">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Email</label>
+                            <input ng-model="user.email" readonly="true">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Số điện thoại</label>
+                            <input ng-model="user.phoneNumber" readonly="true">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>CMND</label>
+                            <input ng-model="user.identifyCard" readonly="true">
+                        </md-input-container>
+                        <div class="float-right">
+                            <a class="btn btn-primary" ng-click="reportTab.selectTab(1)">Trở về</a>
+                            <a class="btn btn-primary" ng-if="checkAuthorization()" ng-click="reportTab.selectTab(3)">Đi tới</a>
+                        </div>
+                    </div>
+                </uib-tab> <!-- end tab 3 -->
+
+                <uib-tab index="3" heading="BƯỚC 4" disable="true">
+                    <hr>
+                    <h4><strong>Xem lại các thông tin trên, tiến hành chỉnh sửa các thông tin sai trước khi gửi đi phản ánh</strong></h4>
+                    <hr>
+                    <div class="col-md-6 col-sm-12">
+                        <h4 class="text-primary"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;&nbsp;&nbsp;THÔNG TIN VẤN ĐỀ</h3>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Chủ đề</label>
+                                <md-select ng-model="report.service">
+                                    <md-option ng-repeat="service in report.services" ng-value="service">
+                                        {{service.subject}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>Chi tiết</label>
+                                <md-select ng-model="report.serviceName">
+                                    <md-option ng-repeat="specific in report.service.specificlist" ng-value="specific">
+                                        {{specific}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Thời gian</label>
+                            <input type="text" data-field="datetime" ng-model="report.happenDateTime">
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label>Thông tin phản ánh</label>
+                            <textarea ng-model="report.description" md-maxlength="1500" rows="4"></textarea>
+                        </md-input-container>
+                        <button class="btn btn-primary" ngf-select ng-model="report.picFile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Chọn ảnh</button>
+                        <button class="btn btn-primary" ng-click="report.picFile = null" >Xóa ảnh</button>
+                        <img ng-show="report.picFile" ngf-thumbnail="report.picFile" class="img-responsive img-thumbnail center-block"  width="200" />
+                        <hr>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <h4 class="text-primary"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;&nbsp;ĐỊA ĐIỂM</h4>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Quận/Huyện</label>
+                                <md-select ng-model="report.district">
+                                    <md-option ng-repeat="(key, value) in report.districts" ng-value="key">
+                                        {{key}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>Phường</label>
+                                <md-select ng-model="report.ward">
+                                    <md-option ng-repeat="ward in report.districts[report.district]" ng-value="ward">
+                                        {{ward}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Địa chỉ</label>
+                            <input ng-model="report.street">
+                        </md-input-container>
+                        <br>
+                        <h4 class="text-primary"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;&nbsp;THÔNG TIN CÁ NHÂN</h4>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Tên hiển thị</label>
+                                <input ng-model="user.name" readonly="true">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>Email</label>
+                                <input ng-model="user.email" readonly="true">
+                            </md-input-container>
+                        </div>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="50">
+                                <label>Số điện thoại</label>
+                                <input ng-model="user.phoneNumber" readonly="true">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="50">
+                                <label>CMND</label>
+                                <input ng-model="user.identifyCard" readonly="true">
+                            </md-input-container>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block" ng-click="reportTab.submitReport()">Gửi phản ánh</button>
+                    </div>
+                    <span us-spinner="{radius:30, width:8, length: 16}" spinner-theme="bigBlue" spinner-on="showSpinner"></span>
+                </uib-tab> <!-- end tab 4 -->
+            </uib-tabset>
+            <div id="dtBox"></div>
+        </div>
+</div>
