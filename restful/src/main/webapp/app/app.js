@@ -583,7 +583,7 @@ app.run(function($rootScope, $localStorage, $location, $http, jwtHelper,
   		})
   		.success(function (data){
   			$rootScope.user = data;
-
+            console.log($rootScope.user.type);
   		})
   		.error(function(error){
   			console.log(error);

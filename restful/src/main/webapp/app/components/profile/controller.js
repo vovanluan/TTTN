@@ -37,7 +37,7 @@ app.controller('profileController', function($rootScope, $scope, $http, Modal, u
 		if($rootScope.user.type == 'normal') {
 			$rootScope.user.identyfyCard = $scope.user.identyfyCard;
 			$rootScope.user.phoneNumber = $scope.user.phoneNumber;
-			url = normalUserUrl;
+			userUrl = normalUserUrl;
 		}
 
 		if($rootScope.user.type == 'official') {
@@ -71,7 +71,7 @@ app.controller('profileController', function($rootScope, $scope, $http, Modal, u
                     }).then(function successCallback(response) {
                         console.log("data link : " + response.data.data.link);
                         $rootScope.user.avatar = response.data.data.link;
-
+                        console.log(userUrl);
                         userManager.updateUser($rootScope.user.id,$rootScope.user,userUrl).then(
                         	function success() {
                         		$scope.showSpinner = false;

@@ -67,7 +67,7 @@ public class AuthenticationEndpoint {
 
     private User isUserExist(String email, String password) throws NoResultException, NoSuchAlgorithmException, InvalidKeySpecException {
         //Check if email is correct in User table
-        Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email");
+        Query firstQuery = em.createQuery("SELECT u FROM User u WHERE u.email=:email AND u.type!='guest'");
         firstQuery.setParameter("email", email);
         User user = (User) firstQuery.getSingleResult();
         role = (String) user.getDiscriminatorValue();

@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 public class OfficialUser extends User {
     
     @Size(min = 1, max = 40)
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String passWord;
     
     public String getPassWord() {

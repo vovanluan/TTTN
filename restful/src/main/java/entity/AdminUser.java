@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AdminUser extends User {
     
     @Size(min = 1, max = 40)
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String passWord;
 
     public String getPassWord() {

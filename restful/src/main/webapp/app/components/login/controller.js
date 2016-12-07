@@ -21,11 +21,11 @@ app.controller('logInModalController',
 	        	type: "success",
 	        	timer: 1000,
 	        	showConfirmButton: false
-	        });            
+	        });
 	    }, function() {
 	    	$scope.showSpinner = false;
 	        $scope.error = 'Email hoặc mật khẩu không đúng!';
-            $('#email').focus();        
+            $('#email').focus();
 	    });
 	};
 	$scope.cancel = function(){
