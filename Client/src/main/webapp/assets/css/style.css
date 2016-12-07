@@ -335,6 +335,29 @@ html, body {
     .copyright {
         text-align: center;
     }
+    .badge-float {
+        float: left;
+        margin-top: 0px !important;
+    }
+    .comment-panel ul {
+        padding: 2px !important;
+    }
+    md-checkbox .md-label {
+        margin-left: 25px !important;
+    }
+    .mrm {
+        margin-right: 0px !important;
+    }
+}
+
+
+@media (min-width: 767px) {
+    .badge-float {
+        float: right;
+    }
+    .comment-panel {
+        margin-left: 110px;
+    }
 }
 
 .design {
