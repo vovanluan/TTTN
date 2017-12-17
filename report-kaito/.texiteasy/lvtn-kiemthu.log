@@ -1,0 +1,3296 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.11.29)  18 DEC 2017 00:51
+entering extended mode
+**./lvtn-kiemthu.tex
+(lvtn-kiemthu.tex
+LaTeX2e <2017-04-15>
+Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\times.sty"
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.st
+y"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.s
+ty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.
+sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
+sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count87
+\Gm@cntv=\count88
+\c@Gm@tempcnt=\count89
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+cfg"))
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\utf8.def"
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
+File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0100 (decimal 256)
+   defining Unicode char U+0101 (decimal 257)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+0108 (decimal 264)
+   defining Unicode char U+0109 (decimal 265)
+   defining Unicode char U+010A (decimal 266)
+   defining Unicode char U+010B (decimal 267)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0112 (decimal 274)
+   defining Unicode char U+0113 (decimal 275)
+   defining Unicode char U+0114 (decimal 276)
+   defining Unicode char U+0115 (decimal 277)
+   defining Unicode char U+0116 (decimal 278)
+   defining Unicode char U+0117 (decimal 279)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011C (decimal 284)
+   defining Unicode char U+011D (decimal 285)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0120 (decimal 288)
+   defining Unicode char U+0121 (decimal 289)
+   defining Unicode char U+0122 (decimal 290)
+   defining Unicode char U+0123 (decimal 291)
+   defining Unicode char U+0124 (decimal 292)
+   defining Unicode char U+0125 (decimal 293)
+   defining Unicode char U+0128 (decimal 296)
+   defining Unicode char U+0129 (decimal 297)
+   defining Unicode char U+012A (decimal 298)
+   defining Unicode char U+012B (decimal 299)
+   defining Unicode char U+012C (decimal 300)
+   defining Unicode char U+012D (decimal 301)
+   defining Unicode char U+012E (decimal 302)
+   defining Unicode char U+012F (decimal 303)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0134 (decimal 308)
+   defining Unicode char U+0135 (decimal 309)
+   defining Unicode char U+0136 (decimal 310)
+   defining Unicode char U+0137 (decimal 311)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013B (decimal 315)
+   defining Unicode char U+013C (decimal 316)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0145 (decimal 325)
+   defining Unicode char U+0146 (decimal 326)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+014C (decimal 332)
+   defining Unicode char U+014D (decimal 333)
+   defining Unicode char U+014E (decimal 334)
+   defining Unicode char U+014F (decimal 335)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0156 (decimal 342)
+   defining Unicode char U+0157 (decimal 343)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015C (decimal 348)
+   defining Unicode char U+015D (decimal 349)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+0168 (decimal 360)
+   defining Unicode char U+0169 (decimal 361)
+   defining Unicode char U+016A (decimal 362)
+   defining Unicode char U+016B (decimal 363)
+   defining Unicode char U+016C (decimal 364)
+   defining Unicode char U+016D (decimal 365)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0172 (decimal 370)
+   defining Unicode char U+0173 (decimal 371)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+01CD (decimal 461)
+   defining Unicode char U+01CE (decimal 462)
+   defining Unicode char U+01CF (decimal 463)
+   defining Unicode char U+01D0 (decimal 464)
+   defining Unicode char U+01D1 (decimal 465)
+   defining Unicode char U+01D2 (decimal 466)
+   defining Unicode char U+01D3 (decimal 467)
+   defining Unicode char U+01D4 (decimal 468)
+   defining Unicode char U+01E2 (decimal 482)
+   defining Unicode char U+01E3 (decimal 483)
+   defining Unicode char U+01E6 (decimal 486)
+   defining Unicode char U+01E7 (decimal 487)
+   defining Unicode char U+01E8 (decimal 488)
+   defining Unicode char U+01E9 (decimal 489)
+   defining Unicode char U+01EA (decimal 490)
+   defining Unicode char U+01EB (decimal 491)
+   defining Unicode char U+01F0 (decimal 496)
+   defining Unicode char U+01F4 (decimal 500)
+   defining Unicode char U+01F5 (decimal 501)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+0232 (decimal 562)
+   defining Unicode char U+0233 (decimal 563)
+   defining Unicode char U+1E02 (decimal 7682)
+   defining Unicode char U+1E03 (decimal 7683)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2010 (decimal 8208)
+   defining Unicode char U+2011 (decimal 8209)
+   defining Unicode char U+2012 (decimal 8210)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2015 (decimal 8213)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+   defining Unicode char U+1E20 (decimal 7712)
+   defining Unicode char U+1E21 (decimal 7713)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
+File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
+File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+)) ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\vietnam.s
+ty"
+Package: vietnam 2009/07/12 v1.3 support for Vietnamese
+ ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fontenc.sty
+"
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+ ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\t5enc.def"
+File: t5enc.def 2006/11/21 v1.4 Vietnamese T5 encoding
+Now handling font encoding T5 ...
+... processing UTF-8 mapping file for font encoding T5
+ ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\t5enc.dfu"
+File: t5enc.dfu 2006/08/19 v1.1 UTF8 support for Vietnamese
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0128 (decimal 296)
+   defining Unicode char U+0129 (decimal 297)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0168 (decimal 360)
+   defining Unicode char U+0169 (decimal 361)
+   defining Unicode char U+01A0 (decimal 416)
+   defining Unicode char U+01A1 (decimal 417)
+   defining Unicode char U+01AF (decimal 431)
+   defining Unicode char U+01B0 (decimal 432)
+   defining Unicode char U+1EA0 (decimal 7840)
+   defining Unicode char U+1EA1 (decimal 7841)
+   defining Unicode char U+1EA2 (decimal 7842)
+   defining Unicode char U+1EA3 (decimal 7843)
+   defining Unicode char U+1EA4 (decimal 7844)
+   defining Unicode char U+1EA5 (decimal 7845)
+   defining Unicode char U+1EA6 (decimal 7846)
+   defining Unicode char U+1EA7 (decimal 7847)
+   defining Unicode char U+1EA8 (decimal 7848)
+   defining Unicode char U+1EA9 (decimal 7849)
+   defining Unicode char U+1EAA (decimal 7850)
+   defining Unicode char U+1EAB (decimal 7851)
+   defining Unicode char U+1EAC (decimal 7852)
+   defining Unicode char U+1EAD (decimal 7853)
+   defining Unicode char U+1EAE (decimal 7854)
+   defining Unicode char U+1EAF (decimal 7855)
+   defining Unicode char U+1EB0 (decimal 7856)
+   defining Unicode char U+1EB1 (decimal 7857)
+   defining Unicode char U+1EB2 (decimal 7858)
+   defining Unicode char U+1EB3 (decimal 7859)
+   defining Unicode char U+1EB4 (decimal 7860)
+   defining Unicode char U+1EB5 (decimal 7861)
+   defining Unicode char U+1EB6 (decimal 7862)
+   defining Unicode char U+1EB7 (decimal 7863)
+   defining Unicode char U+1EB8 (decimal 7864)
+   defining Unicode char U+1EB9 (decimal 7865)
+   defining Unicode char U+1EBA (decimal 7866)
+   defining Unicode char U+1EBB (decimal 7867)
+   defining Unicode char U+1EBC (decimal 7868)
+   defining Unicode char U+1EBD (decimal 7869)
+   defining Unicode char U+1EBE (decimal 7870)
+   defining Unicode char U+1EBF (decimal 7871)
+   defining Unicode char U+1EC0 (decimal 7872)
+   defining Unicode char U+1EC1 (decimal 7873)
+   defining Unicode char U+1EC2 (decimal 7874)
+   defining Unicode char U+1EC3 (decimal 7875)
+   defining Unicode char U+1EC4 (decimal 7876)
+   defining Unicode char U+1EC5 (decimal 7877)
+   defining Unicode char U+1EC6 (decimal 7878)
+   defining Unicode char U+1EC7 (decimal 7879)
+   defining Unicode char U+1EC8 (decimal 7880)
+   defining Unicode char U+1EC9 (decimal 7881)
+   defining Unicode char U+1ECA (decimal 7882)
+   defining Unicode char U+1ECB (decimal 7883)
+   defining Unicode char U+1ECC (decimal 7884)
+   defining Unicode char U+1ECD (decimal 7885)
+   defining Unicode char U+1ECE (decimal 7886)
+   defining Unicode char U+1ECF (decimal 7887)
+   defining Unicode char U+1ED0 (decimal 7888)
+   defining Unicode char U+1ED1 (decimal 7889)
+   defining Unicode char U+1ED2 (decimal 7890)
+   defining Unicode char U+1ED3 (decimal 7891)
+   defining Unicode char U+1ED4 (decimal 7892)
+   defining Unicode char U+1ED5 (decimal 7893)
+   defining Unicode char U+1ED6 (decimal 7894)
+   defining Unicode char U+1ED7 (decimal 7895)
+   defining Unicode char U+1ED8 (decimal 7896)
+   defining Unicode char U+1ED9 (decimal 7897)
+   defining Unicode char U+1EDA (decimal 7898)
+   defining Unicode char U+1EDB (decimal 7899)
+   defining Unicode char U+1EDC (decimal 7900)
+   defining Unicode char U+1EDD (decimal 7901)
+   defining Unicode char U+1EDE (decimal 7902)
+   defining Unicode char U+1EDF (decimal 7903)
+   defining Unicode char U+1EE0 (decimal 7904)
+   defining Unicode char U+1EE1 (decimal 7905)
+   defining Unicode char U+1EE2 (decimal 7906)
+   defining Unicode char U+1EE3 (decimal 7907)
+   defining Unicode char U+1EE4 (decimal 7908)
+   defining Unicode char U+1EE5 (decimal 7909)
+   defining Unicode char U+1EE6 (decimal 7910)
+   defining Unicode char U+1EE7 (decimal 7911)
+   defining Unicode char U+1EE8 (decimal 7912)
+   defining Unicode char U+1EE9 (decimal 7913)
+   defining Unicode char U+1EEA (decimal 7914)
+   defining Unicode char U+1EEB (decimal 7915)
+   defining Unicode char U+1EEC (decimal 7916)
+   defining Unicode char U+1EED (decimal 7917)
+   defining Unicode char U+1EEE (decimal 7918)
+   defining Unicode char U+1EEF (decimal 7919)
+   defining Unicode char U+1EF0 (decimal 7920)
+   defining Unicode char U+1EF1 (decimal 7921)
+   defining Unicode char U+1EF2 (decimal 7922)
+   defining Unicode char U+1EF3 (decimal 7923)
+   defining Unicode char U+1EF4 (decimal 7924)
+   defining Unicode char U+1EF5 (decimal 7925)
+   defining Unicode char U+1EF6 (decimal 7926)
+   defining Unicode char U+1EF7 (decimal 7927)
+   defining Unicode char U+1EF8 (decimal 7928)
+   defining Unicode char U+1EF9 (decimal 7929)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+))
+LaTeX Font Info:    Try loading font information for T5+cmr on input line 105.
+ ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\t5cmr.fd"
+File: t5cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)) ("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\vncaps.te
+x"
+File: vncaps.tex 2006/06/07 v1.1 Captions in Vietnamese
+))
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx.
+sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics.
+sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\graph
+ics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdfte
+x.def"
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count90
+\float@exts=\toks18
+\float@box=\box26
+\@float@everytoks=\toks19
+\@floatcapt=\box27
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen113
+\extrarowheight=\dimen114
+\NC@list=\toks20
+\extratabsurround=\skip43
+\backup@length=\skip44
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\longtable.st
+y"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip45
+\LTright=\skip46
+\LTpre=\skip47
+\LTpost=\skip48
+\LTchunksize=\count91
+\LTcapwidth=\dimen115
+\LT@head=\box28
+\LT@firsthead=\box29
+\LT@foot=\box30
+\LT@lastfoot=\box31
+\LT@cols=\count92
+\LT@rows=\count93
+\c@LT@tables=\count94
+\c@LT@chunks=\count95
+\LT@p@ftn=\toks21
+) ("C:\Users\T450s\Google Drive\report-kaito\.texiteasy\lvtn-kiemthu.aux")
+\openout1 = `lvtn-kiemthu.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T5/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for T5+ptm on input line 11.
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\t5ptm.fd"
+File: t5utm.fd 2005/08/24 Fontinst v1.929 font definitions for T5/ptm.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
+ii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count96
+\scratchdimen=\dimen116
+\scratchbox=\box32
+\nofMPsegments=\count97
+\nofMParguments=\count98
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count99
+\MPscratchDim=\dimen117
+\MPnumerator=\count100
+\makeMPintoPDFobject=\count101
+\everyMPtoPDFconversion=\toks23
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-
+base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\infware
+rr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.st
+y"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvdefin
+ekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds
+.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
+.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvsetke
+ys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\etexcmd
+s.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifluate
+x.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftexc
+mds.sty"
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 12.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Font shape `T5/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T5/ptm/b/n' tried instead on input line 14.
+LaTeX Font Info:    Font shape `T5/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T5/ptm/b/n' tried instead on input line 15.
+LaTeX Font Info:    Font shape `T5/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T5/ptm/b/n' tried instead on input line 16.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 34.
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
+
+! LaTeX Error: File `EERD_Diagram' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 ...aphics[angle=90, scale=0.32]{EERD_Diagram}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[1
+
+{C:/Users/T450s/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 51--59
+
+ []
+
+
+! LaTeX Error: File `Database_Diagram' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.64 ...cs[scale=0.45, angle=90]{Database_Diagram}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `themkhachhang' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.73 \includegraphics[scale=0.4]{themkhachhang}
+                                               
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `themnhanvien' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \includegraphics[scale=0.4]{themnhanvien}
+                                              
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `themquanli' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85 \includegraphics[scale=0.4]{themquanli}
+                                            
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `themvitridacbiet' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 \includegraphics[scale=0.4]{themvitridacbiet}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `themphuongtien' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97 \includegraphics[scale=0.4]{themphuongtien}
+                                                
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[2]
+
+! LaTeX Error: File `chinhsuanhanvien' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.103 ...ludegraphics[scale=0.4]{chinhsuanhanvien}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `chinhsuaquanli' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.109 \includegraphics[scale=0.4]{chinhsuaquanli}
+                                                 
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `chinhsuavitridacbiet' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115 ...graphics[scale=0.4]{chinhsuavitridacbiet}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 143--143
+[]|\T5/ptm/m/n/10 Get Com-pleted Ap-
+ []
+
+LaTeX Font Info:    Try loading font information for T5+pcr on input line 152.
+("C:\Users\T450s\AppData\Local\Programs\MiKTeX 2.9\tex\latex\vntex\t5pcr.fd"
+File: t5ucr.fd 2005/08/24 Fontinst v1.929 font definitions for T5/pcr.
+)
+Underfull \hbox (badness 1264) in paragraph at lines 152--153
+[]\T5/ptm/m/n/10 [][]\T5/pcr/m/n/10 destination[]\T5/ptm/m/n/10  : ½ch ¸n c
+õa cæng t¡c
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 153--154
+\T5/ptm/m/n/10 cæng t¡c (Chuéi câ d¤ng HH:mm dd-MM-
+ []
+
+
+Overfull \hbox (37.59995pt too wide) in alignment at lines 121--250
+ [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 250
+ []
+
+[3] [4]
+Overfull \hbox (37.59995pt too wide) in alignment at lines 255--288
+ [] [] [] 
+ []
+
+[5]
+Underfull \vbox (badness 10000) detected at line 288
+ []
+
+
+! LaTeX Error: File `admin_trangchu' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.300 \includegraphics[scale=0.5]{admin_trangchu}
+                                                 
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `admin_chiphi' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310 \includegraphics[scale=0.5]{admin_chiphi}
+                                               
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `admin_employee' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.321 \includegraphics[scale=0.5]{admin_employee}
+                                                 
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `admin_themnhanvien' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.328 ...degraphics[scale=0.5]{admin_themnhanvien}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[6]
+
+! LaTeX Error: File `admin_chinhsuanhanvien' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.334 ...aphics[scale=0.5]{admin_chinhsuanhanvien}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `admin_lichtrinh' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.340 \includegraphics[scale=0.5]{admin_lichtrinh}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `admin_lichtrinhchart' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.346 ...graphics[scale=0.5]{admin_lichtrinhchart}
+                                                  
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--360
+[]|\T5/ptm/m/n/10 «ng nhªp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--360
+\T5/ptm/m/n/10 v o h» thèng
+ []
+
+
+Underfull \hbox (badness 2384) in paragraph at lines 360--360
+\T5/ptm/m/n/10 vîi hai tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--360
+\T5/ptm/m/n/10 user-name v 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--360
+\T5/ptm/m/n/10 pass-word ·u
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--370
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\T5/ptm/m/n/10 h» thèng vîi
+ []
+
+
+Underfull \hbox (badness 4416) in paragraph at lines 374--374
+\T5/ptm/m/n/10 mët trong hai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\T5/ptm/m/n/10 tr÷íng bà bä
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 388--388
+\T5/ptm/m/n/10 name v  pass-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--398
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--402
+\T5/ptm/m/n/10 h» thèng vîi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 402--402
+\T5/ptm/m/n/10 tr÷íng user-
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 402--402
+\T5/ptm/m/n/10 v  lîn hìn 32
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 411--411
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 416--416
+\T5/ptm/m/n/10 h» thèng vîi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 416--416
+\T5/ptm/m/n/10 tr÷íng pass-
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 416--416
+\T5/ptm/m/n/10 v  lîn hìn 32
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 425--425
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 429--429
+\T5/ptm/m/n/10 hai) tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 429--429
+\T5/ptm/m/n/10 user-name v 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 441--441
+\T5/ptm/m/n/10 name v  pass-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 355--452
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 452
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 460--460
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 460--460
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 466--466
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 470--470
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 470--470
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 476--476
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 480--480
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 480--480
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 480--480
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 486--486
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 490--490
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 496--496
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 506--506
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 455--511
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 511
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 517--517
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 520--520
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--520
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--520
+\T5/ptm/m/n/10 th¶m ng÷íi
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 521--523
+\T5/ptm/m/n/10 - B§m v o nót ADD NEW
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 525--525
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 529--529
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 529--529
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 539--539
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 539--539
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 539--539
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 539--539
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 545--545
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 549--549
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--556
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--566
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 570--570
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 570--570
+\T5/ptm/m/n/10 n«ng cªp nhªt
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 571--574
+\T5/ptm/m/n/10 - Ta b§m v o nót Up-date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 576--576
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 515--581
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 581
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 591--591
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 591--591
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--596
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 600--600
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 600--600
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 600--600
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 606--606
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 610--610
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 7415) in paragraph at lines 610--610
+\T5/ptm/m/n/10 n«ng s­p x¸p
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 610--610
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--610
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 616--616
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 620--620
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 627--627
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 632--635
+\T5/ptm/m/n/10 - Chån mët nh¥n vi¶n trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 637--637
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 641--641
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 641--641
+\T5/ptm/m/n/10 n«ng cªp nhªt
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 642--645
+\T5/ptm/m/n/10 - Chån mët nh¥n vi¶n trong
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 642--645
+\T5/ptm/m/n/10 - Ta b§m v o nót Up-date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 647--647
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 586--652
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 652
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 656--657
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 659--659
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 662--662
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 669--669
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 673--673
+[]|\T5/ptm/m/n/10 Nhªp sai kiºu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 673--673
+\T5/ptm/m/n/10 dú li»u cho
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--684
+\T5/ptm/m/n/10 cõa drop-down
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 684--684
+\T5/ptm/m/n/10 list n¬m d÷îi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--684
+\T5/ptm/m/n/10 nh¢n "Se-lect
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 657--697
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 697
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 704--704
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 707--707
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--707
+\T5/ptm/m/n/10 n«ng cõa nót
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 712--712
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 716--716
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--716
+\T5/ptm/m/n/10 n«ng cõa nót
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 721--721
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 725--725
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 725--725
+\T5/ptm/m/n/10 n«ng cõa nót
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3168) in paragraph at lines 735--735
+[]|\T5/ptm/m/n/10 Bä trèng i·u
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 735--735
+\T5/ptm/m/n/10 ki»n èi vîi
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 735--735
+\T5/ptm/m/n/10 tr÷íng hñp if
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 736--742
+\T5/ptm/m/n/10 - Khæng nhªp g¼ v o tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 745--745
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 749--749
+\T5/ptm/m/n/10 v o èi vîi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 749--749
+\T5/ptm/m/n/10 tr÷íng hñp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 749--749
+\T5/ptm/m/n/10 else ho°c no
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 759--759
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 763--763
+[]|\T5/ptm/m/n/10 Nhªp sai i·u
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 773--773
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 777--777
+[]|\T5/ptm/m/n/10 Nhªp else if
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 791--791
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 795--795
+[]|\T5/ptm/m/n/10 Nhªp else if
+ []
+
+
+Underfull \hbox (badness 4441) in paragraph at lines 795--795
+\T5/ptm/m/n/10 ho°c else ¦u
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 805--805
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 809--809
+[]|\T5/ptm/m/n/10 Nhªp else if
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 816--816
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 820--820
+[]|\T5/ptm/m/n/10 Nhªp b§t cù
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--827
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 831--831
+[]|\T5/ptm/m/n/10 Bä trèng cæng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 838--838
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 842--842
+[]|\T5/ptm/m/n/10 Ghi sai cæng
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 843--846
+\T5/ptm/m/n/10 - B§m v o nót Add for-mula,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--849
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5504) in paragraph at lines 853--853
+\T5/ptm/m/n/10 b¡o v o cæng
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 854--857
+\T5/ptm/m/n/10 - B§m v o nót Add for-mula,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 860--860
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 4024) in paragraph at lines 864--864
+[]|\T5/ptm/m/n/10 T¤o hai (ho°c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 871--871
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 875--875
+[]|\T5/ptm/m/n/10 Nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 7540) in paragraph at lines 875--875
+\T5/ptm/m/n/10 réng v o cho
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 882--882
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 886--886
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 886--886
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 893--893
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 702--898
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 898
+ []
+
+[12] [13] [14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 940--941
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 943--943
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 956--956
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 960--960
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 960--960
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 960--960
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 960--960
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 961--964
+\T5/ptm/m/n/10 - Nhªp c¡c gi¡ trà óng v o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 967--967
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 971--971
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 971--971
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 971--971
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 971--971
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 972--975
+\T5/ptm/m/n/10 - Nhªp c¡c gi¡ trà óng v o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 980--980
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--984
+[]|\T5/ptm/m/n/10 Bä trèng hai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--984
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 984--984
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 984--984
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 991--991
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1004--1004
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1016--1016
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1026--1026
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1030
+[]|\T5/ptm/m/n/10 Ta nhªp gi¡
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1030
+\T5/ptm/m/n/10 trà óng cho
+ []
+
+
+Underfull \hbox (badness 5771) in paragraph at lines 1030--1030
+\T5/ptm/m/n/10 ba tr÷íng b­t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1030
+\T5/ptm/m/n/10 buëc, nh÷ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1030
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 1030--1030
+\T5/ptm/m/n/10 sai cho tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1036
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1040--1040
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1040--1040
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1046
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 941--1051
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1051
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 1056--1057
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 1059--1059
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1069--1069
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1073--1073
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1073--1073
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1073--1073
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1073--1073
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1080--1080
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1084--1084
+[]|\T5/ptm/m/n/10 Ta nhªp sai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1090
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1094
+[]|\T5/ptm/m/n/10 Ta nhªp gi¡
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1094
+\T5/ptm/m/n/10 trà óng cho
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1094
+\T5/ptm/m/n/10 tr÷íng Full
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1094
+\T5/ptm/m/n/10 name, nh÷ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1094
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 1094--1094
+\T5/ptm/m/n/10 sai cho tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1100--1100
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1104--1104
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1104--1104
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1110--1110
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1057--1115
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1115
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1119--1120
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 1122--1122
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1125--1125
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1132
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 1136--1136
+[]|\T5/ptm/m/n/10 Nhªp sai kiºu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1136--1136
+\T5/ptm/m/n/10 dú li»u cho
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1143--1143
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1147--1147
+\T5/ptm/m/n/10 cõa drop-down
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 1147--1147
+\T5/ptm/m/n/10 list n¬m d÷îi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1147--1147
+\T5/ptm/m/n/10 nh¢n Se-lect
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1155--1155
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1120--1160
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1160
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1165--1166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1168--1168
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1181--1181
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1185--1186
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1185--1186
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1185--1186
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1185--1186
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1194
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1198--1199
+[]|\T5/ptm/m/n/10 Bä trèng hai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1198--1199
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1198--1199
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1198--1199
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1208--1208
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1222--1222
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1235--1235
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1247--1247
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1252
+[]|\T5/ptm/m/n/10 Ta nhªp gi¡
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1252
+\T5/ptm/m/n/10 trà óng cho
+ []
+
+
+Underfull \hbox (badness 5771) in paragraph at lines 1251--1252
+\T5/ptm/m/n/10 ba tr÷íng b­t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1252
+\T5/ptm/m/n/10 buëc, nh÷ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1251--1252
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 1251--1252
+\T5/ptm/m/n/10 sai cho tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1259--1259
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1263--1264
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1263--1264
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1270--1270
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1166--1275
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1275
+ []
+
+[19] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 1279--1280
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1282
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1292--1292
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1296--1296
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1296--1296
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1296--1296
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1296--1296
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1303--1303
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1307--1307
+[]|\T5/ptm/m/n/10 Ta nhªp sai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1313--1313
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1317--1317
+[]|\T5/ptm/m/n/10 Ta nhªp sai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1323--1323
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1327
+[]|\T5/ptm/m/n/10 Ta nhªp gi¡
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1327
+\T5/ptm/m/n/10 trà óng cho
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1327
+\T5/ptm/m/n/10 tr÷íng Full
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1327
+\T5/ptm/m/n/10 name, nh÷ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1327--1327
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 1327--1327
+\T5/ptm/m/n/10 sai cho tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1333
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1337--1337
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1337--1337
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1343--1343
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1280--1348
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1348
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 1354--1354
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1357--1357
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1357--1357
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 1358--1360
+\T5/ptm/m/n/10 - B§m v o nót ADD NEW
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1362--1362
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1366--1366
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1366--1366
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1366--1366
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1372--1372
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1376--1376
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1376--1376
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 1376--1376
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1376--1376
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1382--1382
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1386--1386
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1393--1393
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1397--1397
+\T5/ptm/m/n/10 mët kh¡ch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1403--1403
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1407--1407
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 1407--1407
+\T5/ptm/m/n/10 n«ng cªp nhªt
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1408--1411
+\T5/ptm/m/n/10 - Ta b§m v o nót Up-date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1413--1413
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1352--1418
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1418
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 1422--1423
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1425--1425
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 1433--1436
+\T5/ptm/m/n/10 - Can-not in-put empty value into
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 1433--1436
+\T5/ptm/m/n/10 - Can-not in-put empty value into
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1437--1437
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1441--1441
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1441
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1441--1441
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1441--1441
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 1442--1446
+\T5/ptm/m/n/10 - Nhªp c¡c gi¡ trà óng v o
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 1447--1449
+\T5/ptm/m/n/10 - Can-not in-put empty value into
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1450--1450
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1454--1454
+[]|\T5/ptm/m/n/10 Nhªp sai dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1454--1454
+\T5/ptm/m/n/10 Email, c¡c
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1454--1454
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1454--1454
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1462--1462
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1466--1466
+[]|\T5/ptm/m/n/10 Nhªp sai dú
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 1466--1466
+\T5/ptm/m/n/10 Phone num-ber,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1466--1466
+\T5/ptm/m/n/10 nhúng tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1474--1474
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1478--1478
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1478--1478
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1485--1485
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1423--1490
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1490
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1494--1495
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1497--1497
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 1505--1508
+\T5/ptm/m/n/10 - Can-not in-put empty value into
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 1505--1508
+\T5/ptm/m/n/10 - Can-not in-put empty value into
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1509--1509
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1513--1513
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1513--1513
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1513--1513
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1513--1513
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 1514--1518
+\T5/ptm/m/n/10 - Nhªp c¡c gi¡ trà óng v o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1521--1521
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1525--1525
+[]|\T5/ptm/m/n/10 Nhªp sai dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1525--1525
+\T5/ptm/m/n/10 Email, c¡c
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1525--1525
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1525--1525
+\T5/ptm/m/n/10 nhªp gi¡ trà
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1533--1533
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1537--1537
+[]|\T5/ptm/m/n/10 Nhªp sai dú
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 1537--1537
+\T5/ptm/m/n/10 Phone num-ber,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1537--1537
+\T5/ptm/m/n/10 nhúng tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1545--1545
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1549--1549
+\T5/ptm/m/n/10 óng dú li»u
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 1549--1549
+\T5/ptm/m/n/10 cho t§t c£ c¡c
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1556--1556
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1495--1561
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1561
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 1567--1567
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1570--1570
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1570--1570
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1570--1570
+\T5/ptm/m/n/10 th¶m ph÷ìng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1575
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1579--1579
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1579--1579
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1579--1579
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1585--1585
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1589--1589
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1589--1589
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 1589--1589
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1589--1589
+\T5/ptm/m/n/10 cõa b£ng dú
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1595--1595
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1599--1599
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1606--1606
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1610--1610
+\T5/ptm/m/n/10 mët ph÷ìng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1616--1616
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1620--1620
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 1620--1620
+\T5/ptm/m/n/10 n«ng cªp nhªt
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1621--1624
+\T5/ptm/m/n/10 - Ta b§m v o nót Up-date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1626--1626
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1565--1631
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1631
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 1635--1636
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1638--1638
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 1642--1645
+\T5/ptm/m/n/10 - Ta º trèng tr÷íng Ve-hi-cle
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1648--1648
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1636--1653
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1653
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1657--1658
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1660--1660
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 1665--1668
+\T5/ptm/m/n/10 - Ta º trèng tr÷íng Ve-hi-cle
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1671--1671
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 1675--1676
+\T5/ptm/m/n/10 mët gi¡ trà ¢
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 1677--1680
+\T5/ptm/m/n/10 kh¡c ¢ tçn t¤i (v½ dö Grab
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1683--1683
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1658--1688
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1688
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 1694--1694
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1697--1697
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1697--1697
+\T5/ptm/m/n/10 ng÷íi dòng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1702--1702
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1706--1706
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1706--1706
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1713
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1717--1717
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 1717--1717
+\T5/ptm/m/n/10 n«ng t¼m ki¸m
+ []
+
+
+Underfull \hbox (badness 6625) in paragraph at lines 1717--1717
+\T5/ptm/m/n/10 theo tøng cët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1724--1724
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1728--1728
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1735--1735
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 1739--1739
+[]|\T5/ptm/m/n/10 Kiºm tra chùc
+ []
+
+
+Underfull \hbox (badness 2653) in paragraph at lines 1739--1739
+\T5/ptm/m/n/10 n«ng cªp nhªt
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 1740--1743
+\T5/ptm/m/n/10 - Ta b§m v o nót Up-date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1746--1746
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1692--1750
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1750
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1758
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1772--1772
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1776--1776
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1776--1776
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1776--1776
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1776--1776
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1784--1784
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1788--1788
+[]|\T5/ptm/m/n/10 Bä trèng hai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1788--1788
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1788--1788
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1788--1788
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 2302) in paragraph at lines 1789--1792
+\T5/ptm/m/n/10 - Bä trèng tr÷íng Name v 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1797--1797
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1801--1801
+[]|\T5/ptm/m/n/10 Nhªp v o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1801--1801
+\T5/ptm/m/n/10 tr÷ðng Name
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 1801--1801
+\T5/ptm/m/n/10 mët gi¡ trà ¢
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1810--1810
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1756--1815
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1815
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1819--1820
+
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 1822--1822
+[]|\T5/ptm/b/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 1132) in paragraph at lines 1826--1829
+\T5/ptm/m/n/10 - Ta º trèng c£ bèn tr÷íng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1836--1836
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 5133) in paragraph at lines 1840--1840
+[]|\T5/ptm/m/n/10 Bä trèng mët
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1840--1840
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1840--1840
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1840--1840
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1848--1848
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1852--1852
+[]|\T5/ptm/m/n/10 Bä trèng hai
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1852--1852
+\T5/ptm/m/n/10 tr÷íng trong
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1852--1852
+\T5/ptm/m/n/10 ìn, nhúng
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 1852--1852
+\T5/ptm/m/n/10 tr÷íng cán l¤i
+ []
+
+
+Underfull \hbox (badness 2302) in paragraph at lines 1853--1856
+\T5/ptm/m/n/10 - Bä trèng tr÷íng Name v 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1861--1861
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1865--1865
+[]|\T5/ptm/m/n/10 Nhªp v o
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1865--1865
+\T5/ptm/m/n/10 tr÷ðng Name
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 1865--1865
+\T5/ptm/m/n/10 mët gi¡ trà ¢
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1873--1873
+[]|\T5/ptm/m/n/10 ¢ kiºm
+ []
+
+
+Overfull \hbox (62.4065pt too wide) in alignment at lines 1820--1878
+ [] [] [] [] [] 
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1878
+ []
+
+[29] ("C:\Users\T450s\Google Drive\report-kaito\.texiteasy\lvtn-kiemthu.aux") )
+ 
+Here is how much of TeX's memory you used:
+ 3310 strings out of 493312
+ 44295 string characters out of 3129826
+ 145853 words of memory out of 3000000
+ 6762 multiletter control sequences out of 15000+200000
+ 24390 words of font info for 32 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,6n,29p,746b,297s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/T450s/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/vntex/t5.enc}
+<C:/Users/T450s/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Users/T450s/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/vnte
+x/urwvn/ucrr8v.pfb><C:/Users/T450s/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/vntex/urwvn/utmb8v.pfb><C:/Users/T450s/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/vntex/urwvn/utmr8v.pfb>
+Output written on lvtn-kiemthu.pdf (29 pages, 147130 bytes).
+PDF statistics:
+ 112 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

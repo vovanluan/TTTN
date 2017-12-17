@@ -1,0 +1,60 @@
+\BOOKMARK [1][-]{section.1}{Gii thiu}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Gii thiu \040t\340i}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Muc ti\352u \040t\340i}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Giai oan thc tp tt nghip}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Giai oan lun van tt nghip}{subsection.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.3}{Pham vi cua \040t\340i}{section.1}% 6
+\BOOKMARK [2][-]{subsection.1.4}{Cu tr\372c b\341o c\341o}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{C s l\375 thuyt v\340 nn tang c\364ng ngh}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{C\364ng ngh Google Map API}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Google Map API l\340 g\354?}{subsection.2.1}% 10
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Tao mt Google Map n gian}{subsection.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.2}{C\364ng ngh Java}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Java l\340 g\354}{subsection.2.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.2.2}{u im cua Java}{subsection.2.2}% 14
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Nhc im cua Java}{subsection.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.3}{Spring Framework }{section.2}% 16
+\BOOKMARK [2][-]{subsection.2.4}{M\364 h\354nh MVC}{section.2}% 17
+\BOOKMARK [2][-]{subsection.2.5}{JSON}{section.2}% 18
+\BOOKMARK [2][-]{subsection.2.6}{Android}{section.2}% 19
+\BOOKMARK [1][-]{section.3}{Ph\342n t\355ch y\352u cu v\340 chc nang ng dung}{}% 20
+\BOOKMARK [2][-]{subsection.3.1}{M\364 ta nghip vu}{section.3}% 21
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Quy tr\354nh nghip vu ban u khi cha c\363 h thng}{subsection.3.1}% 22
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Quy tr\354nh thc hin}{subsection.3.1}% 23
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Quy tr\354nh chi tit}{subsection.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.2}{Ph\342n t\355ch c\341c vn \040v\340 giai ph\341p}{section.3}% 25
+\BOOKMARK [2][-]{subsection.3.3}{M\364 h\354nh h\363a UseCase}{section.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Lc \040UseCase}{subsection.3.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.3.2}{\320c ta UseCase}{subsection.3.3}% 28
+\BOOKMARK [1][-]{section.4}{Thit k}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{Thit k h thng}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.2}{Thit k c s d liu}{section.4}% 31
+\BOOKMARK [3][-]{subsubsection.4.2.1}{M\364 h\354nh thc th quan h - ERD}{subsection.4.2}% 32
+\BOOKMARK [3][-]{subsubsection.4.2.2}{\301nh xa m\364 h\354nh thc th quan h}{subsection.4.2}% 33
+\BOOKMARK [2][-]{subsection.4.3}{Thit k giao din}{section.4}% 34
+\BOOKMARK [2][-]{subsection.4.4}{Thit k Sequence Diagram}{section.4}% 35
+\BOOKMARK [2][-]{subsection.4.5}{Thit k Activity Diagram}{section.4}% 36
+\BOOKMARK [2][-]{subsection.4.6}{Danh s\341ch c\341c h\340m c s dung}{section.4}% 37
+\BOOKMARK [1][-]{section.5}{Hin thc d \341n}{}% 38
+\BOOKMARK [2][-]{subsection.5.1}{C\364ng ngh s dung}{section.5}% 39
+\BOOKMARK [2][-]{subsection.5.2}{Client}{section.5}% 40
+\BOOKMARK [3][-]{subsubsection.5.2.1}{T chc d \341n}{subsection.5.2}% 41
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Kt qua at c}{subsection.5.2}% 42
+\BOOKMARK [2][-]{subsection.5.3}{Server}{section.5}% 43
+\BOOKMARK [2][-]{subsection.5.4}{Phi\352n ban mu Server}{section.5}% 44
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Trang chu cua h thng}{subsection.5.4}% 45
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Trang th\352m, cp nht c\364ng thc d o\341n chi phi phng tin}{subsection.5.4}% 46
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Chc nang quan l\375 cua ngi quan tri}{subsection.5.4}% 47
+\BOOKMARK [2][-]{subsection.5.5}{Thit k ban kim th \(nhng chc nang ch\355nh\)}{section.5}% 48
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Chc nang ang nhp v\340o h thng}{subsection.5.5}% 49
+\BOOKMARK [3][-]{subsubsection.5.5.2}{Thao t\341c i vi trang Lich tr\354nh \(Appointments\)}{subsection.5.5}% 50
+\BOOKMARK [3][-]{subsubsection.5.5.3}{Thao t\341c i vi trang Ngi quan l\375 \(Managers\)}{subsection.5.5}% 51
+\BOOKMARK [3][-]{subsubsection.5.5.4}{Thao t\341c i vi trang Nh\342n vi\352n \(Employees\)}{subsection.5.5}% 52
+\BOOKMARK [3][-]{subsubsection.5.5.5}{Thao t\341c khi s dung trang thng k\352 Nh\342n vi\352n \(Employee Statistics\) }{subsection.5.5}% 53
+\BOOKMARK [3][-]{subsubsection.5.5.6}{Thao t\341c khi s dung trang th\352m c\364ng thc cho Phng tin \(Insert Vehicle Formula\) }{subsection.5.5}% 54
+\BOOKMARK [2][-]{subsection.5.6}{M\364 h\354nh trin khai }{section.5}% 55
+\BOOKMARK [1][-]{section.6}{Tng kt}{}% 56
+\BOOKMARK [2][-]{subsection.6.1}{Kt qua at c cho giai oan Lun Van Tt Nghip}{section.6}% 57
+\BOOKMARK [2][-]{subsection.6.2}{\320\341nh gi\341 h thng}{section.6}% 58
+\BOOKMARK [2][-]{subsection.6.3}{Hng ph\341t trin}{section.6}% 59
+\BOOKMARK [1][-]{section.7}{Phu luc}{}% 60
